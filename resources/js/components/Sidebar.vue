@@ -4,54 +4,37 @@
     v-if="isLoggedIn === 'true'"
   >
     <div class="p-4">
-      <!--<a href="/public" class="text-white text-lg block font-semibold uppercase hover:text-gray-300 mx-auto">UMKM GK</a>-->
       <div
-        class="realtive w-20 h-20 rounded-full overflow-hidden border-2 border-gray-100 hover:border-gray-200 focus:border-gray-200 focus:outline-none mb-1 mx-auto"
+        class="realtive w-12 h-12 rounded-full overflow-hidden border-2 border-gray-100 hover:border-gray-200 focus:border-gray-200 focus:outline-none mb-1 mx-auto"
       >
-        <router-link :to="{ name: 'public' }">
-          <img src="/img/cantik.jpg" />
+        <router-link :to="{ name: 'home' }">
+          <img src="/img/document.png" />
         </router-link>
       </div>
-      <!--<router-link :to="{ name: 'input', params: { id: 1 } }" v-if="role === 'desa' || role === 'admin'">
-        <button class="w-full bg-white cta-btn font-semibold py-2 mt-5 rounded-br-lg rounded-bl-lg rounded-tr-lg shadow-lg hover:shadow-xl hover:bg-gray-300 flex items-center justify-center"><i class="fas fa-plus mr-3"></i> New Data</button>
-      </router-link>-->
-      <button
+      <!-- <button
         class="w-full bg-white cta-btn text-xs font-semibold py-2 mt-5 rounded-br-lg rounded-bl-lg rounded-tr-lg shadow-lg hover:shadow-xl hover:bg-gray-300 flex items-center justify-center"
       >
         <i class="fas fa-user mr-3"></i> Petugas {{ role }}
-      </button>
+      </button> -->
     </div>
     <nav class="text-white text-base font-semibold pt-3">
-      <!--<router-link :to="{ name: 'public' }" class="flex items-center text-white py-4 pl-6 nav-item">
-        <i class="fas fa-tachometer-alt mr-3"></i>
-        Home
-      </router-link>-->
-      <router-link
-        :to="{ name: 'desa', params: { id: desa_id } }"
-        v-if="role === 'desa' && isLoggedIn == 'true'"
-        class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item"
-      >
-        <i class="fas fa-home mr-3"></i>
-        Home
-      </router-link>
 
       <router-link
-        :to="{ name: 'kecamatan', params: { id: kecamatan_id } }"
-        v-if="role === 'kecamatan' && isLoggedIn == 'true'"
-        class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item"
-      >
-        <i class="fas fa-home mr-3"></i>
-        Home
-      </router-link>
-
-      <router-link
-        :to="{ name: 'global' }"
+        :to="{ name: 'barang' }"
         v-if="isAdmin === 'true' && role === 'admin' && isLoggedIn == 'true'"
         class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item"
       >
         <i class="fas fa-home mr-3"></i>
-        Home
+        Daftar Barang
       </router-link>
+
+      <router-link
+        :to="{ name: 'master' }"
+        v-if="role === 'admin'"
+        class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item"
+      >
+        <i class="fas fa-plus mr-3"></i> Data Master</router-link
+      >
 
       <router-link
         :to="{ name: 'input', params: { id: desa_id } }"

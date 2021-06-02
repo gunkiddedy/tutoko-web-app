@@ -81,31 +81,15 @@ export default {
       axios
         .post("/api/login", this.user)
         .then((response) => {
-          if (response.data.user.role === "desa") {
-            this.$router.push({
-              name: "desa",
-              params: {
-                id: response.data.user.dfdesa_id,
-              },
-            });
-          } else if (response.data.user.role === "kecamatan") {
-            this.$router.push({
-              name: "kecamatan",
-              params: {
-                id: response.data.user.dfkecamatan_id,
-              },
-            });
-          } else if (response.data.user.role === "admin") {
+          if (response.data.user.role === "admin") {
             localStorage.setItem("isAdmin", "true");
             this.$router.push({
-              name: "global",
+              name: "barang",
             });
           }
           this.isLoging = false;
           localStorage.setItem("isLoggedIn", "true");
-          localStorage.setItem("username", response.data.user.username);
-          localStorage.setItem("desa_id", response.data.user.dfdesa_id);
-          localStorage.setItem("kecamatan_id", response.data.user.dfkecamatan_id);
+          localStorage.setItem("username", response.data.user.fullname);
           localStorage.setItem("role", response.data.user.role);
         })
         .catch((error) => {

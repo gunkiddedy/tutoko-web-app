@@ -1,4 +1,6 @@
 import Public from './pages/Public'
+import Barang from './pages/Barang'
+import BarangEdit from './pages/BarangEdit'
 import ProductDetail from './pages/ProductDetail'
 import Desa from './pages/Desa'
 import Edit from './pages/Edit'
@@ -19,6 +21,17 @@ export default {
             path: '/public',
             component: Public,
             name: 'public'
+        },
+        {
+            path: '/barang',
+            component: Barang,
+            name: 'barang'
+        },
+        {
+            path: '/barang-edit/:id',
+            component: BarangEdit,
+            name: 'barang-edit',
+            props: true
         },
         {
             path: '/product-detail/:id',
@@ -55,11 +68,11 @@ export default {
             component: UploadProduk,
             name: 'upload-produk',
         },
-        {
-            path: '/global-umkm',
-            component: Global,
-            name: 'global',
-        },
+        // {
+        //     path: '/global-umkm',
+        //     component: Global,
+        //     name: 'global',
+        // },
         {
             path: '/download',
             component: Download,
