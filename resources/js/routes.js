@@ -1,4 +1,5 @@
 import Barang from './pages/Barang'
+import BarangAdd from './pages/BarangAdd'
 import BarangEdit from './pages/BarangEdit'
 import InvoiceMasuk from './pages/InvoiceMasuk'
 import InvoiceKeluar from './pages/InvoiceKeluar'
@@ -34,6 +35,11 @@ export default {
             path: '/barang',
             component: Barang,
             name: 'barang'
+        },
+        {
+            path: '/barang-add',
+            component: BarangAdd,
+            name: 'barang-add'
         },
         {
             path: '/barang-edit/:id',

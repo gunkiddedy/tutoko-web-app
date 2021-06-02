@@ -7,9 +7,13 @@
 
       <div class="w-full h-screen overflow-x-hidden border-t flex flex-col">
         <main class="w-full flex-grow p-6 bg-white">
-          <h1 class="text-lg pb-1 font-semibold text-indigo-400 uppercase">
+          <div class="flex items-center justify-between">
+            <h1 class="text-lg pb-1 font-semibold text-indigo-400 uppercase">
             Daftar Barang
           </h1>
+            <button @click="tambahData" class="bg-blue-500 w-auto text-white px-4 py-1 rounded"><i class="fas fa-plus mr-1"></i>Tambah Data</button>
+          </div>
+          
           <!-- loader spin-->
           <div
             v-if="loading"
@@ -56,6 +60,21 @@
                   <span v-else>
                     {{ props.formattedRow[props.column.field] }}
                   </span>
+                  <span v-if="props.column.field == 'active_custom'">
+                      <span
+                          :class="{
+                              'bg-green-400': props.row.active == 'Active',
+                              'bg-gray-400': props.row.active == 'Inactive',
+                          }" 
+                          class="px-3 text-white font-bold py-0 leading-loose flex items-center justify-center w-1/2">
+                          {{ props.row.active }}
+                      </span>
+                  </span>
+                  <span v-if="props.column.field == 'photo_custom'">
+                      <a :href="'storage/' + props.row.photo" target="_blank">
+                        <img class="w-12" :src="'storage/' + props.row.photo" :alt="props.row.barang_nama">
+                      </a>
+                  </span>
                 </template>
               </vue-good-table>
             </div>
@@ -84,11 +103,11 @@ export default {
           label: "Action",
           field: "action",
           sortable: false,
-          width: "200px",
+          width: "auto",
         },
         {
-          label: "ID.",
-          field: "id",
+          label: "Photo",
+          field: "photo_custom",
           sortable: false,
           width: "auto",
         },
@@ -105,6 +124,22 @@ export default {
           },
         },
         {
+          label: "Jenis",
+          field: "barang_tipe",
+          sortable: false,
+          width: "auto",
+          filterable: true,
+          filterOptions: {
+            enabled: true,
+            placeholder: "Filter",
+            filterDropdownItems: [
+              "Mandiri",
+              "Supplier",
+            ],
+            trigger: "keyup",
+          },
+        },
+        {
           label: "Satuan",
           field: "barang_satuan",
           sortable: false,
@@ -118,7 +153,7 @@ export default {
         },
         {
           label: "Status",
-          field: "active",
+          field: "active_custom",
           sortable: false,
           width: "auto",
         },
@@ -149,8 +184,12 @@ export default {
   },
 
   methods: {
+    tambahData(){
+      this.$router.push({
+        name: "barang-add",
+      });
+    },
     editData(param) {
-      //alert(param);
       this.$router.push({
         name: "barang-edit",
         params: {

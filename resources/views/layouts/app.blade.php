@@ -6,7 +6,7 @@
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>UMKM-GUNUNGKIDUL</title>
+    <title>TUTOKO WEB APP</title>
 
     <script src="{{ asset('js/app.js') }}" defer></script>
 

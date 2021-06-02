@@ -25,6 +25,10 @@ Route::post('login', 'AuthController@login')->name('login');
 Route::get('barang', 'BarangController@getDataBarang');
 Route::get('get-barang/{id}', 'BarangController@getDataBarangById');
 Route::post('update-barang/{id}', 'BarangController@updateDataBarangById');
+Route::post('delete-photo/{id}', 'BarangController@deleteFileStorage');
+Route::post('add-data-barang', 'BarangController@addDataBarang');
+
+
 Route::post('upload-photo-product', 'AdminController@uploadProduct');
 Route::get('admin-export-kdk/{kcmtn}/{desa}/{kriteria}', 'ExportController@exportKDK'); //kriteria per desa --cl
 Route::get('admin-export-upd/{kcmtn}/{desa}/{up}', 'ExportController@exportUPD'); //usaha pokok per desa
