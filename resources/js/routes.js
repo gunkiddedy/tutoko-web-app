@@ -1,15 +1,23 @@
-import Public from './pages/Public'
 import Barang from './pages/Barang'
 import BarangEdit from './pages/BarangEdit'
+import InvoiceMasuk from './pages/InvoiceMasuk'
+import InvoiceKeluar from './pages/InvoiceKeluar'
+import Penjualan from './pages/Penjualan'
+import Pembelian from './pages/Pembelian'
+import Produksi from './pages/Produksi'
+import Pegawai from './pages/Pegawai'
+import Supplier from './pages/Supplier'
+import Login from './pages/Login'
+
+import Public from './pages/Public'
 import ProductDetail from './pages/ProductDetail'
 import Desa from './pages/Desa'
 import Edit from './pages/Edit'
 import Kecamatan from './pages/Kecamatan'
 import Download from './pages/Download'
-import Login from './pages/Login'
 import Add from './pages/Add'
 import UploadProduk from './pages/UploadProduk'
-import Global from './pages/Global'
+// import Global from './pages/Global'
 import PageNotFound from './pages/PageNotFound'
 // import Template from './components/Template'
 
@@ -32,6 +40,41 @@ export default {
             component: BarangEdit,
             name: 'barang-edit',
             props: true
+        },
+        {
+            path: '/invoice-masuk',
+            component: InvoiceMasuk,
+            name: 'invoice-masuk'
+        },
+        {
+            path: '/invoice-keluar',
+            component: InvoiceKeluar,
+            name: 'invoice-keluar'
+        },
+        {
+            path: '/penjualan',
+            component: Penjualan,
+            name: 'penjualan'
+        },
+        {
+            path: '/pembelian',
+            component: Pembelian,
+            name: 'pembelian'
+        },
+        {
+            path: '/produksi',
+            component: Produksi,
+            name: 'produksi'
+        },
+        {
+            path: '/pegawai',
+            component: Pegawai,
+            name: 'pegawai'
+        },
+        {
+            path: '/supplier',
+            component: Supplier,
+            name: 'supplier'
         },
         {
             path: '/product-detail/:id',

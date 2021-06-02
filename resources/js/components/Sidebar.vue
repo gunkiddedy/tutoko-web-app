@@ -29,19 +29,53 @@
       </router-link>
 
       <router-link
-        :to="{ name: 'master' }"
+        :to="{ name: 'invoice-masuk' }"
         v-if="role === 'admin'"
         class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item"
       >
-        <i class="fas fa-plus mr-3"></i> Data Master</router-link
+        <i class="fas fa-bug mr-3"></i> Invoice Masuk</router-link
       >
-
       <router-link
-        :to="{ name: 'input', params: { id: desa_id } }"
+        :to="{ name: 'invoice-keluar'}"
         v-if="role === 'desa' || role === 'admin'"
         class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item"
       >
-        <i class="fas fa-plus mr-3"></i> Add Data</router-link
+        <i class="fas fa-bullhorn mr-3"></i> Invoice Keluar</router-link
+      >
+      <router-link
+        :to="{ name: 'penjualan'}"
+        v-if="role === 'desa' || role === 'admin'"
+        class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item"
+      >
+        <i class="fas fa-chart-bar mr-3"></i> Penjualan</router-link
+      >
+      <router-link
+        :to="{ name: 'pembelian'}"
+        v-if="role === 'desa' || role === 'admin'"
+        class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item"
+      >
+        <i class="fas fa-book mr-3"></i> Pembelian</router-link
+      >
+      <router-link
+        :to="{ name: 'produksi'}"
+        v-if="role === 'desa' || role === 'admin'"
+        class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item"
+      >
+        <i class="fas fa-clipboard-check mr-3"></i> Produksi</router-link
+      >
+      <router-link
+        :to="{ name: 'pegawai'}"
+        v-if="role === 'desa' || role === 'admin'"
+        class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item"
+      >
+        <i class="fas fa-user mr-3"></i> Pegawai</router-link
+      >
+      <router-link
+        :to="{ name: 'supplier'}"
+        v-if="role === 'desa' || role === 'admin'"
+        class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item"
+      >
+        <i class="fas fa-bus mr-3"></i> Supplier</router-link
       >
 
       <router-link
@@ -69,14 +103,14 @@
       <i class="fas fa-sign-in-alt mr-3"></i>
       Login
     </router-link>
-    <button
+    <!-- <button
       @click="logout"
       class="absolute w-full upgrade-btn bottom-0 text-white flex items-center justify-center py-4"
       v-if="isLoggedIn == 'true'"
     >
       <i class="fas fa-sign-out-alt mr-3"></i>
       Logout
-    </button>
+    </button> -->
   </aside>
 </template>
 

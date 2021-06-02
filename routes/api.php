@@ -22,15 +22,17 @@ Route::post('logout', 'AuthController@logout');
 Route::post('login', 'AuthController@login')->name('login');
 
 // ADMIN
-Route::post('upload-photo-product', 'AdminController@uploadProduct');
-// Route::get('global-umkm', 'DesaController@getGlobalDataUmkm');
 Route::get('barang', 'BarangController@getDataBarang');
+Route::get('get-barang/{id}', 'BarangController@getDataBarangById');
+Route::post('update-barang/{id}', 'BarangController@updateDataBarangById');
+Route::post('upload-photo-product', 'AdminController@uploadProduct');
 Route::get('admin-export-kdk/{kcmtn}/{desa}/{kriteria}', 'ExportController@exportKDK'); //kriteria per desa --cl
 Route::get('admin-export-upd/{kcmtn}/{desa}/{up}', 'ExportController@exportUPD'); //usaha pokok per desa
 Route::get('admin-export-k/{kcmtn}', 'ExportController@exportKecamatan'); //per kecamatan
 Route::get('admin-export-kk/{kcmtn}/{kriteria}', 'ExportController@exportKK'); //kriteria per kecamatan
 Route::get('admin-export-upk/{kcmtn}/{up}', 'ExportController@exportUPK'); //usaha pokok per kecamatan
 Route::get('admin-export-global/{tahun}', 'ExportController@exportGlobal');
+// Route::get('global-umkm', 'DesaController@getGlobalDataUmkm');
 
 
 // get kecamatan and desa (dependent dropdown)

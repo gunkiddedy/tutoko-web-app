@@ -48,7 +48,7 @@
                   <span v-if="props.column.field == 'action'">
                     <button
                       class="bg-indigo-500 rounded border border-indigo-600 hover:bg-indigo-600 px-2 py-0 text-white font-semibold mx-1"
-                      @click="editData(props.row.barang_id)"
+                      @click="editData(props.row.id)"
                     >
                       <i class="fas fa-pen mr-2"></i>Edit
                     </button>
@@ -88,7 +88,7 @@ export default {
         },
         {
           label: "ID.",
-          field: "barang_id",
+          field: "id",
           sortable: false,
           width: "auto",
         },
