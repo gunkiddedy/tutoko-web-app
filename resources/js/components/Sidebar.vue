@@ -8,7 +8,7 @@
         class="realtive w-12 h-12 rounded-full overflow-hidden border-2 border-gray-100 hover:border-gray-200 focus:border-gray-200 focus:outline-none mb-1 mx-auto"
       >
         <router-link :to="{ name: 'home' }">
-          <img src="/img/document.png" />
+          <img src="/img/minicar.jpg" />
         </router-link>
       </div>
       <!-- <button
