@@ -144,15 +144,23 @@
 							</div>
 						</div>
 					</div>
-                  <div class="value w-full sm:w-1/2">
-							<label @click="selectImage" class="bg-yellow-500 flex justify-center px-2 items-center py-2 rounded-lg border border-blue cursor-pointer hover:bg-yellow-600">
+          <div class="value w-full sm:w-1/2">
+							<label class="bg-yellow-500 flex justify-center px-2 items-center py-2 rounded-lg border border-blue cursor-pointer hover:bg-yellow-600">
 									<svg class="w-8 h-8 text-white" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
 										<path d="M16.88 9.1A4 4 0 0 1 16 17H5a5 5 0 0 1-1-9.9V7a3 3 0 0 1 4.52-2.59A4.98 4.98 0 0 1 17 8c0 .38-.04.74-.12 1.1zM11 11h3l-4-4-4 4h3v3h2v-3z" />
 									</svg>
 									<span class="font-semibold text-white ml-2" >Pilih file</span>
 									<input 
-										type='file' class="hidden" name="bukti_trasnfer" ref="file" @change="onFileChange"
-									/>
+										type='file' 
+                    class="hidden" 
+                    @change="onFileChange"
+                    ref="file" />
+                  <!-- <input 
+                    type="file" 
+                    id="file" 
+                    ref="image" 
+                    class="custom-file-input" 
+                    @change="onFileChange" /> -->
 							</label>
 						</div>
                 </div>
@@ -189,53 +197,23 @@ export default {
       barang_tipe: "",
       active: "",
       photo: "",
+      image: null,
       tipes: ['Mandiri', 'Supplier'],
       status: ['Active', 'Inactive'],
-      imageList: [],
-	    dialogImageUrl: "",
-      dialogVisible: false,
       url: "",
-      loadingImage: false,
+      imageList: [],
     };
   },
   mounted() {
     this.getDataBarang(this.id);
   },
-  // watch: {
-  //   imageList: function() {
-  //     const formData = new FormData();
-  //     this.imageList.forEach((file) => {
-  //       formData.append("photo", file, file.name);
-  //     });
-  //   }
-  // },
   methods: {
-    selectImage(){
-				this.loadingImage = true;
-				if(this.photo){
-					this.loadingImage = false;
-				}
-			},
-			onFileChange(e) {
-				const file = e.target.files[0];
-				this.url = URL.createObjectURL(file);
-				this.photo = file;
-				console.log(this.photo);
-			},
-    // updateImageList(file) {
-    //   this.imageList.push(file.raw);
-    //   console.log(this.imageList);
-    // },
-    // handleRemove(file) {
-    //   this.imageList.splice(file, 1);
-    // },
-    // handlePreview(file) {
-    //   this.dialogImageUrl = file.url;
-    //   this.dialogVisible = true;
-    // },
-    // handleExceed(files, imageList) {
-    //   this.$message.warning(`maksimal 1 photo`);
-    // },
+    onFileChange(e) {
+      const file = e.target.files[0];
+      this.imageList.push(file);
+      this.url = URL.createObjectURL(file);
+      console.log(this.photo);
+    },
     getDataBarang(param) {
       axios
         .get("/api/get-barang/" + param)
@@ -263,15 +241,18 @@ export default {
     },
     updateDataBarang(param) {
       this.isUpdating = true;
+      const formData = new FormData();
+      formData.append("barang_nama", this.barang_nama);
+      formData.append("barang_satuan", this.barang_satuan);
+      formData.append("barang_stok", this.barang_stok);
+      formData.append("barang_tipe", this.barang_tipe);
+      formData.append("active", this.active);
+      // console.log(this.imageList);
+	    this.imageList.forEach((file) => {
+        formData.append("photo", file, file.name);
+      });
       axios
-        .post("/api/update-barang/" + param, {
-          barang_nama: this.barang_nama,
-          barang_satuan: this.barang_satuan,
-          barang_stok: this.barang_stok,
-          barang_tipe: this.barang_tipe,
-          active: this.active,
-          photo: this.photo,
-        },{headers: {'Content-Type': 'multipart/form-data'}})
+        .post(`/api/update-barang/${param}`, formData)
         .then((response) => {
           this.isUpdating = false;
           this.$router.push({

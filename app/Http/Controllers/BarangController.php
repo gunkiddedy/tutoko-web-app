@@ -26,89 +26,55 @@ class BarangController extends Controller
 
         return response()->json('file on storage successfuly deleted');
     }
-    // public function updateDataBarangById(Request $request, $id)
-    // {
-    //     $q = Barang::find($id);
-
-    //     $this->validate($request,[
-    //         'barang_nama' => 'required',
-    //         'barang_satuan'=> 'required',
-    //         'barang_stok' => 'required',
-    //         'barang_tipe' => 'required',
-    //         'photo' => 'required'
-    //     ]);
-
-    //     $currentPhoto = $q->photo;
-    //     $photo = $request->photo;
-    //     $random = rand(1,9);
-    //     if($request->photo != $currentPhoto){
-    //         //get filename with extension
-    //         $filenamewithextension = $photo->getClientOriginalName();
-    //         //get filename without extension
-    //         $filename = pathinfo($filenamewithextension, PATHINFO_FILENAME);
-    //         //get file extension
-    //         $extension = $photo->getClientOriginalExtension();
-    //         //filename to store
-    //         $filenametostore = $filename.'-'.$random.'.'.$extension;
-    //         //Upload File
-    //         $photo->storeAs('public/images', $filenametostore);
-    //         // $imagePath = public_path('storage/images/'.$currentPhoto);
-    //         // if(file_exists($imagePath)){
-    //         //     @unlink($imagePath);
-    //         // }
-    //     }
-
-    //     $q->update($request->all());
-
-    //     return response()->json('data successfuly updated');
-    // }
     public function updateDataBarangById(Request $request, $id)
     {
-        $q = Barang::find($id);
-        $random = rand(1,99);
-        if($request->hasFile('photo')) 
-        {
-            dd($q);    
-            //get filename with extension
-            // $filenamewithextension = $photo->getClientOriginalName();
-            // //get filename without extension
-            // $filename = pathinfo($filenamewithextension, PATHINFO_FILENAME);
-            // //get file extension
-            // $extension = $photo->getClientOriginalExtension();
-            // //filename to store
-            // $filenametostore = $filename.'-'.$random.'.'.$extension;
-            // //Upload File
-            // $photo->storeAs('public/images', $filenametostore);
-    
-            // $q->barang_nama = $request->get('barang_nama');
-            // $q->barang_satuan = $request->get('barang_satuan');
-            // $q->barang_stok = $request->get('barang_stok');
-            // $q->barang_tipe = $request->get('barang_tipe');
-            // $q->photo = 'images/'.$filenametostore;
-            // $q->active = $request->get('active');
-            // $q->save();
-        }
-        // else
-        // {
-        //     $q->barang_nama = $request->get('barang_nama');
-        //     $q->barang_satuan = $request->get('barang_satuan');
-        //     $q->barang_stok = $request->get('barang_stok');
-        //     $q->barang_tipe = $request->get('barang_tipe');
-        //     $q->active = $request->get('active');
-        //     $q->save();
-        // }
+        $this->validate($request,[
+            'barang_nama' => 'required',
+            'barang_satuan'=> 'required',
+            'barang_stok' => 'required',
+            'barang_tipe' => 'required',
+        ]);
         
-        // return response()->json('data successfuly updated');
+        $q = Barang::find($id);
+        
+        if($request->hasFile('photo')) {
+            $photo = $request->file('photo');
+            
+            // delete first the old image
+            Storage::disk('public')->delete($q['photo']);
+
+            //get filename with extension
+            $filenamewithextension = $photo->getClientOriginalName();
+            //get filename without extension
+            $filename = pathinfo($filenamewithextension, PATHINFO_FILENAME);
+            //get file extension
+            $extension = $photo->getClientOriginalExtension();
+            //filename to store
+            $filenametostore = $filename.'-'.rand(1000,9999).time().'.'.$extension;
+            //Upload File
+            $photo->storeAs('public/images', $filenametostore);
+    
+            $q->barang_nama = $request->get('barang_nama');
+            $q->barang_satuan = $request->get('barang_satuan');
+            $q->barang_stok = $request->get('barang_stok');
+            $q->barang_tipe = $request->get('barang_tipe');
+            $q->active = $request->get('active');
+            $q->photo = 'images/'.$filenametostore;
+            $q->save();
+        }else{
+            $q->barang_nama = $request->get('barang_nama');
+            $q->barang_satuan = $request->get('barang_satuan');
+            $q->barang_stok = $request->get('barang_stok');
+            $q->barang_tipe = $request->get('barang_tipe');
+            $q->active = $request->get('active');
+            $q->save();
+        }
+
+
     }
+    
     public function addDataBarang(Request $request)
     {
-        // $q = new Barang;
-        // $q->barang_nama = $request->get('barang_nama');
-        // $q->barang_satuan = $request->get('barang_satuan');
-        // $q->barang_stok = $request->get('barang_stok');
-        // $q->barang_tipe = $request->get('barang_tipe');        
-        // $q->save();
-
         $request->validate([
             'barang_nama' => 'required',
             'barang_satuan'=> 'required',
