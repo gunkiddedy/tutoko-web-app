@@ -103,7 +103,7 @@ export default {
           label: "Action",
           field: "action",
           sortable: false,
-          width: "auto",
+          width: "100px",
         },
         {
           label: "Photo",
