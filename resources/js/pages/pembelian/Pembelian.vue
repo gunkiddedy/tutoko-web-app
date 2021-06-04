@@ -11,7 +11,8 @@
             <h1 class="text-lg pb-1 font-semibold text-indigo-400 uppercase">
             Daftar Pembelian
           </h1>
-            <button @click="tambahData" class="bg-blue-500 w-auto text-white px-4 py-1 rounded"><i class="fas fa-plus mr-1"></i>Tambah Data</button>
+            <button @click="tambahData" class="bg-blue-500 hover:bg-blue-600 w-auto text-white px-4 py-2 rounded">
+              <i class="fas fa-plus mr-1"></i>Tambah Data</button>
           </div>
           
           <!-- loader spin-->
