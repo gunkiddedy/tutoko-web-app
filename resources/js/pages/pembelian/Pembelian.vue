@@ -133,12 +133,6 @@ export default {
           width: "auto",
         },
         {
-          label: "Payment",
-          field: "payment",
-          sortable: false,
-          width: "auto",
-        },
-        {
           label: "Jual Standar",
           field: "harga_jual_standar",
           sortable: false,
@@ -147,6 +141,12 @@ export default {
         {
           label: "Jual Grosir",
           field: "harga_jual_grosir",
+          sortable: false,
+          width: "auto",
+        },
+        {
+          label: "Payment",
+          field: "payment",
           sortable: false,
           width: "auto",
         }

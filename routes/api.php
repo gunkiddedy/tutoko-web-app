@@ -57,4 +57,4 @@ Route::get('get-kriteria', 'DesaController@getKriteria');
 Route::get('get-kecamatans', 'DesaController@getKecamatan');
 Route::get('get-desa-by-kecamatan-id', 'DesaController@getDesa');
 
-Route::post('add-data', 'UmkmController@addData');
+// Route::post('add-data', 'UmkmController@addData');

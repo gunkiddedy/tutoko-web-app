@@ -144,7 +144,7 @@
                     <label class="block text-lg text-gray-600" for="cus_email"
                       >Total Harga</label
                     >
-                    <div class="total-harga font-bold text-lg text-white px-4 py-2 bg-blue-600 rounded">
+                    <div class="total-harga font-bold text-2xl text-gray-900">
                       {{totalHarga}}
                     </div>
                   </div>
@@ -153,7 +153,7 @@
                     <label class="block text-lg text-gray-600" for="cus_email"
                       >Kurang Bayar</label
                     >
-                    <div class="hutang font-bold text-lg text-white px-4 py-2 bg-yellow-400 rounded">
+                    <div class="hutang font-bold text-2xl text-red-500">
                       {{totalHutang}}
                     </div>
                   </div>
@@ -244,11 +244,6 @@ export default {
   mounted(){
     this.getSuppliers();
     this.getBarangs();
-    if(this.form.tanggal == ''){
-      let todayDate = new Date().toISOString().slice(0, 10);
-      this.form.tanggal = todayDate;
-      console.log(this.form.tanggal);
-    }
   },
   methods: {
     saveData(e) {
@@ -260,17 +255,18 @@ export default {
         return false;
       }
 
-      let date = this.form.tanggal.toISOString().split('-');
+      let date = this.form.tanggal.toLocaleString('en-GB').split('-');
 			let fixDate = date[1]+'-'+date[0]+'-'+date[2];
 
       const formData = new FormData();
       formData.append("supplier_id", this.form.supplier_id);
       formData.append("barang_id", this.form.barang_id);
 
-      if(this.form.tanggal != fixDate){
-        formData.append("tanggal", fixDate);
+      if(this.form.tanggal == ''){
+        let todayDate = new Date().toISOString().slice(0, 10);
+        formData.append("tanggal", todayDate);
       }else{
-        formData.append("tanggal", this.form.tanggal);
+        formData.append("tanggal", fixDate);
       }
 
       formData.append("jumlah", this.form.jumlah);
