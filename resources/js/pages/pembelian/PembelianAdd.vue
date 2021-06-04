@@ -16,11 +16,11 @@
                   class="grid grid-cols-2 lg:grid-cols-2 sm:grid-cols-1 md:grid-cols-2"
                 >
                   <div class="px-4 my-2">
-                    <label class="block text-sm text-gray-600" for="cus_email"
+                    <label class="block text-lg text-gray-600" for="cus_email"
                       >Nama Barang</label
                     >
                     <select
-                        v-model="barang_id"
+                        v-model="form.barang_id"
                         class="w-full px-5 py-1 rounded-lg text-gray-500 focus:outline-none focus:shadow-inner border-2 border-gray-200 bg-white appearance-none"
                       >
                       <option class="text-gray-700" value="" selected="selected">
@@ -38,11 +38,11 @@
                   </div>
 
                   <div class="px-4 my-2">
-                    <label class="block text-sm text-gray-600" for="cus_email"
+                    <label class="block text-lg text-gray-600" for="cus_email"
                       >Nama Supplier</label
                     >
                     <select
-                        v-model="supplier_id"
+                        v-model="form.supplier_id"
                         class="w-full px-5 py-1 rounded-lg text-gray-500 focus:outline-none focus:shadow-inner border-2 border-gray-200 bg-white appearance-none"
                       >
                       <option class="text-gray-700" value="" selected="selected">
@@ -60,7 +60,7 @@
                   </div>
 
                   <div class="px-4 my-2">
-                    <label class="block text-sm text-gray-600" for="cus_name"
+                    <label class="block text-lg text-gray-600" for="cus_name"
                       >Jumlah Pembelian</label
                     >
                     <input
@@ -68,68 +68,103 @@
                       id="jumlah"
                       type="number"
                       aria-label="jumlah"
-                      v-model="jumlah"
+                      placeholder="Masukkan jumlah pembelian"
+                      v-model="form.jumlah"
                     />
                   </div>
+
                   <div class="px-4 my-2">
-                    <label class="block text-sm text-gray-600" for="cus_email"
+                    <label class="block text-lg text-gray-600" for="cus_email"
                       >Harga Beli</label
                     >
                     <input
                       class="w-full px-2 py-1 text-gray-700 bg-gray-50 rounded"
                       id="barang_satuan"
-                      v-model="harga_beli"
+                      v-model="form.harga_beli"
                       type="number"
-                      placeholder="Satuan"
+                      placeholder="Masukkan harga beli"
                       aria-label="Email"
                     />
                   </div>
+
                   <div class="px-4 my-2">
-                    <label class="block text-sm text-gray-600" for="cus_email"
+                    <label class="block text-lg text-gray-600" for="cus_email"
                       >Terbayar</label
                     >
                     <input
                       class="w-full px-2 py-1 text-gray-700 bg-gray-50 rounded"
                       id="barang_stok"
-                      v-model="payment"
-                      type="text"
+                      v-model="form.payment"
+                      type="number"
                       placeholder="Jumlah yang dibayarkan"
                       aria-label=""
                     />
                   </div>
+                  
                   <div class="px-4 my-2">
-                    <label class="block text-sm text-gray-600" for="cus_email"
-                      >Jenis Barang</label
+                    <label class="block text-lg text-gray-600" for="cus_email"
+                      >Tanggal Pembelian</label
                     >
-                    <select
-                        v-model="barang_tipe"
-                        class="w-full px-5 py-1 rounded-lg text-gray-500 focus:outline-none focus:shadow-inner border-2 border-gray-200 bg-white appearance-none"
-                      >
-                      <option class="text-gray-700" value="" selected="selected">
-                        -Pilih-
-                      </option>
-                      <option
-                        class="text-gray-700"
-                        v-for="(tipe, i) in tipes"
-                        :value="tipe"
-                        :key="i"
-                      >
-                        {{ tipe }}
-                      </option>
-                    </select>
+                    <date-picker
+                      v-model="form.tanggal" 
+                      value-type="format" 
+                      placeholder="Tanggal Pembelian" 
+                      format="DD-MM-YYYY"></date-picker>
                   </div>
-                </div>
-                <div>
+
+                  <div class="px-4 my-2">
+                    <label class="block text-lg text-gray-600" for="cus_email"
+                      >Harga Jual Standar</label
+                    >
+                    <input
+                      class="w-full px-2 py-1 text-gray-700 bg-gray-50 rounded"
+                      id="barang_stok"
+                      v-model="form.harga_jual_standar"
+                      type="number"
+                      placeholder="Jumlah yang dibayarkan"
+                      aria-label=""
+                    />
+                  </div>
+
+                  <div class="px-4 my-2">
+                    <label class="block text-lg text-gray-600" for="cus_email"
+                      >Harga Jual Grosir</label
+                    >
+                    <input
+                      class="w-full px-2 py-1 text-gray-700 bg-gray-50 rounded"
+                      id="barang_stok"
+                      v-model="form.harga_jual_grosir"
+                      type="number"
+                      placeholder="Jumlah yang dibayarkan"
+                      aria-label=""
+                    />
+                  </div>
+
+                  <div class="px-4 mt-8">
+                    <div class="total-harga font-bold text-lg text-white px-4 py-2 bg-blue-600 rounded">
+                      Total Harga: {{totalHarga}}
+                    </div>
+                  </div>
+
+                  <div class="px-4 mt-8">
+                    <div class="hutang font-bold text-lg text-white px-4 py-2 bg-yellow-400 rounded">
+                      Kurang Bayar: {{totalHutang}}
+                    </div>
+                  </div>
+
+                </div><!-- grid -->
+
+                <div class="mt-2">
                   <span
                     class="px-4 text-sm font-sf-pro"
                     :class="{ 'text-green-400': status, 'text-red-400': !status }"
                     >{{ status_msg }}</span
                   >
                 </div>
-                <div class="mt-6">
+                <div class="mt-6 px-4">
                   <button
                     @click="saveDataBarang"
-                    class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded"
+                    class="px-6 py-1 text-white font-light tracking-wider bg-gray-400 hover:bg-gray-600 rounded"
                   >
                     {{ isSaving == true ? "Processing..." : "Submit" }}
                   </button>
@@ -151,10 +186,53 @@ export default {
     return {
       isSaving: false,
       status_msg: "",
+      status: '',
+
       barangs: null,
       suppliers: null,
-      barang_id: '',
-      supplier_id: '',
+
+      form: {
+        barang_id: '',
+        supplier_id: '',
+        tanggal: '',
+        jumlah: 0,
+        harga_beli: 0,
+        payment: 0,
+        harga_jual_standar: 0,
+        harga_jual_grosir: 0
+      },
+    }
+  },
+  computed: {
+    totalHarga: function () {
+      let totalH = this.form.jumlah * this.form.harga_beli;
+
+      if(totalH){
+        let number = totalH;
+        let	reverse = number.toString().split('').reverse().join('');
+        let ribuan 	= reverse.match(/\d{1,3}/g);
+        ribuan	= ribuan.join('.').split('').reverse().join('');
+        return 'Rp.'+ribuan;
+      }
+      else {
+        return totalH
+      }
+      // return this.form.jumlah * this.form.harga_beli
+    },
+    totalHutang: function() {
+      let totalU = this.form.payment - (this.form.jumlah * this.form.harga_beli);
+
+      if(totalU){
+        let number = totalU;
+        let	reverse = number.toString().split('').reverse().join('');
+        let ribuan 	= reverse.match(/\d{1,3}/g);
+        ribuan	= ribuan.join('.').split('').reverse().join('');
+        return '- Rp.'+ribuan;
+      }
+      else {
+        return totalU
+      }
+      // return this.form.payment - (this.form.jumlah * this.form.harga_beli)
     }
   },
   mounted(){
@@ -203,27 +281,31 @@ export default {
     },
     saveDataBarang(e) {
       e.preventDefault();
+      this.isSaving = true;
+
       if (!this.validateForm()) {
         this.isSaving = false;
         return false;
       }
-      this.isSaving = true;
+
+      let date = this.form.tanggal.toLocaleDateString('en-GB').split('-');
+			let fixDate = date[1]+'-'+date[0]+'-'+date[2];
+
       const formData = new FormData();
       formData.append("barang_nama", this.barang_nama);
       formData.append("barang_satuan", this.barang_satuan);
       formData.append("barang_stok", this.barang_stok);
       formData.append("barang_tipe", this.barang_tipe);
-	    this.imageList.forEach((file) => {
-        formData.append("photo", file, file.name);
-      });
+      formData.append("tanggal", fixDate);
       axios.post("/api/add-data-barang", formData)
         .then((response) => {
           console.log(response);
           this.showNotification("Data Successfully Added");
           this.isSaving = false;
-          this.$router.go(-1);
+          this.$router.push('pembelian');
         })
         .catch((error) => {
+          this.isSaving = false;
           this.status_msg = error;
           console.log(error);
         });
@@ -232,4 +314,28 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.mx-datepicker {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+
+.mx-input {
+    display: inline-block;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 100%;
+    height: 40px;
+    padding: 6px 30px;
+    padding-left: 10px;
+    font-size: 14px;
+    line-height: 1.4;
+    color: #555;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgb(0 0 0 / 8%);
+    box-shadow: inset 0 1px 1px rgb(0 0 0 / 8%);
+}
+</style>

@@ -31,6 +31,7 @@
         "vue-radial-progress": "^0.3.2",
         "vue-router": "^3.4.9",
         "vue-sweetalert2": "^4.1.1",
+        "vue2-datepicker": "^3.9.1",
         "vuejs-progress-bar": "^1.2.7",
         "vuex": "^3.6.0"
     }

@@ -6,6 +6,10 @@ import VueRouter from 'vue-router'
 import routes from './routes'
 Vue.use(VueRouter);
 
+import DatePicker from 'vue2-datepicker';
+import 'vue2-datepicker/index.css';
+Vue.use(DatePicker);
+
 import VueGoodTable from 'vue-good-table'
 import VueGoodTablePlugin from 'vue-good-table'
 import 'vue-good-table/dist/vue-good-table.css'
