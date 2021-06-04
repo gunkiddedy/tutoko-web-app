@@ -37,7 +37,7 @@ Route::post('add-data-barang', 'BarangController@addDataBarang');
 Route::get('pembelian', 'PembelianController@getData');
 Route::get('get-pembelian/{id}', 'PembelianController@getDataById');
 Route::post('update-pembelian/{id}', 'PembelianController@updatePembelian');
-Route::post('add-data-pembelian', 'PembelianController@addData');
+Route::post('add-data', 'PembelianController@addData');
 
 
 Route::post('upload-photo-product', 'AdminController@uploadProduct');

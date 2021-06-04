@@ -38,10 +38,21 @@ class PembelianController extends Controller
 
         return response()->json('data successfuly updated');
     }
-    
+
     public function addData(Request $request)
     {
-
+        $q = new Pembelian;
+        $q->supplier_id = $request->get('supplier_id');
+        $q->barang_id = $request->get('barang_id');
+        $q->tanggal = $request->get('tanggal');
+        $q->jumlah = $request->get('jumlah');
+        $q->harga_beli = $request->get('harga_beli');
+        $q->payment = $request->get('payment');
+        $q->harga_jual_standar = $request->get('harga_jual_standar');
+        $q->harga_jual_grosir = $request->get('harga_jual_grosir');
+        
+        $q->save();
+        
         return response()->json('data successfuly added');
     }
 

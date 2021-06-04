@@ -140,15 +140,21 @@
                     />
                   </div>
 
-                  <div class="px-4 mt-8">
+                  <div class="px-4 my-2">
+                    <label class="block text-lg text-gray-600" for="cus_email"
+                      >Total Harga</label
+                    >
                     <div class="total-harga font-bold text-lg text-white px-4 py-2 bg-blue-600 rounded">
-                      Total Harga: {{totalHarga}}
+                      {{totalHarga}}
                     </div>
                   </div>
 
-                  <div class="px-4 mt-8">
+                  <div class="px-4 my-2">
+                    <label class="block text-lg text-gray-600" for="cus_email"
+                      >Kurang Bayar</label
+                    >
                     <div class="hutang font-bold text-lg text-white px-4 py-2 bg-yellow-400 rounded">
-                      Kurang Bayar: {{totalHutang}}
+                      {{totalHutang}}
                     </div>
                   </div>
 
@@ -163,7 +169,7 @@
                 </div>
                 <div class="mt-6 px-4">
                   <button
-                    @click="saveDataBarang"
+                    @click="saveData"
                     class="px-6 py-1 text-white font-light tracking-wider bg-gray-400 hover:bg-gray-600 rounded"
                   >
                     {{ isSaving == true ? "Processing..." : "Submit" }}
@@ -212,7 +218,7 @@ export default {
         let	reverse = number.toString().split('').reverse().join('');
         let ribuan 	= reverse.match(/\d{1,3}/g);
         ribuan	= ribuan.join('.').split('').reverse().join('');
-        return 'Rp.'+ribuan;
+        return ribuan;
       }
       else {
         return totalH
@@ -227,7 +233,7 @@ export default {
         let	reverse = number.toString().split('').reverse().join('');
         let ribuan 	= reverse.match(/\d{1,3}/g);
         ribuan	= ribuan.join('.').split('').reverse().join('');
-        return '- Rp.'+ribuan;
+        return '-' + ribuan;
       }
       else {
         return totalU
@@ -238,8 +244,54 @@ export default {
   mounted(){
     this.getSuppliers();
     this.getBarangs();
+    if(this.form.tanggal == ''){
+      let todayDate = new Date().toISOString().slice(0, 10);
+      this.form.tanggal = todayDate;
+      console.log(this.form.tanggal);
+    }
   },
   methods: {
+    saveData(e) {
+      e.preventDefault();
+      this.isSaving = true;
+
+      if (!this.validateForm()) {
+        this.isSaving = false;
+        return false;
+      }
+
+      let date = this.form.tanggal.toISOString().split('-');
+			let fixDate = date[1]+'-'+date[0]+'-'+date[2];
+
+      const formData = new FormData();
+      formData.append("supplier_id", this.form.supplier_id);
+      formData.append("barang_id", this.form.barang_id);
+
+      if(this.form.tanggal != fixDate){
+        formData.append("tanggal", fixDate);
+      }else{
+        formData.append("tanggal", this.form.tanggal);
+      }
+
+      formData.append("jumlah", this.form.jumlah);
+      formData.append("harga_beli", this.form.harga_beli);
+      formData.append("payment", this.form.payment);
+      formData.append("harga_jual_standar", this.form.harga_jual_standar);
+      formData.append("harga_jual_grosir", this.form.harga_jual_grosir);
+
+      axios.post("/api/add-data", formData)
+        .then((response) => {
+          console.log(response);
+          this.showNotification("Data Successfully Added");
+          this.isSaving = false;
+          this.$router.push('pembelian');
+        })
+        .catch((error) => {
+          this.isSaving = false;
+          this.status_msg = error;
+          console.log(error);
+        });
+    },
     getSuppliers(){
       axios.get("/api/supplier/")
         .then((response) => {
@@ -261,16 +313,42 @@ export default {
         });
     },
     validateForm() {
-      if (!this.barang_nama) {
+      if (!this.form.barang_id) {
         this.status = false;
         this.showNotification("nama barang tidak boleh kosong");
         return false;
       }
-      if (!this.barang_satuan) {
+      if (!this.form.supplier_id) {
         this.status = false;
-        this.showNotification("satuan tidak boleh kosong");
+        this.showNotification("supplier tidak boleh kosong");
         return false;
       }
+      if (!this.form.jumlah) {
+        this.status = false;
+        this.showNotification("jumlah tidak boleh kosong");
+        return false;
+      }
+      if (!this.form.harga_beli) {
+        this.status = false;
+        this.showNotification("harga beli tidak boleh kosong");
+        return false;
+      }
+      if (!this.form.payment) {
+        this.status = false;
+        this.showNotification("terbayar tidak boleh kosong");
+        return false;
+      }
+      if (!this.form.harga_jual_standar) {
+        this.status = false;
+        this.showNotification("harga jual standar tidak boleh kosong");
+        return false;
+      }
+      if (!this.form.harga_jual_grosir) {
+        this.status = false;
+        this.showNotification("harga jual grosir tidak boleh kosong");
+        return false;
+      }
+
       return true;
     },
     showNotification(message) {
@@ -278,38 +356,7 @@ export default {
       setTimeout(() => {
         this.status_msg = "";
       }, 3000);
-    },
-    saveDataBarang(e) {
-      e.preventDefault();
-      this.isSaving = true;
-
-      if (!this.validateForm()) {
-        this.isSaving = false;
-        return false;
-      }
-
-      let date = this.form.tanggal.toLocaleDateString('en-GB').split('-');
-			let fixDate = date[1]+'-'+date[0]+'-'+date[2];
-
-      const formData = new FormData();
-      formData.append("barang_nama", this.barang_nama);
-      formData.append("barang_satuan", this.barang_satuan);
-      formData.append("barang_stok", this.barang_stok);
-      formData.append("barang_tipe", this.barang_tipe);
-      formData.append("tanggal", fixDate);
-      axios.post("/api/add-data-barang", formData)
-        .then((response) => {
-          console.log(response);
-          this.showNotification("Data Successfully Added");
-          this.isSaving = false;
-          this.$router.push('pembelian');
-        })
-        .catch((error) => {
-          this.isSaving = false;
-          this.status_msg = error;
-          console.log(error);
-        });
-    },
+    }
   },
 };
 </script>
