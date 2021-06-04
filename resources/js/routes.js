@@ -1,10 +1,16 @@
-import Barang from './pages/Barang'
-import BarangAdd from './pages/BarangAdd'
-import BarangEdit from './pages/BarangEdit'
+import Barang from './pages/barang/Barang'
+import BarangAdd from './pages/barang/BarangAdd'
+import BarangEdit from './pages/barang/BarangEdit'
+
+import Pembelian from './pages/pembelian/Pembelian'
+import PembelianAdd from './pages/pembelian/PembelianAdd'
+import PembelianEdit from './pages/pembelian/PembelianEdit'
+
+import Master from './pages/Master'
+
 import InvoiceMasuk from './pages/InvoiceMasuk'
 import InvoiceKeluar from './pages/InvoiceKeluar'
 import Penjualan from './pages/Penjualan'
-import Pembelian from './pages/Pembelian'
 import Produksi from './pages/Produksi'
 import Pegawai from './pages/Pegawai'
 import Supplier from './pages/Supplier'
@@ -27,6 +33,11 @@ export default {
 
     routes: [
         {
+            path: '/master',
+            component: Master,
+            name: 'master'
+        },
+        {
             path: '/public',
             component: Public,
             name: 'public'
@@ -48,6 +59,22 @@ export default {
             props: true
         },
         {
+            path: '/pembelian',
+            component: Pembelian,
+            name: 'pembelian'
+        },
+        {
+            path: '/pembelian-add',
+            component: PembelianAdd,
+            name: 'pembelian-add'
+        },
+        {
+            path: '/pembelian-edit/:id',
+            component: PembelianEdit,
+            name: 'pembelian-edit',
+            props: true
+        },
+        {
             path: '/invoice-masuk',
             component: InvoiceMasuk,
             name: 'invoice-masuk'
@@ -61,11 +88,6 @@ export default {
             path: '/penjualan',
             component: Penjualan,
             name: 'penjualan'
-        },
-        {
-            path: '/pembelian',
-            component: Pembelian,
-            name: 'pembelian'
         },
         {
             path: '/produksi',

@@ -14,6 +14,11 @@ class BarangController extends Controller
         $q = DB::table("barangs")->get();
         return response()->json($q);
     }
+    public function getDataNonMandiri()
+    {
+        $q = DB::table('barangs')->where('barang_tipe', '=', 'Supplier')->get();
+        return response()->json($q);
+    }
     public function getDataBarangById(Request $request, $id)
     {
         $q = Barang::find($id);
@@ -69,8 +74,7 @@ class BarangController extends Controller
             $q->active = $request->get('active');
             $q->save();
         }
-
-
+        return response()->json('data successfuly updated');
     }
     
     public function addDataBarang(Request $request)

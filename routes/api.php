@@ -21,12 +21,23 @@ Route::get('export-umkm-desa/{desa_id}', 'ExportController@exportDesa');
 Route::post('logout', 'AuthController@logout');
 Route::post('login', 'AuthController@login')->name('login');
 
-// ADMIN
+// ADMIN TUTOKO WEB APP
+// --SUPPLIER--//
+Route::get('supplier', 'SupplierController@getData');
+
+//--BARANG--//
 Route::get('barang', 'BarangController@getDataBarang');
+Route::get('barang-non-mandiri', 'BarangController@getDataNonMandiri');
 Route::get('get-barang/{id}', 'BarangController@getDataBarangById');
 Route::post('update-barang/{id}', 'BarangController@updateDataBarangById');
 Route::post('delete-photo/{id}', 'BarangController@deleteFileStorage');
 Route::post('add-data-barang', 'BarangController@addDataBarang');
+
+// --PEMBELIAN--//
+Route::get('pembelian', 'PembelianController@getData');
+Route::get('get-pembelian/{id}', 'PembelianController@getDataById');
+Route::post('update-pembelian/{id}', 'PembelianController@updatePembelian');
+Route::post('add-data-pembelian', 'PembelianController@addData');
 
 
 Route::post('upload-photo-product', 'AdminController@uploadProduct');

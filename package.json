@@ -28,8 +28,10 @@
         "element-ui": "^2.14.1",
         "vue-good-table": "^2.21.1",
         "vue-input-only-number": "^1.1.0",
+        "vue-radial-progress": "^0.3.2",
         "vue-router": "^3.4.9",
         "vue-sweetalert2": "^4.1.1",
+        "vuejs-progress-bar": "^1.2.7",
         "vuex": "^3.6.0"
     }
 }
