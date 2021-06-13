@@ -24,6 +24,7 @@ Route::post('login', 'AuthController@login')->name('login');
 // ADMIN TUTOKO WEB APP
 // --SUPPLIER--//
 Route::get('supplier', 'SupplierController@getData');
+Route::get('get-supplier/{id}', 'SupplierController@getDataById');
 
 //--BARANG--//
 Route::get('barang', 'BarangController@getDataBarang');

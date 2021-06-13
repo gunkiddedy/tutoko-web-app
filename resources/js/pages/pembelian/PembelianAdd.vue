@@ -255,9 +255,6 @@ export default {
         return false;
       }
 
-      let date = this.form.tanggal.toLocaleString('en-GB').split('-');
-			let fixDate = date[1]+'-'+date[0]+'-'+date[2];
-
       const formData = new FormData();
       formData.append("supplier_id", this.form.supplier_id);
       formData.append("barang_id", this.form.barang_id);
@@ -266,6 +263,8 @@ export default {
         let todayDate = new Date().toISOString().slice(0, 10);
         formData.append("tanggal", todayDate);
       }else{
+        let date = this.form.tanggal.toLocaleString('en-GB').split('-');
+        let fixDate = date[2] + '-' + date[1] + '-' + date[0];
         formData.append("tanggal", fixDate);
       }
 

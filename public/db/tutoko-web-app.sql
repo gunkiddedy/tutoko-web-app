@@ -29,8 +29,8 @@ CREATE TABLE IF NOT EXISTS `barangs` (
 -- Dumping data for table tutoko.barangs: 2 rows
 /*!40000 ALTER TABLE `barangs` DISABLE KEYS */;
 INSERT INTO `barangs` (`id`, `barang_nama`, `barang_stok`, `barang_satuan`, `barang_tipe`, `photo`, `active`, `created_at`, `updated_at`) VALUES
-	(1, 'semen holcims', 100, 'sak', 'Supplier', 'images/Capture-817.JPG', 'Active', '2021-06-13 03:02:10', '2021-06-13 10:20:50'),
-	(2, 'batu bata', 200, 'biji', 'Mandiri', 'images/prenjak_lumut-432.JPG', 'Active', '2021-06-13 03:02:47', '2021-06-13 10:10:05');
+	(1, 'semen holcims', 3, 'sak', 'Supplier', 'images/Capture-817.JPG', 'Active', '2021-06-13 03:02:10', '2021-06-13 14:42:42'),
+	(2, 'batu bata', 0, 'biji', 'Mandiri', 'images/prenjak_lumut-432.JPG', 'Active', '2021-06-13 03:02:47', '2021-06-13 12:53:59');
 /*!40000 ALTER TABLE `barangs` ENABLE KEYS */;
 
 -- Dumping structure for view tutoko.detail_invoice_keluar
@@ -171,15 +171,13 @@ CREATE TABLE IF NOT EXISTS `pembelians` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
 
 -- Dumping data for table tutoko.pembelians: 2 rows
 /*!40000 ALTER TABLE `pembelians` DISABLE KEYS */;
 INSERT INTO `pembelians` (`id`, `user_id`, `supplier_id`, `barang_id`, `tanggal`, `jumlah`, `harga_beli`, `payment`, `harga_jual_standar`, `harga_jual_grosir`, `created_at`, `updated_at`) VALUES
-	(1, 1, 1, 1, '0000-00-00', 20, 27000, 500000, 37000, 35000, '2021-06-13 03:04:16', '2021-06-13 03:04:16'),
-	(3, 1, 1, 1, '0000-00-00', 5, 25000, 100000, 30000, 27000, '2021-06-13 03:18:24', '2021-06-13 03:18:24'),
-	(4, 1, 1, 1, '0000-00-00', 5, 26000, 120000, 31000, 28000, '2021-06-13 03:19:40', '2021-06-13 03:19:40'),
-	(5, 1, 1, 1, '0000-00-00', 60, 25000, 1000000, 30000, 28000, '2021-06-13 03:20:50', '2021-06-13 03:20:50');
+	(1, 1, 1, 1, '2021-06-13', 2, 1000, 5000, 10000, 8000, '2021-06-13 05:54:53', '2021-06-13 07:42:42'),
+	(3, 1, 2, 1, '0000-00-00', 1, 1234, 1223, 2, 1321, '2021-06-13 07:26:42', '2021-06-13 07:42:27');
 /*!40000 ALTER TABLE `pembelians` ENABLE KEYS */;
 
 -- Dumping structure for table tutoko.penjualans
@@ -231,12 +229,13 @@ CREATE TABLE IF NOT EXISTS `suppliers` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 
--- Dumping data for table tutoko.suppliers: 1 rows
+-- Dumping data for table tutoko.suppliers: 2 rows
 /*!40000 ALTER TABLE `suppliers` DISABLE KEYS */;
 INSERT INTO `suppliers` (`id`, `supplier_nama`, `supplier_phone`, `supplier_alamat`, `created_at`, `updated_at`) VALUES
-	(1, 'cv gajah tunggal', '0989', 'kalasan sleman yogyakarta', '2021-05-31 14:39:48', '2021-06-01 09:57:49');
+	(1, 'cv gajah tunggal', '0989', 'kalasan sleman yogyakarta', '2021-05-31 14:39:48', '2021-06-01 09:57:49'),
+	(2, 'maju jaya', '45645', 'playen gunungkidul', '2021-06-13 14:21:19', '2021-06-13 14:21:19');
 /*!40000 ALTER TABLE `suppliers` ENABLE KEYS */;
 
 -- Dumping structure for table tutoko.users
@@ -290,6 +289,21 @@ CREATE TRIGGER `AFTER_INSERT_PRODUKSI` AFTER INSERT ON `produksis` FOR EACH ROW 
   IF NEW.produksi_jumlah > 0 THEN 
   	 	UPDATE barangs SET barang_stok = barang_stok + NEW.produksi_jumlah
    	WHERE id = NEW.barang_id;
+  END IF;
+END//
+DELIMITER ;
+SET SQL_MODE=@OLDTMP_SQL_MODE;
+
+-- Dumping structure for trigger tutoko.AFTER_UPDATE_PEMBELIAN
+SET @OLDTMP_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION';
+DELIMITER //
+CREATE TRIGGER `AFTER_UPDATE_PEMBELIAN` AFTER UPDATE ON `pembelians` FOR EACH ROW BEGIN
+	IF NEW.jumlah > OLD.jumlah THEN 
+  	 	UPDATE barangs SET barang_stok = barang_stok + (NEW.jumlah - OLD.jumlah)
+  		WHERE id = new.barang_id;
+  	ELSEIF NEW.jumlah < OLD.jumlah THEN
+  		UPDATE barangs SET barang_stok = barang_stok - (OLD.jumlah - NEW.jumlah)
+  		WHERE id = new.barang_id;
   END IF;
 END//
 DELIMITER ;

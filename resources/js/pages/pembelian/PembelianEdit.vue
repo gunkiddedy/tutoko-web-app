@@ -7,164 +7,176 @@
 
       <div class="w-full h-screen overflow-x-hidden border-t flex flex-col">
         <main class="w-full flex-grow p-6 bg-white">
-          <!-- loader spin-->
-          <div
-            v-if="loading"
-            class="z-30 flex justify-around relative opacity-75 bg-black inset-0"
-          >
-            <loader />
-          </div>
           <!-- Content goes here! 😁 -->
-          <h1 class="text-lg text-gray-500 pb-1 font-semibold">
-            Edit Data Barang
-          </h1>
+          <h1 class="text-lg text-gray-500 pb-1 font-semibold">Tambah Data Pembelian</h1>
           <div class="w-full mt-6 pl-0 lg:pl-2">
             <div class="leading-loose">
               <div class="p-10 bg-white rounded shadow">
                 <div
-                  class="grid grid-cols-1 lg:grid-cols-1 sm:grid-cols-1 md:grid-cols-1"
+                  class="grid grid-cols-2 lg:grid-cols-2 sm:grid-cols-1 md:grid-cols-2"
                 >
                   <div class="px-4 my-2">
-                    <label class="block text-sm text-gray-600" for="cus_name"
+                    <label class="block text-lg text-gray-600" for="cus_email"
                       >Nama Barang</label
                     >
-                    <input
-                      class="w-full px-5 py-1 text-gray-700 bg-gray-200 rounded"
-                      id="barang_nama"
-                      type="text"
-                      aria-label="Name"
-                      v-model="barang_nama"
-                    />
+                    <select
+                      class="w-full px-5 py-1 rounded-lg text-gray-500 focus:outline-none focus:shadow-inner border-2 border-gray-200 bg-white appearance-none"
+                      >
+                      <option
+												selected
+												disabled
+                        class="text-gray-700"
+                        v-for="(barang, i) in barangs"
+                        :value="barang.id"
+                        :key="i"
+                      >
+                        {{ barang.barang_nama }}
+                      </option>
+                    </select>
                   </div>
-                </div>
-                <div
-                  class="grid grid-cols-1 lg:grid-cols-2 sm:grid-cols-1 md:grid-cols-1"
-                >
+
                   <div class="px-4 my-2">
-                    <label class="block text-sm text-gray-600" for="cus_email"
-                      >Satuan</label
+                    <label class="block text-lg text-gray-600" for="cus_email"
+                      >Nama Supplier</label
+                    >
+                    <select
+                        v-model="form.supplier_id"
+                        class="w-full px-5 py-1 rounded-lg text-gray-500 focus:outline-none focus:shadow-inner border-2 border-gray-200 bg-white appearance-none"
+                      >
+                      <option class="text-gray-700" value="" selected="selected">
+                        -Pilih-
+                      </option>
+                      <option
+                        class="text-gray-700"
+                        v-for="(supplier, i) in suppliers"
+                        :value="supplier.id"
+                        :key="i"
+                      >
+                        {{ supplier.supplier_nama }}
+                      </option>
+                    </select>
+                  </div>
+
+                  <div class="px-4 my-2">
+                    <label class="block text-lg text-gray-600" for="cus_name"
+                      >Jumlah Pembelian</label
                     >
                     <input
-                      class="w-full px-2 py-1 text-gray-700 bg-gray-200 rounded"
+                      class="w-full px-5 py-1 text-gray-700 bg-gray-50 rounded"
+                      id="jumlah"
+                      type="number"
+                      aria-label="jumlah"
+                      placeholder="Masukkan jumlah pembelian"
+                      v-model="form.jumlah"
+                    />
+                  </div>
+
+                  <div class="px-4 my-2">
+                    <label class="block text-lg text-gray-600" for="cus_email"
+                      >Harga Beli</label
+                    >
+                    <input
+                      class="w-full px-2 py-1 text-gray-700 bg-gray-50 rounded"
                       id="barang_satuan"
-                      v-model="barang_satuan"
-                      type="text"
-                      placeholder="Satuan"
+                      v-model="form.harga_beli"
+                      type="number"
+                      placeholder="Masukkan harga beli"
                       aria-label="Email"
                     />
                   </div>
+
                   <div class="px-4 my-2">
-                    <label class="block text-sm text-gray-600" for="cus_email"
-                      >Stok</label
+                    <label class="block text-lg text-gray-600" for="cus_email"
+                      >Terbayar</label
                     >
                     <input
-                      class="w-full px-2 py-1 text-gray-700 bg-gray-200 rounded"
+                      class="w-full px-2 py-1 text-gray-700 bg-gray-50 rounded"
                       id="barang_stok"
-                      v-model="barang_stok"
-                      type="text"
-                      placeholder="Stok"
+                      v-model="form.payment"
+                      type="number"
+                      placeholder="Jumlah yang dibayarkan"
                       aria-label=""
                     />
                   </div>
+                  
                   <div class="px-4 my-2">
-                    <label class="block text-sm text-gray-600" for="cus_email"
-                      >Jenis Barang</label
+                    <label class="block text-lg text-gray-600" for="cus_email"
+                      >Tanggal Pembelian {{ form.tanggal }}</label
                     >
-                    <select
-                      v-model="barang_tipe"
-                      class="w-full px-5 py-1 rounded-lg text-gray-500 focus:outline-none focus:shadow-inner border-2 border-gray-200 bg-white appearance-none"
-                    >
-                      <option
-                        class="text-gray-700"
-                        value=""
-                        selected="selected"
-                      >
-                        -Pilih-
-                      </option>
-                      <option
-                        class="text-gray-700"
-                        v-for="(tipe, i) in tipes"
-                        :value="tipe"
-                        :key="i"
-                      >
-                        {{ tipe }}
-                      </option>
-                    </select>
+                    <date-picker
+                      v-model="form.tanggal" 
+                      value-type="format" 
+                      placeholder="Tanggal Pembelian" 
+                      format="DD-MM-YYYY"></date-picker>
                   </div>
+
                   <div class="px-4 my-2">
-                    <label class="block text-sm text-gray-600" for="cus_name"
-                      >Status</label
+                    <label class="block text-lg text-gray-600" for="cus_email"
+                      >Harga Jual Standar</label
                     >
-                    <select
-                      v-model="active"
-                      class="w-full px-5 py-1 rounded-lg text-gray-500 focus:outline-none focus:shadow-inner border-2 border-gray-200 bg-white appearance-none"
+                    <input
+                      class="w-full px-2 py-1 text-gray-700 bg-gray-50 rounded"
+                      id="barang_stok"
+                      v-model="form.harga_jual_standar"
+                      type="number"
+                      placeholder="Jumlah yang dibayarkan"
+                      aria-label=""
+                    />
+                  </div>
+
+                  <div class="px-4 my-2">
+                    <label class="block text-lg text-gray-600" for="cus_email"
+                      >Harga Jual Grosir</label
                     >
-                      <option
-                        class="text-gray-700"
-                        value=""
-                        selected="selected"
-                      >
-                        -Pilih-
-                      </option>
-                      <option
-                        class="text-gray-700"
-                        v-for="(stat, i) in status"
-                        :value="stat"
-                        :key="i"
-                      >
-                        {{ stat }}
-                      </option>
-                    </select>
+                    <input
+                      class="w-full px-2 py-1 text-gray-700 bg-gray-50 rounded"
+                      id="barang_stok"
+                      v-model="form.harga_jual_grosir"
+                      type="number"
+                      placeholder="Jumlah yang dibayarkan"
+                      aria-label=""
+                    />
                   </div>
-					</div>
-					<div class="p-4 flex items-center">
-                  <div class="bg-gray-50 px-4 border-2 border-dotted py-2 w-full">
-							<div class="flex items-center justify-start">
-								<div>
-									<img
-										class="w-1/3"
-										:src="'/storage/' + photo"
-										:alt="barang_nama" />
-									<span>Photo Lama</span>
-								</div>
-								<div v-if="url">
-									<img
-										:src="url"
-										class="w-1/3"/>
-									<span>Photo Baru</span>
-								</div>
-							</div>
-							<div>
-								<label class="bg-yellow-500 flex justify-center px-2 items-center mt-3 py-2 rounded-lg border border-blue cursor-pointer hover:bg-yellow-600 w-1/3">
-									<svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20" ><path d="M16.88 9.1A4 4 0 0 1 16 17H5a5 5 0 0 1-1-9.9V7a3 3 0 0 1 4.52-2.59A4.98 4.98 0 0 1 17 8c0 .38-.04.74-.12 1.1zM11 11h3l-4-4-4 4h3v3h2v-3z" /></svg>
-									<span class="font-semibold text-white ml-2">Pilih file</span>
-									<input
-										type="file"
-										class="hidden"
-										@change="onFileChange"
-										ref="file"
-									/>
-                    		</label>
-								<span class="text-red-500 font-bold text-sm">Abaikan jika photo tidak ingin diganti</span>
-							</div>
+
+                  <div class="px-4 my-2">
+                    <label class="block text-lg text-gray-600" for="cus_email"
+                      >Total Harga</label
+                    >
+                    <div class="total-harga font-bold text-2xl text-gray-900">
+                      {{totalHarga}}
+                    </div>
                   </div>
-               </div>
-					<div class="mt-6">
-					<button
-						@click="updateDataBarang(id)"
-						class="px-4 py-1 text-white font-light tracking-wider bg-blue-500 hover:bg-blue-600 rounded"
-					>
-						{{ isUpdating == true ? "Updating..." : "Update Data" }}
-					</button>
-					</div>
+
+                  <div class="px-4 my-2">
+                    <label class="block text-lg text-gray-600" for="cus_email"
+                      >Kurang Bayar</label
+                    >
+                    <div class="hutang font-bold text-2xl text-red-500">
+                      {{totalHutang}}
+                    </div>
+                  </div>
+
+                </div><!-- grid -->
+
+                <div class="mt-2">
+                  <span
+                    class="px-4 text-sm font-sf-pro"
+                    :class="{ 'text-green-400': status, 'text-red-400': !status }"
+                    >{{ status_msg }}</span
+                  >
+                </div>
+                <div class="mt-6 px-4">
+                  <button
+                    @click="updatePembelian(id)"
+                    class="px-6 py-1 text-white font-light tracking-wider bg-gray-400 hover:bg-gray-600 rounded"
+                  >
+                    {{ isUpdating == true ? "Processing..." : "Update" }} - {{id}}
+                  </button>
+                </div>
               </div>
             </div>
           </div>
         </main>
-        <div
-          v-if="loading"
-          class="opacity-25 fixed inset-0 z-30 bg-black"
-        ></div>
         <footer-component></footer-component>
       </div>
     </div>
@@ -178,75 +190,126 @@ export default {
     return {
       loading: true,
       isUpdating: false,
+			status_msg: "",
+      status: '',
+			form: {
+        barang_id: '',
+        supplier_id: '',
+        tanggal: '',
+        jumlah: 0,
+        harga_beli: 0,
+        payment: 0,
+        harga_jual_standar: 0,
+        harga_jual_grosir: 0
+      },
 
-      barang_nama: "",
-      barang_satuan: "",
-      barang_stok: "",
-      barang_tipe: "",
-      active: "",
-      photo: "",
-
-      tipes: ["Mandiri", "Supplier"],
-      status: ["Active", "Inactive"],
-
-      url: "",
-      imageList: [],
+      suppliers: [],
+      barangs: [],
     };
   },
+	computed: {
+    totalHarga: function () {
+      let totalH = this.form.jumlah * this.form.harga_beli;
+
+      if(totalH){
+        let number = totalH;
+        let	reverse = number.toString().split('').reverse().join('');
+        let ribuan 	= reverse.match(/\d{1,3}/g);
+        ribuan	= ribuan.join('.').split('').reverse().join('');
+        return ribuan;
+      }
+      else {
+        return totalH
+      }
+      // return this.form.jumlah * this.form.harga_beli
+    },
+    totalHutang: function() {
+      let totalU = this.form.payment - (this.form.jumlah * this.form.harga_beli);
+
+      if(totalU){
+        let number = totalU;
+        let	reverse = number.toString().split('').reverse().join('');
+        let ribuan 	= reverse.match(/\d{1,3}/g);
+        ribuan	= ribuan.join('.').split('').reverse().join('');
+        return '-' + ribuan;
+      }
+      else {
+        return totalU
+      }
+      // return this.form.payment - (this.form.jumlah * this.form.harga_beli)
+    }
+  },
   mounted() {
-    this.getDataBarang(this.id);
+    this.getPembelian(this.id);
+    this.getSuppliers();
+    this.getBarangs();
   },
   methods: {
-    onFileChange(e) {
-      const file = e.target.files[0];
-      this.imageList.push(file);
-      this.url = URL.createObjectURL(file);
-      console.log(this.photo);
-    },
-    getDataBarang(param) {
+    getSuppliers(){
       axios
-        .get("/api/get-barang/" + param)
+        .get("/api/supplier/")
         .then((response) => {
-          this.loading = false;
-          this.barang_nama = response.data.barang_nama;
-          this.barang_satuan = response.data.barang_satuan;
-          this.barang_stok = response.data.barang_stok;
-          this.barang_tipe = response.data.barang_tipe;
-          this.photo = response.data.photo;
-          this.active = response.data.active;
+          this.suppliers = response.data;
         })
         .catch((err) => {
           console.log(err);
         });
     },
-    deletePhoto(param) {
+    getBarangs(){
       axios
-        .post("/api/delete-photo/" + param)
+        .get("/api/barang-non-mandiri/")
         .then((response) => {
-          console.log(response);
+          this.barangs = response.data;
         })
-        .catch((error) => {
-          console.log(error);
+        .catch((err) => {
+          console.log(err);
         });
     },
-    updateDataBarang(param) {
+    getPembelian(param) {
+      axios
+        .get("/api/get-pembelian/" + param)
+        .then((response) => {
+          this.loading = false;
+          this.form.supplier_id = response.data.supplier_id;
+          this.form.barang_id = response.data.barang_id;
+          this.form.tanggal = response.data.tanggal;
+          this.form.jumlah = response.data.jumlah;
+          this.form.harga_beli = response.data.harga_beli;
+          this.form.payment = response.data.payment;
+          this.form.harga_jual_standar = response.data.harga_jual_standar;
+          this.form.harga_jual_grosir = response.data.harga_jual_grosir;
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    updatePembelian(param) {
       this.isUpdating = true;
       const formData = new FormData();
-      formData.append("barang_nama", this.barang_nama);
-      formData.append("barang_satuan", this.barang_satuan);
-      formData.append("barang_stok", this.barang_stok);
-      formData.append("barang_tipe", this.barang_tipe);
-      formData.append("active", this.active);
-      // console.log(this.imageList);
-      this.imageList.forEach((file) => {
-        formData.append("photo", file, file.name);
-      });
+      formData.append("supplier_id", this.form.supplier_id);
+      formData.append("barang_id", this.form.barang_id);
+      formData.append("tanggal", this.form.tanggal);
+
+			if(this.form.tanggal == '' || this.form.tanggal == '0000-00-00'){
+        let todayDate = new Date().toISOString().slice(0, 10);
+        formData.append("tanggal", todayDate);
+      }else{
+        let date = this.form.tanggal.toLocaleString('en-GB').split('-');
+        let fixDate = date[2] + '-' + date[1] + '-' + date[0];
+        formData.append("tanggal", fixDate);
+      }
+
+      formData.append("jumlah", this.form.jumlah);
+      formData.append("harga_beli", this.form.harga_beli);
+      formData.append("payment", this.form.payment);
+      formData.append("harga_jual_standar", this.form.harga_jual_standar);
+      formData.append("harga_jual_grosir", this.form.harga_jual_grosir);
       axios
-        .post(`/api/update-barang/${param}`, formData)
+        .post(`/api/update-pembelian/${param}`, formData)
         .then((response) => {
           this.isUpdating = false;
           this.$router.push({
-            name: "barang",
+            name: "pembelian",
           });
           console.log(response);
         })
@@ -255,6 +318,51 @@ export default {
           console.log(error);
         });
     },
+		validateForm() {
+      if (!this.form.barang_id) {
+        this.status = false;
+        this.showNotification("nama barang tidak boleh kosong");
+        return false;
+      }
+      if (!this.form.supplier_id) {
+        this.status = false;
+        this.showNotification("supplier tidak boleh kosong");
+        return false;
+      }
+      if (!this.form.jumlah) {
+        this.status = false;
+        this.showNotification("jumlah tidak boleh kosong");
+        return false;
+      }
+      if (!this.form.harga_beli) {
+        this.status = false;
+        this.showNotification("harga beli tidak boleh kosong");
+        return false;
+      }
+      if (!this.form.payment) {
+        this.status = false;
+        this.showNotification("terbayar tidak boleh kosong");
+        return false;
+      }
+      if (!this.form.harga_jual_standar) {
+        this.status = false;
+        this.showNotification("harga jual standar tidak boleh kosong");
+        return false;
+      }
+      if (!this.form.harga_jual_grosir) {
+        this.status = false;
+        this.showNotification("harga jual grosir tidak boleh kosong");
+        return false;
+      }
+
+      return true;
+    },
+    showNotification(message) {
+      this.status_msg = message;
+      setTimeout(() => {
+        this.status_msg = "";
+      }, 3000);
+    }
   },
 };
 </script>

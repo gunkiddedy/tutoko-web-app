@@ -22,23 +22,30 @@ class PembelianController extends Controller
     public function updatePembelian(Request $request, $id)
     {
         $this->validate($request,[
-            'barang_nama' => 'required',
-            'barang_satuan'=> 'required',
-            'barang_stok' => 'required',
-            'barang_tipe' => 'required',
+            'supplier_id' => 'required',
+            'barang_id'=> 'required',
+            'tanggal' => 'required',
+            'jumlah' => 'required',
+            'harga_beli' => 'required',
+            'payment'=> 'required',
+            'harga_jual_standar' => 'required',
+            'harga_jual_grosir' => 'required',
         ]);
         
         $q = Pembelian::find($id);
-        $q->barang_nama = $request->get('barang_nama');
-        $q->barang_satuan = $request->get('barang_satuan');
-        $q->barang_stok = $request->get('barang_stok');
-        $q->barang_tipe = $request->get('barang_tipe');
-        $q->active = $request->get('active');
+        $q->supplier_id = $request->get('supplier_id');
+        $q->barang_id = $request->get('barang_id');
+        $q->tanggal = $request->get('tanggal');
+        $q->jumlah = $request->get('jumlah');
+        $q->harga_beli = $request->get('harga_beli');
+        $q->payment = $request->get('payment');
+        $q->harga_jual_standar = $request->get('harga_jual_standar');
+        $q->harga_jual_grosir = $request->get('harga_jual_grosir');
+        // dd($request);
         $q->save();
 
         return response()->json('data successfuly updated');
     }
-
     public function addData(Request $request)
     {
         $q = new Pembelian;
@@ -50,7 +57,7 @@ class PembelianController extends Controller
         $q->payment = $request->get('payment');
         $q->harga_jual_standar = $request->get('harga_jual_standar');
         $q->harga_jual_grosir = $request->get('harga_jual_grosir');
-        
+        // dd($request);
         $q->save();
         
         return response()->json('data successfuly added');
