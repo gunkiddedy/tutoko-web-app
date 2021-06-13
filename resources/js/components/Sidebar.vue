@@ -45,27 +45,20 @@
       >
 
       <router-link
+        :to="{ name: 'produksi'}"
+        v-if="role === 'desa' || role === 'admin'"
+        class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item"
+      >
+        <i class="fas fa-clipboard-check mr-3"></i> Produksi</router-link
+      >
+
+      <router-link
         :to="{ name: 'master'}"
         v-if="role === 'admin'"
         class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item"
       >
         <i class="fas fa-chart-bar mr-3"></i> Tagihan</router-link
       >
-
-      <!-- <router-link
-        :to="{ name: 'invoice-masuk' }"
-        v-if="role === 'admin'"
-        class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item"
-      >
-        <i class="fas fa-bug mr-3"></i> Invoice Masuk</router-link
-      >
-      <router-link
-        :to="{ name: 'invoice-keluar'}"
-        v-if="role === 'desa' || role === 'admin'"
-        class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item"
-      >
-        <i class="fas fa-bullhorn mr-3"></i> Invoice Keluar</router-link
-      > -->
       
       <router-link
         :to="{ name: 'produksi'}"

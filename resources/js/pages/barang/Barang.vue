@@ -79,27 +79,6 @@
                 </template>
               </vue-good-table>
             </div>
-            <br>
-            <div>
-              <radial-progress-bar 
-                :diameter="200"
-                :total-steps="totalSteps"
-                :completed-steps="completedSteps"
-                :start-color="startColor"
-                :stop-color="startColor"
-                :inner-stroke-color="innerStrokeColor"
-                :stroke-width="strokeWidth"
-                :inner-stroke-width="innerStrokeWidth"
-                :stroke-linecap="strokeLinecap"
-                :animate-speed="animateSpeed"
-                :fps="fps"
-                :timing-func="timingFunc"
-                :is-clockwise="isClockwise"
-              >
-                <!-- <p>Total steps: {{ totalSteps }}</p> -->
-                <p>{{ completedSteps }}%</p>
-              </radial-progress-bar>
-            </div>
           </div>
         </main>
         <div v-if="loading" class="opacity-25 fixed inset-0 z-30 bg-black"></div>
@@ -110,26 +89,9 @@
 </template>
 
 <script>
-import _ from "lodash";
-import RadialProgressBar from 'vue-radial-progress';
 export default {
-  components: {RadialProgressBar},
   data() {
     return {
-      diameter: 200,	//Diameter of the progress bar circle in pixels.
-      totalSteps: 100,	//Total number of steps to complete progress bar.
-      completedSteps: 0,	//Number of completed steps in the progress bar.
-      startColor: '#80c1c3', //The color of the leading edge of the progress bar gradient.
-      stopColor: '#429321',	//The secondary color of the progress bar gradient.
-      innerStrokeColor: '#80c1c3',	//Background color of the progress bar.
-      strokeWidth: 14,	//The width of the progress bar.
-      innerStrokeWidth: 7,	//The width of the background/inner circle.
-      strokeLinecap: 'square',	//The type of stroke linecap for circle.
-      animateSpeed: 2000,	//The amount of time in milliseconds to animate one step.
-      fps: 60,	//The frames per second that the animation should run.
-      timingFunc: 'linear',	//The transition timing function to use for the CSS transition. See transition-timing-function.
-      isClockwise: true, //Controls the direction of the progress bar.
-
       loading: true,
       isLoggedIn: false,
       username: "",
@@ -219,21 +181,9 @@ export default {
     this.username = localStorage.getItem("username");
     this.role = localStorage.getItem("role");
     this.isAdmin = localStorage.getItem("isAdmin");
-    this.setLoading();
   },
 
   methods: {
-    setLoading(){
-      const finishedStep = 93;
-      setInterval(()=>{
-        for(let i = 0; i <= finishedStep; i++){
-          this.completedSteps = i;
-          if(i == finishedStep){
-            clearInterval();
-          }
-        }
-      },this.animateSpeed)
-    },
     tambahData(){
       this.$router.push({
         name: "barang-add",

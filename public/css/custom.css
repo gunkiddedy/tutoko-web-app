@@ -25,3 +25,9 @@ table.vgt-table {
     -webkit-box-shadow: inset 0 1px 1px rgb(0 0 0 / 8%);
     box-shadow: inset 0 1px 1px rgb(0 0 0 / 8%);
 }
+
+.vue-circular-progress .circle__progress {
+    fill: none;
+    stroke-opacity: .3;
+    stroke-linecap: square;
+}

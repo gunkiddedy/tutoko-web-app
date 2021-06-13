@@ -10,6 +10,9 @@ import DatePicker from 'vue2-datepicker';
 import 'vue2-datepicker/index.css';
 Vue.use(DatePicker);
 
+import ProgressBar from 'vuejs-progress-bar'
+Vue.use(ProgressBar)
+
 import VueGoodTable from 'vue-good-table'
 import VueGoodTablePlugin from 'vue-good-table'
 import 'vue-good-table/dist/vue-good-table.css'
@@ -39,6 +42,7 @@ Vue.component('sidebar-component', require('./components/Sidebar.vue').default);
 Vue.component('header-component', require('./components/Header.vue').default);
 Vue.component('footer-component', require('./components/Footer.vue').default);
 Vue.component('pagination', require('./components/Pagination.vue').default);
+Vue.component('progress-ring', require('./components/Progress.vue').default);
 Vue.component('loader', require('./components/Loader.vue').default);
 
 const app = new Vue({

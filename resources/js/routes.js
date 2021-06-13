@@ -7,6 +7,7 @@ import PembelianAdd from './pages/pembelian/PembelianAdd'
 import PembelianEdit from './pages/pembelian/PembelianEdit'
 
 import Master from './pages/Master'
+import Progress from './pages/Progress'
 
 import InvoiceMasuk from './pages/InvoiceMasuk'
 import InvoiceKeluar from './pages/InvoiceKeluar'
@@ -32,6 +33,11 @@ export default {
     mode: 'history',
 
     routes: [
+        {
+            path: '/progress',
+            component: Progress,
+            name: 'progress'
+        },
         {
             path: '/master',
             component: Master,
