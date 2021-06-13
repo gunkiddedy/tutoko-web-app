@@ -146,7 +146,7 @@ export default {
           width: "auto",
         },
         {
-          label: "Payment",
+          label: "Pembayaran",
           field: "payment",
           sortable: false,
           width: "auto",

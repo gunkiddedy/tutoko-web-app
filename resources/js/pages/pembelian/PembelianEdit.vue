@@ -107,7 +107,7 @@
                       v-model="form.tanggal" 
                       value-type="format" 
                       placeholder="Tanggal Pembelian" 
-                      format="DD-MM-YYYY"></date-picker>
+                      format="YYYY-MM-DD"></date-picker>
                   </div>
 
                   <div class="px-4 my-2">
@@ -285,20 +285,11 @@ export default {
     },
     updatePembelian(param) {
       this.isUpdating = true;
-      const formData = new FormData();
+      const formData = new FormData(); 
       formData.append("supplier_id", this.form.supplier_id);
       formData.append("barang_id", this.form.barang_id);
       formData.append("tanggal", this.form.tanggal);
-
-			if(this.form.tanggal == '' || this.form.tanggal == '0000-00-00'){
-        let todayDate = new Date().toISOString().slice(0, 10);
-        formData.append("tanggal", todayDate);
-      }else{
-        let date = this.form.tanggal.toLocaleString('en-GB').split('-');
-        let fixDate = date[2] + '-' + date[1] + '-' + date[0];
-        formData.append("tanggal", fixDate);
-      }
-
+			formData.append("tanggal", this.form.tanggal);
       formData.append("jumlah", this.form.jumlah);
       formData.append("harga_beli", this.form.harga_beli);
       formData.append("payment", this.form.payment);
