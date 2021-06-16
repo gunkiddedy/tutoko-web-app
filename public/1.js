@@ -206,6 +206,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['id'],
   data: function data() {
@@ -214,12 +224,15 @@ __webpack_require__.r(__webpack_exports__);
       isSaving: false,
       status_msg: "",
       status: '',
-      barangs: null,
-      hargas: null,
+      barangNama: null,
+      barangStok: 0,
+      harga: {
+        standar: 0,
+        grosir: 0
+      },
       selectedHarga: 0,
       form: {
-        barang_id: '',
-        supplier_id: '',
+        barang_id: this.id,
         tanggal: '',
         jumlah: 0,
         harga_jual: 0,
@@ -231,6 +244,14 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   computed: {
+    checkStok: function checkStok() {
+      var stok = this.barangStok;
+
+      if (this.form.jumlah > stok) {
+        alert('stok tidak cukup');
+        this.form.jumlah = stok;
+      }
+    },
     totalHarga: function totalHarga() {
       var totalH = this.form.jumlah * this.form.harga_jual;
 
@@ -264,10 +285,13 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   mounted: function mounted() {
-    this.getBarang(this.id);
+    this.getNamaBarang(this.id);
     this.getHargaBarang(this.id);
   },
   methods: {
+    setHarga: function setHarga(param) {
+      this.form.harga_jual = param;
+    },
     saveData: function saveData(e) {
       var _this = this;
 
@@ -304,7 +328,7 @@ __webpack_require__.r(__webpack_exports__);
 
         _this.isSaving = false;
 
-        _this.$router.push('penjualan');
+        _this.$router.push('/penjualan');
       })["catch"](function (error) {
         _this.isSaving = false;
         _this.status_msg = error;
@@ -315,17 +339,20 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       axios.get("/api/get-harga-barang/" + param).then(function (response) {
-        _this2.hargas = response.data;
+        _this2.harga.standar = response.data.harga_jual_standar;
+        _this2.harga.grosir = response.data.harga_jual_grosir;
+        _this2.form.harga_jual = response.data.harga_jual_standar;
         console.log(response);
       })["catch"](function (err) {
         console.log(err);
       });
     },
-    getBarang: function getBarang(param) {
+    getNamaBarang: function getNamaBarang(param) {
       var _this3 = this;
 
       axios.get("/api/get-barang/" + param).then(function (response) {
-        _this3.barangs = response.data;
+        _this3.barangNama = response.data.barang_nama;
+        _this3.barangStok = response.data.barang_stok;
         console.log(response);
       })["catch"](function (err) {
         console.log(err);
@@ -476,7 +503,7 @@ var render = function() {
                               _c(
                                 "label",
                                 {
-                                  staticClass: "block text-lg text-pink-600",
+                                  staticClass: "block text-base text-pink-600",
                                   attrs: { for: "cus_email" }
                                 },
                                 [_vm._v("Nama Barang")]
@@ -484,14 +511,20 @@ var render = function() {
                               _vm._v(" "),
                               _c("input", {
                                 staticClass:
-                                  "font-bold uppercase w-full px-4 py-1 text-gray-700 bg-indigo-50 rounded",
+                                  "font-bold uppercase text-xl w-full px-4 py-2 text-gray-700 bg-indigo-50 rounded",
                                 attrs: {
                                   readonly: "",
                                   type: "text",
                                   name: "",
                                   id: ""
                                 },
-                                domProps: { value: _vm.barangs.barang_nama }
+                                domProps: {
+                                  value:
+                                    _vm.barangNama +
+                                    " - Stok (" +
+                                    _vm.barangStok +
+                                    ")"
+                                }
                               })
                             ]),
                             _vm._v(" "),
@@ -499,7 +532,7 @@ var render = function() {
                               _c(
                                 "label",
                                 {
-                                  staticClass: "block text-lg text-pink-600",
+                                  staticClass: "block text-base text-pink-600",
                                   attrs: { for: "cus_name" }
                                 },
                                 [_vm._v("Jumlah Penjualan")]
@@ -515,7 +548,7 @@ var render = function() {
                                   }
                                 ],
                                 staticClass:
-                                  "w-full px-4 py-1 text-gray-700 bg-indigo-50 rounded font-bold",
+                                  "w-full px-4 py-2 text-gray-700 bg-indigo-50 rounded font-bold text-xl",
                                 attrs: {
                                   id: "jumlah",
                                   type: "number",
@@ -548,50 +581,60 @@ var render = function() {
                               _c(
                                 "label",
                                 {
-                                  staticClass: "block text-lg text-pink-600",
+                                  staticClass: "block text-base text-pink-600",
                                   attrs: { for: "cus_email" }
                                 },
                                 [_vm._v("Harga Standard")]
                               ),
                               _vm._v(" "),
-                              _c("input", {
-                                staticClass:
-                                  "font-bold w-full px-4 py-1 text-gray-700 bg-indigo-50 rounded",
-                                attrs: { type: "number", name: "", id: "" },
-                                domProps: {
-                                  value: _vm.hargas.harga_jual_standar
-                                }
-                              })
+                              _c(
+                                "button",
+                                {
+                                  staticClass:
+                                    "focus:outline-none focus:ring-2 focus:ring-yellow-600 px-6 py-2 w-full rounded bg-yellow-500 font-bold text-white text-xl",
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.setHarga(_vm.harga.standar)
+                                    }
+                                  }
+                                },
+                                [_vm._v(_vm._s(_vm.harga.standar))]
+                              )
                             ]),
                             _vm._v(" "),
                             _c("div", {}, [
                               _c(
                                 "label",
                                 {
-                                  staticClass: "block text-lg text-pink-600",
+                                  staticClass: "block text-base text-pink-600",
                                   attrs: { for: "cus_email" }
                                 },
                                 [_vm._v("Harga Grosir")]
                               ),
                               _vm._v(" "),
-                              _c("input", {
-                                staticClass:
-                                  "font-bold w-full px-4 py-1 text-gray-700 bg-indigo-50 rounded",
-                                attrs: { type: "number", name: "", id: "" },
-                                domProps: {
-                                  value: _vm.hargas.harga_jual_grosir
-                                }
-                              })
+                              _c(
+                                "button",
+                                {
+                                  staticClass:
+                                    "focus:outline-none focus:ring-2 px-6 py-2 w-full rounded bg-blue-500 font-bold text-white text-xl",
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.setHarga(_vm.harga.grosir)
+                                    }
+                                  }
+                                },
+                                [_vm._v(_vm._s(_vm.harga.grosir))]
+                              )
                             ]),
                             _vm._v(" "),
                             _c("div", {}, [
                               _c(
                                 "label",
                                 {
-                                  staticClass: "block text-lg text-pink-600",
+                                  staticClass: "block text-base text-pink-600",
                                   attrs: { for: "cus_email" }
                                 },
-                                [_vm._v("Harga Nego")]
+                                [_vm._v("Harga Deal")]
                               ),
                               _vm._v(" "),
                               _c("input", {
@@ -604,7 +647,7 @@ var render = function() {
                                   }
                                 ],
                                 staticClass:
-                                  "font-bold w-full px-4 py-1 text-gray-700 bg-indigo-50 rounded",
+                                  "font-bold w-full px-4 py-2 text-gray-700 bg-indigo-50 rounded text-xl",
                                 attrs: {
                                   id: "barang_satuan",
                                   type: "number",
@@ -629,91 +672,100 @@ var render = function() {
                           ]
                         ),
                         _vm._v(" "),
-                        _c("div", { staticClass: "px-4 my-2" }, [
-                          _c(
-                            "label",
-                            {
-                              staticClass: "block text-lg text-pink-600",
-                              attrs: { for: "cus_email" }
-                            },
-                            [_vm._v("Terbayar")]
-                          ),
-                          _vm._v(" "),
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.form.payment,
-                                expression: "form.payment"
-                              }
-                            ],
-                            staticClass:
-                              "font-bold w-full px-4 py-1 text-gray-700 bg-indigo-50 rounded",
-                            attrs: {
-                              id: "barang_stok",
-                              type: "number",
-                              placeholder: "Jumlah yang dibayarkan",
-                              "aria-label": ""
-                            },
-                            domProps: { value: _vm.form.payment },
-                            on: {
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
-                                }
-                                _vm.$set(
-                                  _vm.form,
-                                  "payment",
-                                  $event.target.value
-                                )
-                              }
-                            }
-                          })
-                        ]),
-                        _vm._v(" "),
                         _c(
                           "div",
-                          { staticClass: "px-4 my-2" },
+                          { staticClass: "px-4 my-2 grid grid-cols-2 gap-4" },
                           [
-                            _c(
-                              "label",
-                              {
-                                staticClass: "block text-lg text-pink-600",
-                                attrs: { for: "cus_email" }
-                              },
-                              [_vm._v("Tanggal Penjualan")]
-                            ),
-                            _vm._v(" "),
-                            _c("date-picker", {
-                              attrs: {
-                                "value-type": "format",
-                                placeholder: "Tanggal Pembelian",
-                                format: "DD-MM-YYYY"
-                              },
-                              model: {
-                                value: _vm.form.tanggal,
-                                callback: function($$v) {
-                                  _vm.$set(_vm.form, "tanggal", $$v)
+                            _c("div", [
+                              _c(
+                                "label",
+                                {
+                                  staticClass: "block text-base text-pink-600",
+                                  attrs: { for: "cus_email" }
                                 },
-                                expression: "form.tanggal"
-                              }
-                            })
-                          ],
-                          1
+                                [_vm._v("Terbayar")]
+                              ),
+                              _vm._v(" "),
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.form.payment,
+                                    expression: "form.payment"
+                                  }
+                                ],
+                                staticClass:
+                                  "font-bold w-full px-4 py-2 text-gray-700 bg-indigo-50 rounded text-xl",
+                                attrs: {
+                                  id: "barang_stok",
+                                  type: "number",
+                                  placeholder: "Jumlah yang dibayarkan",
+                                  "aria-label": ""
+                                },
+                                domProps: { value: _vm.form.payment },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.form,
+                                      "payment",
+                                      $event.target.value
+                                    )
+                                  }
+                                }
+                              })
+                            ]),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              { staticClass: "py-2 text-xl" },
+                              [
+                                _c(
+                                  "label",
+                                  {
+                                    staticClass:
+                                      "block text-base text-pink-600",
+                                    attrs: { for: "cus_email" }
+                                  },
+                                  [_vm._v("Tanggal Penjualan")]
+                                ),
+                                _vm._v(" "),
+                                _c("date-picker", {
+                                  attrs: {
+                                    "value-type": "format",
+                                    placeholder: "Tanggal Pembelian",
+                                    format: "DD-MM-YYYY"
+                                  },
+                                  model: {
+                                    value: _vm.form.tanggal,
+                                    callback: function($$v) {
+                                      _vm.$set(_vm.form, "tanggal", $$v)
+                                    },
+                                    expression: "form.tanggal"
+                                  }
+                                })
+                              ],
+                              1
+                            )
+                          ]
                         ),
                         _vm._v(" "),
-                        _c(
-                          "div",
-                          { staticClass: "px-4 my-2 grid grid-cols-3 gap-4" },
-                          [
-                            _vm.showInfoPembeli
-                              ? _c("div", {}, [
+                        _vm.showInfoPembeli
+                          ? _c(
+                              "div",
+                              {
+                                staticClass: "px-4 my-2 grid grid-cols-3 gap-4"
+                              },
+                              [
+                                _c("div", {}, [
                                   _c(
                                     "label",
                                     {
                                       staticClass:
-                                        "block text-lg text-pink-600",
+                                        "block text-base text-pink-600",
                                       attrs: { for: "cus_email" }
                                     },
                                     [_vm._v("Nama Pembeli")]
@@ -729,7 +781,7 @@ var render = function() {
                                       }
                                     ],
                                     staticClass:
-                                      "font-bold w-full px-4 py-1 text-gray-700 bg-indigo-50 rounded",
+                                      "font-bold w-full px-4 py-2 text-xl text-gray-700 bg-indigo-50 rounded",
                                     attrs: {
                                       id: "barang_stok",
                                       type: "text",
@@ -750,104 +802,106 @@ var render = function() {
                                       }
                                     }
                                   })
-                                ])
-                              : _vm._e(),
-                            _vm._v(" "),
-                            _vm.showInfoPembeli
-                              ? _c("div", {}, [
-                                  _c(
-                                    "label",
-                                    {
-                                      staticClass:
-                                        "block text-lg text-pink-600",
-                                      attrs: { for: "cus_email" }
-                                    },
-                                    [_vm._v("Tlp. Pembeli")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c("input", {
-                                    directives: [
-                                      {
-                                        name: "model",
-                                        rawName: "v-model",
-                                        value: _vm.form.phone_pembeli,
-                                        expression: "form.phone_pembeli"
-                                      }
-                                    ],
-                                    staticClass:
-                                      "font-bold w-full px-4 py-1 text-gray-700 bg-indigo-50 rounded",
-                                    attrs: {
-                                      id: "barang_stok",
-                                      type: "text",
-                                      placeholder: "",
-                                      "aria-label": ""
-                                    },
-                                    domProps: { value: _vm.form.phone_pembeli },
-                                    on: {
-                                      input: function($event) {
-                                        if ($event.target.composing) {
-                                          return
+                                ]),
+                                _vm._v(" "),
+                                _vm.showInfoPembeli
+                                  ? _c("div", {}, [
+                                      _c(
+                                        "label",
+                                        {
+                                          staticClass:
+                                            "block text-base text-pink-600",
+                                          attrs: { for: "cus_email" }
+                                        },
+                                        [_vm._v("Tlp. Pembeli")]
+                                      ),
+                                      _vm._v(" "),
+                                      _c("input", {
+                                        directives: [
+                                          {
+                                            name: "model",
+                                            rawName: "v-model",
+                                            value: _vm.form.phone_pembeli,
+                                            expression: "form.phone_pembeli"
+                                          }
+                                        ],
+                                        staticClass:
+                                          "font-bold w-full px-4 py-2 text-xl text-gray-700 bg-indigo-50 rounded",
+                                        attrs: {
+                                          id: "barang_stok",
+                                          type: "text",
+                                          placeholder: "",
+                                          "aria-label": ""
+                                        },
+                                        domProps: {
+                                          value: _vm.form.phone_pembeli
+                                        },
+                                        on: {
+                                          input: function($event) {
+                                            if ($event.target.composing) {
+                                              return
+                                            }
+                                            _vm.$set(
+                                              _vm.form,
+                                              "phone_pembeli",
+                                              $event.target.value
+                                            )
+                                          }
                                         }
-                                        _vm.$set(
-                                          _vm.form,
-                                          "phone_pembeli",
-                                          $event.target.value
-                                        )
-                                      }
-                                    }
-                                  })
-                                ])
-                              : _vm._e(),
-                            _vm._v(" "),
-                            _vm.showInfoPembeli
-                              ? _c("div", {}, [
-                                  _c(
-                                    "label",
-                                    {
-                                      staticClass:
-                                        "block text-lg text-pink-600",
-                                      attrs: { for: "cus_email" }
-                                    },
-                                    [_vm._v("ALamat pembeli")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c("input", {
-                                    directives: [
-                                      {
-                                        name: "model",
-                                        rawName: "v-model",
-                                        value: _vm.form.alamat_pembeli,
-                                        expression: "form.alamat_pembeli"
-                                      }
-                                    ],
-                                    staticClass:
-                                      "font-bold w-full px-4 py-1 text-gray-700 bg-indigo-50 rounded",
-                                    attrs: {
-                                      id: "barang_stok",
-                                      type: "text",
-                                      placeholder: "",
-                                      "aria-label": ""
-                                    },
-                                    domProps: {
-                                      value: _vm.form.alamat_pembeli
-                                    },
-                                    on: {
-                                      input: function($event) {
-                                        if ($event.target.composing) {
-                                          return
+                                      })
+                                    ])
+                                  : _vm._e(),
+                                _vm._v(" "),
+                                _vm.showInfoPembeli
+                                  ? _c("div", {}, [
+                                      _c(
+                                        "label",
+                                        {
+                                          staticClass:
+                                            "block text-base text-pink-600",
+                                          attrs: { for: "cus_email" }
+                                        },
+                                        [_vm._v("ALamat pembeli")]
+                                      ),
+                                      _vm._v(" "),
+                                      _c("input", {
+                                        directives: [
+                                          {
+                                            name: "model",
+                                            rawName: "v-model",
+                                            value: _vm.form.alamat_pembeli,
+                                            expression: "form.alamat_pembeli"
+                                          }
+                                        ],
+                                        staticClass:
+                                          "font-bold w-full px-4 py-2 text-xl text-gray-700 bg-indigo-50 rounded",
+                                        attrs: {
+                                          id: "barang_stok",
+                                          type: "text",
+                                          placeholder: "",
+                                          "aria-label": ""
+                                        },
+                                        domProps: {
+                                          value: _vm.form.alamat_pembeli
+                                        },
+                                        on: {
+                                          input: function($event) {
+                                            if ($event.target.composing) {
+                                              return
+                                            }
+                                            _vm.$set(
+                                              _vm.form,
+                                              "alamat_pembeli",
+                                              $event.target.value
+                                            )
+                                          }
                                         }
-                                        _vm.$set(
-                                          _vm.form,
-                                          "alamat_pembeli",
-                                          $event.target.value
-                                        )
-                                      }
-                                    }
-                                  })
-                                ])
-                              : _vm._e()
-                          ]
-                        ),
+                                      })
+                                    ])
+                                  : _vm._e()
+                              ]
+                            )
+                          : _vm._e(),
                         _vm._v(" "),
                         _c(
                           "div",
@@ -857,7 +911,7 @@ var render = function() {
                               _c(
                                 "label",
                                 {
-                                  staticClass: "block text-lg text-pink-600",
+                                  staticClass: "block text-base text-pink-600",
                                   attrs: { for: "cus_email" }
                                 },
                                 [_vm._v("Total Harga")]
@@ -883,7 +937,7 @@ var render = function() {
                               _c(
                                 "label",
                                 {
-                                  staticClass: "block text-lg text-pink-600",
+                                  staticClass: "block text-base text-pink-600",
                                   attrs: { for: "cus_email" }
                                 },
                                 [_vm._v("Kurang Bayar")]
@@ -976,7 +1030,9 @@ var render = function() {
           )
         ],
         1
-      )
+      ),
+      _vm._v(" "),
+      _c("span", { attrs: { hidden: "" } }, [_vm._v(_vm._s(_vm.checkStok))])
     ],
     1
   )

@@ -17,20 +17,20 @@
                 >
                   <div class="px-4 my-2 grid grid-cols-2 gap-4">
                     <div class="">
-                      <label class="block text-lg text-pink-600" for="cus_email"
+                      <label class="block text-base text-pink-600" for="cus_email"
                         >Nama Barang</label
                       >
                       <input 
                         readonly type="text" name="" id="" 
-                        :value="barangs.barang_nama" 
-                        class="font-bold uppercase w-full px-4 py-1 text-gray-700 bg-indigo-50 rounded">
+                        :value="`${barangNama} - Stok (${barangStok})`" 
+                        class="font-bold uppercase text-xl w-full px-4 py-2 text-gray-700 bg-indigo-50 rounded">
                     </div>
                     <div class="">
-                      <label class="block text-lg text-pink-600" for="cus_name"
+                      <label class="block text-base text-pink-600" for="cus_name"
                         >Jumlah Penjualan</label
                       >
                       <input
-                        class="w-full px-4 py-1 text-gray-700 bg-indigo-50 rounded font-bold"
+                        class="w-full px-4 py-2 text-gray-700 bg-indigo-50 rounded font-bold text-xl"
                         id="jumlah"
                         type="number"
                         aria-label="jumlah"
@@ -42,29 +42,35 @@
 
                   <div class="px-4 my-2 grid grid-cols-3 gap-4">
                     <div class="">
-                      <label class="block text-lg text-pink-600" for="cus_email"
+                      <label class="block text-base text-pink-600" for="cus_email"
                         >Harga Standard</label
                       >
-                      <input 
+                      <button
+                        @click="setHarga(harga.standar)" 
+                        class="focus:outline-none focus:ring-2 focus:ring-yellow-600 px-6 py-2 w-full rounded bg-yellow-500 font-bold text-white text-xl">{{ harga.standar }}</button>
+                      <!-- <input 
                         type="number" name="" id="" 
                         :value="hargas.harga_jual_standar" 
-                        class="font-bold w-full px-4 py-1 text-gray-700 bg-indigo-50 rounded">
+                        class=" font-bold w-full px-4 py-1 text-gray-700 bg-indigo-50 rounded"> -->
                     </div>
                     <div class="">
-                      <label class="block text-lg text-pink-600" for="cus_email"
+                      <label class="block text-base text-pink-600" for="cus_email"
                         >Harga Grosir</label
                       >
-                      <input 
+                      <button
+                        @click="setHarga(harga.grosir)" 
+                        class="focus:outline-none focus:ring-2 px-6 py-2 w-full rounded bg-blue-500 font-bold text-white text-xl">{{ harga.grosir }}</button>
+                      <!-- <input 
                         type="number" name="" id="" 
                         :value="hargas.harga_jual_grosir" 
-                        class="font-bold w-full px-4 py-1 text-gray-700 bg-indigo-50 rounded">
+                        class="font-bold w-full px-4 py-1 text-gray-700 bg-indigo-50 rounded"> -->
                     </div>
                     <div class="">
-                      <label class="block text-lg text-pink-600" for="cus_email"
-                        >Harga Nego</label
+                      <label class="block text-base text-pink-600" for="cus_email"
+                        >Harga Deal</label
                       >
                       <input
-                        class="font-bold w-full px-4 py-1 text-gray-700 bg-indigo-50 rounded"
+                        class="font-bold w-full px-4 py-2 text-gray-700 bg-indigo-50 rounded text-xl"
                         id="barang_satuan"
                         v-model="form.harga_jual"
                         type="number"
@@ -74,38 +80,41 @@
                     </div>
                   </div>
 
-                  <div class="px-4 my-2">
-                    <label class="block text-lg text-pink-600" for="cus_email"
-                      >Terbayar</label
-                    >
-                    <input
-                      class="font-bold w-full px-4 py-1 text-gray-700 bg-indigo-50 rounded"
-                      id="barang_stok"
-                      v-model="form.payment"
-                      type="number"
-                      placeholder="Jumlah yang dibayarkan"
-                      aria-label=""
-                    />
+                  <div class="px-4 my-2 grid grid-cols-2 gap-4">
+                    <div>
+                      <label class="block text-base text-pink-600" for="cus_email"
+                        >Terbayar</label
+                      >
+                      <input
+                        class="font-bold w-full px-4 py-2 text-gray-700 bg-indigo-50 rounded text-xl"
+                        id="barang_stok"
+                        v-model="form.payment"
+                        type="number"
+                        placeholder="Jumlah yang dibayarkan"
+                        aria-label=""
+                      />
+                    </div>
+                    <div class="py-2 text-xl">
+                      <label class="block text-base text-pink-600" for="cus_email"
+                        >Tanggal Penjualan</label
+                      >
+                      <date-picker
+                        class=""
+                        v-model="form.tanggal" 
+                        value-type="format" 
+                        placeholder="Tanggal Pembelian" 
+                        format="DD-MM-YYYY"></date-picker>
+                    </div>
                   </div>
                   
-                  <div class="px-4 my-2">
-                    <label class="block text-lg text-pink-600" for="cus_email"
-                      >Tanggal Penjualan</label
-                    >
-                    <date-picker
-                      v-model="form.tanggal" 
-                      value-type="format" 
-                      placeholder="Tanggal Pembelian" 
-                      format="DD-MM-YYYY"></date-picker>
-                  </div>
 
-                  <div class="px-4 my-2 grid grid-cols-3 gap-4">
-                    <div class="" v-if="showInfoPembeli">
-                      <label class="block text-lg text-pink-600" for="cus_email"
+                  <div v-if="showInfoPembeli" class="px-4 my-2 grid grid-cols-3 gap-4">
+                    <div class="">
+                      <label class="block text-base text-pink-600" for="cus_email"
                         >Nama Pembeli</label
                       >
                       <input
-                        class="font-bold w-full px-4 py-1 text-gray-700 bg-indigo-50 rounded"
+                        class="font-bold w-full px-4 py-2 text-xl text-gray-700 bg-indigo-50 rounded"
                         id="barang_stok"
                         v-model="form.nama_pembeli"
                         type="text"
@@ -115,11 +124,11 @@
                     </div>
 
                     <div class="" v-if="showInfoPembeli">
-                      <label class="block text-lg text-pink-600" for="cus_email"
+                      <label class="block text-base text-pink-600" for="cus_email"
                         >Tlp. Pembeli</label
                       >
                       <input
-                        class="font-bold w-full px-4 py-1 text-gray-700 bg-indigo-50 rounded"
+                        class="font-bold w-full px-4 py-2 text-xl text-gray-700 bg-indigo-50 rounded"
                         id="barang_stok"
                         v-model="form.phone_pembeli"
                         type="text"
@@ -129,11 +138,11 @@
                     </div>
 
                     <div class="" v-if="showInfoPembeli">
-                      <label class="block text-lg text-pink-600" for="cus_email"
+                      <label class="block text-base text-pink-600" for="cus_email"
                         >ALamat pembeli</label
                       >
                       <input
-                        class="font-bold w-full px-4 py-1 text-gray-700 bg-indigo-50 rounded"
+                        class="font-bold w-full px-4 py-2 text-xl text-gray-700 bg-indigo-50 rounded"
                         id="barang_stok"
                         v-model="form.alamat_pembeli"
                         type="text"
@@ -145,7 +154,7 @@
 
                   <div class="px-4 my-2 grid grid-cols-2 gap-4">
                     <div>
-                      <label class="block text-lg text-pink-600" for="cus_email"
+                      <label class="block text-base text-pink-600" for="cus_email"
                         >Total Harga</label
                       >
                       <div class="total-harga font-bold text-2xl text-gray-900">
@@ -153,7 +162,7 @@
                       </div>
                     </div>
                     <div>
-                      <label class="block text-lg text-pink-600" for="cus_email"
+                      <label class="block text-base text-pink-600" for="cus_email"
                         >Kurang Bayar</label
                       >
                       <div class="hutang font-bold text-2xl text-red-500">
@@ -192,6 +201,7 @@
         <footer-component></footer-component>
       </div>
     </div>
+    <span hidden>{{checkStok}}</span>
   </div>
 </template>
 
@@ -206,14 +216,17 @@ export default {
       status_msg: "",
       status: '',
 
-      barangs: null,
-      hargas: null,
+      barangNama: null,
+      barangStok: 0,
+      harga: {
+        standar: 0,
+        grosir: 0,
+      },
       
       selectedHarga: 0,
 
       form: {
-        barang_id: '',
-        supplier_id: '',
+        barang_id: this.id,
         tanggal: '',
         jumlah: 0,
         harga_jual: 0,
@@ -225,6 +238,13 @@ export default {
     }
   },
   computed: {
+    checkStok(){
+      let stok = this.barangStok;
+      if(this.form.jumlah > stok){
+        alert('stok tidak cukup');
+        this.form.jumlah = stok;
+      }
+    },
     totalHarga: function () {
       let totalH = this.form.jumlah * this.form.harga_jual;
 
@@ -262,10 +282,13 @@ export default {
     }
   },
   mounted(){
-    this.getBarang(this.id);
+    this.getNamaBarang(this.id);
     this.getHargaBarang(this.id);
   },
   methods: {
+    setHarga(param){
+      this.form.harga_jual = param;
+    },
     saveData(e) {
       e.preventDefault();
       this.isSaving = true;
@@ -299,7 +322,7 @@ export default {
           console.log(response);
           this.showNotification("Data Successfully Added");
           this.isSaving = false;
-          this.$router.push('penjualan');
+          this.$router.push('/penjualan');
         })
         .catch((error) => {
           this.isSaving = false;
@@ -310,17 +333,20 @@ export default {
     getHargaBarang(param){
       axios.get("/api/get-harga-barang/" + param)
         .then((response) => {
-          this.hargas = response.data;
+          this.harga.standar = response.data.harga_jual_standar;
+          this.harga.grosir = response.data.harga_jual_grosir;
+          this.form.harga_jual = response.data.harga_jual_standar;
           console.log(response);
         })
         .catch((err) => {
           console.log(err);
         });
     },
-    getBarang(param){
+    getNamaBarang(param){
       axios.get("/api/get-barang/"+param)
         .then((response) => {
-          this.barangs = response.data;
+          this.barangNama = response.data.barang_nama;
+          this.barangStok = response.data.barang_stok;
           console.log(response);
         })
         .catch((err) => {
