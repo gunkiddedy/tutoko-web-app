@@ -226,14 +226,19 @@ export default {
       // return this.form.jumlah * this.form.harga_beli
     },
     totalHutang: function() {
-      let totalU = this.form.payment - (this.form.jumlah * this.form.harga_beli);
+      let totalHarga = this.form.jumlah * this.form.harga_beli;
+      let totalU = this.form.payment - totalHarga;
 
       if(totalU){
-        let number = totalU;
-        let	reverse = number.toString().split('').reverse().join('');
-        let ribuan 	= reverse.match(/\d{1,3}/g);
-        ribuan	= ribuan.join('.').split('').reverse().join('');
-        return '-' + ribuan;
+        if(this.form.payment > totalHarga)
+          return 0
+        else{
+          let number = totalU;
+          let	reverse = number.toString().split('').reverse().join('');
+          let ribuan 	= reverse.match(/\d{1,3}/g);
+          ribuan	= ribuan.join('.').split('').reverse().join('');
+          return ribuan;
+        }
       }
       else {
         return totalU

@@ -37,9 +37,15 @@ Route::post('add-data-barang', 'BarangController@addDataBarang');
 // --PEMBELIAN--//
 Route::get('pembelian', 'PembelianController@getData');
 Route::get('get-pembelian/{id}', 'PembelianController@getDataById');
+Route::get('get-harga-barang/{id}', 'PembelianController@getHargaBarangById');
 Route::post('update-pembelian/{id}', 'PembelianController@updatePembelian');
 Route::post('add-data', 'PembelianController@addData');
 
+// --PENJUALAN--//
+Route::get('penjualan', 'PenjualanController@getData');
+Route::get('get-penjualan/{id}', 'PenjualanController@getDataById');
+Route::post('update-penjualan/{id}', 'PenjualanController@updatePenjualan');
+Route::post('add-data-penjualan', 'PenjualanController@addData');
 
 Route::post('upload-photo-product', 'AdminController@uploadProduct');
 Route::get('admin-export-kdk/{kcmtn}/{desa}/{kriteria}', 'ExportController@exportKDK'); //kriteria per desa --cl

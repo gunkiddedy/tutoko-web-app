@@ -1,17 +1,7 @@
-import Barang from './pages/barang/Barang'
-import BarangAdd from './pages/barang/BarangAdd'
-import BarangEdit from './pages/barang/BarangEdit'
-
-import Pembelian from './pages/pembelian/Pembelian'
-import PembelianAdd from './pages/pembelian/PembelianAdd'
-import PembelianEdit from './pages/pembelian/PembelianEdit'
-
 import Master from './pages/Master'
-import Progress from './pages/Progress'
 
 import InvoiceMasuk from './pages/InvoiceMasuk'
 import InvoiceKeluar from './pages/InvoiceKeluar'
-import Penjualan from './pages/Penjualan'
 import Produksi from './pages/Produksi'
 import Pegawai from './pages/Pegawai'
 import Supplier from './pages/Supplier'
@@ -34,11 +24,6 @@ export default {
 
     routes: [
         {
-            path: '/progress',
-            component: Progress,
-            name: 'progress'
-        },
-        {
             path: '/master',
             component: Master,
             name: 'master'
@@ -50,34 +35,51 @@ export default {
         },
         {
             path: '/barang',
-            component: Barang,
+            component: () => import('./pages/barang/Barang.vue'),
             name: 'barang'
         },
         {
             path: '/barang-add',
-            component: BarangAdd,
+            component: () => import('./pages/barang/BarangAdd.vue'),
             name: 'barang-add'
         },
         {
             path: '/barang-edit/:id',
-            component: BarangEdit,
+            component: () => import('./pages/barang/BarangEdit.vue'),
             name: 'barang-edit',
             props: true
         },
         {
             path: '/pembelian',
-            component: Pembelian,
+            component: () => import('./pages/pembelian/Pembelian.vue'),
             name: 'pembelian'
         },
         {
             path: '/pembelian-add',
-            component: PembelianAdd,
+            component: () => import('./pages/pembelian/PembelianAdd.vue'),
             name: 'pembelian-add'
         },
         {
             path: '/pembelian-edit/:id',
-            component: PembelianEdit,
+            component: () => import('./pages/pembelian/PembelianEdit.vue'),
             name: 'pembelian-edit',
+            props: true
+        },
+        {
+            path: '/penjualan',
+            component: () => import('./pages/penjualan/Penjualan.vue'),
+            name: 'penjualan'
+        },
+        {
+            path: '/penjualan-add/:id',
+            component: () => import('./pages/penjualan/PenjualanAdd.vue'),
+            name: 'penjualan-add',
+            props: true
+        },
+        {
+            path: '/penjualan-edit/:id',
+            component: () => import('./pages/penjualan/PenjualanEdit.vue'),
+            name: 'penjualan-edit',
             props: true
         },
         {
@@ -89,11 +91,6 @@ export default {
             path: '/invoice-keluar',
             component: InvoiceKeluar,
             name: 'invoice-keluar'
-        },
-        {
-            path: '/penjualan',
-            component: Penjualan,
-            name: 'penjualan'
         },
         {
             path: '/produksi',

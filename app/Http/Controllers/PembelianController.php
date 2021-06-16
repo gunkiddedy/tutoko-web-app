@@ -19,6 +19,11 @@ class PembelianController extends Controller
         $q = Pembelian::find($id);
         return response()->json($q);
     }
+    public function getHargaBarangById($id)
+    {
+        $q = DB::table('pembelians')->where('barang_id', $id)->first();
+        return response()->json($q);
+    }
     public function updatePembelian(Request $request, $id)
     {
         $this->validate($request,[

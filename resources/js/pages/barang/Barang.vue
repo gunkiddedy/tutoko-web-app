@@ -57,6 +57,12 @@
                     >
                       <i class="fas fa-pen mr-2"></i>Edit
                     </button>
+                    <button
+                      class="bg-green-500 rounded border border-green-600 hover:bg-green-600 px-2 py-0 text-white font-semibold mx-1 ml-1"
+                      @click="jualBarang(props.row.id)"
+                    >
+                      <i class="fas fa-truck mr-2"></i>Jual
+                    </button>
                   </span>
                   <span v-else>
                     {{ props.formattedRow[props.column.field] }}
@@ -103,7 +109,7 @@ export default {
           label: "Action",
           field: "action",
           sortable: false,
-          width: "100px",
+          width: "180px",
         },
         {
           label: "Photo",
@@ -192,6 +198,14 @@ export default {
     editData(param) {
       this.$router.push({
         name: "barang-edit",
+        params: {
+          id: param,
+        },
+      });
+    },
+    jualBarang(param){
+      this.$router.push({
+        name: "penjualan-add",
         params: {
           id: param,
         },
