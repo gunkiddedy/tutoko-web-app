@@ -503,7 +503,7 @@ var render = function() {
                               _c(
                                 "label",
                                 {
-                                  staticClass: "block text-base text-pink-600",
+                                  staticClass: "block text-base text-gray-400",
                                   attrs: { for: "cus_email" }
                                 },
                                 [_vm._v("Nama Barang")]
@@ -532,7 +532,7 @@ var render = function() {
                               _c(
                                 "label",
                                 {
-                                  staticClass: "block text-base text-pink-600",
+                                  staticClass: "block text-base text-gray-400",
                                   attrs: { for: "cus_name" }
                                 },
                                 [_vm._v("Jumlah Penjualan")]
@@ -581,7 +581,7 @@ var render = function() {
                               _c(
                                 "label",
                                 {
-                                  staticClass: "block text-base text-pink-600",
+                                  staticClass: "block text-base text-gray-400",
                                   attrs: { for: "cus_email" }
                                 },
                                 [_vm._v("Harga Standard")]
@@ -606,7 +606,7 @@ var render = function() {
                               _c(
                                 "label",
                                 {
-                                  staticClass: "block text-base text-pink-600",
+                                  staticClass: "block text-base text-gray-400",
                                   attrs: { for: "cus_email" }
                                 },
                                 [_vm._v("Harga Grosir")]
@@ -631,7 +631,7 @@ var render = function() {
                               _c(
                                 "label",
                                 {
-                                  staticClass: "block text-base text-pink-600",
+                                  staticClass: "block text-base text-gray-400",
                                   attrs: { for: "cus_email" }
                                 },
                                 [_vm._v("Harga Deal")]
@@ -680,7 +680,7 @@ var render = function() {
                               _c(
                                 "label",
                                 {
-                                  staticClass: "block text-base text-pink-600",
+                                  staticClass: "block text-base text-gray-400",
                                   attrs: { for: "cus_email" }
                                 },
                                 [_vm._v("Terbayar")]
@@ -727,7 +727,7 @@ var render = function() {
                                   "label",
                                   {
                                     staticClass:
-                                      "block text-base text-pink-600",
+                                      "block text-base text-gray-400",
                                     attrs: { for: "cus_email" }
                                   },
                                   [_vm._v("Tanggal Penjualan")]
@@ -765,7 +765,7 @@ var render = function() {
                                     "label",
                                     {
                                       staticClass:
-                                        "block text-base text-pink-600",
+                                        "block text-base text-gray-400",
                                       attrs: { for: "cus_email" }
                                     },
                                     [_vm._v("Nama Pembeli")]
@@ -810,7 +810,7 @@ var render = function() {
                                         "label",
                                         {
                                           staticClass:
-                                            "block text-base text-pink-600",
+                                            "block text-base text-gray-400",
                                           attrs: { for: "cus_email" }
                                         },
                                         [_vm._v("Tlp. Pembeli")]
@@ -858,7 +858,7 @@ var render = function() {
                                         "label",
                                         {
                                           staticClass:
-                                            "block text-base text-pink-600",
+                                            "block text-base text-gray-400",
                                           attrs: { for: "cus_email" }
                                         },
                                         [_vm._v("ALamat pembeli")]
@@ -911,7 +911,7 @@ var render = function() {
                               _c(
                                 "label",
                                 {
-                                  staticClass: "block text-base text-pink-600",
+                                  staticClass: "block text-base text-gray-400",
                                   attrs: { for: "cus_email" }
                                 },
                                 [_vm._v("Total Harga")]
@@ -937,7 +937,7 @@ var render = function() {
                               _c(
                                 "label",
                                 {
-                                  staticClass: "block text-base text-pink-600",
+                                  staticClass: "block text-base text-gray-400",
                                   attrs: { for: "cus_email" }
                                 },
                                 [_vm._v("Kurang Bayar")]

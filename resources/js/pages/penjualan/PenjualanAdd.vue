@@ -17,7 +17,7 @@
                 >
                   <div class="px-4 my-2 grid grid-cols-2 gap-4">
                     <div class="">
-                      <label class="block text-base text-pink-600" for="cus_email"
+                      <label class="block text-base text-gray-400" for="cus_email"
                         >Nama Barang</label
                       >
                       <input 
@@ -26,7 +26,7 @@
                         class="font-bold uppercase text-xl w-full px-4 py-2 text-gray-700 bg-indigo-50 rounded">
                     </div>
                     <div class="">
-                      <label class="block text-base text-pink-600" for="cus_name"
+                      <label class="block text-base text-gray-400" for="cus_name"
                         >Jumlah Penjualan</label
                       >
                       <input
@@ -42,7 +42,7 @@
 
                   <div class="px-4 my-2 grid grid-cols-3 gap-4">
                     <div class="">
-                      <label class="block text-base text-pink-600" for="cus_email"
+                      <label class="block text-base text-gray-400" for="cus_email"
                         >Harga Standard</label
                       >
                       <button
@@ -54,7 +54,7 @@
                         class=" font-bold w-full px-4 py-1 text-gray-700 bg-indigo-50 rounded"> -->
                     </div>
                     <div class="">
-                      <label class="block text-base text-pink-600" for="cus_email"
+                      <label class="block text-base text-gray-400" for="cus_email"
                         >Harga Grosir</label
                       >
                       <button
@@ -66,7 +66,7 @@
                         class="font-bold w-full px-4 py-1 text-gray-700 bg-indigo-50 rounded"> -->
                     </div>
                     <div class="">
-                      <label class="block text-base text-pink-600" for="cus_email"
+                      <label class="block text-base text-gray-400" for="cus_email"
                         >Harga Deal</label
                       >
                       <input
@@ -82,7 +82,7 @@
 
                   <div class="px-4 my-2 grid grid-cols-2 gap-4">
                     <div>
-                      <label class="block text-base text-pink-600" for="cus_email"
+                      <label class="block text-base text-gray-400" for="cus_email"
                         >Terbayar</label
                       >
                       <input
@@ -95,7 +95,7 @@
                       />
                     </div>
                     <div class="py-2 text-xl">
-                      <label class="block text-base text-pink-600" for="cus_email"
+                      <label class="block text-base text-gray-400" for="cus_email"
                         >Tanggal Penjualan</label
                       >
                       <date-picker
@@ -110,7 +110,7 @@
 
                   <div v-if="showInfoPembeli" class="px-4 my-2 grid grid-cols-3 gap-4">
                     <div class="">
-                      <label class="block text-base text-pink-600" for="cus_email"
+                      <label class="block text-base text-gray-400" for="cus_email"
                         >Nama Pembeli</label
                       >
                       <input
@@ -124,7 +124,7 @@
                     </div>
 
                     <div class="" v-if="showInfoPembeli">
-                      <label class="block text-base text-pink-600" for="cus_email"
+                      <label class="block text-base text-gray-400" for="cus_email"
                         >Tlp. Pembeli</label
                       >
                       <input
@@ -138,7 +138,7 @@
                     </div>
 
                     <div class="" v-if="showInfoPembeli">
-                      <label class="block text-base text-pink-600" for="cus_email"
+                      <label class="block text-base text-gray-400" for="cus_email"
                         >ALamat pembeli</label
                       >
                       <input
@@ -154,7 +154,7 @@
 
                   <div class="px-4 my-2 grid grid-cols-2 gap-4">
                     <div>
-                      <label class="block text-base text-pink-600" for="cus_email"
+                      <label class="block text-base text-gray-400" for="cus_email"
                         >Total Harga</label
                       >
                       <div class="total-harga font-bold text-2xl text-gray-900">
@@ -162,7 +162,7 @@
                       </div>
                     </div>
                     <div>
-                      <label class="block text-base text-pink-600" for="cus_email"
+                      <label class="block text-base text-gray-400" for="cus_email"
                         >Kurang Bayar</label
                       >
                       <div class="hutang font-bold text-2xl text-red-500">
