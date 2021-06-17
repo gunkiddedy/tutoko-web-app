@@ -194,6 +194,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["id"],
   data: function data() {
@@ -213,7 +218,7 @@ __webpack_require__.r(__webpack_exports__);
         harga_jual_grosir: 0
       },
       suppliers: [],
-      barangs: []
+      barangNama: null
     };
   },
   computed: {
@@ -248,8 +253,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   mounted: function mounted() {
     this.getPembelian(this.id);
-    this.getSuppliers();
-    this.getBarangs();
+    this.getSuppliers(); // this.getBarangs();
   },
   methods: {
     getSuppliers: function getSuppliers() {
@@ -261,11 +265,12 @@ __webpack_require__.r(__webpack_exports__);
         console.log(err);
       });
     },
-    getBarangs: function getBarangs() {
+    getBarangs: function getBarangs(param) {
       var _this2 = this;
 
-      axios.get("/api/barang-non-mandiri/").then(function (response) {
-        _this2.barangs = response.data;
+      axios.get("/api/get-barang/" + param).then(function (response) {
+        _this2.barangNama = response.data.barang_nama;
+        console.log('getbarang', response);
       })["catch"](function (err) {
         console.log(err);
       });
@@ -274,6 +279,8 @@ __webpack_require__.r(__webpack_exports__);
       var _this3 = this;
 
       axios.get("/api/get-pembelian/" + param).then(function (response) {
+        _this3.getBarangs(response.data.barang_id);
+
         _this3.loading = false;
         _this3.form.supplier_id = response.data.supplier_id;
         _this3.form.barang_id = response.data.barang_id;
@@ -436,32 +443,17 @@ var render = function() {
                               [_vm._v("Nama Barang")]
                             ),
                             _vm._v(" "),
-                            _c(
-                              "select",
-                              {
-                                staticClass:
-                                  "w-full px-5 py-1 rounded-lg text-gray-500 focus:outline-none focus:shadow-inner border-2 border-gray-200 bg-white appearance-none"
+                            _c("input", {
+                              staticClass:
+                                "font-bold uppercase text-xl w-full px-4 py-2 text-gray-700 bg-indigo-50 rounded",
+                              attrs: {
+                                readonly: "",
+                                type: "text",
+                                name: "",
+                                id: ""
                               },
-                              _vm._l(_vm.barangs, function(barang, i) {
-                                return _c(
-                                  "option",
-                                  {
-                                    key: i,
-                                    staticClass: "text-gray-700",
-                                    attrs: { selected: "", disabled: "" },
-                                    domProps: { value: barang.id }
-                                  },
-                                  [
-                                    _vm._v(
-                                      "\n                        " +
-                                        _vm._s(barang.barang_nama) +
-                                        "\n                      "
-                                    )
-                                  ]
-                                )
-                              }),
-                              0
-                            )
+                              domProps: { value: "" + _vm.barangNama }
+                            })
                           ]),
                           _vm._v(" "),
                           _c("div", { staticClass: "px-4 my-2" }, [
@@ -566,6 +558,7 @@ var render = function() {
                               staticClass:
                                 "w-full px-5 py-1 text-gray-700 bg-gray-50 rounded",
                               attrs: {
+                                readonly: "",
                                 id: "jumlah",
                                 type: "number",
                                 "aria-label": "jumlah",
@@ -883,8 +876,6 @@ var render = function() {
                                     ? "Processing..."
                                     : "Update"
                                 ) +
-                                " - " +
-                                _vm._s(_vm.id) +
                                 "\n                  "
                             )
                           ]

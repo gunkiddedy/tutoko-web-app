@@ -99,12 +99,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -303,7 +297,11 @@ var render = function() {
                         staticClass:
                           "text-lg pb-1 font-semibold text-indigo-400 uppercase"
                       },
-                      [_vm._v("\n          Daftar Barang\n        ")]
+                      [
+                        _vm._v(
+                          "\n            \t\t\t\tDaftar Barang\n\t\t\t\t\t\t"
+                        )
+                      ]
                     ),
                     _vm._v(" "),
                     _c(
@@ -315,7 +313,8 @@ var render = function() {
                       },
                       [
                         _c("i", { staticClass: "fas fa-plus mr-1" }),
-                        _vm._v("Tambah Data")
+                        _vm._v(" "),
+                        _c("span", [_vm._v("Tambah Data")])
                       ]
                     )
                   ]
@@ -393,7 +392,7 @@ var render = function() {
                                           _c("i", {
                                             staticClass: "fas fa-pen mr-2"
                                           }),
-                                          _vm._v("Edit\n                  ")
+                                          _vm._v("Edit\n\t\t\t\t\t\t\t\t\t\t")
                                         ]
                                       ),
                                       _vm._v(" "),
@@ -414,19 +413,19 @@ var render = function() {
                                           _c("i", {
                                             staticClass: "fas fa-truck mr-2"
                                           }),
-                                          _vm._v("Jual\n                  ")
+                                          _vm._v("Jual\n\t\t\t\t\t\t\t\t\t\t")
                                         ]
                                       )
                                     ])
                                   : _c("span", [
                                       _vm._v(
-                                        "\n                  " +
+                                        "\n\t\t\t\t\t\t\t\t\t\t" +
                                           _vm._s(
                                             props.formattedRow[
                                               props.column.field
                                             ]
                                           ) +
-                                          "\n                "
+                                          "\n\t\t\t\t\t\t\t\t\t"
                                       )
                                     ]),
                                 _vm._v(" "),
@@ -446,9 +445,9 @@ var render = function() {
                                         },
                                         [
                                           _vm._v(
-                                            "\n                        " +
+                                            "\n\t\t\t\t\t\t\t\t\t\t\t" +
                                               _vm._s(props.row.active) +
-                                              "\n                    "
+                                              "\n\t\t\t\t\t\t\t\t\t\t"
                                           )
                                         ]
                                       )

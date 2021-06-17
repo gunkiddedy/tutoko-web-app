@@ -19,7 +19,7 @@
                     <label class="block text-lg text-gray-600" for="cus_email"
                       >Nama Barang</label
                     >
-                    <select
+                    <!-- <select
                       class="w-full px-5 py-1 rounded-lg text-gray-500 focus:outline-none focus:shadow-inner border-2 border-gray-200 bg-white appearance-none"
                       >
                       <option
@@ -32,7 +32,11 @@
                       >
                         {{ barang.barang_nama }}
                       </option>
-                    </select>
+                    </select> -->
+                    <input 
+												readonly type="text" name="" id="" 
+												:value="`${barangNama}`"
+												class="font-bold uppercase text-xl w-full px-4 py-2 text-gray-700 bg-indigo-50 rounded">
                   </div>
 
                   <div class="px-4 my-2">
@@ -62,6 +66,7 @@
                       >Jumlah Pembelian</label
                     >
                     <input
+                      readonly
                       class="w-full px-5 py-1 text-gray-700 bg-gray-50 rounded"
                       id="jumlah"
                       type="number"
@@ -170,7 +175,7 @@
                     @click="updatePembelian(id)"
                     class="px-6 py-1 text-white font-light tracking-wider bg-gray-400 hover:bg-gray-600 rounded"
                   >
-                    {{ isUpdating == true ? "Processing..." : "Update" }} - {{id}}
+                    {{ isUpdating == true ? "Processing..." : "Update" }}
                   </button>
                 </div>
               </div>
@@ -204,7 +209,7 @@ export default {
       },
 
       suppliers: [],
-      barangs: [],
+      barangNama: null,
     };
   },
 	computed: {
@@ -242,7 +247,7 @@ export default {
   mounted() {
     this.getPembelian(this.id);
     this.getSuppliers();
-    this.getBarangs();
+    // this.getBarangs();
   },
   methods: {
     getSuppliers(){
@@ -255,11 +260,12 @@ export default {
           console.log(err);
         });
     },
-    getBarangs(){
+    getBarangs(param){
       axios
-        .get("/api/barang-non-mandiri/")
+        .get("/api/get-barang/" + param)
         .then((response) => {
-          this.barangs = response.data;
+          this.barangNama = response.data.barang_nama;
+          console.log('getbarang', response)
         })
         .catch((err) => {
           console.log(err);
@@ -269,6 +275,7 @@ export default {
       axios
         .get("/api/get-pembelian/" + param)
         .then((response) => {
+          this.getBarangs(response.data.barang_id)
           this.loading = false;
           this.form.supplier_id = response.data.supplier_id;
           this.form.barang_id = response.data.barang_id;

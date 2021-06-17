@@ -311,7 +311,7 @@ __webpack_require__.r(__webpack_exports__);
     getBarangs: function getBarangs() {
       var _this3 = this;
 
-      axios.get("/api/barang-non-mandiri/").then(function (response) {
+      axios.get("/api/barang/").then(function (response) {
         _this3.barangs = response.data;
         console.log(response);
       })["catch"](function (err) {

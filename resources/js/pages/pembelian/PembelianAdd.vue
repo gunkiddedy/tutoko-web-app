@@ -303,7 +303,7 @@ export default {
         });
     },
     getBarangs(){
-      axios.get("/api/barang-non-mandiri/")
+      axios.get("/api/barang/")
         .then((response) => {
           this.barangs = response.data;
           console.log(response);
