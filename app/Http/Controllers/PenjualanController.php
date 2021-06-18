@@ -29,7 +29,8 @@ class PenjualanController extends Controller
             'payment'=> 'required',
         ]);
         
-        $q = Pembelian::find($id);
+        // dd($request);
+        $q = Penjualan::find($id);
         $q->barang_id = $request->get('barang_id');
         $q->tanggal = $request->get('tanggal');
         $q->jumlah = $request->get('jumlah');
@@ -38,7 +39,6 @@ class PenjualanController extends Controller
         $q->nama_pembeli = $request->get('nama_pembeli');
         $q->phone_pembeli = $request->get('phone_pembeli');
         $q->alamat_pembeli = $request->get('alamat_pembeli');
-        dd($request);
         $q->save();
 
         return response()->json('data successfuly updated');

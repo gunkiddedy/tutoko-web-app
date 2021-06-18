@@ -9,8 +9,6 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_0__);
 //
 //
 //
@@ -77,16 +75,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
+// import _ from "lodash";
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -270,33 +259,7 @@ var render = function() {
             },
             [
               _c("main", { staticClass: "w-full flex-grow p-6 bg-white" }, [
-                _c(
-                  "div",
-                  { staticClass: "flex items-center justify-between" },
-                  [
-                    _c(
-                      "h1",
-                      {
-                        staticClass:
-                          "text-lg pb-1 font-semibold text-indigo-400 uppercase"
-                      },
-                      [_vm._v("\n          Daftar Penjualan\n        ")]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "button",
-                      {
-                        staticClass:
-                          "bg-blue-500 hover:bg-blue-600 w-auto text-white px-4 py-2 rounded",
-                        on: { click: _vm.tambahData }
-                      },
-                      [
-                        _c("i", { staticClass: "fas fa-plus mr-1" }),
-                        _vm._v("Tambah Data")
-                      ]
-                    )
-                  ]
-                ),
+                _vm._m(0),
                 _vm._v(" "),
                 _vm.loading
                   ? _c(
@@ -370,19 +333,19 @@ var render = function() {
                                           _c("i", {
                                             staticClass: "fas fa-pen mr-2"
                                           }),
-                                          _vm._v("Edit\n                  ")
+                                          _vm._v("Edit\n\t\t\t\t\t\t\t\t\t\t")
                                         ]
                                       )
                                     ])
                                   : _c("span", [
                                       _vm._v(
-                                        "\n                  " +
+                                        "\n\t\t\t\t\t\t\t\t\t\t" +
                                           _vm._s(
                                             props.formattedRow[
                                               props.column.field
                                             ]
                                           ) +
-                                          "\n                "
+                                          "\n\t\t\t\t\t\t\t\t\t"
                                       )
                                     ])
                               ]
@@ -413,7 +376,20 @@ var render = function() {
     1
   )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "flex items-center justify-between" }, [
+      _c(
+        "h1",
+        { staticClass: "text-lg pb-1 font-semibold text-indigo-400 uppercase" },
+        [_vm._v("\n\t\t\t\t\t\tDaftar Penjualan")]
+      )
+    ])
+  }
+]
 render._withStripped = true
 
 
