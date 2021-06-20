@@ -64,9 +64,10 @@
                       >Jumlah Pembelian</label
                     >
                     <input
-                      class="w-full px-5 py-1 text-gray-700 bg-gray-50 rounded"
+                      class="w-full px-4 py-1 text-gray-700 bg-gray-50 rounded"
                       id="jumlah"
                       type="number"
+                      min="0"
                       aria-label="jumlah"
                       placeholder="Masukkan jumlah pembelian"
                       v-model="form.jumlah"
@@ -78,10 +79,11 @@
                       >Harga Beli</label
                     >
                     <input
-                      class="w-full px-2 py-1 text-gray-700 bg-gray-50 rounded"
+                      class="w-full px-4 py-1 text-gray-700 bg-gray-50 rounded"
                       id="barang_satuan"
                       v-model="form.harga_beli"
                       type="number"
+                      min="0"
                       placeholder="Masukkan harga beli"
                       aria-label="Email"
                     />
@@ -92,10 +94,11 @@
                       >Terbayar</label
                     >
                     <input
-                      class="w-full px-2 py-1 text-gray-700 bg-gray-50 rounded"
+                      class="w-full px-4 py-1 text-gray-700 bg-gray-50 rounded"
                       id="barang_stok"
                       v-model="form.payment"
                       type="number"
+                      min="0"
                       placeholder="Jumlah yang dibayarkan"
                       aria-label=""
                     />
@@ -117,10 +120,11 @@
                       >Harga Jual Standar</label
                     >
                     <input
-                      class="w-full px-2 py-1 text-gray-700 bg-gray-50 rounded"
+                      class="w-full px-4 py-1 text-gray-700 bg-gray-50 rounded"
                       id="barang_stok"
                       v-model="form.harga_jual_standar"
                       type="number"
+                      min="0"
                       placeholder="Jumlah yang dibayarkan"
                       aria-label=""
                     />
@@ -131,10 +135,11 @@
                       >Harga Jual Grosir</label
                     >
                     <input
-                      class="w-full px-2 py-1 text-gray-700 bg-gray-50 rounded"
+                      class="w-full px-4 py-1 text-gray-700 bg-gray-50 rounded"
                       id="barang_stok"
                       v-model="form.harga_jual_grosir"
                       type="number"
+                      min="0"
                       placeholder="Jumlah yang dibayarkan"
                       aria-label=""
                     />
@@ -144,7 +149,7 @@
                     <label class="block text-lg text-gray-600" for="cus_email"
                       >Total Harga</label
                     >
-                    <div class="total-harga font-bold text-2xl text-gray-900">
+                    <div class="px-4 total-harga font-bold text-2xl text-gray-900">
                       {{totalHarga}}
                     </div>
                   </div>
@@ -153,7 +158,7 @@
                     <label class="block text-lg text-gray-600" for="cus_email"
                       >Kurang Bayar</label
                     >
-                    <div class="hutang font-bold text-2xl text-red-500">
+                    <div class="hutang px-4 font-bold text-2xl text-red-500">
                       {{totalHutang}}
                     </div>
                   </div>

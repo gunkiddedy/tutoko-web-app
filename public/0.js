@@ -196,6 +196,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["id"],
   data: function data() {
@@ -659,10 +664,11 @@ var render = function() {
                                 }
                               ],
                               staticClass:
-                                "w-full px-5 py-1 text-gray-700 bg-gray-50 rounded",
+                                "w-full px-4 py-1 text-gray-700 bg-gray-50 rounded",
                               attrs: {
                                 id: "jumlah",
                                 type: "number",
+                                min: "0",
                                 "aria-label": "jumlah",
                                 placeholder: "Masukkan jumlah pembelian"
                               },
@@ -702,10 +708,11 @@ var render = function() {
                                 }
                               ],
                               staticClass:
-                                "w-full px-2 py-1 text-gray-700 bg-gray-50 rounded",
+                                "w-full px-4 py-1 text-gray-700 bg-gray-50 rounded",
                               attrs: {
                                 id: "barang_satuan",
                                 type: "number",
+                                min: "0",
                                 placeholder: "Masukkan harga beli",
                                 "aria-label": "Email"
                               },
@@ -745,10 +752,11 @@ var render = function() {
                                 }
                               ],
                               staticClass:
-                                "w-full px-2 py-1 text-gray-700 bg-gray-50 rounded",
+                                "w-full px-4 py-1 text-gray-700 bg-gray-50 rounded",
                               attrs: {
                                 id: "barang_stok",
                                 type: "number",
+                                min: "0",
                                 placeholder: "Jumlah yang dibayarkan",
                                 "aria-label": ""
                               },
@@ -819,10 +827,11 @@ var render = function() {
                                 }
                               ],
                               staticClass:
-                                "w-full px-2 py-1 text-gray-700 bg-gray-50 rounded",
+                                "w-full px-4 py-1 text-gray-700 bg-gray-50 rounded",
                               attrs: {
                                 id: "barang_stok",
                                 type: "number",
+                                min: "0",
                                 placeholder: "Jumlah yang dibayarkan",
                                 "aria-label": ""
                               },
@@ -862,10 +871,11 @@ var render = function() {
                                 }
                               ],
                               staticClass:
-                                "w-full px-2 py-1 text-gray-700 bg-gray-50 rounded",
+                                "w-full px-4 py-1 text-gray-700 bg-gray-50 rounded",
                               attrs: {
                                 id: "barang_stok",
                                 type: "number",
+                                min: "0",
                                 placeholder: "Jumlah yang dibayarkan",
                                 "aria-label": ""
                               },
@@ -899,7 +909,7 @@ var render = function() {
                               "div",
                               {
                                 staticClass:
-                                  "total-harga font-bold text-2xl text-gray-900"
+                                  "px-4 total-harga font-bold text-2xl text-gray-900"
                               },
                               [
                                 _vm._v(
@@ -925,7 +935,7 @@ var render = function() {
                               "div",
                               {
                                 staticClass:
-                                  "hutang font-bold text-2xl text-red-500"
+                                  "hutang px-4 font-bold text-2xl text-red-500"
                               },
                               [
                                 _vm._v(

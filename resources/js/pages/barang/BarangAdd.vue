@@ -48,7 +48,8 @@
                       class="w-full px-2 py-1 text-gray-700 bg-gray-50 rounded"
                       id="barang_stok"
                       v-model="barang_stok"
-                      type="text"
+                      type="number"
+                      min="0"
                       placeholder="Stok"
                       aria-label=""
                     />

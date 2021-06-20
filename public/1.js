@@ -191,6 +191,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['id'],
   data: function data() {
@@ -223,7 +226,8 @@ __webpack_require__.r(__webpack_exports__);
       var stok = this.barangStok;
 
       if (this.form.jumlah > stok) {
-        alert('stok tidak cukup');
+        // alert('stok tidak cukup');
+        this.$swal('Stok tidak cukup');
         this.form.jumlah = stok;
       }
     },
@@ -527,6 +531,7 @@ var render = function() {
                                 attrs: {
                                   id: "jumlah",
                                   type: "number",
+                                  min: "0",
                                   "aria-label": "jumlah",
                                   placeholder: "Masukkan jumlah pembelian"
                                 },
@@ -638,6 +643,7 @@ var render = function() {
                                 attrs: {
                                   id: "barang_satuan",
                                   type: "number",
+                                  min: "0",
                                   placeholder: "Masukkan harga jual",
                                   "aria-label": "Email"
                                 },
@@ -691,6 +697,7 @@ var render = function() {
                                 attrs: {
                                   id: "barang_stok",
                                   type: "number",
+                                  min: "0",
                                   placeholder: "Jumlah yang dibayarkan",
                                   "aria-label": ""
                                 },

@@ -27,6 +27,7 @@
 												class="w-full px-4 py-2 text-gray-700 bg-indigo-50 rounded font-bold text-xl"
 												id="jumlah"
 												type="number"
+												min="0"
 												aria-label="jumlah"
 												placeholder="Masukkan jumlah pembelian"
 												v-model="form.jumlah"/>
@@ -66,6 +67,7 @@
 												id="barang_satuan"
 												v-model="form.harga_jual"
 												type="number"
+												min="0"
 												placeholder="Masukkan harga jual"
 												aria-label="Email"/>
 										</div>
@@ -80,6 +82,7 @@
 												id="barang_stok"
 												v-model="form.payment"
 												type="number"
+												min="0"
 												placeholder="Jumlah yang dibayarkan"
 												aria-label=""/>
 										</div>
@@ -216,7 +219,8 @@ export default {
     	checkStok(){
 			let stok = this.barangStok;
 			if(this.form.jumlah > stok){
-				alert('stok tidak cukup');
+				// alert('stok tidak cukup');
+				this.$swal('Stok tidak cukup');
 				this.form.jumlah = stok;
 			}
 		},

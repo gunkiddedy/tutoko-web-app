@@ -130,6 +130,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["id"],
   data: function data() {
@@ -376,7 +377,8 @@ var render = function() {
                                 "w-full px-2 py-1 text-gray-700 bg-gray-50 rounded",
                               attrs: {
                                 id: "barang_stok",
-                                type: "text",
+                                type: "number",
+                                min: "0",
                                 placeholder: "Stok",
                                 "aria-label": ""
                               },
