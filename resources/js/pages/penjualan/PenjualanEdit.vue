@@ -33,36 +33,13 @@
 												v-model="penjualan.jumlah"/>
 										</div>
                   					</div>
-                  					<div class="px-4 my-2 grid grid-cols-3 gap-4">
-                    					<div class="">
-											<label class="block text-base text-gray-400" for="cus_email">
-												Harga Standard
-											</label>
-											<button
-												@click="setHarga(harga.standar)" 
-												class="focus:outline-none focus:ring-2 focus:ring-yellow-600 px-6 py-2 w-full rounded bg-yellow-500 font-bold text-white text-xl">{{ harga.standar }}</button>
-											<!-- <input 
-												type="number" name="" id="" 
-												:value="hargas.harga_jual_standar" 
-												class=" font-bold w-full px-4 py-1 text-gray-700 bg-indigo-50 rounded"> -->
-										</div>
-										<div class="">
-											<label class="block text-base text-gray-400" for="cus_email">
-												Harga Grosir
-												</label>
-											<button
-												@click="setHarga(harga.grosir)" 
-												class="focus:outline-none focus:ring-2 px-6 py-2 w-full rounded bg-blue-500 font-bold text-white text-xl">{{ harga.grosir }}</button>
-											<!-- <input 
-												type="number" name="" id="" 
-												:value="hargas.harga_jual_grosir" 
-												class="font-bold w-full px-4 py-1 text-gray-700 bg-indigo-50 rounded"> -->
-										</div>
+                  					<div class="px-4 my-2 grid grid-cols-2 gap-4">
 										<div class="">
 											<label class="block text-base text-gray-400" for="cus_email">
 												Harga Deal
 											</label>
 											<input
+												readonly
 												class="font-bold w-full px-4 py-2 text-gray-700 bg-indigo-50 rounded text-xl"
 												id="barang_satuan"
 												v-model="penjualan.harga_jual"
@@ -70,8 +47,6 @@
 												placeholder="Masukkan harga jual"
 												aria-label="Email"/>
 										</div>
-                  					</div>
-                  					<div class="px-4 my-2 grid grid-cols-2 gap-4">
 										<div>
 											<label class="block text-base text-gray-400" for="cus_email">
 												Terbayar
@@ -84,17 +59,26 @@
 												placeholder="Jumlah yang dibayarkan"
 												aria-label=""/>
 										</div>
+                  					</div>
+                  					<div class="px-4 my-2 grid grid-cols-2 gap-4">
 										<div class="py-2 text-xl">
 											<label class="block text-base text-gray-400" for="cus_email">
 												Tanggal Penjualan
 											</label>
-											<date-picker
+											<input
+												readonly
+												class="font-bold w-full px-4 py-2 text-gray-700 bg-indigo-50 rounded text-xl"
+												id="barang_satuan"
+												:value="moment(penjualan.tanggal).format('LL')"
+												type="text"
+												aria-label="Email"/>
+											<!-- <date-picker
 												class=""
 												v-model="penjualan.tanggal" 
 												value-type="format" 
 												placeholder="Tanggal Pembelian" 
 												format="DD-MM-YYYY">
-											</date-picker>
+											</date-picker> -->
 										</div>
                   					</div>
                   					<div v-if="showInfoPembeli" class="px-4 my-2 grid grid-cols-3 gap-4">
@@ -312,7 +296,7 @@ export default {
 				.then((response) => {
 				this.harga.standar = response.data.harga_jual_standar;
 				this.harga.grosir = response.data.harga_jual_grosir;
-				this.penjualan.harga_jual = response.data.harga_jual_standar;
+				// this.penjualan.harga_jual = response.data.harga_jual_standar;
 				console.log(response);
 			})
 			.catch((err) => {

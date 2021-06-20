@@ -27,6 +27,12 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 Vue.use(ElementUI);
 
+import moment from 'moment'
+// Vue.use(moment);
+Vue.prototype.moment = moment
+moment.locale('id');
+
+
 import Vuex from 'vuex'
 import dataStore from './store/index'
 Vue.use(Vuex);

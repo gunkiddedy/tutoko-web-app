@@ -27,6 +27,7 @@
     "dependencies": {
         "easy-circular-progress": "^1.0.4",
         "element-ui": "^2.14.1",
+        "moment": "^2.29.1",
         "vue-good-table": "^2.21.1",
         "vue-input-only-number": "^1.1.0",
         "vue-radial-progress": "^0.3.2",
