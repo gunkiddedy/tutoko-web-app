@@ -34,6 +34,12 @@ Route::post('update-barang/{id}', 'BarangController@updateDataBarangById');
 Route::post('delete-photo/{id}', 'BarangController@deleteFileStorage');
 Route::post('add-data-barang', 'BarangController@addDataBarang');
 
+//--PEGAWAI--//
+Route::get('pegawai', 'PegawaiController@getDataPegawai');
+Route::get('get-pegawai/{id}', 'PegawaiController@getDataPegawaiById');
+Route::post('update-pegawai/{id}', 'PegawaiController@updateDataPegawaiById');
+Route::post('add-data-pegawai', 'PegawaiController@addDataPegawai');
+
 // --PEMBELIAN--//
 Route::get('pembelian', 'PembelianController@getData');
 Route::get('get-pembelian/{id}', 'PembelianController@getDataById');

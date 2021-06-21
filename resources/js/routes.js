@@ -50,6 +50,22 @@ export default {
             props: true
         },
         {
+            path: '/pegawai',
+            component: () => import('./pages/pegawai/Pegawai.vue'),
+            name: 'pegawai'
+        },
+        {
+            path: '/pegawai-add',
+            component: () => import('./pages/pegawai/PegawaiAdd.vue'),
+            name: 'pegawai-add'
+        },
+        {
+            path: '/pegawai-edit/:id',
+            component: () => import('./pages/pegawai/PegawaiEdit.vue'),
+            name: 'pegawai-edit',
+            props: true
+        },
+        {
             path: '/pembelian',
             component: () => import('./pages/pembelian/Pembelian.vue'),
             name: 'pembelian'

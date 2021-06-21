@@ -934,7 +934,7 @@ var render = function() {
                             },
                             [
                               _vm._v(
-                                "\n\t\t\t\t\t\t\t\t\t\tCatat Pembeli\n\t\t\t\t\t\t\t\t\t"
+                                "\n\t\t\t\t\t\t\t\t\t\tCatat Pembelis\n\t\t\t\t\t\t\t\t\t"
                               )
                             ]
                           ),
