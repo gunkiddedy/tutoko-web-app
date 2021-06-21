@@ -66,6 +66,22 @@ export default {
             props: true
         },
         {
+            path: '/supplier',
+            component: () => import('./pages/supplier/Supplier.vue'),
+            name: 'supplier'
+        },
+        {
+            path: '/supplier-add',
+            component: () => import('./pages/supplier/SupplierAdd.vue'),
+            name: 'supplier-add'
+        },
+        {
+            path: '/supplier-edit/:id',
+            component: () => import('./pages/supplier/SupplierEdit.vue'),
+            name: 'supplier-edit',
+            props: true
+        },
+        {
             path: '/pembelian',
             component: () => import('./pages/pembelian/Pembelian.vue'),
             name: 'pembelian'

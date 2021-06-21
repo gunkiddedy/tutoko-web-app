@@ -40,6 +40,12 @@ Route::get('get-pegawai/{id}', 'PegawaiController@getDataPegawaiById');
 Route::post('update-pegawai/{id}', 'PegawaiController@updateDataPegawaiById');
 Route::post('add-data-pegawai', 'PegawaiController@addDataPegawai');
 
+//--SUPPLIER--//
+Route::get('supplier', 'SupplierController@getDataSupplier');
+Route::get('get-supplier/{id}', 'SupplierController@getDataSupplierById');
+Route::post('update-supplier/{id}', 'SupplierController@updateDataSupplierById');
+Route::post('add-data-supplier', 'SupplierController@addDataSupplier');
+
 // --PEMBELIAN--//
 Route::get('pembelian', 'PembelianController@getData');
 Route::get('get-pembelian/{id}', 'PembelianController@getDataById');

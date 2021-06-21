@@ -412,7 +412,7 @@ var render = function() {
                         ]
                       ),
                       _vm._v(" "),
-                      _c("div", { staticClass: "mt-6" }, [
+                      _c("div", { staticClass: "mt-6 px-4" }, [
                         _c(
                           "button",
                           {

@@ -67,7 +67,7 @@
 										</select>
 									</div>
 								</div>
-								<div class="mt-6">
+								<div class="mt-6 px-4">
 									<button
 										@click="updateDataPegawai(id)"
 										class="px-4 py-1 text-white font-light tracking-wider bg-blue-500 hover:bg-blue-600 rounded"

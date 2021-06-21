@@ -78,101 +78,28 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["id"],
   data: function data() {
     return {
       isSaving: false,
       status_msg: "",
-      barang_nama: "",
-      barang_satuan: "",
-      barang_stok: "",
-      barang_tipe: "",
-      tipes: ['Mandiri', 'Supplier'],
-      status: ['Active', 'Inactive'],
-      imageList: [],
-      dialogImageUrl: "",
-      dialogVisible: false
+      pegawai_nama: "",
+      pegawai_phone: "",
+      pegawai_alamat: ""
     };
   },
   methods: {
-    updateImageList: function updateImageList(file) {
-      this.imageList.push(file.raw);
-      console.log(this.imageList);
-    },
-    handleRemove: function handleRemove(file) {
-      this.imageList.splice(file, 1);
-    },
-    handlePreview: function handlePreview(file) {
-      this.dialogImageUrl = file.url;
-      this.dialogVisible = true;
-    },
-    handleExceed: function handleExceed(files, imageList) {
-      this.$message.warning("maksimal 1 photo");
-    },
     validateForm: function validateForm() {
-      if (!this.barang_nama) {
+      if (!this.pegawai_nama) {
         this.status = false;
-        this.showNotification("nama barang tidak boleh kosong");
+        this.showNotification("nama tidak boleh kosong");
         return false;
       }
 
-      if (!this.barang_satuan) {
+      if (!this.pegawai_phone) {
         this.status = false;
-        this.showNotification("satuan tidak boleh kosong");
+        this.showNotification("phone tidak boleh kosong");
         return false;
       }
 
@@ -186,7 +113,7 @@ __webpack_require__.r(__webpack_exports__);
         _this.status_msg = "";
       }, 3000);
     },
-    saveDataBarang: function saveDataBarang(e) {
+    saveDataPegawai: function saveDataPegawai(e) {
       var _this2 = this;
 
       e.preventDefault();
@@ -198,14 +125,10 @@ __webpack_require__.r(__webpack_exports__);
 
       this.isSaving = true;
       var formData = new FormData();
-      formData.append("barang_nama", this.barang_nama);
-      formData.append("barang_satuan", this.barang_satuan);
-      formData.append("barang_stok", this.barang_stok);
-      formData.append("barang_tipe", this.barang_tipe);
-      this.imageList.forEach(function (file) {
-        formData.append("photo", file, file.name);
-      });
-      axios.post("/api/add-data-barang", formData).then(function (response) {
+      formData.append("pegawai_nama", this.pegawai_nama);
+      formData.append("pegawai_phone", this.pegawai_phone);
+      formData.append("pegawai_alamat", this.pegawai_alamat);
+      axios.post("/api/add-data-pegawai", formData).then(function (response) {
         console.log(response);
 
         _this2.showNotification("Data Successfully Added");
@@ -261,10 +184,22 @@ var render = function() {
             },
             [
               _c("main", { staticClass: "w-full flex-grow p-6 bg-white" }, [
+                _vm.loading
+                  ? _c(
+                      "div",
+                      {
+                        staticClass:
+                          "z-30 flex justify-around relative opacity-75 bg-black inset-0"
+                      },
+                      [_c("loader")],
+                      1
+                    )
+                  : _vm._e(),
+                _vm._v(" "),
                 _c(
                   "h1",
                   { staticClass: "text-lg text-gray-500 pb-1 font-semibold" },
-                  [_vm._v("Tambah Data Barang")]
+                  [_vm._v("\n\t\t\t\t\t\tAdd Data Pegawai\n\t\t\t\t\t")]
                 ),
                 _vm._v(" "),
                 _c("div", { staticClass: "w-full mt-6 pl-0 lg:pl-2" }, [
@@ -274,17 +209,17 @@ var render = function() {
                         "div",
                         {
                           staticClass:
-                            "grid grid-cols-2 lg:grid-cols-2 sm:grid-cols-1 md:grid-cols-2"
+                            "grid grid-cols-1 lg:grid-cols-1 sm:grid-cols-1 md:grid-cols-1"
                         },
                         [
-                          _c("div", { staticClass: "px-1 my-2" }, [
+                          _c("div", { staticClass: "px-4 my-2" }, [
                             _c(
                               "label",
                               {
                                 staticClass: "block text-sm text-gray-600",
                                 attrs: { for: "cus_name" }
                               },
-                              [_vm._v("Nama Barang")]
+                              [_vm._v("Nama Pegawai")]
                             ),
                             _vm._v(" "),
                             _c("input", {
@@ -292,273 +227,133 @@ var render = function() {
                                 {
                                   name: "model",
                                   rawName: "v-model",
-                                  value: _vm.barang_nama,
-                                  expression: "barang_nama"
+                                  value: _vm.pegawai_nama,
+                                  expression: "pegawai_nama"
                                 }
                               ],
                               staticClass:
-                                "w-full px-5 py-1 text-gray-700 bg-gray-50 rounded",
+                                "w-full px-5 py-1 text-gray-700 bg-gray-200 rounded",
                               attrs: {
-                                id: "barang_nama",
+                                id: "pegawai_nama",
                                 type: "text",
                                 "aria-label": "Name"
                               },
-                              domProps: { value: _vm.barang_nama },
+                              domProps: { value: _vm.pegawai_nama },
                               on: {
                                 input: function($event) {
                                   if ($event.target.composing) {
                                     return
                                   }
-                                  _vm.barang_nama = $event.target.value
+                                  _vm.pegawai_nama = $event.target.value
                                 }
                               }
                             })
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "px-1 my-2" }, [
-                            _c(
-                              "label",
-                              {
-                                staticClass: "block text-sm text-gray-600",
-                                attrs: { for: "cus_email" }
-                              },
-                              [_vm._v("Satuan")]
-                            ),
-                            _vm._v(" "),
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.barang_satuan,
-                                  expression: "barang_satuan"
-                                }
-                              ],
-                              staticClass:
-                                "w-full px-2 py-1 text-gray-700 bg-gray-50 rounded",
-                              attrs: {
-                                id: "barang_satuan",
-                                type: "text",
-                                placeholder: "Satuan",
-                                "aria-label": "Email"
-                              },
-                              domProps: { value: _vm.barang_satuan },
-                              on: {
-                                input: function($event) {
-                                  if ($event.target.composing) {
-                                    return
-                                  }
-                                  _vm.barang_satuan = $event.target.value
-                                }
-                              }
-                            })
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "px-1 my-2" }, [
-                            _c(
-                              "label",
-                              {
-                                staticClass: "block text-sm text-gray-600",
-                                attrs: { for: "cus_email" }
-                              },
-                              [_vm._v("Stok")]
-                            ),
-                            _vm._v(" "),
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.barang_stok,
-                                  expression: "barang_stok"
-                                }
-                              ],
-                              staticClass:
-                                "w-full px-2 py-1 text-gray-700 bg-gray-50 rounded",
-                              attrs: {
-                                id: "barang_stok",
-                                type: "number",
-                                min: "0",
-                                placeholder: "Stok",
-                                "aria-label": ""
-                              },
-                              domProps: { value: _vm.barang_stok },
-                              on: {
-                                input: function($event) {
-                                  if ($event.target.composing) {
-                                    return
-                                  }
-                                  _vm.barang_stok = $event.target.value
-                                }
-                              }
-                            })
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "px-1 my-2" }, [
-                            _c(
-                              "label",
-                              {
-                                staticClass: "block text-sm text-gray-600",
-                                attrs: { for: "cus_email" }
-                              },
-                              [_vm._v("Jenis Barang")]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "select",
-                              {
-                                directives: [
-                                  {
-                                    name: "model",
-                                    rawName: "v-model",
-                                    value: _vm.barang_tipe,
-                                    expression: "barang_tipe"
-                                  }
-                                ],
-                                staticClass:
-                                  "w-full px-5 py-1 rounded-lg text-gray-500 focus:outline-none focus:shadow-inner border-2 border-gray-200 bg-white appearance-none",
-                                on: {
-                                  change: function($event) {
-                                    var $$selectedVal = Array.prototype.filter
-                                      .call($event.target.options, function(o) {
-                                        return o.selected
-                                      })
-                                      .map(function(o) {
-                                        var val =
-                                          "_value" in o ? o._value : o.value
-                                        return val
-                                      })
-                                    _vm.barang_tipe = $event.target.multiple
-                                      ? $$selectedVal
-                                      : $$selectedVal[0]
-                                  }
-                                }
-                              },
-                              [
-                                _c(
-                                  "option",
-                                  {
-                                    staticClass: "text-gray-700",
-                                    attrs: { value: "", selected: "selected" }
-                                  },
-                                  [
-                                    _vm._v(
-                                      "\n                      -Pilih-\n                    "
-                                    )
-                                  ]
-                                ),
-                                _vm._v(" "),
-                                _vm._l(_vm.tipes, function(tipe, i) {
-                                  return _c(
-                                    "option",
-                                    {
-                                      key: i,
-                                      staticClass: "text-gray-700",
-                                      domProps: { value: tipe }
-                                    },
-                                    [
-                                      _vm._v(
-                                        "\n                      " +
-                                          _vm._s(tipe) +
-                                          "\n                    "
-                                      )
-                                    ]
-                                  )
-                                })
-                              ],
-                              2
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _c(
-                            "div",
-                            {
-                              staticClass:
-                                "button-plus-upload flex px-1 justify-between items-center my-6"
-                            },
-                            [
-                              _c(
-                                "div",
-                                {},
-                                [
-                                  _c(
-                                    "el-upload",
-                                    {
-                                      attrs: {
-                                        action: "#",
-                                        "list-type": "picture-card",
-                                        "on-preview": _vm.handlePreview,
-                                        "on-change": _vm.updateImageList,
-                                        limit: 1,
-                                        "on-exceed": _vm.handleExceed,
-                                        "on-remove": _vm.handleRemove,
-                                        "auto-upload": false
-                                      }
-                                    },
-                                    [_c("i", { staticClass: "el-icon-plus" })]
-                                  ),
-                                  _vm._v(" "),
-                                  !_vm.status
-                                    ? _c(
-                                        "el-dialog",
-                                        {
-                                          attrs: { visible: _vm.dialogVisible },
-                                          on: {
-                                            "update:visible": function($event) {
-                                              _vm.dialogVisible = $event
-                                            }
-                                          }
-                                        },
-                                        [
-                                          _c("img", {
-                                            attrs: {
-                                              width: "100%",
-                                              src: _vm.dialogImageUrl,
-                                              alt: ""
-                                            }
-                                          })
-                                        ]
-                                      )
-                                    : _vm._e()
-                                ],
-                                1
-                              )
-                            ]
-                          )
+                          ])
                         ]
                       ),
                       _vm._v(" "),
-                      _c("div", [
-                        _c(
-                          "span",
-                          {
-                            staticClass: "px-4 text-sm font-sf-pro",
-                            class: {
-                              "text-green-400": _vm.status,
-                              "text-red-400": !_vm.status
-                            }
-                          },
-                          [_vm._v(_vm._s(_vm.status_msg))]
-                        )
-                      ]),
+                      _c(
+                        "div",
+                        {
+                          staticClass:
+                            "grid grid-cols-1 lg:grid-cols-2 sm:grid-cols-1 md:grid-cols-1"
+                        },
+                        [
+                          _c("div", { staticClass: "px-4 my-2" }, [
+                            _c(
+                              "label",
+                              {
+                                staticClass: "block text-sm text-gray-600",
+                                attrs: { for: "cus_email" }
+                              },
+                              [_vm._v("Phone")]
+                            ),
+                            _vm._v(" "),
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.pegawai_phone,
+                                  expression: "pegawai_phone"
+                                }
+                              ],
+                              staticClass:
+                                "w-full px-2 py-1 text-gray-700 bg-gray-200 rounded",
+                              attrs: {
+                                id: "pegawai_phone",
+                                type: "text",
+                                placeholder: "Phone",
+                                "aria-label": "Email"
+                              },
+                              domProps: { value: _vm.pegawai_phone },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.pegawai_phone = $event.target.value
+                                }
+                              }
+                            })
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "px-4 my-2" }, [
+                            _c(
+                              "label",
+                              {
+                                staticClass: "block text-sm text-gray-600",
+                                attrs: { for: "cus_email" }
+                              },
+                              [_vm._v("Alamat")]
+                            ),
+                            _vm._v(" "),
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.pegawai_alamat,
+                                  expression: "pegawai_alamat"
+                                }
+                              ],
+                              staticClass:
+                                "w-full px-2 py-1 text-gray-700 bg-gray-200 rounded",
+                              attrs: {
+                                id: "pegawai_alamat",
+                                type: "text",
+                                placeholder: "Alamat",
+                                "aria-label": ""
+                              },
+                              domProps: { value: _vm.pegawai_alamat },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.pegawai_alamat = $event.target.value
+                                }
+                              }
+                            })
+                          ])
+                        ]
+                      ),
                       _vm._v(" "),
-                      _c("div", { staticClass: "mt-6" }, [
+                      _c("div", { staticClass: "mt-6 px-4" }, [
                         _c(
                           "button",
                           {
                             staticClass:
-                              "px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded",
-                            on: { click: _vm.saveDataBarang }
+                              "px-4 py-1 text-white font-light tracking-wider bg-blue-500 hover:bg-blue-600 rounded",
+                            on: { click: _vm.saveDataPegawai }
                           },
                           [
                             _vm._v(
-                              "\n                  " +
-                                _vm._s(
-                                  _vm.isSaving == true
-                                    ? "Processing..."
-                                    : "Submit"
-                                ) +
-                                "\n                "
+                              _vm._s(
+                                _vm.isSaving == true
+                                  ? "Saving..."
+                                  : "Simpan Data"
+                              )
                             )
                           ]
                         )
@@ -567,6 +362,12 @@ var render = function() {
                   ])
                 ])
               ]),
+              _vm._v(" "),
+              _vm.loading
+                ? _c("div", {
+                    staticClass: "opacity-25 fixed inset-0 z-30 bg-black"
+                  })
+                : _vm._e(),
               _vm._v(" "),
               _c("footer-component")
             ],

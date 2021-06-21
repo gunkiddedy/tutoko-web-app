@@ -38,7 +38,7 @@ class PegawaiController extends Controller
         return response()->json('data successfuly updated');
     }
     
-    public function addDataPegwai(Request $request)
+    public function addDataPegawai(Request $request)
     {
         $request->validate([
             'pegawai_nama' => 'required',

@@ -165,14 +165,6 @@ __webpack_require__.r(__webpack_exports__);
         }
       });
     },
-    jualBarang: function jualBarang(param) {
-      this.$router.push({
-        name: "pegawai-add",
-        params: {
-          id: param
-        }
-      });
-    },
     updateParams: function updateParams(newProps) {
       this.serverParams = Object.assign({}, this.serverParams, newProps);
     },

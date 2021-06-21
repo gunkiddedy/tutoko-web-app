@@ -161,14 +161,6 @@ export default {
 				},
 			});
 		},
-		jualBarang(param){
-			this.$router.push({
-				name: "pegawai-add",
-				params: {
-				id: param,
-				},
-			});
-		},
 		updateParams(newProps) {
 			this.serverParams = Object.assign({}, this.serverParams, newProps);
 		},
