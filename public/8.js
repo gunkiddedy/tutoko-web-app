@@ -88,6 +88,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 // import _ from "lodash";
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -126,12 +132,12 @@ __webpack_require__.r(__webpack_exports__);
         width: "auto"
       }, {
         label: "Harga Jual",
-        field: "harga_jual",
+        field: "harga_jual_custom",
         sortable: false,
         width: "auto"
       }, {
         label: "Jumlah Bayar",
-        field: "payment",
+        field: "payment_custom",
         sortable: false,
         width: "auto"
       }, {
@@ -168,6 +174,10 @@ __webpack_require__.r(__webpack_exports__);
     this.isAdmin = localStorage.getItem("isAdmin");
   },
   methods: {
+    toRupiah: function toRupiah(param) {
+      var fix = param.toString().replace(/(\d)(?=(\d{3})+(?:\.\d+)?$)/g, "$1\.");
+      return fix;
+    },
     editData: function editData(param) {
       this.$router.push({
         name: "penjualan-edit",
@@ -324,6 +334,30 @@ var render = function() {
                             key: "table-row",
                             fn: function(props) {
                               return [
+                                props.column.field == "harga_jual_custom"
+                                  ? _c("span", [
+                                      _vm._v(
+                                        "\n\t\t\t\t\t\t\t\t\t\t" +
+                                          _vm._s(
+                                            _vm.toRupiah(props.row.harga_jual)
+                                          ) +
+                                          "\n\t\t\t\t\t\t\t\t\t"
+                                      )
+                                    ])
+                                  : _vm._e(),
+                                _vm._v(" "),
+                                props.column.field == "payment_custom"
+                                  ? _c("span", [
+                                      _vm._v(
+                                        "\n\t\t\t\t\t\t\t\t\t\t" +
+                                          _vm._s(
+                                            _vm.toRupiah(props.row.payment)
+                                          ) +
+                                          "\n\t\t\t\t\t\t\t\t\t"
+                                      )
+                                    ])
+                                  : _vm._e(),
+                                _vm._v(" "),
                                 props.column.field == "tagihan_custom"
                                   ? _c("span", [
                                       _c(
@@ -339,7 +373,9 @@ var render = function() {
                                         [
                                           _vm._v(
                                             "\n\t\t\t\t\t\t\t\t\t\t\t" +
-                                              _vm._s(props.row.tagihan) +
+                                              _vm._s(
+                                                _vm.toRupiah(props.row.tagihan)
+                                              ) +
                                               "\n\t\t\t\t\t\t\t\t\t\t"
                                           )
                                         ]

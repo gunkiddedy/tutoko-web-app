@@ -50,9 +50,21 @@
                 :columns="columns"
               >
                 <template slot="table-row" slot-scope="props">
+                  <span v-if="props.column.field == 'harga_beli_custom'">
+										{{ toRupiah(props.row.harga_beli) }}
+									</span>
+                  <span v-if="props.column.field == 'harga_jual_standar_custom'">
+										{{ toRupiah(props.row.harga_jual_standar) }}
+									</span>
+                  <span v-if="props.column.field == 'harga_jual_grosir_custom'">
+										{{ toRupiah(props.row.harga_jual_grosir) }}
+									</span>
+                  <span v-if="props.column.field == 'payment_custom'">
+										{{ toRupiah(props.row.payment) }}
+									</span>
                   <span v-if="props.column.field == 'tagihan_custom'">
 										<span :class="{'text-red-400 font-bold' : props.row.tagihan > 0, 'text-green-400 font-bold': props.row.tagihan == 0}">
-											{{ props.row.tagihan }}
+											{{ toRupiah(props.row.tagihan) }}
 										</span>
 									</span>
                   <span v-if="props.column.field == 'tanggal_custom'">
@@ -137,25 +149,25 @@ export default {
         },
         {
           label: "Harga Beli",
-          field: "harga_beli",
+          field: "harga_beli_custom",
           sortable: false,
           width: "auto",
         },
         {
           label: "Jual Standar",
-          field: "harga_jual_standar",
+          field: "harga_jual_standar_custom",
           sortable: false,
           width: "auto",
         },
         {
           label: "Jual Grosir",
-          field: "harga_jual_grosir",
+          field: "harga_jual_grosir_custom",
           sortable: false,
           width: "auto",
         },
         {
           label: "Jumlah Bayar",
-          field: "payment",
+          field: "payment_custom",
           sortable: false,
           width: "auto",
         },
@@ -192,6 +204,10 @@ export default {
   },
 
   methods: {
+    toRupiah(param){
+			let fix = param.toString().replace(/(\d)(?=(\d{3})+(?:\.\d+)?$)/g, "$1\.");
+			return fix;
+		},
     editData(param) {
       this.$router.push({
         name: "pembelian-edit",

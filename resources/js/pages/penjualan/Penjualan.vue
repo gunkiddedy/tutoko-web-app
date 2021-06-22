@@ -43,9 +43,15 @@
 								:rows="rows"
 								:columns="columns">
 								<template slot="table-row" slot-scope="props">
+									<span v-if="props.column.field == 'harga_jual_custom'">
+										{{toRupiah(props.row.harga_jual)}}
+									</span>
+									<span v-if="props.column.field == 'payment_custom'">
+										{{toRupiah(props.row.payment)}}
+									</span>
 									<span v-if="props.column.field == 'tagihan_custom'">
 										<span :class="{'text-red-400 font-bold': props.row.tagihan > 0, 'text-green-400 font-bold': props.row.tagihan == 0}">
-											{{ props.row.tagihan }}
+											{{toRupiah(props.row.tagihan)}}
 										</span>
 									</span>
 									<span v-if="props.column.field == 'pembeli_custom'">
@@ -121,13 +127,13 @@ export default {
 				},
 				{
 					label: "Harga Jual",
-					field: "harga_jual",
+					field: "harga_jual_custom",
 					sortable: false,
 					width: "auto",
 				},
 				{
 					label: "Jumlah Bayar",
-					field: "payment",
+					field: "payment_custom",
 					sortable: false,
 					width: "auto",
 				},
@@ -167,6 +173,10 @@ export default {
 		this.isAdmin = localStorage.getItem("isAdmin");
 	},
   	methods: {
+		toRupiah(param){
+			let fix = param.toString().replace(/(\d)(?=(\d{3})+(?:\.\d+)?$)/g, "$1\.");
+			return fix;
+		},
 		editData(param) {
 			this.$router.push({
 				name: "penjualan-edit",
