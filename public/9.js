@@ -114,6 +114,11 @@ __webpack_require__.r(__webpack_exports__);
           trigger: "enter"
         }
       }, {
+        label: "Gaji Harian",
+        field: "gaji_harian",
+        sortable: false,
+        width: "auto"
+      }, {
         label: "Phone",
         field: "pegawai_phone",
         sortable: false,

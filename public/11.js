@@ -100,6 +100,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["id"],
   data: function data() {
@@ -110,6 +119,7 @@ __webpack_require__.r(__webpack_exports__);
       pegawai_phone: "",
       pegawai_alamat: "",
       active: "",
+      gaji_harian: 0,
       status: ["Active", "Inactive"]
     };
   },
@@ -128,6 +138,7 @@ __webpack_require__.r(__webpack_exports__);
         _this.pegawai_nama = response.data.pegawai_nama;
         _this.pegawai_phone = response.data.pegawai_phone;
         _this.pegawai_alamat = response.data.pegawai_alamat;
+        _this.gaji_harian = response.data.gaji_harian;
         _this.active = response.data.active;
       })["catch"](function (err) {
         console.log(err);
@@ -141,6 +152,7 @@ __webpack_require__.r(__webpack_exports__);
       formData.append("pegawai_nama", this.pegawai_nama);
       formData.append("pegawai_phone", this.pegawai_phone);
       formData.append("pegawai_alamat", this.pegawai_alamat);
+      formData.append("gaji_harian", this.gaji_harian);
       formData.append("active", this.active);
       axios.post("/api/update-pegawai/".concat(param), formData).then(function (response) {
         _this2.isUpdating = false;
@@ -223,7 +235,7 @@ var render = function() {
                         "div",
                         {
                           staticClass:
-                            "grid grid-cols-1 lg:grid-cols-1 sm:grid-cols-1 md:grid-cols-1"
+                            "grid grid-cols-1 lg:grid-cols-2 sm:grid-cols-1 md:grid-cols-1"
                         },
                         [
                           _c("div", { staticClass: "px-4 my-2" }, [
@@ -259,6 +271,44 @@ var render = function() {
                                     return
                                   }
                                   _vm.pegawai_nama = $event.target.value
+                                }
+                              }
+                            })
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "px-4 my-2" }, [
+                            _c(
+                              "label",
+                              {
+                                staticClass: "block text-sm text-gray-600",
+                                attrs: { for: "cus_name" }
+                              },
+                              [_vm._v("Gaji Harian")]
+                            ),
+                            _vm._v(" "),
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.gaji_harian,
+                                  expression: "gaji_harian"
+                                }
+                              ],
+                              staticClass:
+                                "w-full px-5 py-1 text-gray-700 bg-gray-200 rounded",
+                              attrs: {
+                                id: "pegawai_nama",
+                                type: "text",
+                                "aria-label": "Name"
+                              },
+                              domProps: { value: _vm.gaji_harian },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.gaji_harian = $event.target.value
                                 }
                               }
                             })

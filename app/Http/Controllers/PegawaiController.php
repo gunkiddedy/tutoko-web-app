@@ -32,6 +32,7 @@ class PegawaiController extends Controller
         $q->pegawai_nama = $request->get('pegawai_nama');
         $q->pegawai_phone = $request->get('pegawai_phone');
         $q->pegawai_alamat = $request->get('pegawai_alamat');
+        $q->gaji_harian = $request->get('gaji_harian');
         $q->active = $request->get('active');
         $q->save();
 
@@ -50,10 +51,12 @@ class PegawaiController extends Controller
             $pegawai_nama = $request->pegawai_nama;
             $pegawai_phone = $request->pegawai_phone;
             $pegawai_alamat = $request->pegawai_alamat;
+            $gaji_harian = $request->gaji_harian;
             $product = Pegawai::create([
                 'pegawai_nama' => $pegawai_nama,
                 'pegawai_phone'=> $pegawai_phone,
-                'pegawai_alamat' => $pegawai_alamat
+                'pegawai_alamat' => $pegawai_alamat,
+                'gaji_harian' => $gaji_harian
             ]);
         });
 

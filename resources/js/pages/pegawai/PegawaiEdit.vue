@@ -16,7 +16,7 @@
           			<div class="w-full mt-6 pl-0 lg:pl-2">
             			<div class="leading-loose">
               				<div class="p-10 bg-white rounded shadow">
-                				<div class="grid grid-cols-1 lg:grid-cols-1 sm:grid-cols-1 md:grid-cols-1">
+                				<div class="grid grid-cols-1 lg:grid-cols-2 sm:grid-cols-1 md:grid-cols-1">
 									<div class="px-4 my-2">
 										<label class="block text-sm text-gray-600" for="cus_name">Nama Barang</label>
 										<input
@@ -25,6 +25,15 @@
 											type="text"
 											aria-label="Name"
 											v-model="pegawai_nama"/>
+									</div>
+									<div class="px-4 my-2">
+										<label class="block text-sm text-gray-600" for="cus_name">Gaji Harian</label>
+										<input
+											class="w-full px-5 py-1 text-gray-700 bg-gray-200 rounded"
+											id="pegawai_nama"
+											type="text"
+											aria-label="Name"
+											v-model="gaji_harian"/>
 									</div>
                 				</div>
                 				<div class="grid grid-cols-1 lg:grid-cols-2 sm:grid-cols-1 md:grid-cols-1">
@@ -101,6 +110,7 @@ export default {
 			pegawai_phone: "",
 			pegawai_alamat: "",
 			active: "",
+			gaji_harian: 0,
 
 			status: ["Active", "Inactive"],
 		};
@@ -119,6 +129,7 @@ export default {
 				this.pegawai_nama = response.data.pegawai_nama;
 				this.pegawai_phone = response.data.pegawai_phone;
 				this.pegawai_alamat = response.data.pegawai_alamat;
+				this.gaji_harian = response.data.gaji_harian;
 				this.active = response.data.active;
 			})
 			.catch((err) => {
@@ -131,6 +142,7 @@ export default {
 			formData.append("pegawai_nama", this.pegawai_nama);
 			formData.append("pegawai_phone", this.pegawai_phone);
 			formData.append("pegawai_alamat", this.pegawai_alamat);
+			formData.append("gaji_harian", this.gaji_harian);
 			formData.append("active", this.active);
       		axios.post(`/api/update-pegawai/${param}`, formData)
 			.then((response) => {
