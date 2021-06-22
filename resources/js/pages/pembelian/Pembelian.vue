@@ -92,7 +92,7 @@ export default {
           label: "Action",
           field: "action",
           sortable: false,
-          width: "100px",
+          width: "130px",
         },
         {
           label: "Tanggal",

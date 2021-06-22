@@ -7,7 +7,7 @@
       <div
         class="realtive w-12 h-12 rounded-full overflow-hidden border-2 border-gray-100 hover:border-gray-200 focus:border-gray-200 focus:outline-none mb-1 mx-auto"
       >
-        <router-link :to="{ name: 'home' }">
+        <router-link to="/">
           <img src="/img/minicar.jpg" />
         </router-link>
       </div>
@@ -45,6 +45,21 @@
       >
 
       <router-link
+        :to="{ name: 'pegawai'}"
+        v-if="role === 'desa' || role === 'admin'"
+        class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item"
+      >
+        <i class="fas fa-user mr-3"></i> Pegawai</router-link
+      >
+      <router-link
+        :to="{ name: 'supplier'}"
+        v-if="role === 'desa' || role === 'admin'"
+        class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item"
+      >
+        <i class="fas fa-bus mr-3"></i> Supplier</router-link
+      >
+
+      <router-link
         :to="{ name: 'produksi'}"
         v-if="role === 'desa' || role === 'admin'"
         class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item"
@@ -66,22 +81,7 @@
         class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item"
       ><i class="fas fa-clipboard-check mr-3"></i> Produksi</router-link> -->
 
-      <router-link
-        :to="{ name: 'pegawai'}"
-        v-if="role === 'desa' || role === 'admin'"
-        class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item"
-      >
-        <i class="fas fa-user mr-3"></i> Pegawai</router-link
-      >
-      <router-link
-        :to="{ name: 'supplier'}"
-        v-if="role === 'desa' || role === 'admin'"
-        class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item"
-      >
-        <i class="fas fa-bus mr-3"></i> Supplier</router-link
-      >
-
-      <router-link
+      <!-- <router-link
         :to="{ name: 'upload-produk' }"
         v-if="isAdmin === 'true' && role === 'admin' && isLoggedIn == 'true'"
         class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item"
@@ -96,7 +96,7 @@
       >
         <i class="fas fa-filter mr-3"></i>
         Filter Data
-      </router-link>
+      </router-link> -->
     </nav>
     <router-link
       :to="{ name: 'login' }"

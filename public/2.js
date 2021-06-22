@@ -176,6 +176,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['id'],
   data: function data() {
@@ -247,6 +251,9 @@ __webpack_require__.r(__webpack_exports__);
     this.getPenjualan(this.id);
   },
   methods: {
+    cancel: function cancel() {
+      this.$router.push('/penjualan');
+    },
     updatePenjualan: function updatePenjualan(param) {
       var _this = this;
 
@@ -934,7 +941,7 @@ var render = function() {
                             },
                             [
                               _vm._v(
-                                "\n\t\t\t\t\t\t\t\t\t\tCatat Pembelis\n\t\t\t\t\t\t\t\t\t"
+                                "\n\t\t\t\t\t\t\t\t\t\tCatat Pembeli\n\t\t\t\t\t\t\t\t\t"
                               )
                             ]
                           ),
@@ -961,6 +968,16 @@ var render = function() {
                                   "\n\t\t\t\t\t\t\t\t\t"
                               )
                             ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "button",
+                            {
+                              staticClass:
+                                "ml-4 px-6 py-1 text-white font-light tracking-wider bg-red-400 hover:bg-red-600 rounded",
+                              on: { click: _vm.cancel }
+                            },
+                            [_vm._v("Batal\n\t\t\t\t\t\t\t\t\t")]
                           )
                         ]
                       )

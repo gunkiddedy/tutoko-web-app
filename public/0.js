@@ -201,6 +201,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["id"],
   data: function data() {
@@ -260,6 +264,9 @@ __webpack_require__.r(__webpack_exports__);
     this.getBarangs();
   },
   methods: {
+    cancel: function cancel() {
+      this.$router.push('/pembelian');
+    },
     saveData: function saveData(e) {
       var _this = this;
 
@@ -982,6 +989,16 @@ var render = function() {
                                 "\n                "
                             )
                           ]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "button",
+                          {
+                            staticClass:
+                              "ml-4 px-6 py-1 text-white font-light tracking-wider bg-red-400 hover:bg-red-600 rounded",
+                            on: { click: _vm.cancel }
+                          },
+                          [_vm._v("Batal\n                ")]
                         )
                       ])
                     ])

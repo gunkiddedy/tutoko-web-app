@@ -182,6 +182,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["id"],
   data: function data() {
@@ -204,6 +208,9 @@ __webpack_require__.r(__webpack_exports__);
     this.getDataBarang(this.id);
   },
   methods: {
+    cancel: function cancel() {
+      this.$router.push('/barang');
+    },
     onFileChange: function onFileChange(e) {
       var file = e.target.files[0];
       this.imageList.push(file);
@@ -709,7 +716,7 @@ var render = function() {
                         )
                       ]),
                       _vm._v(" "),
-                      _c("div", { staticClass: "mt-6" }, [
+                      _c("div", { staticClass: "mt-6 px-4" }, [
                         _c(
                           "button",
                           {
@@ -732,6 +739,16 @@ var render = function() {
                                 "\n\t\t\t\t\t"
                             )
                           ]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "button",
+                          {
+                            staticClass:
+                              "ml-4 px-6 py-1 text-white font-light tracking-wider bg-red-400 hover:bg-red-600 rounded",
+                            on: { click: _vm.cancel }
+                          },
+                          [_vm._v("Batal\n\t\t\t\t\t\t\t")]
                         )
                       ])
                     ])

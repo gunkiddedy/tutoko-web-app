@@ -67,7 +67,7 @@
 												'bg-green-400': props.row.active == 'Active',
 												'bg-gray-400': props.row.active == 'Inactive',
 											}" 
-											class="px-3 text-white font-bold py-0 leading-loose flex items-center justify-center w-1/2">
+											class="px-3 text-white font-bold py-0 leading-loose flex items-center justify-center">
 											{{ props.row.active }}
 										</span>
 									</span>
@@ -103,7 +103,7 @@ export default {
 					label: "Action",
 					field: "action",
 					sortable: false,
-					width: "180px",
+					width: "auto",
 				},
 				{
 					label: "Photo",

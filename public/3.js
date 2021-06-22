@@ -112,7 +112,7 @@ __webpack_require__.r(__webpack_exports__);
         label: "Action",
         field: "action",
         sortable: false,
-        width: "180px"
+        width: "auto"
       }, {
         label: "Photo",
         field: "photo_custom",
@@ -435,7 +435,7 @@ var render = function() {
                                         "span",
                                         {
                                           staticClass:
-                                            "px-3 text-white font-bold py-0 leading-loose flex items-center justify-center w-1/2",
+                                            "px-3 text-white font-bold py-0 leading-loose flex items-center justify-center",
                                           class: {
                                             "bg-green-400":
                                               props.row.active == "Active",

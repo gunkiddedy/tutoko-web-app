@@ -149,13 +149,17 @@
 							</div>
                   </div>
                </div>
-					<div class="mt-6">
+					<div class="mt-6 px-4">
 					<button
 						@click="updateDataBarang(id)"
 						class="px-4 py-1 text-white font-light tracking-wider bg-blue-500 hover:bg-blue-600 rounded"
 					>
 						{{ isUpdating == true ? "Updating..." : "Update Data" }}
 					</button>
+          <button
+								@click="cancel"
+								class="ml-4 px-6 py-1 text-white font-light tracking-wider bg-red-400 hover:bg-red-600 rounded">Batal
+							</button>
 					</div>
               </div>
             </div>
@@ -197,6 +201,9 @@ export default {
     this.getDataBarang(this.id);
   },
   methods: {
+    cancel(){
+      this.$router.push('/barang');
+    },
     onFileChange(e) {
       const file = e.target.files[0];
       this.imageList.push(file);

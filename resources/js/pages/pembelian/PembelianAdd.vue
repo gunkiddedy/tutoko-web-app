@@ -179,6 +179,10 @@
                   >
                     {{ isSaving == true ? "Processing..." : "Submit" }}
                   </button>
+                  <button
+                    @click="cancel"
+                    class="ml-4 px-6 py-1 text-white font-light tracking-wider bg-red-400 hover:bg-red-600 rounded">Batal
+                  </button>
                 </div>
               </div>
             </div>
@@ -256,6 +260,9 @@ export default {
     this.getBarangs();
   },
   methods: {
+    cancel(){
+      this.$router.push('/pembelian');
+    },
     saveData(e) {
       e.preventDefault();
       this.isSaving = true;

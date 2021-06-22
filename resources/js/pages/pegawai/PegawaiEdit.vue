@@ -72,6 +72,10 @@
 										@click="updateDataPegawai(id)"
 										class="px-4 py-1 text-white font-light tracking-wider bg-blue-500 hover:bg-blue-600 rounded"
 									>{{ isUpdating == true ? "Updating..." : "Update Data" }}</button>
+									<button
+										@click="cancel"
+										class="ml-4 px-6 py-1 text-white font-light tracking-wider bg-red-400 hover:bg-red-600 rounded">Batal
+									</button>
 								</div>
               				</div>
             			</div>
@@ -105,6 +109,9 @@ export default {
 		this.getDataPegawai(this.id);
 	},
   	methods: {
+		cancel(){
+			this.$router.push('/pegawai');
+		},
     	getDataPegawai(param) {
 			axios.get("/api/get-pegawai/" + param)
 			.then((response) => {

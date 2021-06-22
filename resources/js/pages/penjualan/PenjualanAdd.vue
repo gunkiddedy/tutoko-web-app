@@ -7,174 +7,178 @@
         		<main class="w-full flex-grow p-6 bg-white">
           			<!-- Content goes here! 😁 -->
           			<h1 class="text-lg text-gray-500 pb-1 font-semibold">Tambah Data Pembelian</h1>
-          			<div class="w-full mt-6 pl-0 lg:pl-2">
-            			<div class="leading-loose">
-              				<div class="p-10 bg-white rounded shadow">
-                				<div class="grid grid-cols-1">
-                  					<div class="px-4 my-2 grid grid-cols-2 gap-4">
-										<div class="">
-											<label class="block text-base text-gray-400" for="cus_email"
-												>Nama Barang</label>
-											<input 
-												readonly type="text" name="" id="" 
-												:value="`${barangNama} - Stok (${barangStok})`" 
-												class="font-bold uppercase text-xl w-full px-4 py-2 text-gray-700 bg-indigo-50 rounded">
-										</div>
-										<div class="">
-											<label class="block text-base text-gray-400" for="cus_name"
-												>Jumlah Penjualan</label>
-											<input
-												class="w-full px-4 py-2 text-gray-700 bg-indigo-50 rounded font-bold text-xl"
-												id="jumlah"
-												type="number"
-												min="0"
-												aria-label="jumlah"
-												placeholder="Masukkan jumlah pembelian"
-												v-model="form.jumlah"/>
-										</div>
-                  					</div>
-                  					<div class="px-4 my-2 grid grid-cols-3 gap-4">
-                    					<div class="">
-											<label class="block text-base text-gray-400" for="cus_email">
-												Harga Standard
-											</label>
-											<button
-												@click="setHarga(harga.standar)" 
-												class="focus:outline-none focus:ring-2 focus:ring-yellow-600 px-6 py-2 w-full rounded bg-yellow-500 font-bold text-white text-xl">{{ harga.standar }}</button>
-											<!-- <input 
-												type="number" name="" id="" 
-												:value="hargas.harga_jual_standar" 
-												class=" font-bold w-full px-4 py-1 text-gray-700 bg-indigo-50 rounded"> -->
-										</div>
-										<div class="">
-											<label class="block text-base text-gray-400" for="cus_email">
-												Harga Grosir
-												</label>
-											<button
-												@click="setHarga(harga.grosir)" 
-												class="focus:outline-none focus:ring-2 px-6 py-2 w-full rounded bg-blue-500 font-bold text-white text-xl">{{ harga.grosir }}</button>
-											<!-- <input 
-												type="number" name="" id="" 
-												:value="hargas.harga_jual_grosir" 
-												class="font-bold w-full px-4 py-1 text-gray-700 bg-indigo-50 rounded"> -->
-										</div>
-										<div class="">
-											<label class="block text-base text-gray-400" for="cus_email">
-												Harga Deal
-											</label>
-											<input
-												class="font-bold w-full px-4 py-2 text-gray-700 bg-indigo-50 rounded text-xl"
-												id="barang_satuan"
-												v-model="form.harga_jual"
-												type="number"
-												min="0"
-												placeholder="Masukkan harga jual"
-												aria-label="Email"/>
-										</div>
-                  					</div>
-                  					<div class="px-4 my-2 grid grid-cols-2 gap-4">
-										<div>
-											<label class="block text-base text-gray-400" for="cus_email">
-												Terbayar
-											</label>
-											<input
-												class="font-bold w-full px-4 py-2 text-gray-700 bg-indigo-50 rounded text-xl"
-												id="barang_stok"
-												v-model="form.payment"
-												type="number"
-												min="0"
-												placeholder="Jumlah yang dibayarkan"
-												aria-label=""/>
-										</div>
-										<div class="py-2 text-xl">
-											<label class="block text-base text-gray-400" for="cus_email">
-												Tanggal Penjualan
-											</label>
-											<date-picker
-												class=""
-												v-model="form.tanggal" 
-												value-type="format" 
-												placeholder="Tanggal Pembelian" 
-												format="DD-MM-YYYY">
-											</date-picker>
-										</div>
-                  					</div>
-                  					<div v-if="showInfoPembeli" class="px-4 my-2 grid grid-cols-3 gap-4">
-										<div class="">
-											<label class="block text-base text-gray-400" for="cus_email">
-												Nama Pembeli</label>
-											<input
-												class="font-bold w-full px-4 py-2 text-xl text-gray-700 bg-indigo-50 rounded"
-												id="barang_stok"
-												v-model="form.nama_pembeli"
-												type="text"
-												placeholder=""
-												aria-label=""/>
-										</div>
-										<div class="">
-											<label class="block text-base text-gray-400" for="cus_email">
-												Tlp. Pembeli
-											</label>
-											<input
-												class="font-bold w-full px-4 py-2 text-xl text-gray-700 bg-indigo-50 rounded"
-												id="barang_stok"
-												v-model="form.phone_pembeli"
-												type="text"
-												placeholder=""
-												aria-label=""/>
-										</div>
-										<div class="">
-											<label class="block text-base text-gray-400" for="cus_email">
-												ALamat pembeli
-											</label>
-											<input
-												class="font-bold w-full px-4 py-2 text-xl text-gray-700 bg-indigo-50 rounded"
-												id="barang_stok"
-												v-model="form.alamat_pembeli"
-												type="text"
-												placeholder=""
-												aria-label=""/>
-										</div>
-									</div>
-									<div class="px-4 my-2 grid grid-cols-2 gap-4">
-										<div>
-											<label class="block text-base text-gray-400" for="cus_email">
-												Total Harga</label>
-											<div class="total-harga font-bold text-2xl text-gray-900">
-												{{totalHarga}}
-											</div>
-										</div>
-										<div>
-											<label class="block text-base text-gray-400" for="cus_email">
-												Kurang Bayar</label>
-											<div class="hutang font-bold text-2xl text-red-500">
-												{{totalHutang}}
-											</div>
-										</div>
-									</div>
-                				</div><!-- grid -->
-								<div class="mt-2">
-									<span
-										class="px-4 text-sm font-sf-pro"
-										:class="{ 'text-green-400': status, 'text-red-400': !status }"
-										>{{ status_msg }}</span
-									>
+          			<!-- <div class="w-full mt-6 pl-0 lg:pl-2"> -->
+            			<!-- <div class="leading-loose"> -->
+					<div class="p-10 bg-white rounded shadow leading-loose w-full mt-6">
+						<div class="grid grid-cols-1">
+							<div class="px-4 my-2 grid grid-cols-2 gap-4">
+								<div class="">
+									<label class="block text-base text-gray-400" for="cus_email"
+										>Nama Barang</label>
+									<input 
+										readonly type="text" name="" id="" 
+										:value="`${barangNama} - Stok (${barangStok})`" 
+										class="font-bold uppercase text-xl w-full px-4 py-2 text-gray-700 bg-indigo-50 rounded">
 								</div>
-								<div class="mt-6 px-4 flex items-center">
-									<button
-										@click="showInfoPembeli = !showInfoPembeli" 
-										class="bg-gray-200 block rounded px-6 py-1 focus:outline-none hover:bg-gray-300 mr-4">
-										Catat Pembeli
-									</button>
-									<button
-										@click="saveData"
-										class="px-6 py-1 text-white font-light tracking-wider bg-gray-400 hover:bg-gray-600 rounded">
-										{{ isSaving == true ? "Processing..." : "Submit" }}
-									</button>
+								<div class="">
+									<label class="block text-base text-gray-400" for="cus_name"
+										>Jumlah Penjualan</label>
+									<input
+										class="w-full px-4 py-2 text-gray-700 bg-indigo-50 rounded font-bold text-xl"
+										id="jumlah"
+										type="number"
+										min="0"
+										aria-label="jumlah"
+										placeholder="Masukkan jumlah pembelian"
+										v-model="form.jumlah"/>
 								</div>
-              				</div>
-            			</div>
-          			</div>
+							</div>
+							<div class="px-4 my-2 grid grid-cols-3 gap-4">
+								<div class="">
+									<label class="block text-base text-gray-400" for="cus_email">
+										Harga Standard
+									</label>
+									<button
+										@click="setHarga(harga.standar)" 
+										class="focus:outline-none focus:ring-2 focus:ring-yellow-600 px-6 py-2 w-full rounded bg-yellow-500 font-bold text-white text-xl">{{ harga.standar }}</button>
+									<!-- <input 
+										type="number" name="" id="" 
+										:value="hargas.harga_jual_standar" 
+										class=" font-bold w-full px-4 py-1 text-gray-700 bg-indigo-50 rounded"> -->
+								</div>
+								<div class="">
+									<label class="block text-base text-gray-400" for="cus_email">
+										Harga Grosir
+										</label>
+									<button
+										@click="setHarga(harga.grosir)" 
+										class="focus:outline-none focus:ring-2 px-6 py-2 w-full rounded bg-blue-500 font-bold text-white text-xl">{{ harga.grosir }}</button>
+									<!-- <input 
+										type="number" name="" id="" 
+										:value="hargas.harga_jual_grosir" 
+										class="font-bold w-full px-4 py-1 text-gray-700 bg-indigo-50 rounded"> -->
+								</div>
+								<div class="">
+									<label class="block text-base text-gray-400" for="cus_email">
+										Harga Deal
+									</label>
+									<input
+										class="font-bold w-full px-4 py-2 text-gray-700 bg-indigo-50 rounded text-xl"
+										id="barang_satuan"
+										v-model="form.harga_jual"
+										type="number"
+										min="0"
+										placeholder="Masukkan harga jual"
+										aria-label="Email"/>
+								</div>
+							</div>
+							<div class="px-4 my-2 grid grid-cols-2 gap-4">
+								<div>
+									<label class="block text-base text-gray-400" for="cus_email">
+										Terbayar
+									</label>
+									<input
+										class="font-bold w-full px-4 py-2 text-gray-700 bg-indigo-50 rounded text-xl"
+										id="barang_stok"
+										v-model="form.payment"
+										type="number"
+										min="0"
+										placeholder="Jumlah yang dibayarkan"
+										aria-label=""/>
+								</div>
+								<div class="py-2 text-xl">
+									<label class="block text-base text-gray-400" for="cus_email">
+										Tanggal Penjualan
+									</label>
+									<date-picker
+										class=""
+										v-model="form.tanggal" 
+										value-type="format" 
+										placeholder="Tanggal Pembelian" 
+										format="DD-MM-YYYY">
+									</date-picker>
+								</div>
+							</div>
+							<div v-if="showInfoPembeli" class="px-4 my-2 grid grid-cols-3 gap-4">
+								<div class="">
+									<label class="block text-base text-gray-400" for="cus_email">
+										Nama Pembeli</label>
+									<input
+										class="font-bold w-full px-4 py-2 text-xl text-gray-700 bg-indigo-50 rounded"
+										id="barang_stok"
+										v-model="form.nama_pembeli"
+										type="text"
+										placeholder=""
+										aria-label=""/>
+								</div>
+								<div class="">
+									<label class="block text-base text-gray-400" for="cus_email">
+										Tlp. Pembeli
+									</label>
+									<input
+										class="font-bold w-full px-4 py-2 text-xl text-gray-700 bg-indigo-50 rounded"
+										id="barang_stok"
+										v-model="form.phone_pembeli"
+										type="text"
+										placeholder=""
+										aria-label=""/>
+								</div>
+								<div class="">
+									<label class="block text-base text-gray-400" for="cus_email">
+										ALamat pembeli
+									</label>
+									<input
+										class="font-bold w-full px-4 py-2 text-xl text-gray-700 bg-indigo-50 rounded"
+										id="barang_stok"
+										v-model="form.alamat_pembeli"
+										type="text"
+										placeholder=""
+										aria-label=""/>
+								</div>
+							</div>
+							<div class="px-4 my-2 grid grid-cols-2 gap-4">
+								<div>
+									<label class="block text-base text-gray-400" for="cus_email">
+										Total Harga</label>
+									<div class="total-harga font-bold text-2xl text-gray-900">
+										{{totalHarga}}
+									</div>
+								</div>
+								<div>
+									<label class="block text-base text-gray-400" for="cus_email">
+										Kurang Bayar</label>
+									<div class="hutang font-bold text-2xl text-red-500">
+										{{totalHutang}}
+									</div>
+								</div>
+							</div>
+						</div><!-- grid -->
+						<div class="mt-2">
+							<span
+								class="px-4 text-sm font-sf-pro"
+								:class="{ 'text-green-400': status, 'text-red-400': !status }"
+								>{{ status_msg }}</span
+							>
+						</div>
+						<div class="mt-6 px-4 flex items-center">
+							<button
+								@click="showInfoPembeli = !showInfoPembeli" 
+								class="bg-gray-200 block rounded px-6 py-1 focus:outline-none hover:bg-gray-300 mr-4">
+								Catat Pembeli
+							</button>
+							<button
+								@click="saveData"
+								class="px-6 py-1 text-white font-light tracking-wider bg-gray-400 hover:bg-gray-600 rounded mr-4">
+								{{ isSaving == true ? "Processing..." : "Submit" }}
+							</button>
+							<button
+								@click="cancel"
+								class="px-6 py-1 text-white font-light tracking-wider bg-red-400 hover:bg-red-600 rounded">Batal
+							</button>
+						</div>
+					</div>
+            			<!-- </div> -->
+          			<!-- </div> -->
         		</main>
         		<footer-component></footer-component>
       		</div>
@@ -263,6 +267,9 @@ export default {
 		this.getHargaBarang(this.id);
 	},
   	methods: {
+		cancel(){
+			this.$router.push('/barang');
+		},
 		setHarga(param){
 			this.form.harga_jual = param;
 		},

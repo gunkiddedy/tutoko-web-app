@@ -146,12 +146,16 @@
 									<button
 										@click="showInfoPembeli = !showInfoPembeli" 
 										class="bg-gray-200 block rounded px-6 py-1 focus:outline-none hover:bg-gray-300 mr-4">
-										Catat Pembelis
+										Catat Pembeli
 									</button>
 									<button
 										@click="updatePenjualan(id)"
 										class="px-6 py-1 text-white font-light tracking-wider bg-gray-400 hover:bg-gray-600 rounded">
 										{{ isUpdating == true ? "Processing..." : "Update" }}
+									</button>
+									<button
+										@click="cancel"
+										class="ml-4 px-6 py-1 text-white font-light tracking-wider bg-red-400 hover:bg-red-600 rounded">Batal
 									</button>
 								</div>
               				</div>
@@ -243,6 +247,9 @@ export default {
 		this.getPenjualan(this.id);
 	},
   	methods: {
+		cancel(){
+			this.$router.push('/penjualan');
+		},
 		updatePenjualan(param) {
 			this.isUpdating = true;
 			const formData = new FormData();

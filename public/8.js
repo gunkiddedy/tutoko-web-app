@@ -92,7 +92,7 @@ __webpack_require__.r(__webpack_exports__);
         label: "Action",
         field: "action",
         sortable: false,
-        width: "100px"
+        width: "130px"
       }, {
         label: "Tanggal",
         field: "tanggal_custom",

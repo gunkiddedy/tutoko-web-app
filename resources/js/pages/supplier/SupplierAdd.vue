@@ -54,6 +54,10 @@
 										@click="saveDataSupplier"
 										class="px-4 py-1 text-white font-light tracking-wider bg-blue-500 hover:bg-blue-600 rounded"
 									>{{ isSaving == true ? "Saving..." : "Simpan Data" }}</button>
+									<button
+										@click="cancel"
+										class="ml-4 px-6 py-1 text-white font-light tracking-wider bg-red-400 hover:bg-red-600 rounded">Batal
+									</button>
 								</div>
               				</div>
             			</div>
@@ -80,6 +84,9 @@ export default {
 		};
   	},
   	methods: {
+		cancel(){
+			this.$router.push('/supplier');
+		},
     	validateForm() {
 			if (!this.supplier_nama) {
 				this.status = false;

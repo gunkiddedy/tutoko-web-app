@@ -24,6 +24,11 @@ export default {
 
     routes: [
         {
+            path: '/',
+            component: () => import('./pages/barang/Barang.vue'),
+            name: 'barang'
+        },
+        {
             path: '/master',
             component: Master,
             name: 'master'
