@@ -11,7 +11,7 @@ class PenjualanController extends Controller
 
     public function getData()
     {
-        $q = DB::table("detail_penjualan")->get();
+        $q = DB::table("detail_penjualan")->limit(100)->get();
         return response()->json($q);
     }
     public function getDataById(Request $request, $id)

@@ -11,7 +11,7 @@ class PembelianController extends Controller
 
     public function getData()
     {
-        $q = DB::table("detail_pembelian")->get();
+        $q = DB::table("detail_pembelian")->limit(100)->get();
         return response()->json($q);
     }
     public function getDataById(Request $request, $id)

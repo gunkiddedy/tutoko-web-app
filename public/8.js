@@ -78,6 +78,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 // import _ from "lodash";
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -94,7 +104,7 @@ __webpack_require__.r(__webpack_exports__);
         sortable: false,
         width: "130px"
       }, {
-        label: "Tanggal",
+        label: "Tanggal Jual",
         field: "tanggal_custom",
         sortable: false,
         width: "auto"
@@ -110,7 +120,7 @@ __webpack_require__.r(__webpack_exports__);
           trigger: "enter"
         }
       }, {
-        label: "Jumlah",
+        label: "Jumlah Penjualan",
         field: "jumlah",
         sortable: false,
         width: "auto"
@@ -120,23 +130,18 @@ __webpack_require__.r(__webpack_exports__);
         sortable: false,
         width: "auto"
       }, {
-        label: "Pembayaran",
+        label: "Jumlah Bayar",
         field: "payment",
         sortable: false,
         width: "auto"
       }, {
-        label: "Pembeli",
-        field: "nama_pembeli",
+        label: "Tagihan (Piutang)",
+        field: "tagihan_custom",
         sortable: false,
         width: "auto"
       }, {
-        label: "Tlp",
-        field: "phone_pembeli",
-        sortable: false,
-        width: "auto"
-      }, {
-        label: "Alamat",
-        field: "alamat_pembeli",
+        label: "Data Pembeli",
+        field: "pembeli_custom",
         sortable: false,
         width: "auto"
       }],
@@ -319,6 +324,43 @@ var render = function() {
                             key: "table-row",
                             fn: function(props) {
                               return [
+                                props.column.field == "tagihan_custom"
+                                  ? _c("span", [
+                                      _c(
+                                        "span",
+                                        {
+                                          class: {
+                                            "text-red-400 font-bold":
+                                              props.row.tagihan > 0,
+                                            "text-green-400 font-bold":
+                                              props.row.tagihan == 0
+                                          }
+                                        },
+                                        [
+                                          _vm._v(
+                                            "\n\t\t\t\t\t\t\t\t\t\t\t" +
+                                              _vm._s(props.row.tagihan) +
+                                              "\n\t\t\t\t\t\t\t\t\t\t"
+                                          )
+                                        ]
+                                      )
+                                    ])
+                                  : _vm._e(),
+                                _vm._v(" "),
+                                props.column.field == "pembeli_custom"
+                                  ? _c("span", [
+                                      _vm._v(
+                                        "\n\t\t\t\t\t\t\t\t\t\t" +
+                                          _vm._s(props.row.nama_pembeli) +
+                                          " - \n\t\t\t\t\t\t\t\t\t\t" +
+                                          _vm._s(props.row.phone_pembeli) +
+                                          " - \n\t\t\t\t\t\t\t\t\t\t" +
+                                          _vm._s(props.row.alamat_pembeli) +
+                                          "\n\t\t\t\t\t\t\t\t\t"
+                                      )
+                                    ])
+                                  : _vm._e(),
+                                _vm._v(" "),
                                 props.column.field == "tanggal_custom"
                                   ? _c("span", [
                                       _vm._v(

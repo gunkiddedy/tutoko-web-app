@@ -20,7 +20,7 @@
     <nav class="text-white text-base font-semibold pt-3">
 
       <router-link
-        :to="{ name: 'barang' }"
+        to="/barang"
         v-if="isAdmin === 'true' && role === 'admin' && isLoggedIn == 'true'"
         class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item"
       >
@@ -29,7 +29,7 @@
       </router-link>
 
       <router-link
-        :to="{ name: 'pembelian'}"
+        to="/pembelian"
         v-if="role === 'desa' || role === 'admin'"
         class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item"
       >
@@ -37,7 +37,7 @@
       >
 
       <router-link
-        :to="{ name: 'penjualan'}"
+        to="/penjualan"
         v-if="role === 'desa' || role === 'admin'"
         class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item"
       >
@@ -45,14 +45,14 @@
       >
 
       <router-link
-        :to="{ name: 'pegawai'}"
+        to="/pegawai"
         v-if="role === 'desa' || role === 'admin'"
         class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item"
       >
         <i class="fas fa-user mr-3"></i> Pegawai</router-link
       >
       <router-link
-        :to="{ name: 'supplier'}"
+        to="/supplier"
         v-if="role === 'desa' || role === 'admin'"
         class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item"
       >
@@ -60,7 +60,7 @@
       >
 
       <router-link
-        :to="{ name: 'produksi'}"
+        to="/produksi"
         v-if="role === 'desa' || role === 'admin'"
         class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item"
       >
@@ -68,7 +68,7 @@
       >
 
       <router-link
-        :to="{ name: 'master'}"
+        to="/master"
         v-if="role === 'admin'"
         class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item"
       >
@@ -76,13 +76,13 @@
       >
       
       <!-- <router-link
-        :to="{ name: 'produksi'}"
+        to="/produksi"
         v-if="role === 'desa' || role === 'admin'"
         class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item"
       ><i class="fas fa-clipboard-check mr-3"></i> Produksi</router-link> -->
 
       <!-- <router-link
-        :to="{ name: 'upload-produk' }"
+        to="/upload-produk'"
         v-if="isAdmin === 'true' && role === 'admin' && isLoggedIn == 'true'"
         class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item"
       >
@@ -90,7 +90,7 @@
       </router-link>
 
       <router-link
-        :to="{ name: 'download' }"
+        to="/download'"
         class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item"
         v-if="role === 'admin'"
       >
@@ -99,7 +99,7 @@
       </router-link> -->
     </nav>
     <router-link
-      :to="{ name: 'login' }"
+      to="/login'"
       class="absolute w-full upgrade-btn bottom-0 text-white flex items-center justify-center py-4"
       v-if="isLoggedIn == 'false'"
     >

@@ -11,7 +11,7 @@ class SupplierController extends Controller
 
     public function getDataSupplier()
     {
-        $q = DB::table("suppliers")->get();
+        $q = DB::table("suppliers")->orderBy('id', 'desc')->limit(100)->get();
         return response()->json($q);
     }
     public function getDataSupplierById(Request $request, $id)

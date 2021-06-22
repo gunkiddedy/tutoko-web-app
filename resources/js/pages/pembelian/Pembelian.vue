@@ -50,6 +50,11 @@
                 :columns="columns"
               >
                 <template slot="table-row" slot-scope="props">
+                  <span v-if="props.column.field == 'tagihan_custom'">
+										<span :class="{'text-red-400 font-bold' : props.row.tagihan > 0, 'text-green-400 font-bold': props.row.tagihan == 0}">
+											{{ props.row.tagihan }}
+										</span>
+									</span>
                   <span v-if="props.column.field == 'tanggal_custom'">
                     {{moment(props.row.tanggal).format('LL')}}
                   </span>
@@ -95,7 +100,7 @@ export default {
           width: "130px",
         },
         {
-          label: "Tanggal",
+          label: "Tanggal Beli",
           field: "tanggal_custom",
           sortable: false,
           width: "auto",
@@ -113,7 +118,7 @@ export default {
           },
         },
         {
-          label: "Supplier",
+          label: "Nama Supplier",
           field: "supplier_nama",
           sortable: false,
           width: "auto",
@@ -125,13 +130,13 @@ export default {
           },
         },
         {
-          label: "Jumlah",
+          label: "Jumlah Beli",
           field: "jumlah",
           sortable: false,
           width: "auto",
         },
         {
-          label: "Harga",
+          label: "Harga Beli",
           field: "harga_beli",
           sortable: false,
           width: "auto",
@@ -149,8 +154,14 @@ export default {
           width: "auto",
         },
         {
-          label: "Pembayaran",
+          label: "Jumlah Bayar",
           field: "payment",
+          sortable: false,
+          width: "auto",
+        },
+        {
+          label: "Tagihan (Hutang)",
+          field: "tagihan_custom",
           sortable: false,
           width: "auto",
         }

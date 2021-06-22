@@ -29,20 +29,30 @@
 								:totalRows="totalRecords"
 								:isLoading.sync="isLoading"
 								:pagination-options="{
-								enabled: true,
-								perPageDropdown: [10],
-								nextLabel: 'next',
-								prevLabel: 'prev',
-								setCurrentPage: 1,
-								perPage: 10,
-								dropdownAllowAll: false,
-								rowsPerPageLabel: 'per halaman',
-								allLabel: 'Semua',
-								ofLabel: 'dari',
+									enabled: true,
+									perPageDropdown: [10],
+									nextLabel: 'next',
+									prevLabel: 'prev',
+									setCurrentPage: 1,
+									perPage: 10,
+									dropdownAllowAll: false,
+									rowsPerPageLabel: 'per halaman',
+									allLabel: 'Semua',
+									ofLabel: 'dari',
 								}"
 								:rows="rows"
 								:columns="columns">
 								<template slot="table-row" slot-scope="props">
+									<span v-if="props.column.field == 'tagihan_custom'">
+										<span :class="{'text-red-400 font-bold': props.row.tagihan > 0, 'text-green-400 font-bold': props.row.tagihan == 0}">
+											{{ props.row.tagihan }}
+										</span>
+									</span>
+									<span v-if="props.column.field == 'pembeli_custom'">
+										{{ props.row.nama_pembeli }} - 
+										{{ props.row.phone_pembeli }} - 
+										{{ props.row.alamat_pembeli }}
+									</span>
 									<span v-if="props.column.field == 'tanggal_custom'">
 										{{moment(props.row.tanggal).format('LL')}}
 									</span>
@@ -86,7 +96,7 @@ export default {
 					width: "130px",
 				},
 				{
-					label: "Tanggal",
+					label: "Tanggal Jual",
 					field: "tanggal_custom",
 					sortable: false,
 					width: "auto",
@@ -104,7 +114,7 @@ export default {
 					},
 				},
 				{
-					label: "Jumlah",
+					label: "Jumlah Penjualan",
 					field: "jumlah",
 					sortable: false,
 					width: "auto",
@@ -116,29 +126,23 @@ export default {
 					width: "auto",
 				},
 				{
-					label: "Pembayaran",
+					label: "Jumlah Bayar",
 					field: "payment",
 					sortable: false,
 					width: "auto",
 				},
 				{
-					label: "Pembeli",
-					field: "nama_pembeli",
+					label: "Tagihan (Piutang)",
+					field: "tagihan_custom",
 					sortable: false,
 					width: "auto",
 				},
 				{
-					label: "Tlp",
-					field: "phone_pembeli",
+					label: "Data Pembeli",
+					field: "pembeli_custom",
 					sortable: false,
 					width: "auto",
 				},
-				{
-					label: "Alamat",
-					field: "alamat_pembeli",
-					sortable: false,
-					width: "auto",
-				}
       		],
 			rows: [],
 			totalRecords: 0,

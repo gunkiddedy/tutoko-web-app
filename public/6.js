@@ -89,6 +89,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -105,7 +110,7 @@ __webpack_require__.r(__webpack_exports__);
         sortable: false,
         width: "130px"
       }, {
-        label: "Tanggal",
+        label: "Tanggal Beli",
         field: "tanggal_custom",
         sortable: false,
         width: "auto"
@@ -121,7 +126,7 @@ __webpack_require__.r(__webpack_exports__);
           trigger: "enter"
         }
       }, {
-        label: "Supplier",
+        label: "Nama Supplier",
         field: "supplier_nama",
         sortable: false,
         width: "auto",
@@ -132,12 +137,12 @@ __webpack_require__.r(__webpack_exports__);
           trigger: "enter"
         }
       }, {
-        label: "Jumlah",
+        label: "Jumlah Beli",
         field: "jumlah",
         sortable: false,
         width: "auto"
       }, {
-        label: "Harga",
+        label: "Harga Beli",
         field: "harga_beli",
         sortable: false,
         width: "auto"
@@ -152,8 +157,13 @@ __webpack_require__.r(__webpack_exports__);
         sortable: false,
         width: "auto"
       }, {
-        label: "Pembayaran",
+        label: "Jumlah Bayar",
         field: "payment",
+        sortable: false,
+        width: "auto"
+      }, {
+        label: "Tagihan (Hutang)",
+        field: "tagihan_custom",
         sortable: false,
         width: "auto"
       }],
@@ -289,7 +299,7 @@ var render = function() {
                         staticClass:
                           "text-lg pb-1 font-semibold text-indigo-400 uppercase"
                       },
-                      [_vm._v("\n          Daftar Pembelian\n        ")]
+                      [_vm._v("\n            Daftar Pembelian\n          ")]
                     ),
                     _vm._v(" "),
                     _c(
@@ -362,16 +372,39 @@ var render = function() {
                             key: "table-row",
                             fn: function(props) {
                               return [
+                                props.column.field == "tagihan_custom"
+                                  ? _c("span", [
+                                      _c(
+                                        "span",
+                                        {
+                                          class: {
+                                            "text-red-400 font-bold":
+                                              props.row.tagihan > 0,
+                                            "text-green-400 font-bold":
+                                              props.row.tagihan == 0
+                                          }
+                                        },
+                                        [
+                                          _vm._v(
+                                            "\n\t\t\t\t\t\t\t\t\t\t\t" +
+                                              _vm._s(props.row.tagihan) +
+                                              "\n\t\t\t\t\t\t\t\t\t\t"
+                                          )
+                                        ]
+                                      )
+                                    ])
+                                  : _vm._e(),
+                                _vm._v(" "),
                                 props.column.field == "tanggal_custom"
                                   ? _c("span", [
                                       _vm._v(
-                                        "\n                  " +
+                                        "\n                    " +
                                           _vm._s(
                                             _vm
                                               .moment(props.row.tanggal)
                                               .format("LL")
                                           ) +
-                                          "\n                "
+                                          "\n                  "
                                       )
                                     ])
                                   : _vm._e(),
@@ -393,19 +426,19 @@ var render = function() {
                                           _c("i", {
                                             staticClass: "fas fa-pen mr-2"
                                           }),
-                                          _vm._v("Edit\n                  ")
+                                          _vm._v("Edit\n                    ")
                                         ]
                                       )
                                     ])
                                   : _c("span", [
                                       _vm._v(
-                                        "\n                  " +
+                                        "\n                    " +
                                           _vm._s(
                                             props.formattedRow[
                                               props.column.field
                                             ]
                                           ) +
-                                          "\n                "
+                                          "\n                  "
                                       )
                                     ])
                               ]

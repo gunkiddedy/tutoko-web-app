@@ -11,7 +11,7 @@ class BarangController extends Controller
 
     public function getDataBarang()
     {
-        $q = DB::table("barangs")->get();
+        $q = DB::table("barangs")->orderBy('id', 'desc')->limit(1000)->get();
         return response()->json($q);
     }
     public function getDataNonMandiri()
