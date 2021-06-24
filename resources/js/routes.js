@@ -120,29 +120,20 @@ export default {
             props: true
         },
         {
-            path: '/invoice-masuk',
-            component: InvoiceMasuk,
-            name: 'invoice-masuk'
-        },
-        {
-            path: '/invoice-keluar',
-            component: InvoiceKeluar,
-            name: 'invoice-keluar'
-        },
-        {
             path: '/produksi',
-            component: Produksi,
+            component: () => import('./pages/produksi/Produksi.vue'),
             name: 'produksi'
         },
         {
-            path: '/pegawai',
-            component: Pegawai,
-            name: 'pegawai'
+            path: '/produksi-add',
+            component: () => import('./pages/produksi/ProduksiAdd.vue'),
+            name: 'produksi-add'
         },
         {
-            path: '/supplier',
-            component: Supplier,
-            name: 'supplier'
+            path: '/produksi-edit/:id',
+            component: () => import('./pages/produksi/ProduksiEdit.vue'),
+            name: 'produksi-edit',
+            props: true
         },
         {
             path: '/product-detail/:id',

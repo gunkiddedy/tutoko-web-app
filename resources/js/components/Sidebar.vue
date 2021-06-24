@@ -1,6 +1,6 @@
 <template>
   <aside
-    class="relative bg-sidebar h-screen w-64 hidden sm:block shadow-xl"
+    class="relative bg-sidebar w-64 hidden sm:block shadow-xl"
     v-if="isLoggedIn === 'true'"
   >
     <div class="p-4">

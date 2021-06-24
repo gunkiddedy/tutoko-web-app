@@ -19,6 +19,11 @@ class BarangController extends Controller
         $q = DB::table('barangs')->where('barang_tipe', '=', 'Supplier')->get();
         return response()->json($q);
     }
+    public function getDataMandiri()
+    {
+        $q = DB::table('barangs')->where('barang_tipe', '=', 'Mandiri')->get();
+        return response()->json($q);
+    }
     public function getDataBarangById(Request $request, $id)
     {
         $q = Barang::find($id);

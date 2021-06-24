@@ -6,28 +6,28 @@
       <header-component></header-component>
 
       <div class="w-full h-screen overflow-x-hidden border-t flex flex-col">
-        <main class="w-full flex-grow p-6 bg-white">
+        <main class="w-full flex-grow p-1 md:p-6 bg-white">
           <!-- Content goes here! 😁 -->
-          <h1 class="text-lg text-gray-500 pb-1 font-semibold">Tambah Data Pembelian</h1>
+          <h1 class="text-lg text-gray-500 pb-1 font-semibold text-center mt-4">
+            Tambah Data Pembelian
+          </h1>
           <div class="w-full mt-6 pl-0 lg:pl-2">
             <div class="leading-loose">
-              <div class="p-10 bg-white rounded shadow">
-                <div
-                  class="grid grid-cols-2 lg:grid-cols-2 sm:grid-cols-1 md:grid-cols-2"
-                >
-                  <div class="px-4 my-2">
+              <div class="p-2 md:p-10 bg-white rounded shadow">
+                <div class="grid grid-cols-1 md:grid-cols-2">
+                  <div class="px-0 md:px-4 my-2">
                     <label class="block text-lg text-gray-600" for="cus_email"
                       >Nama Barang</label
                     >
                     <select
                         v-model="form.barang_id"
-                        class="w-full px-5 py-1 rounded-lg text-gray-500 focus:outline-none focus:shadow-inner border-2 border-gray-200 bg-white appearance-none"
+                        class="uppercase w-full px-5  py-2 rounded text-gray-500 focus:outline-none focus:shadow-inner border-2 border-blue-200 bg-white appearance-none"
                       >
                       <option class="text-gray-700" value="" selected="selected">
                         -Pilih-
                       </option>
                       <option
-                        class="text-gray-700"
+                        class="text-gray-700 uppercase"
                         v-for="(barang, i) in barangs"
                         :value="barang.id"
                         :key="i"
@@ -37,19 +37,19 @@
                     </select>
                   </div>
 
-                  <div class="px-4 my-2">
+                  <div class="px-0 md:px-4 my-2">
                     <label class="block text-lg text-gray-600" for="cus_email"
                       >Nama Supplier</label
                     >
                     <select
                         v-model="form.supplier_id"
-                        class="w-full px-5 py-1 rounded-lg text-gray-500 focus:outline-none focus:shadow-inner border-2 border-gray-200 bg-white appearance-none"
+                        class="uppercase w-full px-5  py-2 rounded text-gray-500 focus:outline-none focus:shadow-inner border-2 border-blue-200 bg-white appearance-none"
                       >
                       <option class="text-gray-700" value="" selected="selected">
                         -Pilih-
                       </option>
                       <option
-                        class="text-gray-700"
+                        class="text-gray-700 uppercase"
                         v-for="(supplier, i) in suppliers"
                         :value="supplier.id"
                         :key="i"
@@ -59,12 +59,12 @@
                     </select>
                   </div>
 
-                  <div class="px-4 my-2">
+                  <div class="px-0 md:px-4 my-2">
                     <label class="block text-lg text-gray-600" for="cus_name"
                       >Jumlah Pembelian</label
                     >
                     <input
-                      class="w-full px-4 py-1 text-gray-700 bg-gray-50 rounded"
+                      class="w-full px-4  py-2 text-gray-700 bg-gray-50 rounded focus:bg-blue-50 uppercase border-2 border-blue-200 text-lg font-bold"
                       id="jumlah"
                       type="number"
                       min="0"
@@ -74,12 +74,12 @@
                     />
                   </div>
 
-                  <div class="px-4 my-2">
+                  <div class="px-0 md:px-4 my-2">
                     <label class="block text-lg text-gray-600" for="cus_email"
                       >Harga Beli</label
                     >
                     <input
-                      class="w-full px-4 py-1 text-gray-700 bg-gray-50 rounded"
+                      class="w-full px-4  py-2 text-gray-700 bg-gray-50 rounded focus:bg-blue-50 uppercase border-2 border-blue-200 text-lg font-bold"
                       id="barang_satuan"
                       v-model="form.harga_beli"
                       type="number"
@@ -89,12 +89,12 @@
                     />
                   </div>
 
-                  <div class="px-4 my-2">
+                  <div class="px-0 md:px-4 my-2">
                     <label class="block text-lg text-gray-600" for="cus_email"
                       >Terbayar</label
                     >
                     <input
-                      class="w-full px-4 py-1 text-gray-700 bg-gray-50 rounded"
+                      class="w-full px-4  py-2 text-gray-700 bg-gray-50 rounded focus:bg-blue-50 uppercase border-2 border-blue-200 text-lg font-bold"
                       id="barang_stok"
                       v-model="form.payment"
                       type="number"
@@ -104,7 +104,7 @@
                     />
                   </div>
                   
-                  <div class="px-4 my-2">
+                  <div class="px-0 md:px-4 my-2">
                     <label class="block text-lg text-gray-600" for="cus_email"
                       >Tanggal Pembelian</label
                     >
@@ -115,12 +115,12 @@
                       format="DD-MM-YYYY"></date-picker>
                   </div>
 
-                  <div class="px-4 my-2">
+                  <div class="px-0 md:px-4 my-2">
                     <label class="block text-lg text-gray-600" for="cus_email"
                       >Harga Jual Standar</label
                     >
                     <input
-                      class="w-full px-4 py-1 text-gray-700 bg-gray-50 rounded"
+                      class="w-full px-4  py-2 text-gray-700 bg-gray-50 rounded focus:bg-blue-50 uppercase border-2 border-blue-200 text-lg font-bold"
                       id="barang_stok"
                       v-model="form.harga_jual_standar"
                       type="number"
@@ -130,12 +130,12 @@
                     />
                   </div>
 
-                  <div class="px-4 my-2">
+                  <div class="px-0 md:px-4 my-2">
                     <label class="block text-lg text-gray-600" for="cus_email"
                       >Harga Jual Grosir</label
                     >
                     <input
-                      class="w-full px-4 py-1 text-gray-700 bg-gray-50 rounded"
+                      class="w-full px-4  py-2 text-gray-700 bg-gray-50 rounded focus:bg-blue-50 uppercase border-2 border-blue-200 text-lg font-bold"
                       id="barang_stok"
                       v-model="form.harga_jual_grosir"
                       type="number"
@@ -145,7 +145,7 @@
                     />
                   </div>
 
-                  <div class="px-4 my-2">
+                  <div class="px-0 md:px-4 my-2">
                     <label class="block text-lg text-gray-600" for="cus_email"
                       >Total Harga</label
                     >
@@ -154,7 +154,7 @@
                     </div>
                   </div>
 
-                  <div class="px-4 my-2">
+                  <div class="px-0 md:px-4 my-2">
                     <label class="block text-lg text-gray-600" for="cus_email"
                       >Kurang Bayar</label
                     >
@@ -172,12 +172,12 @@
                     >{{ status_msg }}</span
                   >
                 </div>
-                <div class="mt-6 px-4">
+                <div class="mt-6 px-0 md:px-4">
                   <button
                     @click="saveData"
                     class="px-6 py-1 text-white font-light tracking-wider bg-gray-400 hover:bg-gray-600 rounded"
                   >
-                    {{ isSaving == true ? "Processing..." : "Submit" }}
+                    {{ isSaving == true ? "Processing..." : "Simpan Data" }}
                   </button>
                   <button
                     @click="cancel"
@@ -315,7 +315,7 @@ export default {
         });
     },
     getBarangs(){
-      axios.get("/api/barang/")
+      axios.get("/api/barang-non-mandiri/")
         .then((response) => {
           this.barangs = response.data;
           console.log(response);

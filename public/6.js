@@ -1,16 +1,14 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[6],{
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/pembelian/Pembelian.vue?vue&type=script&lang=js&":
-/*!*************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/pages/pembelian/Pembelian.vue?vue&type=script&lang=js& ***!
-  \*************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/pegawai/Pegawai.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/pages/pegawai/Pegawai.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_0__);
 //
 //
 //
@@ -90,23 +88,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -120,15 +101,10 @@ __webpack_require__.r(__webpack_exports__);
         label: "Action",
         field: "action",
         sortable: false,
-        width: "130px"
+        width: "180px"
       }, {
-        label: "Tanggal Beli",
-        field: "tanggal_custom",
-        sortable: false,
-        width: "auto"
-      }, {
-        label: "Nama Barang",
-        field: "barang_nama",
+        label: "Nama Pegawai",
+        field: "pegawai_nama",
         sortable: false,
         width: "auto",
         filterable: true,
@@ -138,44 +114,23 @@ __webpack_require__.r(__webpack_exports__);
           trigger: "enter"
         }
       }, {
-        label: "Nama Supplier",
-        field: "supplier_nama",
-        sortable: false,
-        width: "auto",
-        filterable: true,
-        filterOptions: {
-          enabled: true,
-          placeholder: "Filter",
-          trigger: "enter"
-        }
-      }, {
-        label: "Jumlah Beli",
-        field: "jumlah",
+        label: "Gaji Harian",
+        field: "gaji_harian",
         sortable: false,
         width: "auto"
       }, {
-        label: "Harga Beli",
-        field: "harga_beli_custom",
+        label: "Phone",
+        field: "pegawai_phone",
         sortable: false,
         width: "auto"
       }, {
-        label: "Jual Standar",
-        field: "harga_jual_standar_custom",
+        label: "Alamat",
+        field: "pegawai_alamat",
         sortable: false,
         width: "auto"
       }, {
-        label: "Jual Grosir",
-        field: "harga_jual_grosir_custom",
-        sortable: false,
-        width: "auto"
-      }, {
-        label: "Jumlah Bayar",
-        field: "payment_custom",
-        sortable: false,
-        width: "auto"
-      }, {
-        label: "Tagihan (Hutang)",
-        field: "tagihan_custom",
+        label: "Status",
+        field: "active_custom",
         sortable: false,
         width: "auto"
       }],
@@ -202,21 +157,17 @@ __webpack_require__.r(__webpack_exports__);
     this.isAdmin = localStorage.getItem("isAdmin");
   },
   methods: {
-    toRupiah: function toRupiah(param) {
-      var fix = param.toString().replace(/(\d)(?=(\d{3})+(?:\.\d+)?$)/g, "$1\.");
-      return fix;
+    tambahData: function tambahData() {
+      this.$router.push({
+        name: "pegawai-add"
+      });
     },
     editData: function editData(param) {
       this.$router.push({
-        name: "pembelian-edit",
+        name: "pegawai-edit",
         params: {
           id: param
         }
-      });
-    },
-    tambahData: function tambahData() {
-      this.$router.push({
-        name: "pembelian-add"
       });
     },
     updateParams: function updateParams(newProps) {
@@ -244,14 +195,13 @@ __webpack_require__.r(__webpack_exports__);
       this.getRecords();
     },
     onColumnFilter: function onColumnFilter(params) {
-      // this.$set(this.columns[foundIndex].filterOptions, 'filterValue', value);
       this.updateParams(params);
       this.getRecords();
     },
     getRecords: function getRecords() {
       var _this = this;
 
-      axios.get("/api/pembelian/", {
+      axios.get("/api/pegawai/", {
         params: this.serverParams
       }).then(function (response) {
         _this.loading = false;
@@ -267,10 +217,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/pembelian/Pembelian.vue?vue&type=template&id=1f3abf82&":
-/*!*****************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/pages/pembelian/Pembelian.vue?vue&type=template&id=1f3abf82& ***!
-  \*****************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/pegawai/Pegawai.vue?vue&type=template&id=bcdce850&":
+/*!*************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/pages/pegawai/Pegawai.vue?vue&type=template&id=bcdce850& ***!
+  \*************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -315,7 +265,11 @@ var render = function() {
                         staticClass:
                           "text-lg pb-1 font-semibold text-indigo-400 uppercase"
                       },
-                      [_vm._v("\n            Daftar Pembelian\n          ")]
+                      [
+                        _vm._v(
+                          "\n            \t\t\t\tDaftar Pegawai\n\t\t\t\t\t\t"
+                        )
+                      ]
                     ),
                     _vm._v(" "),
                     _c(
@@ -327,7 +281,8 @@ var render = function() {
                       },
                       [
                         _c("i", { staticClass: "fas fa-plus mr-1" }),
-                        _vm._v("Tambah Data")
+                        _vm._v(" "),
+                        _c("span", [_vm._v("Tambah Data")])
                       ]
                     )
                   ]
@@ -388,98 +343,6 @@ var render = function() {
                             key: "table-row",
                             fn: function(props) {
                               return [
-                                props.column.field == "harga_beli_custom"
-                                  ? _c("span", [
-                                      _vm._v(
-                                        "\n\t\t\t\t\t\t\t\t\t\t" +
-                                          _vm._s(
-                                            _vm.toRupiah(props.row.harga_beli)
-                                          ) +
-                                          "\n\t\t\t\t\t\t\t\t\t"
-                                      )
-                                    ])
-                                  : _vm._e(),
-                                _vm._v(" "),
-                                props.column.field ==
-                                "harga_jual_standar_custom"
-                                  ? _c("span", [
-                                      _vm._v(
-                                        "\n\t\t\t\t\t\t\t\t\t\t" +
-                                          _vm._s(
-                                            _vm.toRupiah(
-                                              props.row.harga_jual_standar
-                                            )
-                                          ) +
-                                          "\n\t\t\t\t\t\t\t\t\t"
-                                      )
-                                    ])
-                                  : _vm._e(),
-                                _vm._v(" "),
-                                props.column.field == "harga_jual_grosir_custom"
-                                  ? _c("span", [
-                                      _vm._v(
-                                        "\n\t\t\t\t\t\t\t\t\t\t" +
-                                          _vm._s(
-                                            _vm.toRupiah(
-                                              props.row.harga_jual_grosir
-                                            )
-                                          ) +
-                                          "\n\t\t\t\t\t\t\t\t\t"
-                                      )
-                                    ])
-                                  : _vm._e(),
-                                _vm._v(" "),
-                                props.column.field == "payment_custom"
-                                  ? _c("span", [
-                                      _vm._v(
-                                        "\n\t\t\t\t\t\t\t\t\t\t" +
-                                          _vm._s(
-                                            _vm.toRupiah(props.row.payment)
-                                          ) +
-                                          "\n\t\t\t\t\t\t\t\t\t"
-                                      )
-                                    ])
-                                  : _vm._e(),
-                                _vm._v(" "),
-                                props.column.field == "tagihan_custom"
-                                  ? _c("span", [
-                                      _c(
-                                        "span",
-                                        {
-                                          class: {
-                                            "text-red-400 font-bold":
-                                              props.row.tagihan > 0,
-                                            "text-green-400 font-bold":
-                                              props.row.tagihan == 0
-                                          }
-                                        },
-                                        [
-                                          _vm._v(
-                                            "\n\t\t\t\t\t\t\t\t\t\t\t" +
-                                              _vm._s(
-                                                _vm.toRupiah(props.row.tagihan)
-                                              ) +
-                                              "\n\t\t\t\t\t\t\t\t\t\t"
-                                          )
-                                        ]
-                                      )
-                                    ])
-                                  : _vm._e(),
-                                _vm._v(" "),
-                                props.column.field == "tanggal_custom"
-                                  ? _c("span", [
-                                      _vm._v(
-                                        "\n                    " +
-                                          _vm._s(
-                                            _vm
-                                              .moment(props.row.tanggal)
-                                              .format("LL")
-                                          ) +
-                                          "\n                  "
-                                      )
-                                    ])
-                                  : _vm._e(),
-                                _vm._v(" "),
                                 props.column.field == "action"
                                   ? _c("span", [
                                       _c(
@@ -497,21 +360,46 @@ var render = function() {
                                           _c("i", {
                                             staticClass: "fas fa-pen mr-2"
                                           }),
-                                          _vm._v("Edit\n                    ")
+                                          _vm._v("Edit\n\t\t\t\t\t\t\t\t\t\t")
                                         ]
                                       )
                                     ])
                                   : _c("span", [
                                       _vm._v(
-                                        "\n                    " +
+                                        "\n\t\t\t\t\t\t\t\t\t\t" +
                                           _vm._s(
                                             props.formattedRow[
                                               props.column.field
                                             ]
                                           ) +
-                                          "\n                  "
+                                          "\n\t\t\t\t\t\t\t\t\t"
+                                      )
+                                    ]),
+                                _vm._v(" "),
+                                props.column.field == "active_custom"
+                                  ? _c("span", [
+                                      _c(
+                                        "span",
+                                        {
+                                          staticClass:
+                                            "px-3 text-white font-bold py-0 leading-loose flex items-center justify-center w-1/2",
+                                          class: {
+                                            "bg-green-400":
+                                              props.row.active == "Active",
+                                            "bg-gray-400":
+                                              props.row.active == "Inactive"
+                                          }
+                                        },
+                                        [
+                                          _vm._v(
+                                            "\n\t\t\t\t\t\t\t\t\t\t\t" +
+                                              _vm._s(props.row.active) +
+                                              "\n\t\t\t\t\t\t\t\t\t\t"
+                                          )
+                                        ]
                                       )
                                     ])
+                                  : _vm._e()
                               ]
                             }
                           }
@@ -547,17 +435,17 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./resources/js/pages/pembelian/Pembelian.vue":
-/*!****************************************************!*\
-  !*** ./resources/js/pages/pembelian/Pembelian.vue ***!
-  \****************************************************/
+/***/ "./resources/js/pages/pegawai/Pegawai.vue":
+/*!************************************************!*\
+  !*** ./resources/js/pages/pegawai/Pegawai.vue ***!
+  \************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _Pembelian_vue_vue_type_template_id_1f3abf82___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Pembelian.vue?vue&type=template&id=1f3abf82& */ "./resources/js/pages/pembelian/Pembelian.vue?vue&type=template&id=1f3abf82&");
-/* harmony import */ var _Pembelian_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Pembelian.vue?vue&type=script&lang=js& */ "./resources/js/pages/pembelian/Pembelian.vue?vue&type=script&lang=js&");
+/* harmony import */ var _Pegawai_vue_vue_type_template_id_bcdce850___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Pegawai.vue?vue&type=template&id=bcdce850& */ "./resources/js/pages/pegawai/Pegawai.vue?vue&type=template&id=bcdce850&");
+/* harmony import */ var _Pegawai_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Pegawai.vue?vue&type=script&lang=js& */ "./resources/js/pages/pegawai/Pegawai.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -567,9 +455,9 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _Pembelian_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _Pembelian_vue_vue_type_template_id_1f3abf82___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _Pembelian_vue_vue_type_template_id_1f3abf82___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _Pegawai_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Pegawai_vue_vue_type_template_id_bcdce850___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Pegawai_vue_vue_type_template_id_bcdce850___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
   null,
@@ -579,38 +467,38 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/js/pages/pembelian/Pembelian.vue"
+component.options.__file = "resources/js/pages/pegawai/Pegawai.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/js/pages/pembelian/Pembelian.vue?vue&type=script&lang=js&":
-/*!*****************************************************************************!*\
-  !*** ./resources/js/pages/pembelian/Pembelian.vue?vue&type=script&lang=js& ***!
-  \*****************************************************************************/
+/***/ "./resources/js/pages/pegawai/Pegawai.vue?vue&type=script&lang=js&":
+/*!*************************************************************************!*\
+  !*** ./resources/js/pages/pegawai/Pegawai.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Pembelian_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./Pembelian.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/pembelian/Pembelian.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Pembelian_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Pegawai_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./Pegawai.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/pegawai/Pegawai.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Pegawai_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/js/pages/pembelian/Pembelian.vue?vue&type=template&id=1f3abf82&":
-/*!***********************************************************************************!*\
-  !*** ./resources/js/pages/pembelian/Pembelian.vue?vue&type=template&id=1f3abf82& ***!
-  \***********************************************************************************/
+/***/ "./resources/js/pages/pegawai/Pegawai.vue?vue&type=template&id=bcdce850&":
+/*!*******************************************************************************!*\
+  !*** ./resources/js/pages/pegawai/Pegawai.vue?vue&type=template&id=bcdce850& ***!
+  \*******************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Pembelian_vue_vue_type_template_id_1f3abf82___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./Pembelian.vue?vue&type=template&id=1f3abf82& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/pembelian/Pembelian.vue?vue&type=template&id=1f3abf82&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Pembelian_vue_vue_type_template_id_1f3abf82___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Pegawai_vue_vue_type_template_id_bcdce850___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./Pegawai.vue?vue&type=template&id=bcdce850& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/pegawai/Pegawai.vue?vue&type=template&id=bcdce850&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Pegawai_vue_vue_type_template_id_bcdce850___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Pembelian_vue_vue_type_template_id_1f3abf82___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Pegawai_vue_vue_type_template_id_bcdce850___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

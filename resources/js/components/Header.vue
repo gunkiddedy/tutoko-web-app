@@ -1,6 +1,6 @@
 <template>
   <div>
-    <header class="w-full flex items-center bg-gray-100 py-2 px-6 sm:flex">
+    <header class="w-full hidden sm:block sm:flex flex items-center bg-gray-100 py-2 px-6">
       <div class="w-1/2">
         <a href="/public">
           <span class="text-gray-500 font-semibold text-2xl">TUTOKO WEB APP</span>

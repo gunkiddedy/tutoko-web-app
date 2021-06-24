@@ -6,33 +6,33 @@
       <header-component></header-component>
 
       <div class="w-full h-screen overflow-x-hidden border-t flex flex-col">
-        <main class="w-full flex-grow p-6 bg-white">
+        <main class="w-full flex-grow p-1 md:p-6 bg-white">
           <!-- Content goes here! 😁 -->
-          <h1 class="text-lg text-gray-500 pb-1 font-semibold">Tambah Data Barang</h1>
+          <h1 class="text-lg text-gray-500 pb-1 font-semibold text-center mt-4">
+            Tambah Data Barang
+          </h1>
           <div class="w-full mt-6 pl-0 lg:pl-2">
             <div class="leading-loose">
-              <div class="p-10 bg-white rounded shadow">
-                <div
-                  class="grid grid-cols-2 lg:grid-cols-2 sm:grid-cols-1 md:grid-cols-2"
-                >
-                  <div class="px-1 my-2">
+              <div class="p-2 md:p-10 bg-white rounded shadow">
+                <div class="grid grid-cols-1 md:grid-cols-2">
+                  <div class="px-0 md:px-4 my-2">
                     <label class="block text-sm text-gray-600" for="cus_name"
                       >Nama Barang</label
                     >
                     <input
-                      class="w-full px-5 py-1 text-gray-700 bg-gray-50 rounded"
+                      class="w-full px-5 py-2  text-gray-700 bg-white rounded focus:bg-blue-50 uppercase border-2 border-blue-200 text-lg font-bold"
                       id="barang_nama"
                       type="text"
                       aria-label="Name"
                       v-model="barang_nama"
                     />
                   </div>
-                  <div class="px-1 my-2">
+                  <div class="px-0 md:px-4 my-2">
                     <label class="block text-sm text-gray-600" for="cus_email"
                       >Satuan</label
                     >
                     <input
-                      class="w-full px-2 py-1 text-gray-700 bg-gray-50 rounded"
+                      class="w-full px-2 py-2  text-gray-700 bg-white rounded focus:bg-blue-50 uppercase border-2 border-blue-200 text-lg font-bold"
                       id="barang_satuan"
                       v-model="barang_satuan"
                       type="text"
@@ -40,12 +40,12 @@
                       aria-label="Email"
                     />
                   </div>
-                  <div class="px-1 my-2">
+                  <!-- <div class="px-0 md:px-4 my-2">
                     <label class="block text-sm text-gray-600" for="cus_email"
                       >Stok</label
                     >
                     <input
-                      class="w-full px-2 py-1 text-gray-700 bg-gray-50 rounded"
+                      class="w-full px-2 py-2  text-gray-700 bg-white rounded focus:bg-blue-50 uppercase border-2 border-blue-200 text-lg font-bold"
                       id="barang_stok"
                       v-model="barang_stok"
                       type="number"
@@ -53,14 +53,14 @@
                       placeholder="Stok"
                       aria-label=""
                     />
-                  </div>
-                  <div class="px-1 my-2">
+                  </div> -->
+                  <div class="px-0 md:px-4 my-2">
                     <label class="block text-sm text-gray-600" for="cus_email"
                       >Jenis Barang</label
                     >
                     <select
                         v-model="barang_tipe"
-                        class="w-full px-5 py-1 rounded-lg text-gray-500 focus:outline-none focus:shadow-inner border-2 border-gray-200 bg-white appearance-none"
+                        class="w-full px-5 py-2  rounded text-gray-500 focus:outline-none focus:shadow-inner border-2 border-blue-200 bg-white appearance-none"
                       >
                       <option class="text-gray-700" value="" selected="selected">
                         -Pilih-
@@ -107,7 +107,7 @@
                     @click="saveDataBarang"
                     class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded"
                   >
-                    {{ isSaving == true ? "Processing..." : "Submit" }}
+                    {{ isSaving == true ? "Processing..." : "Simpan Data" }}
                   </button>
                   <button
                     @click="cancel"

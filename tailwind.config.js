@@ -36,7 +36,7 @@ module.exports = {
     fontFamily: ['responsive', 'hover', 'focus'],
     animation: ['responsive', 'hover', 'focus'],
     rotate: ['responsive', 'hover', 'focus', 'active', 'group-hover'],
-    padding: ['hover'],
+    padding: ['hover', 'responsive'],
     fontSize: ['hover', 'focus'],
     extend: {},
   },

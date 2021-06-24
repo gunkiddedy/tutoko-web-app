@@ -29,6 +29,7 @@ Route::get('get-supplier/{id}', 'SupplierController@getDataById');
 //--BARANG--//
 Route::get('barang', 'BarangController@getDataBarang');
 Route::get('barang-non-mandiri', 'BarangController@getDataNonMandiri');
+Route::get('barang-mandiri', 'BarangController@getDataMandiri');
 Route::get('get-barang/{id}', 'BarangController@getDataBarangById');
 Route::post('update-barang/{id}', 'BarangController@updateDataBarangById');
 Route::post('delete-photo/{id}', 'BarangController@deleteFileStorage');
@@ -52,6 +53,13 @@ Route::get('get-pembelian/{id}', 'PembelianController@getDataById');
 Route::get('get-harga-barang/{id}', 'PembelianController@getHargaBarangById');
 Route::post('update-pembelian/{id}', 'PembelianController@updatePembelian');
 Route::post('add-data', 'PembelianController@addData');
+
+// --PRODUKSI--//
+Route::get('produksi', 'ProduksiController@getData');
+Route::get('get-produksi/{id}', 'ProduksiController@getDataById');
+Route::post('update-produksi/{id}', 'ProduksiController@updateProduksi');
+Route::post('add-data-produksi', 'ProduksiController@addData');
+
 
 // --PENJUALAN--//
 Route::get('penjualan', 'PenjualanController@getData');
