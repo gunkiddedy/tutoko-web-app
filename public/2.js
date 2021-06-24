@@ -512,7 +512,7 @@ var render = function() {
                             _vm._v(" "),
                             _c("input", {
                               staticClass:
-                                "font-bold uppercase focus:bg-blue-50 uppercase border-2 border-blue-200 text-lg font-bold w-full px-4 py-2 text-gray-700 bg-white rounded",
+                                "focus:bg-blue-50 uppercase border-2 border-blue-200 text-lg font-bold w-full px-4 py-2 text-gray-700 bg-white rounded",
                               attrs: {
                                 readonly: "",
                                 type: "text",
@@ -600,7 +600,7 @@ var render = function() {
                               "button",
                               {
                                 staticClass:
-                                  "focus:outline-none focus:ring-2 focus:ring-yellow-600 px-6 py-2 w-full rounded bg-yellow-500 font-bold text-white focus:bg-blue-50 uppercase border-2 border-blue-200 text-lg font-bold",
+                                  "focus:outline-none focus:ring-2 focus:ring-yellow-600 px-6 py-2 w-full rounded bg-yellow-500 text-white focus:bg-blue-50 uppercase border-2 border-blue-200 text-lg font-bold",
                                 on: {
                                   click: function($event) {
                                     return _vm.setHarga(_vm.harga.standar)
@@ -629,7 +629,7 @@ var render = function() {
                               "button",
                               {
                                 staticClass:
-                                  "focus:outline-none focus:ring-2 px-6 py-2 w-full rounded bg-blue-500 font-bold text-white focus:bg-blue-50 uppercase border-2 border-blue-200 text-lg font-bold",
+                                  "focus:outline-none focus:ring-2 px-6 py-2 w-full rounded bg-blue-500 text-white focus:bg-blue-50 uppercase border-2 border-blue-200 text-lg font-bold",
                                 on: {
                                   click: function($event) {
                                     return _vm.setHarga(_vm.harga.grosir)
@@ -664,7 +664,7 @@ var render = function() {
                                 }
                               ],
                               staticClass:
-                                "font-bold w-full px-4 py-2 text-gray-700 bg-white rounded focus:bg-blue-50 uppercase border-2 border-blue-200 text-lg font-bold",
+                                "w-full px-4 py-2 text-gray-700 bg-white rounded focus:bg-blue-50 uppercase border-2 border-blue-200 text-lg font-bold",
                               attrs: {
                                 id: "barang_satuan",
                                 type: "number",
@@ -721,7 +721,7 @@ var render = function() {
                                 }
                               ],
                               staticClass:
-                                "font-bold w-full px-4 py-2 text-gray-700 bg-white rounded focus:bg-blue-50 uppercase border-2 border-blue-200 text-lg font-bold",
+                                "w-full px-4 py-2 text-gray-700 bg-white rounded focus:bg-blue-50 uppercase border-2 border-blue-200 text-lg font-bold",
                               attrs: {
                                 id: "barang_stok",
                                 type: "number",
@@ -811,7 +811,7 @@ var render = function() {
                                     }
                                   ],
                                   staticClass:
-                                    "font-bold w-full px-4 py-2 focus:bg-blue-50 uppercase border-2 border-blue-200 text-lg font-bold text-gray-700 bg-white rounded",
+                                    "w-full px-4 py-2 focus:bg-blue-50 uppercase border-2 border-blue-200 text-lg font-bold text-gray-700 bg-white rounded",
                                   attrs: {
                                     id: "barang_stok",
                                     type: "text",
@@ -859,7 +859,7 @@ var render = function() {
                                     }
                                   ],
                                   staticClass:
-                                    "font-bold w-full px-4 py-2 focus:bg-blue-50 uppercase border-2 border-blue-200 text-lg font-bold text-gray-700 bg-white rounded",
+                                    "w-full px-4 py-2 focus:bg-blue-50 uppercase border-2 border-blue-200 text-lg font-bold text-gray-700 bg-white rounded",
                                   attrs: {
                                     id: "barang_stok",
                                     type: "text",
@@ -907,7 +907,7 @@ var render = function() {
                                     }
                                   ],
                                   staticClass:
-                                    "font-bold w-full px-4 py-2 focus:bg-blue-50 uppercase border-2 border-blue-200 text-lg font-bold text-gray-700 bg-white rounded",
+                                    "w-full px-4 py-2 focus:bg-blue-50 uppercase border-2 border-blue-200 text-lg font-bold text-gray-700 bg-white rounded",
                                   attrs: {
                                     id: "barang_stok",
                                     type: "text",

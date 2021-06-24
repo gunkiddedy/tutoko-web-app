@@ -20,7 +20,7 @@
 									<input 
 										readonly type="text" name="" id="" 
 										:value="`${barangNama} - Stok (${barangStok})`" 
-										class="font-bold uppercase focus:bg-blue-50 uppercase border-2 border-blue-200 text-lg font-bold w-full px-4 py-2 text-gray-700 bg-white rounded">
+										class="focus:bg-blue-50 uppercase border-2 border-blue-200 text-lg font-bold w-full px-4 py-2 text-gray-700 bg-white rounded">
 								</div>
 								<div class="">
 									<label class="block text-base text-gray-400" for="cus_name"
@@ -42,7 +42,7 @@
 									</label>
 									<button
 										@click="setHarga(harga.standar)" 
-										class="focus:outline-none focus:ring-2 focus:ring-yellow-600 px-6 py-2 w-full rounded bg-yellow-500 font-bold text-white focus:bg-blue-50 uppercase border-2 border-blue-200 text-lg font-bold">{{ harga.standar }}</button>
+										class="focus:outline-none focus:ring-2 focus:ring-yellow-600 px-6 py-2 w-full rounded bg-yellow-500 text-white focus:bg-blue-50 uppercase border-2 border-blue-200 text-lg font-bold">{{ harga.standar }}</button>
 									<!-- <input 
 										type="number" name="" id="" 
 										:value="hargas.harga_jual_standar" 
@@ -54,7 +54,7 @@
 										</label>
 									<button
 										@click="setHarga(harga.grosir)" 
-										class="focus:outline-none focus:ring-2 px-6 py-2 w-full rounded bg-blue-500 font-bold text-white focus:bg-blue-50 uppercase border-2 border-blue-200 text-lg font-bold">{{ harga.grosir }}</button>
+										class="focus:outline-none focus:ring-2 px-6 py-2 w-full rounded bg-blue-500 text-white focus:bg-blue-50 uppercase border-2 border-blue-200 text-lg font-bold">{{ harga.grosir }}</button>
 									<!-- <input 
 										type="number" name="" id="" 
 										:value="hargas.harga_jual_grosir" 
@@ -65,7 +65,7 @@
 										Harga Deal
 									</label>
 									<input
-										class="font-bold w-full px-4 py-2 text-gray-700 bg-white rounded focus:bg-blue-50 uppercase border-2 border-blue-200 text-lg font-bold"
+										class="w-full px-4 py-2 text-gray-700 bg-white rounded focus:bg-blue-50 uppercase border-2 border-blue-200 text-lg font-bold"
 										id="barang_satuan"
 										v-model="form.harga_jual"
 										type="number"
@@ -80,7 +80,7 @@
 										Terbayar
 									</label>
 									<input
-										class="font-bold w-full px-4 py-2 text-gray-700 bg-white rounded focus:bg-blue-50 uppercase border-2 border-blue-200 text-lg font-bold"
+										class="w-full px-4 py-2 text-gray-700 bg-white rounded focus:bg-blue-50 uppercase border-2 border-blue-200 text-lg font-bold"
 										id="barang_stok"
 										v-model="form.payment"
 										type="number"
@@ -106,7 +106,7 @@
 									<label class="block text-base text-gray-400" for="cus_email">
 										Nama Pembeli</label>
 									<input
-										class="font-bold w-full px-4 py-2 focus:bg-blue-50 uppercase border-2 border-blue-200 text-lg font-bold text-gray-700 bg-white rounded"
+										class="w-full px-4 py-2 focus:bg-blue-50 uppercase border-2 border-blue-200 text-lg font-bold text-gray-700 bg-white rounded"
 										id="barang_stok"
 										v-model="form.nama_pembeli"
 										type="text"
@@ -118,7 +118,7 @@
 										Tlp. Pembeli
 									</label>
 									<input
-										class="font-bold w-full px-4 py-2 focus:bg-blue-50 uppercase border-2 border-blue-200 text-lg font-bold text-gray-700 bg-white rounded"
+										class="w-full px-4 py-2 focus:bg-blue-50 uppercase border-2 border-blue-200 text-lg font-bold text-gray-700 bg-white rounded"
 										id="barang_stok"
 										v-model="form.phone_pembeli"
 										type="text"
@@ -130,7 +130,7 @@
 										ALamat pembeli
 									</label>
 									<input
-										class="font-bold w-full px-4 py-2 focus:bg-blue-50 uppercase border-2 border-blue-200 text-lg font-bold text-gray-700 bg-white rounded"
+										class="w-full px-4 py-2 focus:bg-blue-50 uppercase border-2 border-blue-200 text-lg font-bold text-gray-700 bg-white rounded"
 										id="barang_stok"
 										v-model="form.alamat_pembeli"
 										type="text"
