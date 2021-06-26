@@ -20,7 +20,7 @@
     <header :data="isOpen" class="w-full bg-sidebar py-5 px-6 sm:hidden">
       <div class="flex items-center justify-between">
         <a
-          href="/public"
+          href="/"
           class="text-white text-3xl font-semibold uppercase hover:text-gray-300"
           >TUTOKO APP</a
         >
@@ -32,56 +32,39 @@
 
       <!-- Dropdown Nav -->
       <nav :class="isOpen ? 'flex' : 'hidden'" class="flex flex-col pt-4">
-        <router-link
-          :to="{ name: 'desa', params: { id: desa_id } }"
-          v-if="role === 'desa' && isLoggedIn == 'true'"
-          class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item"
-        >
-          <i class="fas fa-home mr-3"></i>
-          Home
-        </router-link>
 
-        <router-link
-          :to="{ name: 'kecamatan', params: { id: kecamatan_id } }"
-          v-if="role === 'kecamatan' && isLoggedIn == 'true'"
-          class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item"
-        >
-          <i class="fas fa-home mr-3"></i>
-          Home
-        </router-link>
-
-        <router-link
+        <!-- <router-link
           :to="{ name: 'global' }"
           v-if="isAdmin === 'true' && role === 'admin' && isLoggedIn == 'true'"
           class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item"
         >
           <i class="fas fa-home mr-3"></i>
           Home
-        </router-link>
+        </router-link> -->
 
-        <router-link
+        <!-- <router-link
           :to="{ name: 'input', params: { id: 1 } }"
           v-if="role === 'desa' || role === 'admin'"
           class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item"
         >
           <i class="fas fa-plus mr-3"></i> Add Data</router-link
-        >
+        > -->
 
-        <router-link
+        <!-- <router-link
           :to="{ name: 'upload-produk' }"
           v-if="isAdmin === 'true' && role === 'admin' && isLoggedIn == 'true'"
           class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item"
         >
           <i class="fas fa-arrow-circle-up mr-3"></i> Upload Produk
-        </router-link>
+        </router-link> -->
 
-        <router-link
+        <!-- <router-link
           :to="{ name: 'download' }"
           class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item"
         >
           <i class="fas fa-arrow-circle-down mr-3"></i>
           Download Data
-        </router-link>
+        </router-link> -->
 
         <router-link
           :to="{ name: 'login' }"

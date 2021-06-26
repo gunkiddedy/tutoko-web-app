@@ -41,6 +41,11 @@ Route::get('get-pegawai/{id}', 'PegawaiController@getDataPegawaiById');
 Route::post('update-pegawai/{id}', 'PegawaiController@updateDataPegawaiById');
 Route::post('add-data-pegawai', 'PegawaiController@addDataPegawai');
 
+//--ABSENSI--//
+Route::get('absensi', 'AbsensiController@getDataAbsensi');
+Route::get('detail-gaji', 'AbsensiController@getDetailGaji');
+Route::post('add-data-absensi', 'AbsensiController@addDataAbsensi');
+
 //--SUPPLIER--//
 Route::get('supplier', 'SupplierController@getDataSupplier');
 Route::get('get-supplier/{id}', 'SupplierController@getDataSupplierById');

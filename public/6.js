@@ -1,14 +1,16 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[6],{
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/pegawai/Pegawai.vue?vue&type=script&lang=js&":
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/absensi/Absensi.vue?vue&type=script&lang=js&":
 /*!*********************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/pages/pegawai/Pegawai.vue?vue&type=script&lang=js& ***!
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/pages/absensi/Absensi.vue?vue&type=script&lang=js& ***!
   \*********************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_0__);
 //
 //
 //
@@ -88,6 +90,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -98,39 +111,28 @@ __webpack_require__.r(__webpack_exports__);
       isAdmin: false,
       isLoading: false,
       columns: [{
-        label: "Action",
-        field: "action",
+        label: "Tanggal",
+        field: "tanggal_custom",
         sortable: false,
-        width: "180px"
+        width: "auto"
+      }, {
+        label: "Jam Kerja",
+        field: "jumlah_jam",
+        sortable: false,
+        width: "auto"
       }, {
         label: "Nama Pegawai",
-        field: "pegawai_nama",
-        sortable: false,
-        width: "auto",
-        filterable: true,
-        filterOptions: {
-          enabled: true,
-          placeholder: "Filter",
-          trigger: "enter"
-        }
-      }, {
-        label: "Gaji Harian",
-        field: "gaji_harian",
+        field: "nama_pegawai",
         sortable: false,
         width: "auto"
       }, {
-        label: "Phone",
-        field: "pegawai_phone",
+        label: "Total Gaji Harian",
+        field: "total_gaji_harian_custom",
         sortable: false,
         width: "auto"
       }, {
-        label: "Alamat",
-        field: "pegawai_alamat",
-        sortable: false,
-        width: "auto"
-      }, {
-        label: "Status",
-        field: "active_custom",
+        label: "Total Gaji Borongan",
+        field: "gaji_borongan_custom",
         sortable: false,
         width: "auto"
       }],
@@ -157,17 +159,21 @@ __webpack_require__.r(__webpack_exports__);
     this.isAdmin = localStorage.getItem("isAdmin");
   },
   methods: {
-    tambahData: function tambahData() {
-      this.$router.push({
-        name: "pegawai-add"
-      });
+    toRupiah: function toRupiah(param) {
+      var fix = param.toString().replace(/(\d)(?=(\d{3})+(?:\.\d+)?$)/g, "$1\.");
+      return fix;
     },
     editData: function editData(param) {
       this.$router.push({
-        name: "pegawai-edit",
+        name: "absensi-edit",
         params: {
           id: param
         }
+      });
+    },
+    tambahData: function tambahData() {
+      this.$router.push({
+        name: "absensi-add"
       });
     },
     updateParams: function updateParams(newProps) {
@@ -195,19 +201,20 @@ __webpack_require__.r(__webpack_exports__);
       this.getRecords();
     },
     onColumnFilter: function onColumnFilter(params) {
+      // this.$set(this.columns[foundIndex].filterOptions, 'filterValue', value);
       this.updateParams(params);
       this.getRecords();
     },
     getRecords: function getRecords() {
       var _this = this;
 
-      axios.get("/api/pegawai/", {
+      axios.get("/api/detail-gaji/", {
         params: this.serverParams
       }).then(function (response) {
         _this.loading = false;
         _this.totalRecords = response.data.length;
         _this.rows = response.data;
-        console.log(response);
+        console.log(response.data);
       })["catch"](function (err) {
         console.log(err);
       });
@@ -217,9 +224,9 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/pegawai/Pegawai.vue?vue&type=template&id=bcdce850&":
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/absensi/Absensi.vue?vue&type=template&id=e5d4874c&":
 /*!*************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/pages/pegawai/Pegawai.vue?vue&type=template&id=bcdce850& ***!
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/pages/absensi/Absensi.vue?vue&type=template&id=e5d4874c& ***!
   \*************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -265,11 +272,7 @@ var render = function() {
                         staticClass:
                           "text-lg pb-1 font-semibold text-indigo-400 uppercase"
                       },
-                      [
-                        _vm._v(
-                          "\n            \t\t\t\tDaftar Pegawai\n\t\t\t\t\t\t"
-                        )
-                      ]
+                      [_vm._v("\n            Daftar Absensi\n          ")]
                     ),
                     _vm._v(" "),
                     _c(
@@ -281,8 +284,7 @@ var render = function() {
                       },
                       [
                         _c("i", { staticClass: "fas fa-plus mr-1" }),
-                        _vm._v(" "),
-                        _c("span", [_vm._v("Tambah Data")])
+                        _vm._v("Tambah Data")
                       ]
                     )
                   ]
@@ -343,62 +345,55 @@ var render = function() {
                             key: "table-row",
                             fn: function(props) {
                               return [
-                                props.column.field == "action"
+                                props.column.field == "tanggal_custom"
                                   ? _c("span", [
-                                      _c(
-                                        "button",
-                                        {
-                                          staticClass:
-                                            "bg-indigo-500 rounded border border-indigo-600 hover:bg-indigo-600 px-2 py-0 text-white font-semibold mx-1",
-                                          on: {
-                                            click: function($event) {
-                                              return _vm.editData(props.row.id)
-                                            }
-                                          }
-                                        },
-                                        [
-                                          _c("i", {
-                                            staticClass: "fas fa-pen mr-2"
-                                          }),
-                                          _vm._v("Edit\n\t\t\t\t\t\t\t\t\t\t")
-                                        ]
+                                      _vm._v(
+                                        "\n                    " +
+                                          _vm._s(
+                                            _vm
+                                              .moment(props.row.tanggal)
+                                              .format("LL")
+                                          ) +
+                                          "\n                  "
                                       )
                                     ])
-                                  : _c("span", [
+                                  : _vm._e(),
+                                _vm._v(" "),
+                                props.column.field == "total_gaji_harian_custom"
+                                  ? _c("span", [
                                       _vm._v(
                                         "\n\t\t\t\t\t\t\t\t\t\t" +
                                           _vm._s(
-                                            props.formattedRow[
-                                              props.column.field
-                                            ]
+                                            _vm.toRupiah(
+                                              props.row.total_gaji_harian
+                                            )
                                           ) +
                                           "\n\t\t\t\t\t\t\t\t\t"
                                       )
-                                    ]),
-                                _vm._v(" "),
-                                props.column.field == "active_custom"
-                                  ? _c("span", [
-                                      _c(
-                                        "span",
-                                        {
-                                          staticClass:
-                                            "px-3 text-white font-bold py-0 leading-loose flex items-center justify-center w-1/2",
-                                          class: {
-                                            "bg-green-400":
-                                              props.row.active == "Active",
-                                            "bg-gray-400":
-                                              props.row.active == "Inactive"
-                                          }
-                                        },
-                                        [
-                                          _vm._v(
-                                            "\n\t\t\t\t\t\t\t\t\t\t\t" +
-                                              _vm._s(props.row.active) +
-                                              "\n\t\t\t\t\t\t\t\t\t\t"
-                                          )
-                                        ]
-                                      )
                                     ])
+                                  : _vm._e(),
+                                _vm._v(" "),
+                                props.row.gaji_borongan
+                                  ? _c("span", [
+                                      props.column.field ==
+                                      "gaji_borongan_custom"
+                                        ? _c("span", [
+                                            _vm._v(
+                                              "\n                      " +
+                                                _vm._s(
+                                                  _vm.toRupiah(
+                                                    props.row.gaji_borongan
+                                                  )
+                                                ) +
+                                                "\n                    "
+                                            )
+                                          ])
+                                        : _vm._e()
+                                    ])
+                                  : _vm._e(),
+                                _vm._v(" "),
+                                !props.row.gaji_borongan
+                                  ? _c("span", [_c("span", [_vm._v("-")])])
                                   : _vm._e()
                               ]
                             }
@@ -435,17 +430,17 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./resources/js/pages/pegawai/Pegawai.vue":
+/***/ "./resources/js/pages/absensi/Absensi.vue":
 /*!************************************************!*\
-  !*** ./resources/js/pages/pegawai/Pegawai.vue ***!
+  !*** ./resources/js/pages/absensi/Absensi.vue ***!
   \************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _Pegawai_vue_vue_type_template_id_bcdce850___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Pegawai.vue?vue&type=template&id=bcdce850& */ "./resources/js/pages/pegawai/Pegawai.vue?vue&type=template&id=bcdce850&");
-/* harmony import */ var _Pegawai_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Pegawai.vue?vue&type=script&lang=js& */ "./resources/js/pages/pegawai/Pegawai.vue?vue&type=script&lang=js&");
+/* harmony import */ var _Absensi_vue_vue_type_template_id_e5d4874c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Absensi.vue?vue&type=template&id=e5d4874c& */ "./resources/js/pages/absensi/Absensi.vue?vue&type=template&id=e5d4874c&");
+/* harmony import */ var _Absensi_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Absensi.vue?vue&type=script&lang=js& */ "./resources/js/pages/absensi/Absensi.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -455,9 +450,9 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _Pegawai_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _Pegawai_vue_vue_type_template_id_bcdce850___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _Pegawai_vue_vue_type_template_id_bcdce850___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _Absensi_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Absensi_vue_vue_type_template_id_e5d4874c___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Absensi_vue_vue_type_template_id_e5d4874c___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
   null,
@@ -467,38 +462,38 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/js/pages/pegawai/Pegawai.vue"
+component.options.__file = "resources/js/pages/absensi/Absensi.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/js/pages/pegawai/Pegawai.vue?vue&type=script&lang=js&":
+/***/ "./resources/js/pages/absensi/Absensi.vue?vue&type=script&lang=js&":
 /*!*************************************************************************!*\
-  !*** ./resources/js/pages/pegawai/Pegawai.vue?vue&type=script&lang=js& ***!
+  !*** ./resources/js/pages/absensi/Absensi.vue?vue&type=script&lang=js& ***!
   \*************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Pegawai_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./Pegawai.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/pegawai/Pegawai.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Pegawai_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Absensi_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./Absensi.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/absensi/Absensi.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Absensi_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/js/pages/pegawai/Pegawai.vue?vue&type=template&id=bcdce850&":
+/***/ "./resources/js/pages/absensi/Absensi.vue?vue&type=template&id=e5d4874c&":
 /*!*******************************************************************************!*\
-  !*** ./resources/js/pages/pegawai/Pegawai.vue?vue&type=template&id=bcdce850& ***!
+  !*** ./resources/js/pages/absensi/Absensi.vue?vue&type=template&id=e5d4874c& ***!
   \*******************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Pegawai_vue_vue_type_template_id_bcdce850___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./Pegawai.vue?vue&type=template&id=bcdce850& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/pegawai/Pegawai.vue?vue&type=template&id=bcdce850&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Pegawai_vue_vue_type_template_id_bcdce850___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Absensi_vue_vue_type_template_id_e5d4874c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./Absensi.vue?vue&type=template&id=e5d4874c& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/absensi/Absensi.vue?vue&type=template&id=e5d4874c&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Absensi_vue_vue_type_template_id_e5d4874c___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Pegawai_vue_vue_type_template_id_bcdce850___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Absensi_vue_vue_type_template_id_e5d4874c___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

@@ -7,7 +7,7 @@
         		<main class="w-full flex-grow p-6 bg-white">
           			<div class="flex items-center justify-between">
             			<h1 class="text-lg pb-1 font-semibold text-indigo-400 uppercase">
-            				Daftar Pegawai
+            				Daftar Supplier
 						</h1>
             			<button @click="tambahData" class="bg-blue-500 hover:bg-blue-600 w-auto text-white px-4 py-2 rounded">
               				<i class="fas fa-plus mr-1"></i>

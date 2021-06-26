@@ -21,7 +21,7 @@
                     >
                     <select
                         v-model="form.barang_id"
-                        class="w-full px-5 py-2 md:py-1 rounded-lg text-gray-500 focus:outline-none focus:shadow-inner border-2 border-blue-200 bg-white appearance-none uppercase text-lg font-bold"
+                        class="w-full px-5 py-2 rounded text-gray-500 focus:outline-none focus:shadow-inner border-2 border-blue-200 bg-white appearance-none uppercase text-lg font-bold"
                       >
                       <option class="text-gray-700" value="" selected="selected">
                         -Pilih Barang-
@@ -43,7 +43,7 @@
                     >
                     <select
                         v-model="form.pegawai_id"
-                        class="w-full px-5 py-2 md:py-1 rounded-lg text-gray-500 focus:outline-none focus:shadow-inner border-2 border-blue-200 bg-white appearance-none uppercase text-lg font-bold"
+                        class="w-full px-5 py-2 rounded text-gray-500 focus:outline-none focus:shadow-inner border-2 border-blue-200 bg-white appearance-none uppercase text-lg font-bold"
                       >
                       <option class="text-gray-700" value="" selected="selected">
                         -Pilih Pegawai-
@@ -64,7 +64,7 @@
                       >Jumlah Produksi</label
                     >
                     <input
-                      class="w-full px-4 py-2 md:py-1 focus:bg-blue-50 text-gray-700 rounded border-2 border-blue-200 bg-white uppercase text-lg font-bold"
+                      class="w-full px-4 py-2 focus:bg-blue-50 text-gray-700 rounded border-2 border-blue-200 bg-white uppercase text-lg font-bold"
                       id="jumlah"
                       type="number"
                       min="0"
@@ -75,10 +75,10 @@
 
                   <div class="px-0 md:px-4 my-2">
                     <label class="block text-lg text-gray-600" for="cus_email"
-                      >HPP</label
+                      >Harga Pokok Produksi</label
                     >
                     <input
-                      class="w-full px-4 py-2 md:py-1 text-gray-700 border-2 border-blue-200 bg-white rounded uppercase text-lg font-bold"
+                      class="w-full px-4 py-2 text-gray-700 border-2 border-blue-200 bg-white rounded uppercase text-lg font-bold"
                       id="barang_satuan"
                       v-model="form.hpp"
                       type="number"
@@ -92,7 +92,7 @@
                       >Upah Produksi</label
                     >
                     <input
-                      class="w-full px-4 py-2 md:py-1 text-gray-700 border-2 border-blue-200 bg-white rounded uppercase text-lg font-bold"
+                      class="w-full px-4 py-2 text-gray-700 border-2 border-blue-200 bg-white rounded uppercase text-lg font-bold"
                       id="barang_satuan"
                       v-model="form.upah"
                       type="number"

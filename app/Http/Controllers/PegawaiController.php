@@ -11,7 +11,7 @@ class PegawaiController extends Controller
 
     public function getDataPegawai()
     {
-        $q = DB::table("pegawais")->orderBy('id', 'desc')->limit(100)->get();
+        $q = DB::table("pegawais")->where('active', 'Active')->orderBy('id', 'desc')->limit(100)->get();
         return response()->json($q);
     }
     public function getDataPegawaiById(Request $request, $id)

@@ -1,14 +1,140 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[14],{
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/supplier/SupplierEdit.vue?vue&type=script&lang=js&":
-/*!***************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/pages/supplier/SupplierEdit.vue?vue&type=script&lang=js& ***!
-  \***************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/pembelian/PembelianEdit.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/pages/pembelian/PembelianEdit.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -88,60 +214,187 @@ __webpack_require__.r(__webpack_exports__);
     return {
       loading: true,
       isUpdating: false,
-      supplier_nama: "",
-      supplier_phone: "",
-      supplier_alamat: ""
+      status_msg: "",
+      status: '',
+      form: {
+        barang_id: '',
+        supplier_id: '',
+        tanggal: '',
+        jumlah: 0,
+        harga_beli: 0,
+        payment: 0,
+        harga_jual_standar: 0,
+        harga_jual_grosir: 0
+      },
+      suppliers: [],
+      barangNama: null
     };
   },
+  computed: {
+    totalHarga: function totalHarga() {
+      var totalH = this.form.jumlah * this.form.harga_beli;
+
+      if (totalH) {
+        var number = totalH;
+        var reverse = number.toString().split('').reverse().join('');
+        var ribuan = reverse.match(/\d{1,3}/g);
+        ribuan = ribuan.join('.').split('').reverse().join('');
+        return ribuan;
+      } else {
+        return totalH;
+      } // return this.form.jumlah * this.form.harga_beli
+
+    },
+    totalHutang: function totalHutang() {
+      var totalU = this.form.payment - this.form.jumlah * this.form.harga_beli;
+
+      if (totalU) {
+        var number = totalU;
+        var reverse = number.toString().split('').reverse().join('');
+        var ribuan = reverse.match(/\d{1,3}/g);
+        ribuan = ribuan.join('.').split('').reverse().join('');
+        return '-' + ribuan;
+      } else {
+        return totalU;
+      } // return this.form.payment - (this.form.jumlah * this.form.harga_beli)
+
+    }
+  },
   mounted: function mounted() {
-    this.getDataSupplier(this.id);
+    this.getPembelian(this.id);
+    this.getSuppliers(); // this.getBarangs();
   },
   methods: {
     cancel: function cancel() {
-      this.$router.push('/supplier');
+      this.$router.push('/pembelian');
     },
-    getDataSupplier: function getDataSupplier(param) {
+    getSuppliers: function getSuppliers() {
       var _this = this;
 
-      axios.get("/api/get-supplier/" + param).then(function (response) {
-        _this.loading = false;
-        _this.supplier_nama = response.data.supplier_nama;
-        _this.supplier_phone = response.data.supplier_phone;
-        _this.supplier_alamat = response.data.supplier_alamat;
+      axios.get("/api/supplier/").then(function (response) {
+        _this.suppliers = response.data;
       })["catch"](function (err) {
         console.log(err);
       });
     },
-    updateDataSupplier: function updateDataSupplier(param) {
+    getBarangs: function getBarangs(param) {
       var _this2 = this;
+
+      axios.get("/api/get-barang/" + param).then(function (response) {
+        _this2.barangNama = response.data.barang_nama;
+        console.log('getbarang', response);
+      })["catch"](function (err) {
+        console.log(err);
+      });
+    },
+    getPembelian: function getPembelian(param) {
+      var _this3 = this;
+
+      axios.get("/api/get-pembelian/" + param).then(function (response) {
+        _this3.getBarangs(response.data.barang_id);
+
+        _this3.loading = false;
+        _this3.form.supplier_id = response.data.supplier_id;
+        _this3.form.barang_id = response.data.barang_id;
+        _this3.form.tanggal = response.data.tanggal;
+        _this3.form.jumlah = response.data.jumlah;
+        _this3.form.harga_beli = response.data.harga_beli;
+        _this3.form.payment = response.data.payment;
+        _this3.form.harga_jual_standar = response.data.harga_jual_standar;
+        _this3.form.harga_jual_grosir = response.data.harga_jual_grosir;
+      })["catch"](function (err) {
+        console.log(err);
+      });
+    },
+    updatePembelian: function updatePembelian(param) {
+      var _this4 = this;
 
       this.isUpdating = true;
       var formData = new FormData();
-      formData.append("supplier_nama", this.supplier_nama);
-      formData.append("supplier_phone", this.supplier_phone);
-      formData.append("supplier_alamat", this.supplier_alamat);
-      axios.post("/api/update-supplier/".concat(param), formData).then(function (response) {
-        _this2.isUpdating = false;
+      formData.append("supplier_id", this.form.supplier_id);
+      formData.append("barang_id", this.form.barang_id);
+      formData.append("tanggal", this.form.tanggal);
+      formData.append("tanggal", this.form.tanggal);
+      formData.append("jumlah", this.form.jumlah);
+      formData.append("harga_beli", this.form.harga_beli);
+      formData.append("payment", this.form.payment);
+      formData.append("harga_jual_standar", this.form.harga_jual_standar);
+      formData.append("harga_jual_grosir", this.form.harga_jual_grosir);
+      axios.post("/api/update-pembelian/".concat(param), formData).then(function (response) {
+        _this4.isUpdating = false;
 
-        _this2.$router.push({
-          name: "supplier"
+        _this4.$router.push({
+          name: "pembelian"
         });
 
         console.log(response);
       })["catch"](function (error) {
-        _this2.isUpdating = false;
+        _this4.isUpdating = false;
         console.log(error);
       });
+    },
+    validateForm: function validateForm() {
+      if (!this.form.barang_id) {
+        this.status = false;
+        this.showNotification("nama barang tidak boleh kosong");
+        return false;
+      }
+
+      if (!this.form.supplier_id) {
+        this.status = false;
+        this.showNotification("supplier tidak boleh kosong");
+        return false;
+      }
+
+      if (!this.form.jumlah) {
+        this.status = false;
+        this.showNotification("jumlah tidak boleh kosong");
+        return false;
+      }
+
+      if (!this.form.harga_beli) {
+        this.status = false;
+        this.showNotification("harga beli tidak boleh kosong");
+        return false;
+      }
+
+      if (!this.form.payment) {
+        this.status = false;
+        this.showNotification("terbayar tidak boleh kosong");
+        return false;
+      }
+
+      if (!this.form.harga_jual_standar) {
+        this.status = false;
+        this.showNotification("harga jual standar tidak boleh kosong");
+        return false;
+      }
+
+      if (!this.form.harga_jual_grosir) {
+        this.status = false;
+        this.showNotification("harga jual grosir tidak boleh kosong");
+        return false;
+      }
+
+      return true;
+    },
+    showNotification: function showNotification(message) {
+      var _this5 = this;
+
+      this.status_msg = message;
+      setTimeout(function () {
+        _this5.status_msg = "";
+      }, 3000);
     }
   }
 });
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/supplier/SupplierEdit.vue?vue&type=template&id=94c09940&scoped=true&":
-/*!*******************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/pages/supplier/SupplierEdit.vue?vue&type=template&id=94c09940&scoped=true& ***!
-  \*******************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/pembelian/PembelianEdit.vue?vue&type=template&id=0665f7ac&scoped=true&":
+/*!*********************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/pages/pembelian/PembelianEdit.vue?vue&type=template&id=0665f7ac&scoped=true& ***!
+  \*********************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -176,22 +429,10 @@ var render = function() {
             },
             [
               _c("main", { staticClass: "w-full flex-grow p-6 bg-white" }, [
-                _vm.loading
-                  ? _c(
-                      "div",
-                      {
-                        staticClass:
-                          "z-30 flex justify-around relative opacity-75 bg-black inset-0"
-                      },
-                      [_c("loader")],
-                      1
-                    )
-                  : _vm._e(),
-                _vm._v(" "),
                 _c(
                   "h1",
                   { staticClass: "text-lg text-gray-500 pb-1 font-semibold" },
-                  [_vm._v("\n\t\t\t\t\t\tEdit Data Supplier\n\t\t\t\t\t")]
+                  [_vm._v("Tambah Data Pembelian")]
                 ),
                 _vm._v(" "),
                 _c("div", { staticClass: "w-full mt-6 pl-0 lg:pl-2" }, [
@@ -201,64 +442,120 @@ var render = function() {
                         "div",
                         {
                           staticClass:
-                            "grid grid-cols-1 lg:grid-cols-1 sm:grid-cols-1 md:grid-cols-1"
+                            "grid grid-cols-2 lg:grid-cols-2 sm:grid-cols-1 md:grid-cols-2"
                         },
                         [
                           _c("div", { staticClass: "px-4 my-2" }, [
                             _c(
                               "label",
                               {
-                                staticClass: "block text-sm text-gray-600",
-                                attrs: { for: "cus_name" }
+                                staticClass: "block text-lg text-gray-600",
+                                attrs: { for: "cus_email" }
+                              },
+                              [_vm._v("Nama Barang")]
+                            ),
+                            _vm._v(" "),
+                            _c("input", {
+                              staticClass:
+                                "font-bold uppercase text-xl w-full px-4 py-2 text-gray-700 bg-indigo-50 rounded",
+                              attrs: {
+                                readonly: "",
+                                type: "text",
+                                name: "",
+                                id: ""
+                              },
+                              domProps: { value: "" + _vm.barangNama }
+                            })
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "px-4 my-2" }, [
+                            _c(
+                              "label",
+                              {
+                                staticClass: "block text-lg text-gray-600",
+                                attrs: { for: "cus_email" }
                               },
                               [_vm._v("Nama Supplier")]
                             ),
                             _vm._v(" "),
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.supplier_nama,
-                                  expression: "supplier_nama"
-                                }
-                              ],
-                              staticClass:
-                                "w-full px-5 py-1 text-gray-700 bg-gray-200 rounded",
-                              attrs: {
-                                id: "supplier_nama",
-                                type: "text",
-                                "aria-label": "Name"
-                              },
-                              domProps: { value: _vm.supplier_nama },
-                              on: {
-                                input: function($event) {
-                                  if ($event.target.composing) {
-                                    return
+                            _c(
+                              "select",
+                              {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.form.supplier_id,
+                                    expression: "form.supplier_id"
                                   }
-                                  _vm.supplier_nama = $event.target.value
+                                ],
+                                staticClass:
+                                  "w-full px-5 py-1 rounded-lg text-gray-500 focus:outline-none focus:shadow-inner border-2 border-gray-200 bg-white appearance-none",
+                                on: {
+                                  change: function($event) {
+                                    var $$selectedVal = Array.prototype.filter
+                                      .call($event.target.options, function(o) {
+                                        return o.selected
+                                      })
+                                      .map(function(o) {
+                                        var val =
+                                          "_value" in o ? o._value : o.value
+                                        return val
+                                      })
+                                    _vm.$set(
+                                      _vm.form,
+                                      "supplier_id",
+                                      $event.target.multiple
+                                        ? $$selectedVal
+                                        : $$selectedVal[0]
+                                    )
+                                  }
                                 }
-                              }
-                            })
-                          ])
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass:
-                            "grid grid-cols-1 lg:grid-cols-2 sm:grid-cols-1 md:grid-cols-1"
-                        },
-                        [
+                              },
+                              [
+                                _c(
+                                  "option",
+                                  {
+                                    staticClass: "text-gray-700",
+                                    attrs: { value: "", selected: "selected" }
+                                  },
+                                  [
+                                    _vm._v(
+                                      "\n                        -Pilih-\n                      "
+                                    )
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _vm._l(_vm.suppliers, function(supplier, i) {
+                                  return _c(
+                                    "option",
+                                    {
+                                      key: i,
+                                      staticClass: "text-gray-700",
+                                      domProps: { value: supplier.id }
+                                    },
+                                    [
+                                      _vm._v(
+                                        "\n                        " +
+                                          _vm._s(supplier.supplier_nama) +
+                                          "\n                      "
+                                      )
+                                    ]
+                                  )
+                                })
+                              ],
+                              2
+                            )
+                          ]),
+                          _vm._v(" "),
                           _c("div", { staticClass: "px-4 my-2" }, [
                             _c(
                               "label",
                               {
-                                staticClass: "block text-sm text-gray-600",
-                                attrs: { for: "cus_email" }
+                                staticClass: "block text-lg text-gray-600",
+                                attrs: { for: "cus_name" }
                               },
-                              [_vm._v("Phone")]
+                              [_vm._v("Jumlah Pembelian")]
                             ),
                             _vm._v(" "),
                             _c("input", {
@@ -266,25 +563,31 @@ var render = function() {
                                 {
                                   name: "model",
                                   rawName: "v-model",
-                                  value: _vm.supplier_phone,
-                                  expression: "supplier_phone"
+                                  value: _vm.form.jumlah,
+                                  expression: "form.jumlah"
                                 }
                               ],
                               staticClass:
-                                "w-full px-2 py-1 text-gray-700 bg-gray-200 rounded",
+                                "w-full px-4 py-1 text-gray-700 bg-gray-50 rounded",
                               attrs: {
-                                id: "supplier_phone",
-                                type: "text",
-                                placeholder: "Phone",
-                                "aria-label": "Email"
+                                readonly: "",
+                                id: "jumlah",
+                                type: "number",
+                                min: "0",
+                                "aria-label": "jumlah",
+                                placeholder: "Masukkan jumlah pembelian"
                               },
-                              domProps: { value: _vm.supplier_phone },
+                              domProps: { value: _vm.form.jumlah },
                               on: {
                                 input: function($event) {
                                   if ($event.target.composing) {
                                     return
                                   }
-                                  _vm.supplier_phone = $event.target.value
+                                  _vm.$set(
+                                    _vm.form,
+                                    "jumlah",
+                                    $event.target.value
+                                  )
                                 }
                               }
                             })
@@ -294,10 +597,10 @@ var render = function() {
                             _c(
                               "label",
                               {
-                                staticClass: "block text-sm text-gray-600",
+                                staticClass: "block text-lg text-gray-600",
                                 attrs: { for: "cus_email" }
                               },
-                              [_vm._v("Alamat")]
+                              [_vm._v("Harga Beli")]
                             ),
                             _vm._v(" "),
                             _c("input", {
@@ -305,51 +608,292 @@ var render = function() {
                                 {
                                   name: "model",
                                   rawName: "v-model",
-                                  value: _vm.supplier_alamat,
-                                  expression: "supplier_alamat"
+                                  value: _vm.form.harga_beli,
+                                  expression: "form.harga_beli"
                                 }
                               ],
                               staticClass:
-                                "w-full px-2 py-1 text-gray-700 bg-gray-200 rounded",
+                                "w-full px-4 py-1 text-gray-700 bg-gray-50 rounded",
                               attrs: {
-                                id: "supplier_alamat",
-                                type: "text",
-                                placeholder: "Alamat",
-                                "aria-label": ""
+                                id: "barang_satuan",
+                                type: "number",
+                                min: "0",
+                                placeholder: "Masukkan harga beli",
+                                "aria-label": "Email"
                               },
-                              domProps: { value: _vm.supplier_alamat },
+                              domProps: { value: _vm.form.harga_beli },
                               on: {
                                 input: function($event) {
                                   if ($event.target.composing) {
                                     return
                                   }
-                                  _vm.supplier_alamat = $event.target.value
+                                  _vm.$set(
+                                    _vm.form,
+                                    "harga_beli",
+                                    $event.target.value
+                                  )
                                 }
                               }
                             })
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "px-4 my-2" }, [
+                            _c(
+                              "label",
+                              {
+                                staticClass: "block text-lg text-gray-600",
+                                attrs: { for: "cus_email" }
+                              },
+                              [_vm._v("Terbayar")]
+                            ),
+                            _vm._v(" "),
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.form.payment,
+                                  expression: "form.payment"
+                                }
+                              ],
+                              staticClass:
+                                "w-full px-4 py-1 text-gray-700 bg-gray-50 rounded",
+                              attrs: {
+                                id: "barang_stok",
+                                type: "number",
+                                min: "0",
+                                placeholder: "Jumlah yang dibayarkan",
+                                "aria-label": ""
+                              },
+                              domProps: { value: _vm.form.payment },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.form,
+                                    "payment",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            })
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            { staticClass: "px-4 my-2" },
+                            [
+                              _c(
+                                "label",
+                                {
+                                  staticClass: "block text-lg text-gray-600",
+                                  attrs: { for: "cus_email" }
+                                },
+                                [
+                                  _vm._v(
+                                    "Tanggal Pembelian " +
+                                      _vm._s(_vm.form.tanggal)
+                                  )
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c("date-picker", {
+                                attrs: {
+                                  "value-type": "format",
+                                  placeholder: "Tanggal Pembelian",
+                                  format: "YYYY-MM-DD"
+                                },
+                                model: {
+                                  value: _vm.form.tanggal,
+                                  callback: function($$v) {
+                                    _vm.$set(_vm.form, "tanggal", $$v)
+                                  },
+                                  expression: "form.tanggal"
+                                }
+                              })
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "px-4 my-2" }, [
+                            _c(
+                              "label",
+                              {
+                                staticClass: "block text-lg text-gray-600",
+                                attrs: { for: "cus_email" }
+                              },
+                              [_vm._v("Harga Jual Standar")]
+                            ),
+                            _vm._v(" "),
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.form.harga_jual_standar,
+                                  expression: "form.harga_jual_standar"
+                                }
+                              ],
+                              staticClass:
+                                "w-full px-4 py-1 text-gray-700 bg-gray-50 rounded",
+                              attrs: {
+                                id: "barang_stok",
+                                type: "number",
+                                min: "0",
+                                placeholder: "Jumlah yang dibayarkan",
+                                "aria-label": ""
+                              },
+                              domProps: { value: _vm.form.harga_jual_standar },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.form,
+                                    "harga_jual_standar",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            })
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "px-4 my-2" }, [
+                            _c(
+                              "label",
+                              {
+                                staticClass: "block text-lg text-gray-600",
+                                attrs: { for: "cus_email" }
+                              },
+                              [_vm._v("Harga Jual Grosir")]
+                            ),
+                            _vm._v(" "),
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.form.harga_jual_grosir,
+                                  expression: "form.harga_jual_grosir"
+                                }
+                              ],
+                              staticClass:
+                                "w-full px-4 py-1 text-gray-700 bg-gray-50 rounded",
+                              attrs: {
+                                id: "barang_stok",
+                                type: "number",
+                                min: "0",
+                                placeholder: "Jumlah yang dibayarkan",
+                                "aria-label": ""
+                              },
+                              domProps: { value: _vm.form.harga_jual_grosir },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.form,
+                                    "harga_jual_grosir",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            })
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "px-4 my-2" }, [
+                            _c(
+                              "label",
+                              {
+                                staticClass: "block text-lg text-gray-600",
+                                attrs: { for: "cus_email" }
+                              },
+                              [_vm._v("Total Harga")]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              {
+                                staticClass:
+                                  "px-4 total-harga font-bold text-2xl text-gray-900"
+                              },
+                              [
+                                _vm._v(
+                                  "\n                      " +
+                                    _vm._s(_vm.totalHarga) +
+                                    "\n                    "
+                                )
+                              ]
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "px-4 my-2" }, [
+                            _c(
+                              "label",
+                              {
+                                staticClass: "block text-lg text-gray-600",
+                                attrs: { for: "cus_email" }
+                              },
+                              [_vm._v("Kurang Bayar")]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              {
+                                staticClass:
+                                  "px-4 hutang font-bold text-2xl text-red-500"
+                              },
+                              [
+                                _vm._v(
+                                  "\n                      " +
+                                    _vm._s(_vm.totalHutang) +
+                                    "\n                    "
+                                )
+                              ]
+                            )
                           ])
                         ]
                       ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "mt-2" }, [
+                        _c(
+                          "span",
+                          {
+                            staticClass: "px-4 text-sm font-sf-pro",
+                            class: {
+                              "text-green-400": _vm.status,
+                              "text-red-400": !_vm.status
+                            }
+                          },
+                          [_vm._v(_vm._s(_vm.status_msg))]
+                        )
+                      ]),
                       _vm._v(" "),
                       _c("div", { staticClass: "mt-6 px-4" }, [
                         _c(
                           "button",
                           {
                             staticClass:
-                              "px-4 py-1 text-white font-light tracking-wider bg-blue-500 hover:bg-blue-600 rounded",
+                              "px-6 py-1 text-white font-light tracking-wider bg-gray-400 hover:bg-gray-600 rounded",
                             on: {
                               click: function($event) {
-                                return _vm.updateDataSupplier(_vm.id)
+                                return _vm.updatePembelian(_vm.id)
                               }
                             }
                           },
                           [
                             _vm._v(
-                              _vm._s(
-                                _vm.isUpdating == true
-                                  ? "Updating..."
-                                  : "Update Data"
-                              )
+                              "\n                    " +
+                                _vm._s(
+                                  _vm.isUpdating == true
+                                    ? "Processing..."
+                                    : "Update"
+                                ) +
+                                "\n                  "
                             )
                           ]
                         ),
@@ -361,19 +905,13 @@ var render = function() {
                               "ml-4 px-6 py-1 text-white font-light tracking-wider bg-red-400 hover:bg-red-600 rounded",
                             on: { click: _vm.cancel }
                           },
-                          [_vm._v("Batal\n\t\t\t\t\t\t\t\t\t")]
+                          [_vm._v("Batal\n                  ")]
                         )
                       ])
                     ])
                   ])
                 ])
               ]),
-              _vm._v(" "),
-              _vm.loading
-                ? _c("div", {
-                    staticClass: "opacity-25 fixed inset-0 z-30 bg-black"
-                  })
-                : _vm._e(),
               _vm._v(" "),
               _c("footer-component")
             ],
@@ -393,17 +931,17 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./resources/js/pages/supplier/SupplierEdit.vue":
-/*!******************************************************!*\
-  !*** ./resources/js/pages/supplier/SupplierEdit.vue ***!
-  \******************************************************/
+/***/ "./resources/js/pages/pembelian/PembelianEdit.vue":
+/*!********************************************************!*\
+  !*** ./resources/js/pages/pembelian/PembelianEdit.vue ***!
+  \********************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _SupplierEdit_vue_vue_type_template_id_94c09940_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./SupplierEdit.vue?vue&type=template&id=94c09940&scoped=true& */ "./resources/js/pages/supplier/SupplierEdit.vue?vue&type=template&id=94c09940&scoped=true&");
-/* harmony import */ var _SupplierEdit_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./SupplierEdit.vue?vue&type=script&lang=js& */ "./resources/js/pages/supplier/SupplierEdit.vue?vue&type=script&lang=js&");
+/* harmony import */ var _PembelianEdit_vue_vue_type_template_id_0665f7ac_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./PembelianEdit.vue?vue&type=template&id=0665f7ac&scoped=true& */ "./resources/js/pages/pembelian/PembelianEdit.vue?vue&type=template&id=0665f7ac&scoped=true&");
+/* harmony import */ var _PembelianEdit_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./PembelianEdit.vue?vue&type=script&lang=js& */ "./resources/js/pages/pembelian/PembelianEdit.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -413,50 +951,50 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _SupplierEdit_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _SupplierEdit_vue_vue_type_template_id_94c09940_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _SupplierEdit_vue_vue_type_template_id_94c09940_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _PembelianEdit_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _PembelianEdit_vue_vue_type_template_id_0665f7ac_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _PembelianEdit_vue_vue_type_template_id_0665f7ac_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
-  "94c09940",
+  "0665f7ac",
   null
   
 )
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/js/pages/supplier/SupplierEdit.vue"
+component.options.__file = "resources/js/pages/pembelian/PembelianEdit.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/js/pages/supplier/SupplierEdit.vue?vue&type=script&lang=js&":
-/*!*******************************************************************************!*\
-  !*** ./resources/js/pages/supplier/SupplierEdit.vue?vue&type=script&lang=js& ***!
-  \*******************************************************************************/
+/***/ "./resources/js/pages/pembelian/PembelianEdit.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************!*\
+  !*** ./resources/js/pages/pembelian/PembelianEdit.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_SupplierEdit_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./SupplierEdit.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/supplier/SupplierEdit.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_SupplierEdit_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PembelianEdit_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./PembelianEdit.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/pembelian/PembelianEdit.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PembelianEdit_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/js/pages/supplier/SupplierEdit.vue?vue&type=template&id=94c09940&scoped=true&":
-/*!*************************************************************************************************!*\
-  !*** ./resources/js/pages/supplier/SupplierEdit.vue?vue&type=template&id=94c09940&scoped=true& ***!
-  \*************************************************************************************************/
+/***/ "./resources/js/pages/pembelian/PembelianEdit.vue?vue&type=template&id=0665f7ac&scoped=true&":
+/*!***************************************************************************************************!*\
+  !*** ./resources/js/pages/pembelian/PembelianEdit.vue?vue&type=template&id=0665f7ac&scoped=true& ***!
+  \***************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_SupplierEdit_vue_vue_type_template_id_94c09940_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./SupplierEdit.vue?vue&type=template&id=94c09940&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/supplier/SupplierEdit.vue?vue&type=template&id=94c09940&scoped=true&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_SupplierEdit_vue_vue_type_template_id_94c09940_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PembelianEdit_vue_vue_type_template_id_0665f7ac_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./PembelianEdit.vue?vue&type=template&id=0665f7ac&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/pembelian/PembelianEdit.vue?vue&type=template&id=0665f7ac&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PembelianEdit_vue_vue_type_template_id_0665f7ac_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_SupplierEdit_vue_vue_type_template_id_94c09940_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PembelianEdit_vue_vue_type_template_id_0665f7ac_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

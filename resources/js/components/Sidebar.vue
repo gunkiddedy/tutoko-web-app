@@ -7,7 +7,7 @@
       <div
         class="realtive w-12 h-12 rounded-full overflow-hidden border-2 border-gray-100 hover:border-gray-200 focus:border-gray-200 focus:outline-none mb-1 mx-auto"
       >
-        <router-link to="/">
+        <router-link to="/barang">
           <img src="/img/minicar.jpg" />
         </router-link>
       </div>
@@ -68,12 +68,20 @@
       >
 
       <router-link
+        to="/absensi"
+        v-if="role === 'admin'"
+        class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item"
+      >
+        <i class="fas fa-clipboard-check mr-3"></i> Absensi</router-link
+      >
+
+      <!-- <router-link
         to="/master"
         v-if="role === 'admin'"
         class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item"
       >
         <i class="fas fa-chart-bar mr-3"></i> Tagihan</router-link
-      >
+      > -->
       
       <!-- <router-link
         to="/produksi"
