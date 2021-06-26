@@ -41,7 +41,7 @@ class BarangController extends Controller
         $this->validate($request,[
             'barang_nama' => 'required',
             'barang_satuan'=> 'required',
-            'barang_stok' => 'required',
+            // 'barang_stok' => 'required',
             'barang_tipe' => 'required',
         ]);
         
@@ -87,7 +87,7 @@ class BarangController extends Controller
         $request->validate([
             'barang_nama' => 'required',
             'barang_satuan'=> 'required',
-            'barang_stok' => 'required',
+            // 'barang_stok' => 'required',
             'barang_tipe' => 'required',
         ]); 
 
@@ -115,7 +115,7 @@ class BarangController extends Controller
                 $product = Barang::create([
                     'barang_nama' => $barang_nama,
                     'barang_satuan'=> $barang_satuan,
-                    'barang_stok' => $barang_stok,
+                    // 'barang_stok' => $barang_stok,
                     'barang_tipe' => $barang_tipe,
                     'photo' => 'images/'.$filenametostore
                 ]);

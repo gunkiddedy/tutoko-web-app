@@ -95,11 +95,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -111,28 +106,34 @@ __webpack_require__.r(__webpack_exports__);
       isAdmin: false,
       isLoading: false,
       columns: [{
+        label: "Nama Pegawai",
+        field: "pegawai_nama",
+        sortable: false,
+        width: "auto",
+        filterable: true,
+        filterOptions: {
+          enabled: true,
+          placeholder: "Filter pegawai",
+          trigger: "enter"
+        }
+      }, {
+        label: "Jam Kerja",
+        field: "jam_kerja",
+        sortable: false,
+        width: "auto"
+      }, {
         label: "Tanggal",
         field: "tanggal_custom",
         sortable: false,
         width: "auto"
       }, {
-        label: "Jam Kerja",
-        field: "jumlah_jam",
+        label: "Gaji Harian",
+        field: "gaji_harian_custom",
         sortable: false,
         width: "auto"
       }, {
-        label: "Nama Pegawai",
-        field: "nama_pegawai",
-        sortable: false,
-        width: "auto"
-      }, {
-        label: "Total Gaji Harian",
-        field: "total_gaji_harian_custom",
-        sortable: false,
-        width: "auto"
-      }, {
-        label: "Total Gaji Borongan",
-        field: "gaji_borongan_custom",
+        label: "Pendapatan",
+        field: "jumlah_gaji_custom",
         sortable: false,
         width: "auto"
       }],
@@ -208,7 +209,7 @@ __webpack_require__.r(__webpack_exports__);
     getRecords: function getRecords() {
       var _this = this;
 
-      axios.get("/api/detail-gaji/", {
+      axios.get("/api/detail-absensi/", {
         params: this.serverParams
       }).then(function (response) {
         _this.loading = false;
@@ -359,42 +360,39 @@ var render = function() {
                                     ])
                                   : _vm._e(),
                                 _vm._v(" "),
-                                props.column.field == "total_gaji_harian_custom"
+                                props.column.field == "gaji_harian_custom"
                                   ? _c("span", [
                                       _vm._v(
                                         "\n\t\t\t\t\t\t\t\t\t\t" +
                                           _vm._s(
-                                            _vm.toRupiah(
-                                              props.row.total_gaji_harian
-                                            )
+                                            _vm.toRupiah(props.row.gaji_harian)
                                           ) +
                                           "\n\t\t\t\t\t\t\t\t\t"
                                       )
                                     ])
                                   : _vm._e(),
                                 _vm._v(" "),
-                                props.row.gaji_borongan
+                                props.column.field == "jumlah_gaji_custom"
                                   ? _c("span", [
-                                      props.column.field ==
-                                      "gaji_borongan_custom"
-                                        ? _c("span", [
-                                            _vm._v(
-                                              "\n                      " +
-                                                _vm._s(
-                                                  _vm.toRupiah(
-                                                    props.row.gaji_borongan
-                                                  )
-                                                ) +
-                                                "\n                    "
-                                            )
-                                          ])
-                                        : _vm._e()
+                                      _vm._v(
+                                        "\n                      " +
+                                          _vm._s(
+                                            _vm.toRupiah(props.row.jumlah_gaji)
+                                          ) +
+                                          "\n                    "
+                                      )
                                     ])
-                                  : _vm._e(),
-                                _vm._v(" "),
-                                !props.row.gaji_borongan
-                                  ? _c("span", [_c("span", [_vm._v("-")])])
-                                  : _vm._e()
+                                  : _c("span", [
+                                      _vm._v(
+                                        "\n                    " +
+                                          _vm._s(
+                                            props.formattedRow[
+                                              props.column.field
+                                            ]
+                                          ) +
+                                          "\n                  "
+                                      )
+                                    ])
                               ]
                             }
                           }

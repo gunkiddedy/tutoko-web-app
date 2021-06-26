@@ -13,9 +13,9 @@ class AbsensiController extends Controller
         $q = DB::table("absensis")->orderBy('id', 'desc')->limit(100)->get();
         return response()->json($q);
     }
-    public function getDetailGaji()
+    public function getDetailAbsensi()
     {
-        $q = DB::table("detail_gaji")->orderBy('id', 'desc')->limit(100)->get();
+        $q = DB::table("detail_absensi")->orderBy('id', 'desc')->limit(100)->get();
         return response()->json($q);
     }
     public function addDataAbsensi(Request $request)

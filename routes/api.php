@@ -43,7 +43,7 @@ Route::post('add-data-pegawai', 'PegawaiController@addDataPegawai');
 
 //--ABSENSI--//
 Route::get('absensi', 'AbsensiController@getDataAbsensi');
-Route::get('detail-gaji', 'AbsensiController@getDetailGaji');
+Route::get('detail-absensi', 'AbsensiController@getDetailAbsensi');
 Route::post('add-data-absensi', 'AbsensiController@addDataAbsensi');
 
 //--SUPPLIER--//

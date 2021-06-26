@@ -53,17 +53,12 @@
                   <span v-if="props.column.field == 'tanggal_custom'">
                     {{moment(props.row.tanggal).format('LL')}}
                   </span>
-                  <span v-if="props.column.field == 'total_gaji_harian_custom'">
-										{{ toRupiah(props.row.total_gaji_harian) }}
+                  <span v-if="props.column.field == 'gaji_harian_custom'">
+										{{ toRupiah(props.row.gaji_harian) }}
 									</span>
-                  <span v-if="props.row.gaji_borongan">
-                    <span v-if="props.column.field == 'gaji_borongan_custom'">
-                      {{ toRupiah(props.row.gaji_borongan) }}
+                    <span v-if="props.column.field == 'jumlah_gaji_custom'">
+                      {{ toRupiah(props.row.jumlah_gaji) }}
                     </span>
-                  </span>
-                  <span v-if="!props.row.gaji_borongan">
-                    <span>-</span>
-                  </span>
                   <!-- <span v-if="props.column.field == 'action'">
                     <button
                       class="bg-indigo-500 rounded border border-indigo-600 hover:bg-indigo-600 px-2 py-0 text-white font-semibold mx-1"
@@ -71,10 +66,10 @@
                     >
                       <i class="fas fa-pen mr-2"></i>Edit
                     </button>
-                  </span>
+                  </span> -->
                   <span v-else>
                     {{ props.formattedRow[props.column.field] }}
-                  </span> -->
+                  </span>
                 </template>
               </vue-good-table>
             </div>
@@ -100,32 +95,38 @@ export default {
       isLoading: false,
       columns: [
         {
+          label: "Nama Pegawai",
+          field: "pegawai_nama",
+          sortable: false,
+          width: "auto",
+          filterable: true,
+					filterOptions: {
+						enabled: true,
+						placeholder: "Filter pegawai",
+						trigger: "enter",
+					},
+        },
+        {
+          label: "Jam Kerja",
+          field: "jam_kerja",
+          sortable: false,
+          width: "auto",
+        },
+        {
           label: "Tanggal",
           field: "tanggal_custom",
           sortable: false,
           width: "auto",
         },
         {
-          label: "Jam Kerja",
-          field: "jumlah_jam",
+          label: "Gaji Harian",
+          field: "gaji_harian_custom",
           sortable: false,
           width: "auto",
         },
         {
-          label: "Nama Pegawai",
-          field: "nama_pegawai",
-          sortable: false,
-          width: "auto",
-        },
-        {
-          label: "Total Gaji Harian",
-          field: "total_gaji_harian_custom",
-          sortable: false,
-          width: "auto",
-        },
-        {
-          label: "Total Gaji Borongan",
-          field: "gaji_borongan_custom",
+          label: "Pendapatan",
+          field: "jumlah_gaji_custom",
           sortable: false,
           width: "auto",
         }
@@ -202,7 +203,7 @@ export default {
     },
     getRecords() {
       axios
-        .get("/api/detail-gaji/", { params: this.serverParams })
+        .get("/api/detail-absensi/", { params: this.serverParams })
         .then((response) => {
           this.loading = false;
           this.totalRecords = response.data.length;

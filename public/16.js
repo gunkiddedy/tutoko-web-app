@@ -141,13 +141,13 @@ __webpack_require__.r(__webpack_exports__);
         sortable: false,
         width: "auto"
       }, {
-        label: "Jumlah Produksi",
-        field: "produksi_jumlah",
+        label: "HPP",
+        field: "hpp_custom",
         sortable: false,
         width: "auto"
       }, {
-        label: "HPP",
-        field: "hpp_custom",
+        label: "Jumlah Produksi",
+        field: "produksi_jumlah",
         sortable: false,
         width: "auto"
       }, {

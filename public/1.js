@@ -101,6 +101,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["id"],
   data: function data() {
@@ -255,7 +257,7 @@ var render = function() {
                   _c(
                     "h1",
                     { staticClass: "text-lg text-gray-500 pb-1 font-semibold" },
-                    [_vm._v("\n\t\t\t\t\t\t  Tambah Data Produksi\n\t\t\t\t\t")]
+                    [_vm._v("\n\t\t\t\t\t\t  Data Absensi\n\t\t\t\t\t")]
                   ),
                   _vm._v(" "),
                   _c(
@@ -279,7 +281,7 @@ var render = function() {
                                   },
                                   [
                                     _vm._v(
-                                      "\n\t\t\t\t\t\t\t\t\t\tTanggal Produksi"
+                                      "\n\t\t\t\t\t\t\t\t\t\tTanggal Absensi"
                                     )
                                   ]
                                 ),
@@ -287,7 +289,8 @@ var render = function() {
                                 _c("date-picker", {
                                   attrs: {
                                     "value-type": "format",
-                                    placeholder: "Tanggal Produksi",
+                                    placeholder:
+                                      "Kosongkan jika absensi untuk hari ini",
                                     format: "DD-MM-YYYY"
                                   },
                                   model: {
@@ -304,7 +307,7 @@ var render = function() {
                             _vm._v(" "),
                             _c(
                               "div",
-                              { staticClass: "list-pgw px-0 md:px-4 my-2" },
+                              { staticClass: "list-pgw px-0 md:px-4 my-6" },
                               [
                                 _c(
                                   "label",
@@ -314,8 +317,7 @@ var render = function() {
                                   },
                                   [
                                     _vm._v(
-                                      "\n\t\t\t\t\t\t\t\t\t\tPegawai " +
-                                        _vm._s(_vm.setJams)
+                                      "\n\t\t\t\t\t\t\t\t\t\tPegawai \n\t\t\t\t\t\t\t\t\t\t"
                                     )
                                   ]
                                 ),
@@ -324,7 +326,7 @@ var render = function() {
                                   "div",
                                   {
                                     staticClass:
-                                      "grid grid-cols-1 md:grid-cols-3 gap-4"
+                                      "grid grid-cols-1 md:grid-cols-3 gap-2"
                                   },
                                   _vm._l(_vm.pegawais, function(pgw, i) {
                                     return _c(
@@ -339,7 +341,7 @@ var render = function() {
                                               "span",
                                               {
                                                 staticClass:
-                                                  "w-1/2 px-4 text-xl uppercase font-bold border border-gray-300 hover:bg-gray-200 py-2 bg-gray-100 text-blue-400"
+                                                  "w-1/2 px-4 text-lg uppercase font-bold border border-blue-200 hover:bg-blue-100 py-2 bg-blue-50 text-blue-400"
                                               },
                                               [
                                                 _c("span", [
@@ -362,7 +364,7 @@ var render = function() {
                                                   }
                                                 ],
                                                 staticClass:
-                                                  "w-1/2 px-5 py-2 text-gray-500 focus:outline-none focus:shadow-inner border border-blue-200 bg-white appearance-none uppercase text-lg font-bold",
+                                                  "w-1/2 px-4 py-2 text-red-400 focus:outline-none focus:shadow-inner border border-blue-200 bg-white uppercase appearance-none text-lg font-bold",
                                                 on: {
                                                   change: function($event) {
                                                     var $$selectedVal = Array.prototype.filter

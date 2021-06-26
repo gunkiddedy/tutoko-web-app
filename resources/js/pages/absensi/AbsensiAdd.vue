@@ -6,7 +6,7 @@
       		<div class="w-full h-screen overflow-x-hidden border-t flex flex-col">
         		<main class="w-full flex-grow p-1 md:p-6 bg-white">
           			<h1 class="text-lg text-gray-500 pb-1 font-semibold">
-						  Tambah Data Produksi
+						  Data Absensi
 					</h1>
           			<div class="w-full mt-6 pl-0 lg:pl-2 leading-loose">
 						<div class="p-2 md:p-10 bg-white rounded shadow">
@@ -14,28 +14,30 @@
 								<div class="px-0 md:px-4 my-2">
 									<label 
 										class="block text-lg text-gray-600" for="cus_email">
-										Tanggal Produksi</label>
+										Tanggal Absensi</label>
 										<date-picker
 											v-model="tanggal" 
 											value-type="format" 
-											placeholder="Tanggal Produksi" 
+											placeholder="Kosongkan jika absensi untuk hari ini" 
 											format="DD-MM-YYYY">
 										</date-picker>
 								</div>
-								<div class="list-pgw px-0 md:px-4 my-2">
+								<div class="list-pgw px-0 md:px-4 my-6">
 									<label 
 										class="block text-lg text-gray-600" for="cus_email">
-										Pegawai {{setJams}}</label>
-									<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+										Pegawai 
+										<!-- {{setJams}} -->
+									</label>
+									<div class="grid grid-cols-1 md:grid-cols-3 gap-2">
 										<div class="btn-grup" v-for="(pgw,i) in pegawais" :key="i">
 											<div class="flex items-center">
 												<span 
-													class="w-1/2 px-4 text-xl uppercase font-bold border border-gray-300 hover:bg-gray-200 py-2 bg-gray-100 text-blue-400">
+													class="w-1/2 px-4 text-lg uppercase font-bold border border-blue-200 hover:bg-blue-100 py-2 bg-blue-50 text-blue-400">
 													<span>{{pgw.pegawai_nama}}</span>
 												</span>
 												<select
 													v-model="setJams[i]"
-													class="w-1/2 px-5 py-2 text-gray-500 focus:outline-none focus:shadow-inner border border-blue-200 bg-white appearance-none uppercase text-lg font-bold">
+													class="w-1/2 px-4 py-2 text-red-400 focus:outline-none focus:shadow-inner border border-blue-200 bg-white uppercase appearance-none text-lg font-bold">
 													<option :value="0" selected>
 														Libur
 													</option>

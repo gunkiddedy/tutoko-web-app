@@ -29,6 +29,14 @@
       </router-link>
 
       <router-link
+        to="/produksi"
+        v-if="role === 'desa' || role === 'admin'"
+        class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item"
+      >
+        <i class="fas fa-clipboard-check mr-3"></i> Produksi</router-link
+      >
+
+      <router-link
         to="/pembelian"
         v-if="role === 'desa' || role === 'admin'"
         class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item"
@@ -57,14 +65,6 @@
         class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item"
       >
         <i class="fas fa-bus mr-3"></i> Supplier</router-link
-      >
-
-      <router-link
-        to="/produksi"
-        v-if="role === 'desa' || role === 'admin'"
-        class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item"
-      >
-        <i class="fas fa-clipboard-check mr-3"></i> Produksi</router-link
       >
 
       <router-link
