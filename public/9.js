@@ -186,6 +186,58 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["id"],
   data: function data() {
@@ -196,6 +248,10 @@ __webpack_require__.r(__webpack_exports__);
       barang_satuan: "",
       barang_stok: "",
       barang_tipe: "",
+      upah: 0,
+      hpp: 0,
+      hjs: 0,
+      hjg: 0,
       active: "",
       photo: "",
       tipes: ["Mandiri", "Supplier"],
@@ -226,6 +282,10 @@ __webpack_require__.r(__webpack_exports__);
         _this.barang_satuan = response.data.barang_satuan;
         _this.barang_stok = response.data.barang_stok;
         _this.barang_tipe = response.data.barang_tipe;
+        _this.upah = response.data.upah;
+        _this.hpp = response.data.hpp;
+        _this.hjs = response.data.hjs;
+        _this.hjg = response.data.hjg;
         _this.photo = response.data.photo;
         _this.active = response.data.active;
       })["catch"](function (err) {
@@ -248,6 +308,10 @@ __webpack_require__.r(__webpack_exports__);
       formData.append("barang_satuan", this.barang_satuan);
       formData.append("barang_stok", this.barang_stok);
       formData.append("barang_tipe", this.barang_tipe);
+      formData.append("upah", this.upah);
+      formData.append("hpp", this.hpp);
+      formData.append("hjs", this.hjs);
+      formData.append("hjg", this.hjg);
       formData.append("active", this.active); // console.log(this.imageList);
 
       this.imageList.forEach(function (file) {
@@ -341,7 +405,8 @@ var render = function() {
                             _c(
                               "label",
                               {
-                                staticClass: "block text-sm text-gray-600",
+                                staticClass:
+                                  "uppercase block text-sm text-gray-600",
                                 attrs: { for: "cus_name" }
                               },
                               [_vm._v("Nama Barang")]
@@ -357,7 +422,7 @@ var render = function() {
                                 }
                               ],
                               staticClass:
-                                "w-full px-5 py-1 text-gray-700 bg-gray-200 rounded",
+                                "w-full px-5 py-1 text-gray-700 bg-gray-50 rounded",
                               attrs: {
                                 id: "barang_nama",
                                 type: "text",
@@ -388,7 +453,8 @@ var render = function() {
                             _c(
                               "label",
                               {
-                                staticClass: "block text-sm text-gray-600",
+                                staticClass:
+                                  "uppercase block text-sm text-gray-600",
                                 attrs: { for: "cus_email" }
                               },
                               [_vm._v("Satuan")]
@@ -404,7 +470,7 @@ var render = function() {
                                 }
                               ],
                               staticClass:
-                                "w-full px-2 py-1 text-gray-700 bg-gray-200 rounded",
+                                "w-full px-2 py-1 text-gray-700 bg-gray-50 rounded",
                               attrs: {
                                 id: "barang_satuan",
                                 type: "text",
@@ -427,7 +493,8 @@ var render = function() {
                             _c(
                               "label",
                               {
-                                staticClass: "block text-sm text-gray-600",
+                                staticClass:
+                                  "uppercase block text-sm text-gray-600",
                                 attrs: { for: "cus_email" }
                               },
                               [_vm._v("Stok")]
@@ -443,7 +510,7 @@ var render = function() {
                                 }
                               ],
                               staticClass:
-                                "w-full px-2 py-1 text-gray-700 bg-gray-200 rounded",
+                                "w-full px-2 py-1 text-gray-700 bg-gray-50 rounded",
                               attrs: {
                                 id: "barang_stok",
                                 type: "text",
@@ -466,7 +533,168 @@ var render = function() {
                             _c(
                               "label",
                               {
-                                staticClass: "block text-sm text-gray-600",
+                                staticClass:
+                                  "uppercase block text-sm text-gray-600",
+                                attrs: { for: "cus_email" }
+                              },
+                              [_vm._v("upah")]
+                            ),
+                            _vm._v(" "),
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.upah,
+                                  expression: "upah"
+                                }
+                              ],
+                              staticClass:
+                                "w-full px-2 py-1 text-gray-700 bg-gray-50 rounded",
+                              attrs: {
+                                id: "barang_stok",
+                                type: "text",
+                                placeholder: "upah",
+                                "aria-label": ""
+                              },
+                              domProps: { value: _vm.upah },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.upah = $event.target.value
+                                }
+                              }
+                            })
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "px-4 my-2" }, [
+                            _c(
+                              "label",
+                              {
+                                staticClass:
+                                  "uppercase block text-sm text-gray-600",
+                                attrs: { for: "cus_email" }
+                              },
+                              [_vm._v("hpp")]
+                            ),
+                            _vm._v(" "),
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.hpp,
+                                  expression: "hpp"
+                                }
+                              ],
+                              staticClass:
+                                "w-full px-2 py-1 text-gray-700 bg-gray-50 rounded",
+                              attrs: {
+                                id: "barang_hpp",
+                                type: "text",
+                                placeholder: "hpp",
+                                "aria-label": ""
+                              },
+                              domProps: { value: _vm.hpp },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.hpp = $event.target.value
+                                }
+                              }
+                            })
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "px-4 my-2" }, [
+                            _c(
+                              "label",
+                              {
+                                staticClass:
+                                  "uppercase block text-sm text-gray-600",
+                                attrs: { for: "cus_email" }
+                              },
+                              [_vm._v("hjs")]
+                            ),
+                            _vm._v(" "),
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.hjs,
+                                  expression: "hjs"
+                                }
+                              ],
+                              staticClass:
+                                "w-full px-2 py-1 text-gray-700 bg-gray-50 rounded",
+                              attrs: {
+                                id: "barang_hjs",
+                                type: "text",
+                                placeholder: "hjs",
+                                "aria-label": ""
+                              },
+                              domProps: { value: _vm.hjs },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.hjs = $event.target.value
+                                }
+                              }
+                            })
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "px-4 my-2" }, [
+                            _c(
+                              "label",
+                              {
+                                staticClass:
+                                  "uppercase block text-sm text-gray-600",
+                                attrs: { for: "cus_email" }
+                              },
+                              [_vm._v("hjg")]
+                            ),
+                            _vm._v(" "),
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.hjg,
+                                  expression: "hjg"
+                                }
+                              ],
+                              staticClass:
+                                "w-full px-2 py-1 text-gray-700 bg-gray-50 rounded",
+                              attrs: {
+                                id: "barang_hjg",
+                                type: "text",
+                                placeholder: "hjg",
+                                "aria-label": ""
+                              },
+                              domProps: { value: _vm.hjg },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.hjg = $event.target.value
+                                }
+                              }
+                            })
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "px-4 my-2" }, [
+                            _c(
+                              "label",
+                              {
+                                staticClass:
+                                  "uppercase block text-sm text-gray-600",
                                 attrs: { for: "cus_email" }
                               },
                               [_vm._v("Jenis Barang")]
@@ -542,7 +770,8 @@ var render = function() {
                             _c(
                               "label",
                               {
-                                staticClass: "block text-sm text-gray-600",
+                                staticClass:
+                                  "uppercase block text-sm text-gray-600",
                                 attrs: { for: "cus_name" }
                               },
                               [_vm._v("Status")]
@@ -660,7 +889,7 @@ var render = function() {
                                 "label",
                                 {
                                   staticClass:
-                                    "bg-yellow-500 flex justify-center px-2 items-center mt-3 py-2 rounded-lg border border-blue cursor-pointer hover:bg-yellow-600 w-1/3"
+                                    "uppercase bg-yellow-500 flex justify-center px-2 items-center mt-3 py-2 rounded-lg border border-blue cursor-pointer hover:bg-yellow-600 w-1/3"
                                 },
                                 [
                                   _c(

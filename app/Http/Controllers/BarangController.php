@@ -14,6 +14,11 @@ class BarangController extends Controller
         $q = DB::table("barangs")->orderBy('id', 'desc')->limit(1000)->get();
         return response()->json($q);
     }
+    public function getHargaBarang(Request $request, $id)        
+    {
+        $q = Barang::find($id);
+        return response()->json($q);
+    }
     public function getDataNonMandiri()
     {
         $q = DB::table('barangs')->where('barang_tipe', '=', 'Supplier')->get();
@@ -68,6 +73,10 @@ class BarangController extends Controller
             $q->barang_satuan = $request->get('barang_satuan');
             $q->barang_stok = $request->get('barang_stok');
             $q->barang_tipe = $request->get('barang_tipe');
+            $q->upah = $request->get('upah');
+            $q->hpp = $request->get('hpp');
+            $q->hjs = $request->get('hjs');
+            $q->hjg = $request->get('hjg');
             $q->active = $request->get('active');
             $q->photo = 'images/'.$filenametostore;
             $q->save();
@@ -76,6 +85,10 @@ class BarangController extends Controller
             $q->barang_satuan = $request->get('barang_satuan');
             $q->barang_stok = $request->get('barang_stok');
             $q->barang_tipe = $request->get('barang_tipe');
+            $q->upah = $request->get('upah');
+            $q->hpp = $request->get('hpp');
+            $q->hjs = $request->get('hjs');
+            $q->hjg = $request->get('hjg');
             $q->active = $request->get('active');
             $q->save();
         }
@@ -96,6 +109,10 @@ class BarangController extends Controller
             $barang_satuan = $request->barang_satuan;
             $barang_stok = $request->barang_stok;
             $barang_tipe = $request->barang_tipe;
+            $upah = $request->upah;
+            $hpp = $request->hpp;
+            $hjs = $request->hjs;
+            $hjg = $request->hjg;
             $photo = $request->photo;
             $random = rand(100, 9999);
             
@@ -117,6 +134,10 @@ class BarangController extends Controller
                     'barang_satuan'=> $barang_satuan,
                     // 'barang_stok' => $barang_stok,
                     'barang_tipe' => $barang_tipe,
+                    'upah' => $upah,
+                    'hpp' => $hpp,
+                    'hjs' => $hjs,
+                    'hjg' => $hjg,
                     'photo' => 'images/'.$filenametostore
                 ]);
             }

@@ -28,6 +28,8 @@ class ProduksiController extends Controller
             'produksi_jumlah',
             'hpp',
             'upah',
+            'hjs',
+            'hjg',
         ]);
         
         $q = Produksi::find($id);
@@ -37,6 +39,8 @@ class ProduksiController extends Controller
         $q->produksi_jumlah = $request->get('produksi_jumlah');
         $q->hpp = $request->get('hpp');
         $q->upah = $request->get('upah');
+        $q->hjs = $request->get('hjs');
+        $q->hjg = $request->get('hjg');
         // dd($request);
         $q->save();
 
@@ -51,6 +55,8 @@ class ProduksiController extends Controller
         $q->produksi_jumlah = $request->get('produksi_jumlah');
         $q->hpp = $request->get('hpp');
         $q->upah = $request->get('upah');
+        $q->hjs = $request->get('hjs');
+        $q->hjg = $request->get('hjg');
         $q->save();
         
         return response()->json('data successfuly added');

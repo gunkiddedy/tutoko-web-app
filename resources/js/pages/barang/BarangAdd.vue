@@ -16,7 +16,7 @@
               <div class="p-2 md:p-10 bg-white rounded shadow">
                 <div class="grid grid-cols-1 md:grid-cols-2">
                   <div class="px-0 md:px-4 my-2">
-                    <label class="block text-sm text-gray-600" for="cus_name"
+                    <label class="uppercase block text-sm text-gray-600" for="cus_name"
                       >Nama Barang</label
                     >
                     <input
@@ -28,7 +28,7 @@
                     />
                   </div>
                   <div class="px-0 md:px-4 my-2">
-                    <label class="block text-sm text-gray-600" for="cus_email"
+                    <label class="uppercase block text-sm text-gray-600" for="cus_email"
                       >Satuan</label
                     >
                     <input
@@ -40,22 +40,8 @@
                       aria-label="Email"
                     />
                   </div>
-                  <!-- <div class="px-0 md:px-4 my-2">
-                    <label class="block text-sm text-gray-600" for="cus_email"
-                      >Stok</label
-                    >
-                    <input
-                      class="w-full px-2 py-2  text-gray-700 bg-white rounded focus:bg-blue-50 uppercase border-2 border-blue-200 text-lg font-bold"
-                      id="barang_stok"
-                      v-model="barang_stok"
-                      type="number"
-                      min="0"
-                      placeholder="Stok"
-                      aria-label=""
-                    />
-                  </div> -->
                   <div class="px-0 md:px-4 my-2">
-                    <label class="block text-sm text-gray-600" for="cus_email"
+                    <label class="uppercase block text-sm text-gray-600" for="cus_email"
                       >Jenis Barang</label
                     >
                     <select
@@ -75,6 +61,72 @@
                       </option>
                     </select>
                   </div>
+                  <div v-if="barang_tipe == 'Mandiri'" class="px-0 md:px-4 my-2">
+                    <label class="uppercase block text-sm text-gray-600" for="cus_email"
+                      >hpp</label
+                    >
+                    <input
+                      class="w-full px-2 py-2  text-gray-700 bg-white rounded focus:bg-blue-50 uppercase border-2 border-blue-200 text-lg font-bold"
+                      id="barang_satuan"
+                      v-model="hpp"
+                      type="text"
+                      placeholder="hpp"
+                      aria-label="Email"
+                    />
+                  </div>
+                  <div v-if="barang_tipe == 'Mandiri'" class="px-0 md:px-4 my-2">
+                    <label class="uppercase block text-sm text-gray-600" for="cus_email"
+                      >upah</label
+                    >
+                    <input
+                      class="w-full px-2 py-2  text-gray-700 bg-white rounded focus:bg-blue-50 uppercase border-2 border-blue-200 text-lg font-bold"
+                      id="barang_satuan"
+                      v-model="upah"
+                      type="text"
+                      placeholder="upah"
+                      aria-label="Email"
+                    />
+                  </div>
+                  <div v-if="barang_tipe == 'Mandiri'" class="px-0 md:px-4 my-2">
+                    <label class="uppercase block text-sm text-gray-600" for="cus_email"
+                      >hjs</label
+                    >
+                    <input
+                      class="w-full px-2 py-2  text-gray-700 bg-white rounded focus:bg-blue-50 uppercase border-2 border-blue-200 text-lg font-bold"
+                      id="barang_satuan"
+                      v-model="hjs"
+                      type="text"
+                      placeholder="hjs"
+                      aria-label="Email"
+                    />
+                  </div>
+                  <div v-if="barang_tipe == 'Mandiri'" class="px-0 md:px-4 my-2">
+                    <label class="uppercase block text-sm text-gray-600" for="cus_email"
+                      >hjg</label
+                    >
+                    <input
+                      class="w-full px-2 py-2  text-gray-700 bg-white rounded focus:bg-blue-50 uppercase border-2 border-blue-200 text-lg font-bold"
+                      id="barang_satuan"
+                      v-model="hjg"
+                      type="text"
+                      placeholder="hjg"
+                      aria-label="Email"
+                    />
+                  </div>
+                  <!-- <div class="px-0 md:px-4 my-2">
+                    <label class="uppercase block text-sm text-gray-600" for="cus_email"
+                      >Stok</label
+                    >
+                    <input
+                      class="w-full px-2 py-2  text-gray-700 bg-white rounded focus:bg-blue-50 uppercase border-2 border-blue-200 text-lg font-bold"
+                      id="barang_stok"
+                      v-model="barang_stok"
+                      type="number"
+                      min="0"
+                      placeholder="Stok"
+                      aria-label=""
+                    />
+                  </div> -->
                   <div class="button-plus-upload flex px-1 justify-between items-center my-6">
                     <div class>
                       <el-upload
@@ -135,6 +187,10 @@ export default {
       barang_satuan: "",
       barang_stok: "",
       barang_tipe: "",
+      upah: 0,
+      hpp: 0,
+      hjs: 0,
+      hjg: 0,
       tipes: ['Mandiri', 'Supplier'],
       status: ['Active', 'Inactive'],
 	  imageList: [],
@@ -191,6 +247,10 @@ export default {
       formData.append("barang_satuan", this.barang_satuan);
       formData.append("barang_stok", this.barang_stok);
       formData.append("barang_tipe", this.barang_tipe);
+      formData.append("upah", this.upah);
+      formData.append("hpp", this.hpp);
+      formData.append("hjs", this.hjs);
+      formData.append("hjg", this.hjg);
 	    this.imageList.forEach((file) => {
         formData.append("photo", file, file.name);
       });

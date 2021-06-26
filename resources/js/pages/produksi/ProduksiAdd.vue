@@ -16,10 +16,11 @@
                   class="grid grid-cols-1 md:grid-cols-2"
                 >
                   <div class="px-0 md:px-4 my-2">
-                    <label class="block text-lg text-gray-600" for="cus_email"
+                    <label class="uppercase block text-lg text-gray-600" for="cus_email"
                       >Nama Barang</label
                     >
                     <select
+                        @change="selectedBarang(form.barang_id)"
                         v-model="form.barang_id"
                         class="w-full px-5 py-2 rounded text-gray-500 focus:outline-none focus:shadow-inner border-2 border-blue-200 bg-white appearance-none uppercase text-lg font-bold"
                       >
@@ -38,7 +39,7 @@
                   </div>
 
                   <div class="px-0 md:px-4 my-2">
-                    <label class="block text-lg text-gray-600" for="cus_email"
+                    <label class="uppercase block text-lg text-gray-600" for="cus_email"
                       >Nama Pegawai</label
                     >
                     <select
@@ -60,7 +61,7 @@
                   </div>
 
                   <div class="px-0 md:px-4 my-2">
-                    <label class="block text-lg text-gray-600" for="cus_name"
+                    <label class="uppercase block text-lg text-gray-600" for="cus_name"
                       >Jumlah Produksi</label
                     >
                     <input
@@ -74,10 +75,22 @@
                   </div>
 
                   <div class="px-0 md:px-4 my-2">
-                    <label class="block text-lg text-gray-600" for="cus_email"
+                    <label class="uppercase block text-lg text-gray-600" for="cus_email"
+                      >Tanggal Produksi</label
+                    >
+                    <date-picker
+                      v-model="form.produksi_tanggal" 
+                      value-type="format" 
+                      placeholder="Tanggal Produksi" 
+                      format="DD-MM-YYYY"></date-picker>
+                  </div>
+
+                  <div class="px-0 md:px-4 my-2">
+                    <label class="uppercase block text-lg text-gray-600" for="cus_email"
                       >Harga Pokok Produksi</label
                     >
                     <input
+                      readonly
                       class="w-full px-4 py-2 text-gray-700 border-2 border-blue-200 bg-white rounded uppercase text-lg font-bold"
                       id="barang_satuan"
                       v-model="form.hpp"
@@ -88,10 +101,11 @@
                   </div>
 
                   <div class="px-0 md:px-4 my-2">
-                    <label class="block text-lg text-gray-600" for="cus_email"
+                    <label class="uppercase block text-lg text-gray-600" for="cus_email"
                       >Upah Produksi</label
                     >
                     <input
+                      readonly
                       class="w-full px-4 py-2 text-gray-700 border-2 border-blue-200 bg-white rounded uppercase text-lg font-bold"
                       id="barang_satuan"
                       v-model="form.upah"
@@ -100,16 +114,35 @@
                       placeholder="Upah produksi"
                     />
                   </div>
-                  
+
                   <div class="px-0 md:px-4 my-2">
-                    <label class="block text-lg text-gray-600" for="cus_email"
-                      >Tanggal Produksi</label
+                    <label class="uppercase block text-lg text-gray-600" for="cus_email"
+                      >hjs</label
                     >
-                    <date-picker
-                      v-model="form.produksi_tanggal" 
-                      value-type="format" 
-                      placeholder="Tanggal Produksi" 
-                      format="DD-MM-YYYY"></date-picker>
+                    <input
+                      readonly
+                      class="w-full px-4 py-2 text-gray-700 border-2 border-blue-200 bg-white rounded uppercase text-lg font-bold"
+                      id="barang_satuan"
+                      v-model="form.hjs"
+                      type="number"
+                      min="0"
+                      placeholder="hjs"
+                    />
+                  </div>
+
+                  <div class="px-0 md:px-4 my-2">
+                    <label class="uppercase block text-lg text-gray-600" for="cus_email"
+                      >hjg</label
+                    >
+                    <input
+                      readonly
+                      class="w-full px-4 py-2 text-gray-700 border-2 border-blue-200 bg-white rounded uppercase text-lg font-bold"
+                      id="barang_satuan"
+                      v-model="form.hjg"
+                      type="number"
+                      min="0"
+                      placeholder="hjg"
+                    />
                   </div>                  
                 </div><!-- grid -->
 
@@ -153,14 +186,17 @@ export default {
 
       barangs: null,
       pegawais: null,
+      // hargas: null,
 
       form: {
         barang_id: '',
         pegawai_id: '',
         produksi_tanggal: '',
-        produksi_jumlah: '',
-        hpp: '',
-        upah: '',
+        produksi_jumlah: 0,
+        hpp: 0,
+        upah: 0,
+        hjs: 0,
+        hjg: 0,
       },
     }
   },
@@ -169,6 +205,30 @@ export default {
     this.getBarangs();
   },
   methods: {
+    selectedBarang(param){
+      this.getHarga(param);
+    },
+    getHarga(param){
+      axios.get("/api/get-harga/" + param)
+        .then((response) => {
+          // this.hargas = response.data;
+          if(response.data.hpp){
+            this.form.hpp =  response.data.hpp;
+            this.form.upah =  response.data.upah;
+            this.form.hjs =  response.data.hjs;
+            this.form.hjg =  response.data.hjg;
+          }else{
+            this.form.hpp =  0;
+            this.form.upah =  0;
+            this.form.hjs =  0;
+            this.form.hjg =  0;
+          }
+          console.log(response.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
     cancel(){
       this.$router.push('/produksi');
     },
@@ -197,6 +257,8 @@ export default {
       formData.append("produksi_jumlah", this.form.produksi_jumlah);
       formData.append("hpp", this.form.hpp);
       formData.append("upah", this.form.upah);
+      formData.append("hjs", this.form.hjs);
+      formData.append("hjg", this.form.hjg);
 
       axios.post("/api/add-data-produksi", formData)
         .then((response) => {

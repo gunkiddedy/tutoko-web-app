@@ -25,11 +25,11 @@
                   class="grid grid-cols-1 lg:grid-cols-1 sm:grid-cols-1 md:grid-cols-1"
                 >
                   <div class="px-4 my-2">
-                    <label class="block text-sm text-gray-600" for="cus_name"
+                    <label class="uppercase block text-sm text-gray-600" for="cus_name"
                       >Nama Barang</label
                     >
                     <input
-                      class="w-full px-5 py-1 text-gray-700 bg-gray-200 rounded"
+                      class="w-full px-5 py-1 text-gray-700 bg-gray-50 rounded"
                       id="barang_nama"
                       type="text"
                       aria-label="Name"
@@ -41,11 +41,11 @@
                   class="grid grid-cols-1 lg:grid-cols-2 sm:grid-cols-1 md:grid-cols-1"
                 >
                   <div class="px-4 my-2">
-                    <label class="block text-sm text-gray-600" for="cus_email"
+                    <label class="uppercase block text-sm text-gray-600" for="cus_email"
                       >Satuan</label
                     >
                     <input
-                      class="w-full px-2 py-1 text-gray-700 bg-gray-200 rounded"
+                      class="w-full px-2 py-1 text-gray-700 bg-gray-50 rounded"
                       id="barang_satuan"
                       v-model="barang_satuan"
                       type="text"
@@ -54,11 +54,11 @@
                     />
                   </div>
                   <div class="px-4 my-2">
-                    <label class="block text-sm text-gray-600" for="cus_email"
+                    <label class="uppercase block text-sm text-gray-600" for="cus_email"
                       >Stok</label
                     >
                     <input
-                      class="w-full px-2 py-1 text-gray-700 bg-gray-200 rounded"
+                      class="w-full px-2 py-1 text-gray-700 bg-gray-50 rounded"
                       id="barang_stok"
                       v-model="barang_stok"
                       type="text"
@@ -67,7 +67,59 @@
                     />
                   </div>
                   <div class="px-4 my-2">
-                    <label class="block text-sm text-gray-600" for="cus_email"
+                    <label class="uppercase block text-sm text-gray-600" for="cus_email"
+                      >upah</label
+                    >
+                    <input
+                      class="w-full px-2 py-1 text-gray-700 bg-gray-50 rounded"
+                      id="barang_stok"
+                      v-model="upah"
+                      type="text"
+                      placeholder="upah"
+                      aria-label=""
+                    />
+                  </div>
+                  <div class="px-4 my-2">
+                    <label class="uppercase block text-sm text-gray-600" for="cus_email"
+                      >hpp</label
+                    >
+                    <input
+                      class="w-full px-2 py-1 text-gray-700 bg-gray-50 rounded"
+                      id="barang_hpp"
+                      v-model="hpp"
+                      type="text"
+                      placeholder="hpp"
+                      aria-label=""
+                    />
+                  </div>
+                  <div class="px-4 my-2">
+                    <label class="uppercase block text-sm text-gray-600" for="cus_email"
+                      >hjs</label
+                    >
+                    <input
+                      class="w-full px-2 py-1 text-gray-700 bg-gray-50 rounded"
+                      id="barang_hjs"
+                      v-model="hjs"
+                      type="text"
+                      placeholder="hjs"
+                      aria-label=""
+                    />
+                  </div>
+                  <div class="px-4 my-2">
+                    <label class="uppercase block text-sm text-gray-600" for="cus_email"
+                      >hjg</label
+                    >
+                    <input
+                      class="w-full px-2 py-1 text-gray-700 bg-gray-50 rounded"
+                      id="barang_hjg"
+                      v-model="hjg"
+                      type="text"
+                      placeholder="hjg"
+                      aria-label=""
+                    />
+                  </div>
+                  <div class="px-4 my-2">
+                    <label class="uppercase block text-sm text-gray-600" for="cus_email"
                       >Jenis Barang</label
                     >
                     <select
@@ -92,7 +144,7 @@
                     </select>
                   </div>
                   <div class="px-4 my-2">
-                    <label class="block text-sm text-gray-600" for="cus_name"
+                    <label class="uppercase block text-sm text-gray-600" for="cus_name"
                       >Status</label
                     >
                     <select
@@ -135,7 +187,7 @@
 								</div>
 							</div>
 							<div>
-								<label class="bg-yellow-500 flex justify-center px-2 items-center mt-3 py-2 rounded-lg border border-blue cursor-pointer hover:bg-yellow-600 w-1/3">
+								<label class="uppercase bg-yellow-500 flex justify-center px-2 items-center mt-3 py-2 rounded-lg border border-blue cursor-pointer hover:bg-yellow-600 w-1/3">
 									<svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20" ><path d="M16.88 9.1A4 4 0 0 1 16 17H5a5 5 0 0 1-1-9.9V7a3 3 0 0 1 4.52-2.59A4.98 4.98 0 0 1 17 8c0 .38-.04.74-.12 1.1zM11 11h3l-4-4-4 4h3v3h2v-3z" /></svg>
 									<span class="font-semibold text-white ml-2">Pilih file</span>
 									<input
@@ -187,6 +239,10 @@ export default {
       barang_satuan: "",
       barang_stok: "",
       barang_tipe: "",
+      upah: 0,
+      hpp: 0,
+      hjs: 0,
+      hjg: 0,
       active: "",
       photo: "",
 
@@ -219,6 +275,10 @@ export default {
           this.barang_satuan = response.data.barang_satuan;
           this.barang_stok = response.data.barang_stok;
           this.barang_tipe = response.data.barang_tipe;
+          this.upah = response.data.upah;
+          this.hpp = response.data.hpp;
+          this.hjs = response.data.hjs;
+          this.hjg = response.data.hjg;
           this.photo = response.data.photo;
           this.active = response.data.active;
         })
@@ -243,6 +303,10 @@ export default {
       formData.append("barang_satuan", this.barang_satuan);
       formData.append("barang_stok", this.barang_stok);
       formData.append("barang_tipe", this.barang_tipe);
+      formData.append("upah", this.upah);
+      formData.append("hpp", this.hpp);
+      formData.append("hjs", this.hjs);
+      formData.append("hjg", this.hjg);
       formData.append("active", this.active);
       // console.log(this.imageList);
       this.imageList.forEach((file) => {

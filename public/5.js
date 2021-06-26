@@ -153,6 +153,39 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["id"],
   data: function data() {
@@ -162,13 +195,16 @@ __webpack_require__.r(__webpack_exports__);
       status: '',
       barangs: null,
       pegawais: null,
+      // hargas: null,
       form: {
         barang_id: '',
         pegawai_id: '',
         produksi_tanggal: '',
-        produksi_jumlah: '',
-        hpp: '',
-        upah: ''
+        produksi_jumlah: 0,
+        hpp: 0,
+        upah: 0,
+        hjs: 0,
+        hjg: 0
       }
     };
   },
@@ -177,11 +213,36 @@ __webpack_require__.r(__webpack_exports__);
     this.getBarangs();
   },
   methods: {
+    selectedBarang: function selectedBarang(param) {
+      this.getHarga(param);
+    },
+    getHarga: function getHarga(param) {
+      var _this = this;
+
+      axios.get("/api/get-harga/" + param).then(function (response) {
+        // this.hargas = response.data;
+        if (response.data.hpp) {
+          _this.form.hpp = response.data.hpp;
+          _this.form.upah = response.data.upah;
+          _this.form.hjs = response.data.hjs;
+          _this.form.hjg = response.data.hjg;
+        } else {
+          _this.form.hpp = 0;
+          _this.form.upah = 0;
+          _this.form.hjs = 0;
+          _this.form.hjg = 0;
+        }
+
+        console.log(response.data);
+      })["catch"](function (err) {
+        console.log(err);
+      });
+    },
     cancel: function cancel() {
       this.$router.push('/produksi');
     },
     saveData: function saveData(e) {
-      var _this = this;
+      var _this2 = this;
 
       e.preventDefault();
       this.isSaving = true;
@@ -207,35 +268,37 @@ __webpack_require__.r(__webpack_exports__);
       formData.append("produksi_jumlah", this.form.produksi_jumlah);
       formData.append("hpp", this.form.hpp);
       formData.append("upah", this.form.upah);
+      formData.append("hjs", this.form.hjs);
+      formData.append("hjg", this.form.hjg);
       axios.post("/api/add-data-produksi", formData).then(function (response) {
         console.log(response);
 
-        _this.showNotification("Data Successfully Added");
+        _this2.showNotification("Data Successfully Added");
 
-        _this.isSaving = false;
+        _this2.isSaving = false;
 
-        _this.$router.push('produksi');
+        _this2.$router.push('produksi');
       })["catch"](function (error) {
-        _this.isSaving = false;
-        _this.status_msg = error;
+        _this2.isSaving = false;
+        _this2.status_msg = error;
         console.log(error);
       });
     },
     getPegawais: function getPegawais() {
-      var _this2 = this;
+      var _this3 = this;
 
       axios.get("/api/pegawai/").then(function (response) {
-        _this2.pegawais = response.data;
+        _this3.pegawais = response.data;
         console.log(response);
       })["catch"](function (err) {
         console.log(err);
       });
     },
     getBarangs: function getBarangs() {
-      var _this3 = this;
+      var _this4 = this;
 
       axios.get("/api/barang-mandiri/").then(function (response) {
-        _this3.barangs = response.data;
+        _this4.barangs = response.data;
         console.log(response);
       })["catch"](function (err) {
         console.log(err);
@@ -275,11 +338,11 @@ __webpack_require__.r(__webpack_exports__);
       return true;
     },
     showNotification: function showNotification(message) {
-      var _this4 = this;
+      var _this5 = this;
 
       this.status_msg = message;
       setTimeout(function () {
-        _this4.status_msg = "";
+        _this5.status_msg = "";
       }, 3000);
     }
   }
@@ -397,7 +460,8 @@ var render = function() {
                                 _c(
                                   "label",
                                   {
-                                    staticClass: "block text-lg text-gray-600",
+                                    staticClass:
+                                      "uppercase block text-lg text-gray-600",
                                     attrs: { for: "cus_email" }
                                   },
                                   [_vm._v("Nama Barang")]
@@ -417,26 +481,36 @@ var render = function() {
                                     staticClass:
                                       "w-full px-5 py-2 rounded text-gray-500 focus:outline-none focus:shadow-inner border-2 border-blue-200 bg-white appearance-none uppercase text-lg font-bold",
                                     on: {
-                                      change: function($event) {
-                                        var $$selectedVal = Array.prototype.filter
-                                          .call($event.target.options, function(
-                                            o
-                                          ) {
-                                            return o.selected
-                                          })
-                                          .map(function(o) {
-                                            var val =
-                                              "_value" in o ? o._value : o.value
-                                            return val
-                                          })
-                                        _vm.$set(
-                                          _vm.form,
-                                          "barang_id",
-                                          $event.target.multiple
-                                            ? $$selectedVal
-                                            : $$selectedVal[0]
-                                        )
-                                      }
+                                      change: [
+                                        function($event) {
+                                          var $$selectedVal = Array.prototype.filter
+                                            .call(
+                                              $event.target.options,
+                                              function(o) {
+                                                return o.selected
+                                              }
+                                            )
+                                            .map(function(o) {
+                                              var val =
+                                                "_value" in o
+                                                  ? o._value
+                                                  : o.value
+                                              return val
+                                            })
+                                          _vm.$set(
+                                            _vm.form,
+                                            "barang_id",
+                                            $event.target.multiple
+                                              ? $$selectedVal
+                                              : $$selectedVal[0]
+                                          )
+                                        },
+                                        function($event) {
+                                          return _vm.selectedBarang(
+                                            _vm.form.barang_id
+                                          )
+                                        }
+                                      ]
                                     }
                                   },
                                   [
@@ -482,7 +556,8 @@ var render = function() {
                                 _c(
                                   "label",
                                   {
-                                    staticClass: "block text-lg text-gray-600",
+                                    staticClass:
+                                      "uppercase block text-lg text-gray-600",
                                     attrs: { for: "cus_email" }
                                   },
                                   [_vm._v("Nama Pegawai")]
@@ -567,7 +642,8 @@ var render = function() {
                                 _c(
                                   "label",
                                   {
-                                    staticClass: "block text-lg text-gray-600",
+                                    staticClass:
+                                      "uppercase block text-lg text-gray-600",
                                     attrs: { for: "cus_name" }
                                   },
                                   [_vm._v("Jumlah Produksi")]
@@ -606,92 +682,6 @@ var render = function() {
                                 })
                               ]),
                               _vm._v(" "),
-                              _c("div", { staticClass: "px-0 md:px-4 my-2" }, [
-                                _c(
-                                  "label",
-                                  {
-                                    staticClass: "block text-lg text-gray-600",
-                                    attrs: { for: "cus_email" }
-                                  },
-                                  [_vm._v("Harga Pokok Produksi")]
-                                ),
-                                _vm._v(" "),
-                                _c("input", {
-                                  directives: [
-                                    {
-                                      name: "model",
-                                      rawName: "v-model",
-                                      value: _vm.form.hpp,
-                                      expression: "form.hpp"
-                                    }
-                                  ],
-                                  staticClass:
-                                    "w-full px-4 py-2 text-gray-700 border-2 border-blue-200 bg-white rounded uppercase text-lg font-bold",
-                                  attrs: {
-                                    id: "barang_satuan",
-                                    type: "number",
-                                    min: "0",
-                                    placeholder: "Harga Pokok Produksi"
-                                  },
-                                  domProps: { value: _vm.form.hpp },
-                                  on: {
-                                    input: function($event) {
-                                      if ($event.target.composing) {
-                                        return
-                                      }
-                                      _vm.$set(
-                                        _vm.form,
-                                        "hpp",
-                                        $event.target.value
-                                      )
-                                    }
-                                  }
-                                })
-                              ]),
-                              _vm._v(" "),
-                              _c("div", { staticClass: "px-0 md:px-4 my-2" }, [
-                                _c(
-                                  "label",
-                                  {
-                                    staticClass: "block text-lg text-gray-600",
-                                    attrs: { for: "cus_email" }
-                                  },
-                                  [_vm._v("Upah Produksi")]
-                                ),
-                                _vm._v(" "),
-                                _c("input", {
-                                  directives: [
-                                    {
-                                      name: "model",
-                                      rawName: "v-model",
-                                      value: _vm.form.upah,
-                                      expression: "form.upah"
-                                    }
-                                  ],
-                                  staticClass:
-                                    "w-full px-4 py-2 text-gray-700 border-2 border-blue-200 bg-white rounded uppercase text-lg font-bold",
-                                  attrs: {
-                                    id: "barang_satuan",
-                                    type: "number",
-                                    min: "0",
-                                    placeholder: "Upah produksi"
-                                  },
-                                  domProps: { value: _vm.form.upah },
-                                  on: {
-                                    input: function($event) {
-                                      if ($event.target.composing) {
-                                        return
-                                      }
-                                      _vm.$set(
-                                        _vm.form,
-                                        "upah",
-                                        $event.target.value
-                                      )
-                                    }
-                                  }
-                                })
-                              ]),
-                              _vm._v(" "),
                               _c(
                                 "div",
                                 { staticClass: "px-0 md:px-4 my-2" },
@@ -700,7 +690,7 @@ var render = function() {
                                     "label",
                                     {
                                       staticClass:
-                                        "block text-lg text-gray-600",
+                                        "uppercase block text-lg text-gray-600",
                                       attrs: { for: "cus_email" }
                                     },
                                     [_vm._v("Tanggal Produksi")]
@@ -726,7 +716,187 @@ var render = function() {
                                   })
                                 ],
                                 1
-                              )
+                              ),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "px-0 md:px-4 my-2" }, [
+                                _c(
+                                  "label",
+                                  {
+                                    staticClass:
+                                      "uppercase block text-lg text-gray-600",
+                                    attrs: { for: "cus_email" }
+                                  },
+                                  [_vm._v("Harga Pokok Produksi")]
+                                ),
+                                _vm._v(" "),
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.form.hpp,
+                                      expression: "form.hpp"
+                                    }
+                                  ],
+                                  staticClass:
+                                    "w-full px-4 py-2 text-gray-700 border-2 border-blue-200 bg-white rounded uppercase text-lg font-bold",
+                                  attrs: {
+                                    readonly: "",
+                                    id: "barang_satuan",
+                                    type: "number",
+                                    min: "0",
+                                    placeholder: "Harga Pokok Produksi"
+                                  },
+                                  domProps: { value: _vm.form.hpp },
+                                  on: {
+                                    input: function($event) {
+                                      if ($event.target.composing) {
+                                        return
+                                      }
+                                      _vm.$set(
+                                        _vm.form,
+                                        "hpp",
+                                        $event.target.value
+                                      )
+                                    }
+                                  }
+                                })
+                              ]),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "px-0 md:px-4 my-2" }, [
+                                _c(
+                                  "label",
+                                  {
+                                    staticClass:
+                                      "uppercase block text-lg text-gray-600",
+                                    attrs: { for: "cus_email" }
+                                  },
+                                  [_vm._v("Upah Produksi")]
+                                ),
+                                _vm._v(" "),
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.form.upah,
+                                      expression: "form.upah"
+                                    }
+                                  ],
+                                  staticClass:
+                                    "w-full px-4 py-2 text-gray-700 border-2 border-blue-200 bg-white rounded uppercase text-lg font-bold",
+                                  attrs: {
+                                    readonly: "",
+                                    id: "barang_satuan",
+                                    type: "number",
+                                    min: "0",
+                                    placeholder: "Upah produksi"
+                                  },
+                                  domProps: { value: _vm.form.upah },
+                                  on: {
+                                    input: function($event) {
+                                      if ($event.target.composing) {
+                                        return
+                                      }
+                                      _vm.$set(
+                                        _vm.form,
+                                        "upah",
+                                        $event.target.value
+                                      )
+                                    }
+                                  }
+                                })
+                              ]),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "px-0 md:px-4 my-2" }, [
+                                _c(
+                                  "label",
+                                  {
+                                    staticClass:
+                                      "uppercase block text-lg text-gray-600",
+                                    attrs: { for: "cus_email" }
+                                  },
+                                  [_vm._v("hjs")]
+                                ),
+                                _vm._v(" "),
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.form.hjs,
+                                      expression: "form.hjs"
+                                    }
+                                  ],
+                                  staticClass:
+                                    "w-full px-4 py-2 text-gray-700 border-2 border-blue-200 bg-white rounded uppercase text-lg font-bold",
+                                  attrs: {
+                                    readonly: "",
+                                    id: "barang_satuan",
+                                    type: "number",
+                                    min: "0",
+                                    placeholder: "hjs"
+                                  },
+                                  domProps: { value: _vm.form.hjs },
+                                  on: {
+                                    input: function($event) {
+                                      if ($event.target.composing) {
+                                        return
+                                      }
+                                      _vm.$set(
+                                        _vm.form,
+                                        "hjs",
+                                        $event.target.value
+                                      )
+                                    }
+                                  }
+                                })
+                              ]),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "px-0 md:px-4 my-2" }, [
+                                _c(
+                                  "label",
+                                  {
+                                    staticClass:
+                                      "uppercase block text-lg text-gray-600",
+                                    attrs: { for: "cus_email" }
+                                  },
+                                  [_vm._v("hjg")]
+                                ),
+                                _vm._v(" "),
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.form.hjg,
+                                      expression: "form.hjg"
+                                    }
+                                  ],
+                                  staticClass:
+                                    "w-full px-4 py-2 text-gray-700 border-2 border-blue-200 bg-white rounded uppercase text-lg font-bold",
+                                  attrs: {
+                                    readonly: "",
+                                    id: "barang_satuan",
+                                    type: "number",
+                                    min: "0",
+                                    placeholder: "hjg"
+                                  },
+                                  domProps: { value: _vm.form.hjg },
+                                  on: {
+                                    input: function($event) {
+                                      if ($event.target.composing) {
+                                        return
+                                      }
+                                      _vm.$set(
+                                        _vm.form,
+                                        "hjg",
+                                        $event.target.value
+                                      )
+                                    }
+                                  }
+                                })
+                              ])
                             ]
                           ),
                           _vm._v(" "),
