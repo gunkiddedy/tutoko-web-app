@@ -1,9 +1,9 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[12],{
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/pegawai/PegawaiEdit.vue?vue&type=script&lang=js&":
-/*!*************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/pages/pegawai/PegawaiEdit.vue?vue&type=script&lang=js& ***!
-  \*************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/pegawai/PegawaiAdd.vue?vue&type=script&lang=js&":
+/*!************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/pages/pegawai/PegawaiAdd.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -91,79 +91,71 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["id"],
   data: function data() {
     return {
-      loading: true,
-      isUpdating: false,
+      isSaving: false,
+      status_msg: "",
       pegawai_nama: "",
       pegawai_phone: "",
       pegawai_alamat: "",
-      active: "",
-      gaji_harian: 0,
-      status: ["Active", "Inactive"]
+      gaji_harian: 0
     };
-  },
-  mounted: function mounted() {
-    this.getDataPegawai(this.id);
   },
   methods: {
     cancel: function cancel() {
       this.$router.push('/pegawai');
     },
-    getDataPegawai: function getDataPegawai(param) {
+    validateForm: function validateForm() {
+      if (!this.pegawai_nama) {
+        this.status = false;
+        this.showNotification("nama tidak boleh kosong");
+        return false;
+      }
+
+      if (!this.pegawai_phone) {
+        this.status = false;
+        this.showNotification("phone tidak boleh kosong");
+        return false;
+      }
+
+      return true;
+    },
+    showNotification: function showNotification(message) {
       var _this = this;
 
-      axios.get("/api/get-pegawai/" + param).then(function (response) {
-        _this.loading = false;
-        _this.pegawai_nama = response.data.pegawai_nama;
-        _this.pegawai_phone = response.data.pegawai_phone;
-        _this.pegawai_alamat = response.data.pegawai_alamat;
-        _this.gaji_harian = response.data.gaji_harian;
-        _this.active = response.data.active;
-      })["catch"](function (err) {
-        console.log(err);
-      });
+      this.status_msg = message;
+      setTimeout(function () {
+        _this.status_msg = "";
+      }, 3000);
     },
-    updateDataPegawai: function updateDataPegawai(param) {
+    saveDataPegawai: function saveDataPegawai(e) {
       var _this2 = this;
 
-      this.isUpdating = true;
+      e.preventDefault();
+
+      if (!this.validateForm()) {
+        this.isSaving = false;
+        return false;
+      }
+
+      this.isSaving = true;
       var formData = new FormData();
       formData.append("pegawai_nama", this.pegawai_nama);
       formData.append("pegawai_phone", this.pegawai_phone);
       formData.append("pegawai_alamat", this.pegawai_alamat);
       formData.append("gaji_harian", this.gaji_harian);
-      formData.append("active", this.active);
-      axios.post("/api/update-pegawai/".concat(param), formData).then(function (response) {
-        _this2.isUpdating = false;
-
-        _this2.$router.push({
-          name: "pegawai"
-        });
-
+      axios.post("/api/add-data-pegawai", formData).then(function (response) {
         console.log(response);
+
+        _this2.showNotification("Data Successfully Added");
+
+        _this2.isSaving = false;
+
+        _this2.$router.go(-1);
       })["catch"](function (error) {
-        _this2.isUpdating = false;
+        _this2.status_msg = error;
         console.log(error);
       });
     }
@@ -172,10 +164,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/pegawai/PegawaiEdit.vue?vue&type=template&id=a59aadfc&scoped=true&":
-/*!*****************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/pages/pegawai/PegawaiEdit.vue?vue&type=template&id=a59aadfc&scoped=true& ***!
-  \*****************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/pegawai/PegawaiAdd.vue?vue&type=template&id=948dad4e&scoped=true&":
+/*!****************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/pages/pegawai/PegawaiAdd.vue?vue&type=template&id=948dad4e&scoped=true& ***!
+  \****************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -225,7 +217,7 @@ var render = function() {
                 _c(
                   "h1",
                   { staticClass: "text-lg text-gray-500 pb-1 font-semibold" },
-                  [_vm._v("\n\t\t\t\t\t\tEdit Data Barang\n\t\t\t\t\t")]
+                  [_vm._v("\n\t\t\t\t\t\tAdd Data Pegawai\n\t\t\t\t\t")]
                 ),
                 _vm._v(" "),
                 _c("div", { staticClass: "w-full mt-6 pl-0 lg:pl-2" }, [
@@ -245,7 +237,7 @@ var render = function() {
                                 staticClass: "block text-sm text-gray-600",
                                 attrs: { for: "cus_name" }
                               },
-                              [_vm._v("Nama Barang")]
+                              [_vm._v("Nama Pegawai")]
                             ),
                             _vm._v(" "),
                             _c("input", {
@@ -399,72 +391,6 @@ var render = function() {
                                 }
                               }
                             })
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "px-4 my-2" }, [
-                            _c(
-                              "label",
-                              {
-                                staticClass: "block text-sm text-gray-600",
-                                attrs: { for: "cus_name" }
-                              },
-                              [_vm._v("Status")]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "select",
-                              {
-                                directives: [
-                                  {
-                                    name: "model",
-                                    rawName: "v-model",
-                                    value: _vm.active,
-                                    expression: "active"
-                                  }
-                                ],
-                                staticClass:
-                                  "w-full px-5 py-1 rounded-lg text-gray-500 focus:outline-none focus:shadow-inner border-2 border-gray-200 bg-white appearance-none",
-                                on: {
-                                  change: function($event) {
-                                    var $$selectedVal = Array.prototype.filter
-                                      .call($event.target.options, function(o) {
-                                        return o.selected
-                                      })
-                                      .map(function(o) {
-                                        var val =
-                                          "_value" in o ? o._value : o.value
-                                        return val
-                                      })
-                                    _vm.active = $event.target.multiple
-                                      ? $$selectedVal
-                                      : $$selectedVal[0]
-                                  }
-                                }
-                              },
-                              [
-                                _c(
-                                  "option",
-                                  {
-                                    staticClass: "text-gray-700",
-                                    attrs: { value: "", selected: "selected" }
-                                  },
-                                  [_vm._v("-Pilih-")]
-                                ),
-                                _vm._v(" "),
-                                _vm._l(_vm.status, function(stat, i) {
-                                  return _c(
-                                    "option",
-                                    {
-                                      key: i,
-                                      staticClass: "text-gray-700",
-                                      domProps: { value: stat }
-                                    },
-                                    [_vm._v(_vm._s(stat))]
-                                  )
-                                })
-                              ],
-                              2
-                            )
                           ])
                         ]
                       ),
@@ -475,18 +401,14 @@ var render = function() {
                           {
                             staticClass:
                               "px-4 py-1 text-white font-light tracking-wider bg-blue-500 hover:bg-blue-600 rounded",
-                            on: {
-                              click: function($event) {
-                                return _vm.updateDataPegawai(_vm.id)
-                              }
-                            }
+                            on: { click: _vm.saveDataPegawai }
                           },
                           [
                             _vm._v(
                               _vm._s(
-                                _vm.isUpdating == true
-                                  ? "Updating..."
-                                  : "Update Data"
+                                _vm.isSaving == true
+                                  ? "Saving..."
+                                  : "Simpan Data"
                               )
                             )
                           ]
@@ -531,17 +453,17 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./resources/js/pages/pegawai/PegawaiEdit.vue":
-/*!****************************************************!*\
-  !*** ./resources/js/pages/pegawai/PegawaiEdit.vue ***!
-  \****************************************************/
+/***/ "./resources/js/pages/pegawai/PegawaiAdd.vue":
+/*!***************************************************!*\
+  !*** ./resources/js/pages/pegawai/PegawaiAdd.vue ***!
+  \***************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _PegawaiEdit_vue_vue_type_template_id_a59aadfc_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./PegawaiEdit.vue?vue&type=template&id=a59aadfc&scoped=true& */ "./resources/js/pages/pegawai/PegawaiEdit.vue?vue&type=template&id=a59aadfc&scoped=true&");
-/* harmony import */ var _PegawaiEdit_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./PegawaiEdit.vue?vue&type=script&lang=js& */ "./resources/js/pages/pegawai/PegawaiEdit.vue?vue&type=script&lang=js&");
+/* harmony import */ var _PegawaiAdd_vue_vue_type_template_id_948dad4e_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./PegawaiAdd.vue?vue&type=template&id=948dad4e&scoped=true& */ "./resources/js/pages/pegawai/PegawaiAdd.vue?vue&type=template&id=948dad4e&scoped=true&");
+/* harmony import */ var _PegawaiAdd_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./PegawaiAdd.vue?vue&type=script&lang=js& */ "./resources/js/pages/pegawai/PegawaiAdd.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -551,50 +473,50 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _PegawaiEdit_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _PegawaiEdit_vue_vue_type_template_id_a59aadfc_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _PegawaiEdit_vue_vue_type_template_id_a59aadfc_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _PegawaiAdd_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _PegawaiAdd_vue_vue_type_template_id_948dad4e_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _PegawaiAdd_vue_vue_type_template_id_948dad4e_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
-  "a59aadfc",
+  "948dad4e",
   null
   
 )
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/js/pages/pegawai/PegawaiEdit.vue"
+component.options.__file = "resources/js/pages/pegawai/PegawaiAdd.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/js/pages/pegawai/PegawaiEdit.vue?vue&type=script&lang=js&":
-/*!*****************************************************************************!*\
-  !*** ./resources/js/pages/pegawai/PegawaiEdit.vue?vue&type=script&lang=js& ***!
-  \*****************************************************************************/
+/***/ "./resources/js/pages/pegawai/PegawaiAdd.vue?vue&type=script&lang=js&":
+/*!****************************************************************************!*\
+  !*** ./resources/js/pages/pegawai/PegawaiAdd.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PegawaiEdit_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./PegawaiEdit.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/pegawai/PegawaiEdit.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PegawaiEdit_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PegawaiAdd_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./PegawaiAdd.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/pegawai/PegawaiAdd.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PegawaiAdd_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/js/pages/pegawai/PegawaiEdit.vue?vue&type=template&id=a59aadfc&scoped=true&":
-/*!***********************************************************************************************!*\
-  !*** ./resources/js/pages/pegawai/PegawaiEdit.vue?vue&type=template&id=a59aadfc&scoped=true& ***!
-  \***********************************************************************************************/
+/***/ "./resources/js/pages/pegawai/PegawaiAdd.vue?vue&type=template&id=948dad4e&scoped=true&":
+/*!**********************************************************************************************!*\
+  !*** ./resources/js/pages/pegawai/PegawaiAdd.vue?vue&type=template&id=948dad4e&scoped=true& ***!
+  \**********************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PegawaiEdit_vue_vue_type_template_id_a59aadfc_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./PegawaiEdit.vue?vue&type=template&id=a59aadfc&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/pegawai/PegawaiEdit.vue?vue&type=template&id=a59aadfc&scoped=true&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PegawaiEdit_vue_vue_type_template_id_a59aadfc_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PegawaiAdd_vue_vue_type_template_id_948dad4e_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./PegawaiAdd.vue?vue&type=template&id=948dad4e&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/pegawai/PegawaiAdd.vue?vue&type=template&id=948dad4e&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PegawaiAdd_vue_vue_type_template_id_948dad4e_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PegawaiEdit_vue_vue_type_template_id_a59aadfc_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PegawaiAdd_vue_vue_type_template_id_948dad4e_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

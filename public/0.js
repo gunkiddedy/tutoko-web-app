@@ -95,6 +95,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -392,26 +393,30 @@ var render = function() {
                                         ]
                                       ),
                                       _vm._v(" "),
-                                      _c(
-                                        "button",
-                                        {
-                                          staticClass:
-                                            "bg-green-500 rounded border border-green-600 hover:bg-green-600 px-2 py-0 text-white font-semibold mx-1 ml-1",
-                                          on: {
-                                            click: function($event) {
-                                              return _vm.jualBarang(
-                                                props.row.id
+                                      props.row.barang_tipe == "Mandiri"
+                                        ? _c(
+                                            "button",
+                                            {
+                                              staticClass:
+                                                "bg-green-500 rounded border border-green-600 hover:bg-green-600 px-2 py-0 text-white font-semibold mx-1 ml-1",
+                                              on: {
+                                                click: function($event) {
+                                                  return _vm.jualBarang(
+                                                    props.row.id
+                                                  )
+                                                }
+                                              }
+                                            },
+                                            [
+                                              _c("i", {
+                                                staticClass: "fas fa-truck mr-2"
+                                              }),
+                                              _vm._v(
+                                                "Jual\n\t\t\t\t\t\t\t\t\t\t"
                                               )
-                                            }
-                                          }
-                                        },
-                                        [
-                                          _c("i", {
-                                            staticClass: "fas fa-truck mr-2"
-                                          }),
-                                          _vm._v("Jual\n\t\t\t\t\t\t\t\t\t\t")
-                                        ]
-                                      )
+                                            ]
+                                          )
+                                        : _vm._e()
                                     ])
                                   : _c("span", [
                                       _vm._v(

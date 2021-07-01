@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Barang;
+use App\Pembelian;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
@@ -17,6 +18,12 @@ class BarangController extends Controller
     public function getHargaBarang(Request $request, $id)        
     {
         $q = Barang::find($id);
+        return response()->json($q);
+    }
+    public function getHargaBarangNonMandiri(Request $request, $id)
+    {
+        // $q = Pembelian::find($id);
+        $q = DB::table('detail_pembelian')->where('barang_id', $id)->get();
         return response()->json($q);
     }
     public function getDataNonMandiri()

@@ -32,6 +32,7 @@ Route::get('barang-non-mandiri', 'BarangController@getDataNonMandiri');
 Route::get('barang-mandiri', 'BarangController@getDataMandiri');
 Route::get('get-barang/{id}', 'BarangController@getDataBarangById');
 Route::get('get-harga/{id}', 'BarangController@getHargaBarang');
+Route::get('get-harga-non-mandiri/{id}', 'BarangController@getHargaBarangNonMandiri');
 Route::post('update-barang/{id}', 'BarangController@updateDataBarangById');
 Route::post('delete-photo/{id}', 'BarangController@deleteFileStorage');
 Route::post('add-data-barang', 'BarangController@addDataBarang');

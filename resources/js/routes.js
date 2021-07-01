@@ -86,6 +86,12 @@ export default {
             props: true
         },
         {
+            path: '/penjualan-non-mandiri',
+            component: () => import('./pages/penjualan/PenjualanAdds.vue'),
+            name: 'penjualan-non-mandiri',
+            props: true
+        },
+        {
             path: '/penjualan-edit/:id',
             component: () => import('./pages/penjualan/PenjualanEdit.vue'),
             name: 'penjualan-edit',

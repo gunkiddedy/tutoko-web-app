@@ -1,16 +1,14 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[16],{
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/produksi/Produksi.vue?vue&type=script&lang=js&":
-/*!***********************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/pages/produksi/Produksi.vue?vue&type=script&lang=js& ***!
-  \***********************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/penjualan/Penjualan.vue?vue&type=script&lang=js&":
+/*!*************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/pages/penjualan/Penjualan.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_0__);
 //
 //
 //
@@ -98,7 +96,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-
+//
+//
+// import _ from "lodash";
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -114,6 +114,11 @@ __webpack_require__.r(__webpack_exports__);
         sortable: false,
         width: "130px"
       }, {
+        label: "Tanggal Jual",
+        field: "tanggal_custom",
+        sortable: false,
+        width: "auto"
+      }, {
         label: "Nama Barang",
         field: "barang_nama",
         sortable: false,
@@ -125,39 +130,28 @@ __webpack_require__.r(__webpack_exports__);
           trigger: "enter"
         }
       }, {
-        label: "Nama Pegawai",
-        field: "pegawai_nama",
-        sortable: false,
-        width: "auto",
-        filterable: true,
-        filterOptions: {
-          enabled: true,
-          placeholder: "Filter",
-          trigger: "enter"
-        }
-      }, {
-        label: "Tgl. Produksi",
-        field: "produksi_tanggal_custom",
+        label: "Jumlah Penjualan",
+        field: "jumlah",
         sortable: false,
         width: "auto"
       }, {
-        label: "HPP",
-        field: "hpp_custom",
+        label: "Harga Jual",
+        field: "harga_jual_custom",
         sortable: false,
         width: "auto"
       }, {
-        label: "Jumlah Produksi",
-        field: "produksi_jumlah",
+        label: "Jumlah Bayar",
+        field: "payment_custom",
         sortable: false,
         width: "auto"
       }, {
-        label: "Upah",
-        field: "upah_custom",
+        label: "Tagihan (Piutang)",
+        field: "tagihan_custom",
         sortable: false,
         width: "auto"
       }, {
-        label: "Total Upah",
-        field: "total_upah_custom",
+        label: "Data Pembeli",
+        field: "pembeli_custom",
         sortable: false,
         width: "auto"
       }],
@@ -190,7 +184,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     editData: function editData(param) {
       this.$router.push({
-        name: "produksi-edit",
+        name: "penjualan-edit",
         params: {
           id: param
         }
@@ -198,7 +192,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     tambahData: function tambahData() {
       this.$router.push({
-        name: "produksi-add"
+        name: "penjualan-non-mandiri"
       });
     },
     updateParams: function updateParams(newProps) {
@@ -233,7 +227,7 @@ __webpack_require__.r(__webpack_exports__);
     getRecords: function getRecords() {
       var _this = this;
 
-      axios.get("/api/produksi/", {
+      axios.get("/api/penjualan/", {
         params: this.serverParams
       }).then(function (response) {
         _this.loading = false;
@@ -249,10 +243,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/produksi/Produksi.vue?vue&type=template&id=3b67bb16&":
-/*!***************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/pages/produksi/Produksi.vue?vue&type=template&id=3b67bb16& ***!
-  \***************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/penjualan/Penjualan.vue?vue&type=template&id=66be56b0&":
+/*!*****************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/pages/penjualan/Penjualan.vue?vue&type=template&id=66be56b0& ***!
+  \*****************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -297,7 +291,7 @@ var render = function() {
                         staticClass:
                           "text-lg pb-1 font-semibold text-indigo-400 uppercase"
                       },
-                      [_vm._v("\n            Daftar Produksi\n          ")]
+                      [_vm._v("\n\t\t\t\t\t\tDaftar Penjualan")]
                     ),
                     _vm._v(" "),
                     _c(
@@ -309,7 +303,7 @@ var render = function() {
                       },
                       [
                         _c("i", { staticClass: "fas fa-plus mr-1" }),
-                        _vm._v("Tambah Data")
+                        _vm._v("\n\t\t\t\t\t\t\tTambah Data\n\t\t\t\t\t\t")
                       ]
                     )
                   ]
@@ -370,50 +364,79 @@ var render = function() {
                             key: "table-row",
                             fn: function(props) {
                               return [
-                                props.column.field == "hpp_custom"
-                                  ? _c("span", [
-                                      _vm._v(
-                                        "\n\t\t\t\t\t\t\t\t\t\t" +
-                                          _vm._s(_vm.toRupiah(props.row.hpp)) +
-                                          "\n\t\t\t\t\t\t\t\t\t"
-                                      )
-                                    ])
-                                  : _vm._e(),
-                                _vm._v(" "),
-                                props.column.field == "upah_custom"
-                                  ? _c("span", [
-                                      _vm._v(
-                                        "\n\t\t\t\t\t\t\t\t\t\t" +
-                                          _vm._s(_vm.toRupiah(props.row.upah)) +
-                                          "\n\t\t\t\t\t\t\t\t\t"
-                                      )
-                                    ])
-                                  : _vm._e(),
-                                _vm._v(" "),
-                                props.column.field == "total_upah_custom"
+                                props.column.field == "harga_jual_custom"
                                   ? _c("span", [
                                       _vm._v(
                                         "\n\t\t\t\t\t\t\t\t\t\t" +
                                           _vm._s(
-                                            _vm.toRupiah(props.row.total_upah)
+                                            _vm.toRupiah(props.row.harga_jual)
                                           ) +
                                           "\n\t\t\t\t\t\t\t\t\t"
                                       )
                                     ])
                                   : _vm._e(),
                                 _vm._v(" "),
-                                props.column.field == "produksi_tanggal_custom"
+                                props.column.field == "payment_custom"
                                   ? _c("span", [
                                       _vm._v(
-                                        "\n                    " +
+                                        "\n\t\t\t\t\t\t\t\t\t\t" +
+                                          _vm._s(
+                                            _vm.toRupiah(props.row.payment)
+                                          ) +
+                                          "\n\t\t\t\t\t\t\t\t\t"
+                                      )
+                                    ])
+                                  : _vm._e(),
+                                _vm._v(" "),
+                                props.column.field == "tagihan_custom"
+                                  ? _c("span", [
+                                      _c(
+                                        "span",
+                                        {
+                                          class: {
+                                            "text-red-400 font-bold":
+                                              props.row.tagihan > 0,
+                                            "text-green-400 font-bold":
+                                              props.row.tagihan == 0
+                                          }
+                                        },
+                                        [
+                                          _vm._v(
+                                            "\n\t\t\t\t\t\t\t\t\t\t\t" +
+                                              _vm._s(
+                                                _vm.toRupiah(props.row.tagihan)
+                                              ) +
+                                              "\n\t\t\t\t\t\t\t\t\t\t"
+                                          )
+                                        ]
+                                      )
+                                    ])
+                                  : _vm._e(),
+                                _vm._v(" "),
+                                props.column.field == "pembeli_custom"
+                                  ? _c("span", [
+                                      _vm._v(
+                                        "\n\t\t\t\t\t\t\t\t\t\t" +
+                                          _vm._s(props.row.nama_pembeli) +
+                                          " - \n\t\t\t\t\t\t\t\t\t\t" +
+                                          _vm._s(props.row.phone_pembeli) +
+                                          " - \n\t\t\t\t\t\t\t\t\t\t" +
+                                          _vm._s(props.row.alamat_pembeli) +
+                                          "\n\t\t\t\t\t\t\t\t\t"
+                                      )
+                                    ])
+                                  : _vm._e(),
+                                _vm._v(" "),
+                                props.column.field == "tanggal_custom"
+                                  ? _c("span", [
+                                      _vm._v(
+                                        "\n\t\t\t\t\t\t\t\t\t\t" +
                                           _vm._s(
                                             _vm
-                                              .moment(
-                                                props.row.produksi_tanggal
-                                              )
+                                              .moment(props.row.tanggal)
                                               .format("LL")
                                           ) +
-                                          "\n                  "
+                                          "\n\t\t\t\t\t\t\t\t\t"
                                       )
                                     ])
                                   : _vm._e(),
@@ -435,19 +458,19 @@ var render = function() {
                                           _c("i", {
                                             staticClass: "fas fa-pen mr-2"
                                           }),
-                                          _vm._v("Edit\n                    ")
+                                          _vm._v("Edit\n\t\t\t\t\t\t\t\t\t\t")
                                         ]
                                       )
                                     ])
                                   : _c("span", [
                                       _vm._v(
-                                        "\n                    " +
+                                        "\n\t\t\t\t\t\t\t\t\t\t" +
                                           _vm._s(
                                             props.formattedRow[
                                               props.column.field
                                             ]
                                           ) +
-                                          "\n                  "
+                                          "\n\t\t\t\t\t\t\t\t\t"
                                       )
                                     ])
                               ]
@@ -485,17 +508,17 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./resources/js/pages/produksi/Produksi.vue":
-/*!**************************************************!*\
-  !*** ./resources/js/pages/produksi/Produksi.vue ***!
-  \**************************************************/
+/***/ "./resources/js/pages/penjualan/Penjualan.vue":
+/*!****************************************************!*\
+  !*** ./resources/js/pages/penjualan/Penjualan.vue ***!
+  \****************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _Produksi_vue_vue_type_template_id_3b67bb16___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Produksi.vue?vue&type=template&id=3b67bb16& */ "./resources/js/pages/produksi/Produksi.vue?vue&type=template&id=3b67bb16&");
-/* harmony import */ var _Produksi_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Produksi.vue?vue&type=script&lang=js& */ "./resources/js/pages/produksi/Produksi.vue?vue&type=script&lang=js&");
+/* harmony import */ var _Penjualan_vue_vue_type_template_id_66be56b0___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Penjualan.vue?vue&type=template&id=66be56b0& */ "./resources/js/pages/penjualan/Penjualan.vue?vue&type=template&id=66be56b0&");
+/* harmony import */ var _Penjualan_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Penjualan.vue?vue&type=script&lang=js& */ "./resources/js/pages/penjualan/Penjualan.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -505,9 +528,9 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _Produksi_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _Produksi_vue_vue_type_template_id_3b67bb16___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _Produksi_vue_vue_type_template_id_3b67bb16___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _Penjualan_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Penjualan_vue_vue_type_template_id_66be56b0___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Penjualan_vue_vue_type_template_id_66be56b0___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
   null,
@@ -517,38 +540,38 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/js/pages/produksi/Produksi.vue"
+component.options.__file = "resources/js/pages/penjualan/Penjualan.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/js/pages/produksi/Produksi.vue?vue&type=script&lang=js&":
-/*!***************************************************************************!*\
-  !*** ./resources/js/pages/produksi/Produksi.vue?vue&type=script&lang=js& ***!
-  \***************************************************************************/
+/***/ "./resources/js/pages/penjualan/Penjualan.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************!*\
+  !*** ./resources/js/pages/penjualan/Penjualan.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Produksi_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./Produksi.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/produksi/Produksi.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Produksi_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Penjualan_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./Penjualan.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/penjualan/Penjualan.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Penjualan_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/js/pages/produksi/Produksi.vue?vue&type=template&id=3b67bb16&":
-/*!*********************************************************************************!*\
-  !*** ./resources/js/pages/produksi/Produksi.vue?vue&type=template&id=3b67bb16& ***!
-  \*********************************************************************************/
+/***/ "./resources/js/pages/penjualan/Penjualan.vue?vue&type=template&id=66be56b0&":
+/*!***********************************************************************************!*\
+  !*** ./resources/js/pages/penjualan/Penjualan.vue?vue&type=template&id=66be56b0& ***!
+  \***********************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Produksi_vue_vue_type_template_id_3b67bb16___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./Produksi.vue?vue&type=template&id=3b67bb16& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/produksi/Produksi.vue?vue&type=template&id=3b67bb16&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Produksi_vue_vue_type_template_id_3b67bb16___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Penjualan_vue_vue_type_template_id_66be56b0___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./Penjualan.vue?vue&type=template&id=66be56b0& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/penjualan/Penjualan.vue?vue&type=template&id=66be56b0&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Penjualan_vue_vue_type_template_id_66be56b0___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Produksi_vue_vue_type_template_id_3b67bb16___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Penjualan_vue_vue_type_template_id_66be56b0___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
