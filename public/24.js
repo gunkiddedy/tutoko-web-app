@@ -129,12 +129,12 @@ var render = function() {
                       "router-link",
                       {
                         staticClass:
-                          "px-12 py-2 rounded-full shadow text-center bg-blue-200 lg:w-max w-full text-xl font-bold",
+                          "px-12 py-3 rounded-full shadow text-center bg-blue-200 lg:w-max w-full text-xl font-bold",
                         attrs: { to: "/barang-mandiri" }
                       },
                       [
                         _vm._v(
-                          "\n                            Mandiri\n                        "
+                          "\n                            Barang Mandiri\n                        "
                         )
                       ]
                     ),
@@ -143,12 +143,12 @@ var render = function() {
                       "router-link",
                       {
                         staticClass:
-                          "px-12 py-2 rounded-full shadow text-center bg-yellow-200 lg:w-max w-full text-xl font-bold",
+                          "px-12 py-3 rounded-full shadow text-center bg-yellow-200 lg:w-max w-full text-xl font-bold",
                         attrs: { to: "/barang-supplier" }
                       },
                       [
                         _vm._v(
-                          "\n                            Supplier\n                        "
+                          "\n                            Barang Supplier\n                        "
                         )
                       ]
                     )

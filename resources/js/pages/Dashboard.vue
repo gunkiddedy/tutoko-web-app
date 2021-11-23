@@ -17,13 +17,13 @@
 
                     <div class="wrap flex lg:flex-row flex-col space-y-8 lg:space-x-8 lg:space-y-0 items-center mt-8">
                         <!-- mandiri -->
-                        <router-link to="/barang-mandiri" class="px-12 py-2 rounded-full shadow text-center bg-blue-200 lg:w-max w-full text-xl font-bold">
-                            Mandiri
+                        <router-link to="/barang-mandiri" class="px-12 py-3 rounded-full shadow text-center bg-blue-200 lg:w-max w-full text-xl font-bold">
+                            Barang Mandiri
                         </router-link>
 
                         <!-- supplier -->
-                        <router-link to="/barang-supplier" class="px-12 py-2 rounded-full shadow text-center bg-yellow-200 lg:w-max w-full text-xl font-bold">
-                            Supplier
+                        <router-link to="/barang-supplier" class="px-12 py-3 rounded-full shadow text-center bg-yellow-200 lg:w-max w-full text-xl font-bold">
+                            Barang Supplier
                         </router-link>
                     </div>
           			

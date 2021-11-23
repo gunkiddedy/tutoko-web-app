@@ -286,13 +286,16 @@ var render = function() {
               _c("main", { staticClass: "w-full flex-grow p-6 bg-white" }, [
                 _c(
                   "div",
-                  { staticClass: "flex items-center justify-between" },
+                  {
+                    staticClass:
+                      "flex lg:flex-row flex-col lg:items-center justify-between mb-12"
+                  },
                   [
                     _c(
                       "h1",
                       {
                         staticClass:
-                          "text-lg pb-1 font-semibold text-indigo-400 uppercase"
+                          "text-2xl pb-1 font-semibold text-indigo-400 uppercase"
                       },
                       [
                         _vm._v(
