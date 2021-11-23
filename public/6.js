@@ -739,7 +739,7 @@ var render = function() {
                                     }
                                   ],
                                   staticClass:
-                                    "w-full px-4 py-2 text-gray-700 border-2 border-blue-200 bg-white rounded uppercase text-lg font-bold",
+                                    "w-full px-4 py-2 text-gray-700 border-2 border-blue-200 bg-gray-50 rounded uppercase text-lg font-bold",
                                   attrs: {
                                     readonly: "",
                                     id: "barang_satuan",
@@ -784,7 +784,7 @@ var render = function() {
                                     }
                                   ],
                                   staticClass:
-                                    "w-full px-4 py-2 text-gray-700 border-2 border-blue-200 bg-white rounded uppercase text-lg font-bold",
+                                    "w-full px-4 py-2 text-gray-700 border-2 border-blue-200 bg-gray-50 rounded uppercase text-lg font-bold",
                                   attrs: {
                                     readonly: "",
                                     id: "barang_satuan",
@@ -816,7 +816,7 @@ var render = function() {
                                       "uppercase block text-lg text-gray-600",
                                     attrs: { for: "cus_email" }
                                   },
-                                  [_vm._v("hjs")]
+                                  [_vm._v("harga jual standar")]
                                 ),
                                 _vm._v(" "),
                                 _c("input", {
@@ -829,7 +829,7 @@ var render = function() {
                                     }
                                   ],
                                   staticClass:
-                                    "w-full px-4 py-2 text-gray-700 border-2 border-blue-200 bg-white rounded uppercase text-lg font-bold",
+                                    "w-full px-4 py-2 text-gray-700 border-2 border-blue-200 bg-gray-50 rounded uppercase text-lg font-bold",
                                   attrs: {
                                     readonly: "",
                                     id: "barang_satuan",
@@ -861,7 +861,7 @@ var render = function() {
                                       "uppercase block text-lg text-gray-600",
                                     attrs: { for: "cus_email" }
                                   },
-                                  [_vm._v("hjg")]
+                                  [_vm._v("harga jual grosir")]
                                 ),
                                 _vm._v(" "),
                                 _c("input", {
@@ -874,7 +874,7 @@ var render = function() {
                                     }
                                   ],
                                   staticClass:
-                                    "w-full px-4 py-2 text-gray-700 border-2 border-blue-200 bg-white rounded uppercase text-lg font-bold",
+                                    "w-full px-4 py-2 text-gray-700 border-2 border-blue-200 bg-gray-50 rounded uppercase text-lg font-bold",
                                   attrs: {
                                     readonly: "",
                                     id: "barang_satuan",

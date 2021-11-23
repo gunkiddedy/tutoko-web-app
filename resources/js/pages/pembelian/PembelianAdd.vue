@@ -91,6 +91,36 @@
 
                   <div class="px-0 md:px-4 my-2">
                     <label class="block text-lg text-gray-600" for="cus_email"
+                      >Harga Jual Standar</label
+                    >
+                    <input
+                      class="w-full px-4  py-2 text-gray-700 bg-gray-50 rounded focus:bg-blue-50 uppercase border-2 border-blue-200 text-lg font-bold"
+                      id="barang_stok"
+                      v-model="form.harga_jual_standar"
+                      type="number"
+                      min="0"
+                      placeholder="Harga Jual Standar"
+                      aria-label=""
+                    />
+                  </div>
+
+                  <div class="px-0 md:px-4 my-2">
+                    <label class="block text-lg text-gray-600" for="cus_email"
+                      >Harga Jual Grosir</label
+                    >
+                    <input
+                      class="w-full px-4  py-2 text-gray-700 bg-gray-50 rounded focus:bg-blue-50 uppercase border-2 border-blue-200 text-lg font-bold"
+                      id="barang_stok"
+                      v-model="form.harga_jual_grosir"
+                      type="number"
+                      min="0"
+                      placeholder="Harga Jual Grosir"
+                      aria-label=""
+                    />
+                  </div>
+
+                  <div class="px-0 md:px-4 my-2">
+                    <label class="block text-lg text-gray-600" for="cus_email"
                       >Terbayar</label
                     >
                     <input
@@ -113,36 +143,6 @@
                       value-type="format" 
                       placeholder="Tanggal Pembelian" 
                       format="DD-MM-YYYY"></date-picker>
-                  </div>
-
-                  <div class="px-0 md:px-4 my-2">
-                    <label class="block text-lg text-gray-600" for="cus_email"
-                      >Harga Jual Standar</label
-                    >
-                    <input
-                      class="w-full px-4  py-2 text-gray-700 bg-gray-50 rounded focus:bg-blue-50 uppercase border-2 border-blue-200 text-lg font-bold"
-                      id="barang_stok"
-                      v-model="form.harga_jual_standar"
-                      type="number"
-                      min="0"
-                      placeholder="Jumlah yang dibayarkan"
-                      aria-label=""
-                    />
-                  </div>
-
-                  <div class="px-0 md:px-4 my-2">
-                    <label class="block text-lg text-gray-600" for="cus_email"
-                      >Harga Jual Grosir</label
-                    >
-                    <input
-                      class="w-full px-4  py-2 text-gray-700 bg-gray-50 rounded focus:bg-blue-50 uppercase border-2 border-blue-200 text-lg font-bold"
-                      id="barang_stok"
-                      v-model="form.harga_jual_grosir"
-                      type="number"
-                      min="0"
-                      placeholder="Jumlah yang dibayarkan"
-                      aria-label=""
-                    />
                   </div>
 
                   <div class="px-0 md:px-4 my-2">

@@ -12,11 +12,41 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
+-- Dumping structure for table tutoko.absensis
+CREATE TABLE IF NOT EXISTS `absensis` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `pegawai_id` int(11) NOT NULL DEFAULT 0,
+  `jam_kerja` double NOT NULL DEFAULT 0,
+  `tanggal` date NOT NULL DEFAULT curdate(),
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
+
+-- Dumping data for table tutoko.absensis: 10 rows
+/*!40000 ALTER TABLE `absensis` DISABLE KEYS */;
+INSERT INTO `absensis` (`id`, `pegawai_id`, `jam_kerja`, `tanggal`, `created_at`, `updated_at`) VALUES
+	(1, 5, 1, '2021-06-26', '2021-06-26 19:23:38', '2021-06-26 19:23:38'),
+	(2, 4, 1, '2021-06-26', '2021-06-26 19:23:38', '2021-06-26 19:23:38'),
+	(3, 3, 1, '2021-06-26', '2021-06-26 19:23:38', '2021-06-26 19:23:38'),
+	(4, 2, 1, '2021-06-26', '2021-06-26 19:23:38', '2021-06-26 19:23:38'),
+	(5, 1, 1, '2021-06-26', '2021-06-26 19:23:38', '2021-06-26 19:23:38'),
+	(6, 5, 1, '2021-07-01', '2021-07-01 05:54:41', '2021-07-01 05:54:41'),
+	(7, 4, 0, '2021-07-01', '2021-07-01 05:54:41', '2021-07-01 05:54:41'),
+	(8, 3, 1, '2021-07-01', '2021-07-01 05:54:41', '2021-07-01 05:54:41'),
+	(9, 2, 1, '2021-07-01', '2021-07-01 05:54:41', '2021-07-01 05:54:41'),
+	(10, 1, 0.5, '2021-07-01', '2021-07-01 05:54:41', '2021-07-01 05:54:41');
+/*!40000 ALTER TABLE `absensis` ENABLE KEYS */;
+
 -- Dumping structure for table tutoko.barangs
 CREATE TABLE IF NOT EXISTS `barangs` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `barang_nama` varchar(50) DEFAULT NULL,
   `barang_stok` int(11) NOT NULL DEFAULT 0,
+  `hpp` int(11) DEFAULT 0,
+  `upah` int(11) DEFAULT 0,
+  `hjs` int(11) DEFAULT 0,
+  `hjg` int(11) DEFAULT 0,
   `barang_satuan` varchar(50) DEFAULT NULL,
   `barang_tipe` enum('Mandiri','Supplier') DEFAULT 'Supplier',
   `photo` varchar(225) DEFAULT NULL,
@@ -24,57 +54,40 @@ CREATE TABLE IF NOT EXISTS `barangs` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table tutoko.barangs: 2 rows
+-- Dumping data for table tutoko.barangs: 4 rows
 /*!40000 ALTER TABLE `barangs` DISABLE KEYS */;
-INSERT INTO `barangs` (`id`, `barang_nama`, `barang_stok`, `barang_satuan`, `barang_tipe`, `photo`, `active`, `created_at`, `updated_at`) VALUES
-	(1, 'semen holcims', 79, 'sak', 'Supplier', 'images/Capture-817.JPG', 'Active', '2021-06-13 03:02:10', '2021-06-22 23:56:43'),
-	(2, 'batu bata', 0, 'biji', 'Mandiri', 'images/prenjak_lumut-432.JPG', 'Active', '2021-06-13 03:02:47', '2021-06-18 14:57:17');
+INSERT INTO `barangs` (`id`, `barang_nama`, `barang_stok`, `hpp`, `upah`, `hjs`, `hjg`, `barang_satuan`, `barang_tipe`, `photo`, `active`, `created_at`, `updated_at`) VALUES
+	(1, 'bis beton', 1, 70000, 45000, 120000, 100000, 'biji', 'Mandiri', 'images/templateeditor-89991624725729.png', 'Active', '2021-06-26 16:41:05', '2021-06-27 00:20:47'),
+	(2, 'semen holcims', 90, 0, 0, 0, 0, 'sak', 'Supplier', 'images/job-4123.jpeg', 'Active', '2021-06-26 16:49:23', '2021-07-01 11:35:58'),
+	(3, 'batako', 150, 1200, 500, 2900, 2500, 'biji', 'Mandiri', 'images/WhatsApp Image 2021-04-13 at 23.29.41-4876.jpeg', 'Active', '2021-06-26 16:54:18', '2021-07-01 12:57:53'),
+	(4, 'paku reng kayu', 199, 0, 0, 0, 0, 'kilo', 'Supplier', 'images/homepage-when-offline-2432.png', 'Active', '2021-07-01 04:38:00', '2021-07-01 11:43:52');
 /*!40000 ALTER TABLE `barangs` ENABLE KEYS */;
 
--- Dumping structure for view tutoko.detail_invoice_keluar
+-- Dumping structure for view tutoko.detail_absensi
 -- Creating temporary table to overcome VIEW dependency errors
-CREATE TABLE `detail_invoice_keluar` (
-	`id` INT(11) NULL,
-	`user_id` INT(11) NULL,
-	`barang_id` INT(11) NULL,
-	`tanggal` DATE NULL,
-	`jumlah` INT(11) NULL,
-	`harga_jual` DOUBLE NULL COMMENT 'harga jual satuan',
-	`payment` DOUBLE NULL,
-	`nama_pembeli` VARCHAR(50) NULL COLLATE 'utf8mb4_general_ci',
-	`phone_pembeli` VARCHAR(50) NULL COLLATE 'utf8mb4_general_ci',
-	`alamat_pembeli` VARCHAR(50) NULL COLLATE 'utf8mb4_general_ci',
-	`created_at` TIMESTAMP NULL,
-	`updated_at` TIMESTAMP NULL,
-	`barang_nama` VARCHAR(50) NULL COLLATE 'utf8mb4_general_ci',
-	`barang_stok` INT(11) NULL,
-	`barang_satuan` VARCHAR(50) NULL COLLATE 'utf8mb4_general_ci',
-	`tagihan` DOUBLE NULL
+CREATE TABLE `detail_absensi` (
+	`id` INT(11) NOT NULL,
+	`pegawai_id` INT(11) NOT NULL,
+	`jam_kerja` DOUBLE NOT NULL,
+	`tanggal` DATE NOT NULL,
+	`created_at` TIMESTAMP NOT NULL,
+	`updated_at` TIMESTAMP NOT NULL,
+	`pegawai_nama` VARCHAR(50) NULL COLLATE 'utf8mb4_general_ci',
+	`gaji_harian` INT(11) NULL,
+	`jumlah_gaji` DOUBLE NULL
 ) ENGINE=MyISAM;
 
--- Dumping structure for view tutoko.detail_invoice_masuk
+-- Dumping structure for view tutoko.detail_gaji
 -- Creating temporary table to overcome VIEW dependency errors
-CREATE TABLE `detail_invoice_masuk` (
-	`id` INT(11) NULL,
-	`user_id` INT(11) NULL,
-	`supplier_id` INT(11) NULL,
-	`barang_id` INT(11) NULL,
-	`tanggal` DATE NULL,
-	`jumlah` INT(11) NULL,
-	`harga_beli` DOUBLE NULL COMMENT 'harga beli satuan',
-	`payment` DOUBLE NULL,
-	`harga_jual_standar` DOUBLE NULL,
-	`harga_jual_grosir` DOUBLE NULL,
-	`created_at` TIMESTAMP NULL,
-	`updated_at` TIMESTAMP NULL,
-	`barang_nama` VARCHAR(50) NULL COLLATE 'utf8mb4_general_ci',
-	`barang_stok` INT(11) NULL,
-	`barang_satuan` VARCHAR(50) NULL COLLATE 'utf8mb4_general_ci',
-	`supplier_nama` VARCHAR(50) NULL COLLATE 'utf8mb4_general_ci',
-	`tagihan` DOUBLE NULL,
-	`fullname` VARCHAR(50) NULL COLLATE 'latin1_swedish_ci'
+CREATE TABLE `detail_gaji` (
+	`id` INT(11) NOT NULL,
+	`tanggal` DATE NOT NULL,
+	`jumlah_jam` DOUBLE NOT NULL,
+	`nama_pegawai` VARCHAR(50) NULL COLLATE 'utf8mb4_general_ci',
+	`total_gaji_harian` DOUBLE NULL,
+	`gaji_borongan` BIGINT(21) NULL
 ) ENGINE=MyISAM;
 
 -- Dumping structure for view tutoko.detail_pembelian
@@ -128,41 +141,27 @@ CREATE TABLE `detail_penjualan` (
 	`tagihan` DOUBLE NOT NULL
 ) ENGINE=MyISAM;
 
--- Dumping structure for table tutoko.invoice_keluars
-CREATE TABLE IF NOT EXISTS `invoice_keluars` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `penjualan_id` int(11) NOT NULL DEFAULT 0,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
-
--- Dumping data for table tutoko.invoice_keluars: 4 rows
-/*!40000 ALTER TABLE `invoice_keluars` DISABLE KEYS */;
-INSERT INTO `invoice_keluars` (`id`, `penjualan_id`, `created_at`, `updated_at`) VALUES
-	(1, 1, '2021-05-31 20:49:57', '2021-05-31 21:37:01'),
-	(3, 4, '2021-05-31 23:16:26', '2021-05-31 23:16:26'),
-	(4, 5, '2021-06-01 00:01:58', '2021-06-01 00:01:58'),
-	(5, 6, '2021-06-01 00:02:55', '2021-06-01 00:02:55');
-/*!40000 ALTER TABLE `invoice_keluars` ENABLE KEYS */;
-
--- Dumping structure for table tutoko.invoice_masuks
-CREATE TABLE IF NOT EXISTS `invoice_masuks` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `pembelian_id` int(11) NOT NULL DEFAULT 0,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
-
--- Dumping data for table tutoko.invoice_masuks: 4 rows
-/*!40000 ALTER TABLE `invoice_masuks` DISABLE KEYS */;
-INSERT INTO `invoice_masuks` (`id`, `pembelian_id`, `created_at`, `updated_at`) VALUES
-	(1, 1, '2021-05-31 23:16:07', '2021-05-31 23:16:07'),
-	(2, 4, '2021-05-31 23:16:10', '2021-05-31 23:16:10'),
-	(3, 9, '2021-05-31 23:16:14', '2021-05-31 23:16:14'),
-	(4, 10, '2021-06-01 00:11:50', '2021-06-01 00:11:50');
-/*!40000 ALTER TABLE `invoice_masuks` ENABLE KEYS */;
+-- Dumping structure for view tutoko.detail_produksi
+-- Creating temporary table to overcome VIEW dependency errors
+CREATE TABLE `detail_produksi` (
+	`id` INT(11) NOT NULL,
+	`barang_id` INT(11) NOT NULL,
+	`produksi_tanggal` DATE NULL,
+	`pegawai_id` INT(11) NOT NULL,
+	`produksi_jumlah` INT(11) NULL,
+	`hpp` INT(11) NULL,
+	`upah` INT(11) NULL,
+	`created_at` TIMESTAMP NOT NULL,
+	`updated_at` TIMESTAMP NOT NULL,
+	`pegawai_nama` VARCHAR(50) NULL COLLATE 'utf8mb4_general_ci',
+	`barang_nama` VARCHAR(50) NULL COLLATE 'utf8mb4_general_ci',
+	`barang_stok` INT(11) NULL,
+	`barang_satuan` VARCHAR(50) NULL COLLATE 'utf8mb4_general_ci',
+	`barang_tipe` ENUM('Mandiri','Supplier') NULL COLLATE 'utf8mb4_general_ci',
+	`photo` VARCHAR(225) NULL COLLATE 'utf8mb4_general_ci',
+	`active` ENUM('Active','Inactive') NULL COLLATE 'utf8mb4_general_ci',
+	`total_upah` BIGINT(21) NULL
+) ENGINE=MyISAM;
 
 -- Dumping structure for table tutoko.pegawais
 CREATE TABLE IF NOT EXISTS `pegawais` (
@@ -170,17 +169,21 @@ CREATE TABLE IF NOT EXISTS `pegawais` (
   `pegawai_nama` varchar(50) NOT NULL,
   `pegawai_phone` varchar(50) DEFAULT NULL,
   `pegawai_alamat` varchar(50) DEFAULT NULL,
+  `gaji_harian` int(11) DEFAULT 0,
   `active` enum('Active','Inactive') DEFAULT 'Active',
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table tutoko.pegawais: 2 rows
+-- Dumping data for table tutoko.pegawais: 5 rows
 /*!40000 ALTER TABLE `pegawais` DISABLE KEYS */;
-INSERT INTO `pegawais` (`id`, `pegawai_nama`, `pegawai_phone`, `pegawai_alamat`, `active`, `created_at`, `updated_at`) VALUES
-	(1, 'larnoss', '9999', 'sidorejo', 'Active', '2021-05-31 21:38:01', '2021-06-21 03:42:04'),
-	(3, 'larniss', '0987', 'jjuju', 'Active', '2021-06-21 04:08:02', '2021-06-21 04:08:09');
+INSERT INTO `pegawais` (`id`, `pegawai_nama`, `pegawai_phone`, `pegawai_alamat`, `gaji_harian`, `active`, `created_at`, `updated_at`) VALUES
+	(1, 'janu', '9999999999', 'ponjong', 50000, 'Active', '2021-06-26 03:21:32', '2021-06-26 10:52:19'),
+	(2, 'jono', '99999999', 'ponjong', 45000, 'Active', '2021-06-26 03:21:46', '2021-06-26 03:21:46'),
+	(3, 'jini', '99999999', 'tegalrejo', 55000, 'Active', '2021-06-26 03:22:00', '2021-06-26 03:22:00'),
+	(4, 'jena', '99999999', 'karangijo', 60000, 'Active', '2021-06-26 03:22:19', '2021-06-26 03:22:19'),
+	(5, 'bedot', '99998888', 'sumber kidul', 70000, 'Active', '2021-06-26 03:22:36', '2021-06-26 03:22:36');
 /*!40000 ALTER TABLE `pegawais` ENABLE KEYS */;
 
 -- Dumping structure for table tutoko.pembelians
@@ -189,7 +192,7 @@ CREATE TABLE IF NOT EXISTS `pembelians` (
   `user_id` int(11) NOT NULL DEFAULT 1,
   `supplier_id` int(11) NOT NULL DEFAULT 0,
   `barang_id` int(11) NOT NULL DEFAULT 0,
-  `tanggal` date DEFAULT NULL,
+  `tanggal` date DEFAULT curdate(),
   `jumlah` int(11) NOT NULL DEFAULT 0,
   `harga_beli` double NOT NULL DEFAULT 0 COMMENT 'harga beli satuan',
   `payment` double NOT NULL DEFAULT 0,
@@ -198,16 +201,18 @@ CREATE TABLE IF NOT EXISTS `pembelians` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table tutoko.pembelians: 5 rows
+-- Dumping data for table tutoko.pembelians: 7 rows
 /*!40000 ALTER TABLE `pembelians` DISABLE KEYS */;
 INSERT INTO `pembelians` (`id`, `user_id`, `supplier_id`, `barang_id`, `tanggal`, `jumlah`, `harga_beli`, `payment`, `harga_jual_standar`, `harga_jual_grosir`, `created_at`, `updated_at`) VALUES
-	(1, 1, 1, 1, '2021-06-13', 5, 1000, 4000, 15000, 14000, '2021-06-13 05:54:53', '2021-06-17 05:23:27'),
-	(3, 1, 2, 1, '2021-06-13', 5, 12000, 50000, 15000, 14000, '2021-06-13 07:26:42', '2021-06-17 05:40:00'),
-	(4, 1, 1, 1, '2021-06-14', 9, 1000, 9000, 15000, 14000, '2021-06-13 07:49:20', '2021-06-17 05:25:35'),
-	(5, 1, 3, 2, '2021-06-17', 100, 1700, 170000, 2500, 2200, '2021-06-17 05:05:16', '2021-06-17 05:58:00'),
-	(6, 1, 2, 1, '2021-06-22', 100, 10000, 1000000, 15000, 14000, '2021-06-22 07:30:39', '2021-06-22 16:58:37');
+	(1, 1, 1, 1, '2021-06-26', 1, 70000, 0, 120000, 100000, '2021-06-27 00:20:47', '2021-06-27 00:20:47'),
+	(2, 1, 1, 3, '2021-06-26', 100, 1200, 0, 2500, 2300, '2021-06-27 00:23:24', '2021-06-27 00:23:24'),
+	(3, 1, 1, 3, '2021-06-26', 10, 1200, 0, 2900, 2500, '2021-06-27 00:24:33', '2021-06-26 17:34:07'),
+	(4, 1, 100001, 2, '2021-07-01', 100, 30000, 2000000, 40000, 35000, '2021-07-01 03:33:17', '2021-07-01 03:33:17'),
+	(5, 1, 100001, 4, '2021-07-01', 100, 10000, 900000, 15000, 13000, '2021-07-01 04:40:44', '2021-07-01 04:40:44'),
+	(6, 1, 100001, 4, '2021-07-01', 100, 10000, 1000000, 15500, 13500, '2021-07-01 04:43:52', '2021-07-01 04:43:52'),
+	(7, 1, 1, 3, '2021-07-01', 50, 1200, 0, 2900, 2500, '2021-07-01 12:57:53', '2021-07-01 12:57:53');
 /*!40000 ALTER TABLE `pembelians` ENABLE KEYS */;
 
 -- Dumping structure for table tutoko.penjualans
@@ -225,42 +230,39 @@ CREATE TABLE IF NOT EXISTS `penjualans` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table tutoko.penjualans: 11 rows
+-- Dumping data for table tutoko.penjualans: 3 rows
 /*!40000 ALTER TABLE `penjualans` DISABLE KEYS */;
 INSERT INTO `penjualans` (`id`, `user_id`, `barang_id`, `tanggal`, `jumlah`, `harga_jual`, `payment`, `nama_pembeli`, `phone_pembeli`, `alamat_pembeli`, `created_at`, `updated_at`) VALUES
-	(1, 1, 1, '2021-06-12', 5, 20000, 90000, 'ripto', '0987788090987', 'karangijo', '2021-06-13 09:03:14', '2021-06-13 16:04:52'),
-	(2, 1, 1, '2021-06-13', 1, 35000, 35000, NULL, NULL, NULL, '2021-06-13 09:34:57', '2021-06-13 09:34:57'),
-	(3, 1, 1, '2021-06-16', 5, 15000, 70000, 'arnto', '123443132321', 'karangijo', '2021-06-16 08:50:21', '2021-06-16 08:50:21'),
-	(4, 1, 1, '2021-06-16', 5, 15000, 70000, 'arnto', '123443132321', 'karangijo', '2021-06-16 08:50:39', '2021-06-16 08:50:39'),
-	(5, 1, 1, '2021-06-16', 5, 15000, 70000, 'arnto', '123443132321', 'karangijo', '2021-06-16 08:51:18', '2021-06-16 08:51:18'),
-	(6, 1, 1, '2021-06-16', 1, 14000, 14000, '-', '-', '-', '2021-06-16 08:52:45', '2021-06-16 08:52:45'),
-	(7, 1, 1, '2021-06-16', 3, 14000, 42000, '-', '-', '-', '2021-06-16 09:16:18', '2021-06-16 09:16:18'),
-	(8, 1, 2, '2021-06-17', 100, 2550, 255000, 'a', 'b', 'c', '2021-06-17 05:07:21', '2021-06-20 17:16:51'),
-	(10, 1, 1, '2021-06-22', 2, 15000, 15000, 'xxx', 'xxx', 'xxx', '2021-06-22 07:27:51', '2021-06-22 07:28:09'),
-	(11, 1, 1, '2021-06-22', 10, 15000, 100000, 'aaa', 'aaaa', 'aaaa', '2021-06-22 15:57:02', '2021-06-22 15:57:02'),
-	(12, 1, 1, '2021-06-22', 10, 15000, 150000, 'vv', 'vv', 'vv', '2021-06-22 16:02:34', '2021-06-22 16:57:42'),
-	(13, 1, 1, '2021-06-22', 1, 15000, 15000, '-', '-', '-', '2021-06-22 16:56:43', '2021-06-22 16:56:43');
+	(1, 1, 2, '2021-07-01', 10, 40000, 400000, '-', '-', '-', '2021-07-01 04:35:58', '2021-07-01 04:37:05'),
+	(2, 1, 4, '2021-07-01', 1, 15000, 15000, '-', '-', '-', '2021-07-01 04:42:02', '2021-07-01 04:42:02'),
+	(3, 1, 3, '2021-07-01', 10, 2500, 25000, '-', '-', '-', '2021-07-01 05:55:41', '2021-07-01 05:55:41');
 /*!40000 ALTER TABLE `penjualans` ENABLE KEYS */;
 
 -- Dumping structure for table tutoko.produksis
 CREATE TABLE IF NOT EXISTS `produksis` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `barang_id` int(11) NOT NULL DEFAULT 0,
-  `pegawai_id` int(11) NOT NULL DEFAULT 0,
   `produksi_tanggal` date DEFAULT NULL,
+  `pegawai_id` int(11) NOT NULL DEFAULT 0,
   `produksi_jumlah` int(11) DEFAULT 0,
+  `hpp` int(11) DEFAULT 0,
+  `upah` int(11) DEFAULT 0,
+  `hjs` int(11) DEFAULT 0,
+  `hjg` int(11) DEFAULT 0,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table tutoko.produksis: 2 rows
+-- Dumping data for table tutoko.produksis: 4 rows
 /*!40000 ALTER TABLE `produksis` DISABLE KEYS */;
-INSERT INTO `produksis` (`id`, `barang_id`, `pegawai_id`, `produksi_tanggal`, `produksi_jumlah`, `created_at`, `updated_at`) VALUES
-	(1, 2, 1, '2021-05-31', 2, '2021-05-31 21:37:28', '2021-05-31 22:48:49'),
-	(2, 2, 1, '2021-06-01', 5, '2021-06-01 00:14:28', '2021-06-01 00:14:28');
+INSERT INTO `produksis` (`id`, `barang_id`, `produksi_tanggal`, `pegawai_id`, `produksi_jumlah`, `hpp`, `upah`, `hjs`, `hjg`, `created_at`, `updated_at`) VALUES
+	(1, 1, '2021-06-26', 5, 1, 70000, 45000, 120000, 100000, '2021-06-26 17:20:47', '2021-06-26 17:20:47'),
+	(2, 3, '2021-06-26', 1, 100, 1200, 500, 2500, 2300, '2021-06-26 17:23:24', '2021-06-26 17:23:24'),
+	(3, 3, '2021-06-26', 2, 10, 1200, 500, 2500, 2300, '2021-06-26 17:24:33', '2021-06-26 17:24:33'),
+	(4, 3, '2021-07-01', 3, 50, 1200, 500, 2900, 2500, '2021-07-01 05:57:53', '2021-07-01 05:57:53');
 /*!40000 ALTER TABLE `produksis` ENABLE KEYS */;
 
 -- Dumping structure for table tutoko.suppliers
@@ -272,15 +274,13 @@ CREATE TABLE IF NOT EXISTS `suppliers` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
+) ENGINE=MyISAM AUTO_INCREMENT=100002 DEFAULT CHARSET=utf8mb4;
 
--- Dumping data for table tutoko.suppliers: 4 rows
+-- Dumping data for table tutoko.suppliers: 2 rows
 /*!40000 ALTER TABLE `suppliers` DISABLE KEYS */;
 INSERT INTO `suppliers` (`id`, `supplier_nama`, `supplier_phone`, `supplier_alamat`, `created_at`, `updated_at`) VALUES
-	(1, 'cv gajah duduk', '0000', 'kalasan indo', '2021-05-31 14:39:48', '2021-06-21 03:57:22'),
-	(2, 'maju jaya', '45645', 'playen gunungkidul', '2021-06-13 14:21:19', '2021-06-13 14:21:19'),
-	(3, 'tutoko', '098778900987', 'ponjong', '2021-06-17 11:48:44', '2021-06-17 11:48:56'),
-	(4, 'tejoss', '098777', 'urusss', '2021-06-21 04:04:38', '2021-06-21 04:04:49');
+	(1, 'tutoko beton', '098778900987', 'ponjong', '2021-06-17 11:48:44', '2021-06-26 02:38:58'),
+	(100001, 'kurnia jaya', '0987', 'karangmojo', '2021-07-01 03:32:49', '2021-07-01 03:32:49');
 /*!40000 ALTER TABLE `suppliers` ENABLE KEYS */;
 
 -- Dumping structure for table tutoko.users
@@ -332,34 +332,32 @@ SET @OLDTMP_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGIN
 DELIMITER //
 CREATE TRIGGER `AFTER_INSERT_PRODUKSI` AFTER INSERT ON `produksis` FOR EACH ROW BEGIN
   IF NEW.produksi_jumlah > 0 THEN 
-  	 	UPDATE barangs SET barang_stok = barang_stok + NEW.produksi_jumlah
-   	WHERE id = NEW.barang_id;
+  	 	#UPDATE barangs SET barang_stok = barang_stok + NEW.produksi_jumlah
+   	#WHERE id = NEW.barang_id;
+   	INSERT INTO pembelians(supplier_id,barang_id,tanggal,jumlah,harga_beli,payment,harga_jual_standar,harga_jual_grosir)
+      VALUES(1, NEW.barang_id, NEW.produksi_tanggal, NEW.produksi_jumlah, NEW.hpp, 0, NEW.hjs, NEW.hjg);
   END IF;
 END//
 DELIMITER ;
 SET SQL_MODE=@OLDTMP_SQL_MODE;
 
--- Dumping structure for view tutoko.detail_invoice_keluar
+-- Dumping structure for view tutoko.detail_absensi
 -- Removing temporary table and create final VIEW structure
-DROP TABLE IF EXISTS `detail_invoice_keluar`;
-CREATE ALGORITHM=UNDEFINED SQL SECURITY DEFINER VIEW `detail_invoice_keluar` AS SELECT p.*,b.barang_nama,b.barang_stok,b.barang_satuan,
-p.payment - (p.jumlah * p.harga_jual) AS tagihan
-FROM invoice_keluars i
-LEFT JOIN penjualans p ON i.penjualan_id=p.id
-LEFT JOIN barangs b ON b.id = p.barang_id ;
+DROP TABLE IF EXISTS `detail_absensi`;
+CREATE ALGORITHM=UNDEFINED SQL SECURITY DEFINER VIEW `detail_absensi` AS SELECT a.*,p.pegawai_nama,p.gaji_harian,(a.jam_kerja * p.gaji_harian) AS jumlah_gaji
+FROM absensis a
+LEFT JOIN pegawais p ON a.pegawai_id=p.id ;
 
--- Dumping structure for view tutoko.detail_invoice_masuk
+-- Dumping structure for view tutoko.detail_gaji
 -- Removing temporary table and create final VIEW structure
-DROP TABLE IF EXISTS `detail_invoice_masuk`;
-CREATE ALGORITHM=UNDEFINED SQL SECURITY DEFINER VIEW `detail_invoice_masuk` AS SELECT p.*,b.barang_nama,b.barang_stok,b.barang_satuan,s.supplier_nama,
-p.payment - (p.harga_beli * p.jumlah) AS tagihan,u.fullname
-FROM invoice_masuks i
-LEFT JOIN pembelians p ON i.pembelian_id=p.id
-LEFT JOIN barangs b ON p.barang_id=b.id
-LEFT JOIN suppliers s ON p.supplier_id=s.id
-LEFT JOIN users u ON p.user_id=u.id
-
-#UPDATE barang SET barang_stok = 10 WHERE barang_id = 2 ;
+DROP TABLE IF EXISTS `detail_gaji`;
+CREATE ALGORITHM=UNDEFINED SQL SECURITY DEFINER VIEW `detail_gaji` AS SELECT a.id,a.tanggal,
+a.jam_kerja AS jumlah_jam,
+p.pegawai_nama AS nama_pegawai,(p.gaji_harian * a.jam_kerja) AS total_gaji_harian,
+(pp.produksi_jumlah * pp.upah) AS gaji_borongan
+FROM absensis a
+LEFT JOIN pegawais p ON a.pegawai_id=p.id
+LEFT JOIN produksis pp ON a.pegawai_id=pp.pegawai_id ;
 
 -- Dumping structure for view tutoko.detail_pembelian
 -- Removing temporary table and create final VIEW structure
@@ -369,6 +367,7 @@ CREATE ALGORITHM=UNDEFINED SQL SECURITY DEFINER VIEW `detail_pembelian` AS SELEC
 FROM pembelians p
 LEFT JOIN suppliers s ON p.supplier_id=s.id
 LEFT JOIN barangs b ON p.barang_id=b.id
+#WHERE p.supplier_id > 1
 ORDER BY p.id DESC ;
 
 -- Dumping structure for view tutoko.detail_penjualan
@@ -379,6 +378,14 @@ CREATE ALGORITHM=UNDEFINED SQL SECURITY DEFINER VIEW `detail_penjualan` AS SELEC
 FROM penjualans p
 LEFT JOIN barangs b ON p.barang_id=b.id
 ORDER BY p.id DESC ;
+
+-- Dumping structure for view tutoko.detail_produksi
+-- Removing temporary table and create final VIEW structure
+DROP TABLE IF EXISTS `detail_produksi`;
+CREATE ALGORITHM=UNDEFINED SQL SECURITY DEFINER VIEW `detail_produksi` AS SELECT p.*,w.pegawai_nama,b.barang_nama,b.barang_stok,b.barang_satuan,b.barang_tipe,b.photo,b.active,(p.produksi_jumlah * p.upah) AS total_upah
+FROM produksis p
+LEFT JOIN barangs b ON p.barang_id = b.id
+LEFT JOIN pegawais w ON p.pegawai_id = w.id ;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IFNULL(@OLD_FOREIGN_KEY_CHECKS, 1) */;

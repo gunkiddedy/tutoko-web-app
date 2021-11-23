@@ -91,7 +91,7 @@
                     >
                     <input
                       readonly
-                      class="w-full px-4 py-2 text-gray-700 border-2 border-blue-200 bg-white rounded uppercase text-lg font-bold"
+                      class="w-full px-4 py-2 text-gray-700 border-2 border-blue-200 bg-gray-50 rounded uppercase text-lg font-bold"
                       id="barang_satuan"
                       v-model="form.hpp"
                       type="number"
@@ -106,7 +106,7 @@
                     >
                     <input
                       readonly
-                      class="w-full px-4 py-2 text-gray-700 border-2 border-blue-200 bg-white rounded uppercase text-lg font-bold"
+                      class="w-full px-4 py-2 text-gray-700 border-2 border-blue-200 bg-gray-50 rounded uppercase text-lg font-bold"
                       id="barang_satuan"
                       v-model="form.upah"
                       type="number"
@@ -117,11 +117,11 @@
 
                   <div class="px-0 md:px-4 my-2">
                     <label class="uppercase block text-lg text-gray-600" for="cus_email"
-                      >hjs</label
+                      >harga jual standar</label
                     >
                     <input
                       readonly
-                      class="w-full px-4 py-2 text-gray-700 border-2 border-blue-200 bg-white rounded uppercase text-lg font-bold"
+                      class="w-full px-4 py-2 text-gray-700 border-2 border-blue-200 bg-gray-50 rounded uppercase text-lg font-bold"
                       id="barang_satuan"
                       v-model="form.hjs"
                       type="number"
@@ -132,11 +132,11 @@
 
                   <div class="px-0 md:px-4 my-2">
                     <label class="uppercase block text-lg text-gray-600" for="cus_email"
-                      >hjg</label
+                      >harga jual grosir</label
                     >
                     <input
                       readonly
-                      class="w-full px-4 py-2 text-gray-700 border-2 border-blue-200 bg-white rounded uppercase text-lg font-bold"
+                      class="w-full px-4 py-2 text-gray-700 border-2 border-blue-200 bg-gray-50 rounded uppercase text-lg font-bold"
                       id="barang_satuan"
                       v-model="form.hjg"
                       type="number"

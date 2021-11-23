@@ -7,7 +7,7 @@
       <div
         class="realtive w-12 h-12 rounded-full overflow-hidden border-2 border-gray-100 hover:border-gray-200 focus:border-gray-200 focus:outline-none mb-1 mx-auto"
       >
-        <router-link to="/barang">
+        <router-link to="/">
           <img src="/img/minicar.jpg" />
         </router-link>
       </div>
@@ -20,21 +20,13 @@
     <nav class="text-white text-base font-semibold pt-3">
 
       <router-link
-        to="/barang"
+        to="/"
         v-if="isAdmin === 'true' && role === 'admin' && isLoggedIn == 'true'"
         class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item"
       >
         <i class="fas fa-home mr-3"></i>
-        Daftar Barang
+        Dashboard
       </router-link>
-
-      <router-link
-        to="/produksi"
-        v-if="role === 'desa' || role === 'admin'"
-        class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item"
-      >
-        <i class="fas fa-clipboard-check mr-3"></i> Produksi</router-link
-      >
 
       <router-link
         to="/pembelian"
@@ -53,6 +45,22 @@
       >
 
       <router-link
+        to="/produksi"
+        v-if="role === 'desa' || role === 'admin'"
+        class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item"
+      >
+        <i class="fas fa-clipboard-check mr-3"></i> Produksi</router-link
+      >
+
+      <router-link
+        to="/absensi"
+        v-if="role === 'admin'"
+        class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item"
+      >
+        <i class="fas fa-clipboard-check mr-3"></i> Absensi</router-link
+      >
+
+      <router-link
         to="/pegawai"
         v-if="role === 'desa' || role === 'admin'"
         class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item"
@@ -65,14 +73,6 @@
         class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item"
       >
         <i class="fas fa-bus mr-3"></i> Supplier</router-link
-      >
-
-      <router-link
-        to="/absensi"
-        v-if="role === 'admin'"
-        class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item"
-      >
-        <i class="fas fa-clipboard-check mr-3"></i> Absensi</router-link
       >
 
       <!-- <router-link

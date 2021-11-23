@@ -1,49 +1,14 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[9],{
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/barang/BarangAdd.vue?vue&type=script&lang=js&":
-/*!**********************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/pages/barang/BarangAdd.vue?vue&type=script&lang=js& ***!
-  \**********************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/barang/BarangAddSupplier.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/pages/barang/BarangAddSupplier.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -196,7 +161,7 @@ __webpack_require__.r(__webpack_exports__);
       barang_nama: "",
       barang_satuan: "",
       barang_stok: "",
-      barang_tipe: "",
+      barang_tipe: "Supplier",
       upah: 0,
       hpp: 0,
       hjs: 0,
@@ -210,7 +175,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     cancel: function cancel() {
-      this.$router.push('/barang');
+      this.$router.go(-1);
     },
     updateImageList: function updateImageList(file) {
       this.imageList.push(file.raw);
@@ -290,10 +255,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/barang/BarangAdd.vue?vue&type=template&id=d502814a&scoped=true&":
-/*!**************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/pages/barang/BarangAdd.vue?vue&type=template&id=d502814a&scoped=true& ***!
-  \**************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/barang/BarangAddSupplier.vue?vue&type=template&id=5410d447&scoped=true&":
+/*!**********************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/pages/barang/BarangAddSupplier.vue?vue&type=template&id=5410d447&scoped=true& ***!
+  \**********************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -337,7 +302,11 @@ var render = function() {
                       staticClass:
                         "text-lg text-gray-500 pb-1 font-semibold text-center mt-4"
                     },
-                    [_vm._v("\n          Tambah Data Barang\n        ")]
+                    [
+                      _vm._v(
+                        "\n          Tambah Data Barang Supplier\n        "
+                      )
+                    ]
                   ),
                   _vm._v(" "),
                   _c("div", { staticClass: "w-full mt-6 pl-0 lg:pl-2" }, [
@@ -429,88 +398,6 @@ var render = function() {
                                 })
                               ]),
                               _vm._v(" "),
-                              _c("div", { staticClass: "px-0 md:px-4 my-2" }, [
-                                _c(
-                                  "label",
-                                  {
-                                    staticClass:
-                                      "uppercase block text-sm text-gray-600",
-                                    attrs: { for: "cus_email" }
-                                  },
-                                  [_vm._v("Jenis Barang")]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "select",
-                                  {
-                                    directives: [
-                                      {
-                                        name: "model",
-                                        rawName: "v-model",
-                                        value: _vm.barang_tipe,
-                                        expression: "barang_tipe"
-                                      }
-                                    ],
-                                    staticClass:
-                                      "w-full px-5 py-2  rounded text-gray-500 focus:outline-none focus:shadow-inner border-2 border-blue-200 bg-white appearance-none",
-                                    on: {
-                                      change: function($event) {
-                                        var $$selectedVal = Array.prototype.filter
-                                          .call($event.target.options, function(
-                                            o
-                                          ) {
-                                            return o.selected
-                                          })
-                                          .map(function(o) {
-                                            var val =
-                                              "_value" in o ? o._value : o.value
-                                            return val
-                                          })
-                                        _vm.barang_tipe = $event.target.multiple
-                                          ? $$selectedVal
-                                          : $$selectedVal[0]
-                                      }
-                                    }
-                                  },
-                                  [
-                                    _c(
-                                      "option",
-                                      {
-                                        staticClass: "text-gray-700",
-                                        attrs: {
-                                          value: "",
-                                          selected: "selected"
-                                        }
-                                      },
-                                      [
-                                        _vm._v(
-                                          "\n                      -Pilih-\n                    "
-                                        )
-                                      ]
-                                    ),
-                                    _vm._v(" "),
-                                    _vm._l(_vm.tipes, function(tipe, i) {
-                                      return _c(
-                                        "option",
-                                        {
-                                          key: i,
-                                          staticClass: "text-gray-700",
-                                          domProps: { value: tipe }
-                                        },
-                                        [
-                                          _vm._v(
-                                            "\n                      " +
-                                              _vm._s(tipe) +
-                                              "\n                    "
-                                          )
-                                        ]
-                                      )
-                                    })
-                                  ],
-                                  2
-                                )
-                              ]),
-                              _vm._v(" "),
                               _vm.barang_tipe == "Mandiri"
                                 ? _c(
                                     "div",
@@ -523,7 +410,7 @@ var render = function() {
                                             "uppercase block text-sm text-gray-600",
                                           attrs: { for: "cus_email" }
                                         },
-                                        [_vm._v("hpp")]
+                                        [_vm._v("harga pokok produksi")]
                                       ),
                                       _vm._v(" "),
                                       _c("input", {
@@ -540,7 +427,7 @@ var render = function() {
                                         attrs: {
                                           id: "barang_satuan",
                                           type: "text",
-                                          placeholder: "hpp",
+                                          placeholder: "harga pokok produksi",
                                           "aria-label": "Email"
                                         },
                                         domProps: { value: _vm.hpp },
@@ -615,7 +502,7 @@ var render = function() {
                                             "uppercase block text-sm text-gray-600",
                                           attrs: { for: "cus_email" }
                                         },
-                                        [_vm._v("hjs")]
+                                        [_vm._v("harga jual standar")]
                                       ),
                                       _vm._v(" "),
                                       _c("input", {
@@ -632,7 +519,7 @@ var render = function() {
                                         attrs: {
                                           id: "barang_satuan",
                                           type: "text",
-                                          placeholder: "hjs",
+                                          placeholder: "harga jual standar",
                                           "aria-label": "Email"
                                         },
                                         domProps: { value: _vm.hjs },
@@ -661,7 +548,7 @@ var render = function() {
                                             "uppercase block text-sm text-gray-600",
                                           attrs: { for: "cus_email" }
                                         },
-                                        [_vm._v("hjg")]
+                                        [_vm._v("harga jual grosir")]
                                       ),
                                       _vm._v(" "),
                                       _c("input", {
@@ -678,7 +565,7 @@ var render = function() {
                                         attrs: {
                                           id: "barang_satuan",
                                           type: "text",
-                                          placeholder: "hjg",
+                                          placeholder: "harga jual grosir",
                                           "aria-label": "Email"
                                         },
                                         domProps: { value: _vm.hjg },
@@ -831,17 +718,17 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./resources/js/pages/barang/BarangAdd.vue":
-/*!*************************************************!*\
-  !*** ./resources/js/pages/barang/BarangAdd.vue ***!
-  \*************************************************/
+/***/ "./resources/js/pages/barang/BarangAddSupplier.vue":
+/*!*********************************************************!*\
+  !*** ./resources/js/pages/barang/BarangAddSupplier.vue ***!
+  \*********************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _BarangAdd_vue_vue_type_template_id_d502814a_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./BarangAdd.vue?vue&type=template&id=d502814a&scoped=true& */ "./resources/js/pages/barang/BarangAdd.vue?vue&type=template&id=d502814a&scoped=true&");
-/* harmony import */ var _BarangAdd_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./BarangAdd.vue?vue&type=script&lang=js& */ "./resources/js/pages/barang/BarangAdd.vue?vue&type=script&lang=js&");
+/* harmony import */ var _BarangAddSupplier_vue_vue_type_template_id_5410d447_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./BarangAddSupplier.vue?vue&type=template&id=5410d447&scoped=true& */ "./resources/js/pages/barang/BarangAddSupplier.vue?vue&type=template&id=5410d447&scoped=true&");
+/* harmony import */ var _BarangAddSupplier_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./BarangAddSupplier.vue?vue&type=script&lang=js& */ "./resources/js/pages/barang/BarangAddSupplier.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -851,50 +738,50 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _BarangAdd_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _BarangAdd_vue_vue_type_template_id_d502814a_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _BarangAdd_vue_vue_type_template_id_d502814a_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _BarangAddSupplier_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _BarangAddSupplier_vue_vue_type_template_id_5410d447_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _BarangAddSupplier_vue_vue_type_template_id_5410d447_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
-  "d502814a",
+  "5410d447",
   null
   
 )
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/js/pages/barang/BarangAdd.vue"
+component.options.__file = "resources/js/pages/barang/BarangAddSupplier.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/js/pages/barang/BarangAdd.vue?vue&type=script&lang=js&":
-/*!**************************************************************************!*\
-  !*** ./resources/js/pages/barang/BarangAdd.vue?vue&type=script&lang=js& ***!
-  \**************************************************************************/
+/***/ "./resources/js/pages/barang/BarangAddSupplier.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************!*\
+  !*** ./resources/js/pages/barang/BarangAddSupplier.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_BarangAdd_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./BarangAdd.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/barang/BarangAdd.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_BarangAdd_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_BarangAddSupplier_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./BarangAddSupplier.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/barang/BarangAddSupplier.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_BarangAddSupplier_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/js/pages/barang/BarangAdd.vue?vue&type=template&id=d502814a&scoped=true&":
-/*!********************************************************************************************!*\
-  !*** ./resources/js/pages/barang/BarangAdd.vue?vue&type=template&id=d502814a&scoped=true& ***!
-  \********************************************************************************************/
+/***/ "./resources/js/pages/barang/BarangAddSupplier.vue?vue&type=template&id=5410d447&scoped=true&":
+/*!****************************************************************************************************!*\
+  !*** ./resources/js/pages/barang/BarangAddSupplier.vue?vue&type=template&id=5410d447&scoped=true& ***!
+  \****************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_BarangAdd_vue_vue_type_template_id_d502814a_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./BarangAdd.vue?vue&type=template&id=d502814a&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/barang/BarangAdd.vue?vue&type=template&id=d502814a&scoped=true&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_BarangAdd_vue_vue_type_template_id_d502814a_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_BarangAddSupplier_vue_vue_type_template_id_5410d447_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./BarangAddSupplier.vue?vue&type=template&id=5410d447&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/barang/BarangAddSupplier.vue?vue&type=template&id=5410d447&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_BarangAddSupplier_vue_vue_type_template_id_5410d447_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_BarangAdd_vue_vue_type_template_id_d502814a_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_BarangAddSupplier_vue_vue_type_template_id_5410d447_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

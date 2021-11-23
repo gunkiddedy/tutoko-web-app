@@ -276,7 +276,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     cancel: function cancel() {
-      this.$router.push('/barang');
+      this.$router.go(-1);
     },
     setHarga: function setHarga(param) {
       this.form.harga_jual = param;

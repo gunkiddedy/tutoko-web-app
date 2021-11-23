@@ -767,6 +767,98 @@ var render = function() {
                                     staticClass: "block text-lg text-gray-600",
                                     attrs: { for: "cus_email" }
                                   },
+                                  [_vm._v("Harga Jual Standar")]
+                                ),
+                                _vm._v(" "),
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.form.harga_jual_standar,
+                                      expression: "form.harga_jual_standar"
+                                    }
+                                  ],
+                                  staticClass:
+                                    "w-full px-4  py-2 text-gray-700 bg-gray-50 rounded focus:bg-blue-50 uppercase border-2 border-blue-200 text-lg font-bold",
+                                  attrs: {
+                                    id: "barang_stok",
+                                    type: "number",
+                                    min: "0",
+                                    placeholder: "Harga Jual Standar",
+                                    "aria-label": ""
+                                  },
+                                  domProps: {
+                                    value: _vm.form.harga_jual_standar
+                                  },
+                                  on: {
+                                    input: function($event) {
+                                      if ($event.target.composing) {
+                                        return
+                                      }
+                                      _vm.$set(
+                                        _vm.form,
+                                        "harga_jual_standar",
+                                        $event.target.value
+                                      )
+                                    }
+                                  }
+                                })
+                              ]),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "px-0 md:px-4 my-2" }, [
+                                _c(
+                                  "label",
+                                  {
+                                    staticClass: "block text-lg text-gray-600",
+                                    attrs: { for: "cus_email" }
+                                  },
+                                  [_vm._v("Harga Jual Grosir")]
+                                ),
+                                _vm._v(" "),
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.form.harga_jual_grosir,
+                                      expression: "form.harga_jual_grosir"
+                                    }
+                                  ],
+                                  staticClass:
+                                    "w-full px-4  py-2 text-gray-700 bg-gray-50 rounded focus:bg-blue-50 uppercase border-2 border-blue-200 text-lg font-bold",
+                                  attrs: {
+                                    id: "barang_stok",
+                                    type: "number",
+                                    min: "0",
+                                    placeholder: "Harga Jual Grosir",
+                                    "aria-label": ""
+                                  },
+                                  domProps: {
+                                    value: _vm.form.harga_jual_grosir
+                                  },
+                                  on: {
+                                    input: function($event) {
+                                      if ($event.target.composing) {
+                                        return
+                                      }
+                                      _vm.$set(
+                                        _vm.form,
+                                        "harga_jual_grosir",
+                                        $event.target.value
+                                      )
+                                    }
+                                  }
+                                })
+                              ]),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "px-0 md:px-4 my-2" }, [
+                                _c(
+                                  "label",
+                                  {
+                                    staticClass: "block text-lg text-gray-600",
+                                    attrs: { for: "cus_email" }
+                                  },
                                   [_vm._v("Terbayar")]
                                 ),
                                 _vm._v(" "),
@@ -835,98 +927,6 @@ var render = function() {
                                 ],
                                 1
                               ),
-                              _vm._v(" "),
-                              _c("div", { staticClass: "px-0 md:px-4 my-2" }, [
-                                _c(
-                                  "label",
-                                  {
-                                    staticClass: "block text-lg text-gray-600",
-                                    attrs: { for: "cus_email" }
-                                  },
-                                  [_vm._v("Harga Jual Standar")]
-                                ),
-                                _vm._v(" "),
-                                _c("input", {
-                                  directives: [
-                                    {
-                                      name: "model",
-                                      rawName: "v-model",
-                                      value: _vm.form.harga_jual_standar,
-                                      expression: "form.harga_jual_standar"
-                                    }
-                                  ],
-                                  staticClass:
-                                    "w-full px-4  py-2 text-gray-700 bg-gray-50 rounded focus:bg-blue-50 uppercase border-2 border-blue-200 text-lg font-bold",
-                                  attrs: {
-                                    id: "barang_stok",
-                                    type: "number",
-                                    min: "0",
-                                    placeholder: "Jumlah yang dibayarkan",
-                                    "aria-label": ""
-                                  },
-                                  domProps: {
-                                    value: _vm.form.harga_jual_standar
-                                  },
-                                  on: {
-                                    input: function($event) {
-                                      if ($event.target.composing) {
-                                        return
-                                      }
-                                      _vm.$set(
-                                        _vm.form,
-                                        "harga_jual_standar",
-                                        $event.target.value
-                                      )
-                                    }
-                                  }
-                                })
-                              ]),
-                              _vm._v(" "),
-                              _c("div", { staticClass: "px-0 md:px-4 my-2" }, [
-                                _c(
-                                  "label",
-                                  {
-                                    staticClass: "block text-lg text-gray-600",
-                                    attrs: { for: "cus_email" }
-                                  },
-                                  [_vm._v("Harga Jual Grosir")]
-                                ),
-                                _vm._v(" "),
-                                _c("input", {
-                                  directives: [
-                                    {
-                                      name: "model",
-                                      rawName: "v-model",
-                                      value: _vm.form.harga_jual_grosir,
-                                      expression: "form.harga_jual_grosir"
-                                    }
-                                  ],
-                                  staticClass:
-                                    "w-full px-4  py-2 text-gray-700 bg-gray-50 rounded focus:bg-blue-50 uppercase border-2 border-blue-200 text-lg font-bold",
-                                  attrs: {
-                                    id: "barang_stok",
-                                    type: "number",
-                                    min: "0",
-                                    placeholder: "Jumlah yang dibayarkan",
-                                    "aria-label": ""
-                                  },
-                                  domProps: {
-                                    value: _vm.form.harga_jual_grosir
-                                  },
-                                  on: {
-                                    input: function($event) {
-                                      if ($event.target.composing) {
-                                        return
-                                      }
-                                      _vm.$set(
-                                        _vm.form,
-                                        "harga_jual_grosir",
-                                        $event.target.value
-                                      )
-                                    }
-                                  }
-                                })
-                              ]),
                               _vm._v(" "),
                               _c("div", { staticClass: "px-0 md:px-4 my-2" }, [
                                 _c(

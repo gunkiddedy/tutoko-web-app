@@ -265,7 +265,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     cancel: function cancel() {
-      this.$router.push('/barang');
+      this.$router.go(-1);
     },
     onFileChange: function onFileChange(e) {
       var file = e.target.files[0];

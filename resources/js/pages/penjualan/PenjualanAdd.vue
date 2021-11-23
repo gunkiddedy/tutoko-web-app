@@ -271,7 +271,7 @@ export default {
 	},
   	methods: {
 		cancel(){
-			this.$router.push('/barang');
+			this.$router.go(-1);
 		},
 		setHarga(param){
 			this.form.harga_jual = param;

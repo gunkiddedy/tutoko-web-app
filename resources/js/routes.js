@@ -7,18 +7,28 @@ export default {
     routes: [
         {
             path: '/',
-            component: () => import('./pages/barang/Barang.vue'),
-            name: 'barang'
+            component: () => import('./pages/Dashboard.vue'),
+            name: 'dashboard'
         },
         {
-            path: '/barang',
-            component: () => import('./pages/barang/Barang.vue'),
-            name: 'barang'
+            path: '/barang-mandiri',
+            component: () => import('./pages/barang/BarangMandiri.vue'),
+            name: 'barang-mandiri'
         },
         {
-            path: '/barang-add',
-            component: () => import('./pages/barang/BarangAdd.vue'),
-            name: 'barang-add'
+            path: '/barang-supplier',
+            component: () => import('./pages/barang/BarangSupplier.vue'),
+            name: 'barang-supplier'
+        },
+        {
+            path: '/barang-add-mandiri',
+            component: () => import('./pages/barang/BarangAddMandiri.vue'),
+            name: 'barang-add-mandiri'
+        },
+        {
+            path: '/barang-add-supplier',
+            component: () => import('./pages/barang/BarangAddSupplier.vue'),
+            name: 'barang-add-supplier'
         },
         {
             path: '/barang-edit/:id',
@@ -87,7 +97,7 @@ export default {
         },
         {
             path: '/penjualan-non-mandiri',
-            component: () => import('./pages/penjualan/PenjualanAdds.vue'),
+            component: () => import('./pages/penjualan/PenjualanAddNonMandiri.vue'),
             name: 'penjualan-non-mandiri',
             props: true
         },

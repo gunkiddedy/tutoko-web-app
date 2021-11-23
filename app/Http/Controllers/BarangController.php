@@ -12,7 +12,7 @@ class BarangController extends Controller
 
     public function getDataBarang()
     {
-        $q = DB::table("barangs")->orderBy('id', 'desc')->limit(1000)->get();
+        $q = DB::table("barangs")->orderBy('barang_stok', 'asc')->limit(1000)->get();
         return response()->json($q);
     }
     public function getHargaBarang(Request $request, $id)        
@@ -28,7 +28,9 @@ class BarangController extends Controller
     }
     public function getDataNonMandiri()
     {
-        $q = DB::table('barangs')->where('barang_tipe', '=', 'Supplier')->get();
+        $q = DB::table('barangs')->where('barang_tipe', '=', 'Supplier')
+            ->orderBy('barang_nama', 'asc')
+            ->get();
         return response()->json($q);
     }
     public function getDataMandiri()
