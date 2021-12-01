@@ -10,7 +10,7 @@
             </svg>
           </span>
           <span class="text-4xl text-gray-500 leading-tight">Page not found</span>
-          <router-link to="/barang" class="text-blue-400 hover:text-blue-500 text-xl leading-tight font-semibold">Back to home</router-link>
+          <router-link to="/" class="text-blue-400 hover:text-blue-500 text-xl leading-tight font-semibold">Back to home</router-link>
         </div>
       </div>
     </transition>

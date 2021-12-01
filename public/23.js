@@ -1,32 +1,14 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[23],{
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/barang/BarangMandiri.vue?vue&type=script&lang=js&":
-/*!**************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/pages/barang/BarangMandiri.vue?vue&type=script&lang=js& ***!
-  \**************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/supplier/Supplier.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/pages/supplier/Supplier.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -109,15 +91,10 @@ __webpack_require__.r(__webpack_exports__);
         label: "Action",
         field: "action",
         sortable: false,
-        width: "auto"
+        width: "180px"
       }, {
-        label: "Photo",
-        field: "photo_custom",
-        sortable: false,
-        width: "auto"
-      }, {
-        label: "Nama Barang",
-        field: "barang_nama",
+        label: "Nama Supplier",
+        field: "supplier_nama",
         sortable: false,
         width: "auto",
         filterable: true,
@@ -127,30 +104,13 @@ __webpack_require__.r(__webpack_exports__);
           trigger: "enter"
         }
       }, {
-        label: "Jenis",
-        field: "barang_tipe",
-        sortable: false,
-        width: "auto",
-        filterable: true,
-        filterOptions: {
-          enabled: true,
-          placeholder: "Filter",
-          filterDropdownItems: ["Mandiri", "Supplier"],
-          trigger: "keyup"
-        }
-      }, {
-        label: "Satuan",
-        field: "barang_satuan",
+        label: "Phone",
+        field: "supplier_phone",
         sortable: false,
         width: "auto"
       }, {
-        label: "Stok",
-        field: "barang_stok",
-        sortable: false,
-        width: "auto"
-      }, {
-        label: "Status",
-        field: "active_custom",
+        label: "Alamat",
+        field: "supplier_alamat",
         sortable: false,
         width: "auto"
       }],
@@ -163,7 +123,7 @@ __webpack_require__.r(__webpack_exports__);
           type: "desc"
         },
         page: 1,
-        perPage: 5
+        perPage: 10
       }
     };
   },
@@ -179,20 +139,12 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     tambahData: function tambahData() {
       this.$router.push({
-        name: "barang-add-mandiri"
+        name: "supplier-add"
       });
     },
     editData: function editData(param) {
       this.$router.push({
-        name: "barang-edit",
-        params: {
-          id: param
-        }
-      });
-    },
-    jualBarang: function jualBarang(param) {
-      this.$router.push({
-        name: "penjualan-add",
+        name: "supplier-edit",
         params: {
           id: param
         }
@@ -223,14 +175,13 @@ __webpack_require__.r(__webpack_exports__);
       this.getRecords();
     },
     onColumnFilter: function onColumnFilter(params) {
-      // this.$set(this.columns[foundIndex].filterOptions, 'filterValue', value);
       this.updateParams(params);
       this.getRecords();
     },
     getRecords: function getRecords() {
       var _this = this;
 
-      axios.get("/api/barang-mandiri/", {
+      axios.get("/api/supplier/", {
         params: this.serverParams
       }).then(function (response) {
         _this.loading = false;
@@ -246,10 +197,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/barang/BarangMandiri.vue?vue&type=template&id=4c90f910&":
-/*!******************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/pages/barang/BarangMandiri.vue?vue&type=template&id=4c90f910& ***!
-  \******************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/supplier/Supplier.vue?vue&type=template&id=1f6e7536&":
+/*!***************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/pages/supplier/Supplier.vue?vue&type=template&id=1f6e7536& ***!
+  \***************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -286,20 +237,17 @@ var render = function() {
               _c("main", { staticClass: "w-full flex-grow p-6 bg-white" }, [
                 _c(
                   "div",
-                  {
-                    staticClass:
-                      "flex lg:flex-row flex-col lg:items-center justify-between mb-12"
-                  },
+                  { staticClass: "flex items-center justify-between" },
                   [
                     _c(
                       "h1",
                       {
                         staticClass:
-                          "text-2xl pb-1 font-semibold text-indigo-400 uppercase"
+                          "text-lg pb-1 font-semibold text-indigo-400 uppercase"
                       },
                       [
                         _vm._v(
-                          "\n            \t\t\t\tMaster Data Daftar Barang Non Supplier(Mandiri)\n\t\t\t\t\t\t"
+                          "\n            \t\t\t\tDaftar Supplier\n\t\t\t\t\t\t"
                         )
                       ]
                     ),
@@ -345,11 +293,11 @@ var render = function() {
                           isLoading: _vm.isLoading,
                           "pagination-options": {
                             enabled: true,
-                            perPageDropdown: [5, 10, 20],
+                            perPageDropdown: [10],
                             nextLabel: "next",
                             prevLabel: "prev",
                             setCurrentPage: 1,
-                            perPage: _vm.serverParams.perPage,
+                            perPage: 10,
                             dropdownAllowAll: false,
                             rowsPerPageLabel: "per halaman",
                             allLabel: "Semua",
@@ -394,32 +342,7 @@ var render = function() {
                                           }),
                                           _vm._v("Edit\n\t\t\t\t\t\t\t\t\t\t")
                                         ]
-                                      ),
-                                      _vm._v(" "),
-                                      props.row.barang_tipe == "Mandiri"
-                                        ? _c(
-                                            "button",
-                                            {
-                                              staticClass:
-                                                "bg-green-500 rounded border border-green-600 hover:bg-green-600 px-2 py-0 text-white font-semibold mx-1 ml-1",
-                                              on: {
-                                                click: function($event) {
-                                                  return _vm.jualBarang(
-                                                    props.row.id
-                                                  )
-                                                }
-                                              }
-                                            },
-                                            [
-                                              _c("i", {
-                                                staticClass: "fas fa-truck mr-2"
-                                              }),
-                                              _vm._v(
-                                                "Jual\n\t\t\t\t\t\t\t\t\t\t"
-                                              )
-                                            ]
-                                          )
-                                        : _vm._e()
+                                      )
                                     ])
                                   : _c("span", [
                                       _vm._v(
@@ -431,55 +354,7 @@ var render = function() {
                                           ) +
                                           "\n\t\t\t\t\t\t\t\t\t"
                                       )
-                                    ]),
-                                _vm._v(" "),
-                                props.column.field == "active_custom"
-                                  ? _c("span", [
-                                      _c(
-                                        "span",
-                                        {
-                                          staticClass:
-                                            "px-3 text-white font-bold py-0 leading-loose flex items-center justify-center",
-                                          class: {
-                                            "bg-green-400":
-                                              props.row.active == "Active",
-                                            "bg-gray-400":
-                                              props.row.active == "Inactive"
-                                          }
-                                        },
-                                        [
-                                          _vm._v(
-                                            "\n\t\t\t\t\t\t\t\t\t\t\t" +
-                                              _vm._s(props.row.active) +
-                                              "\n\t\t\t\t\t\t\t\t\t\t"
-                                          )
-                                        ]
-                                      )
                                     ])
-                                  : _vm._e(),
-                                _vm._v(" "),
-                                props.column.field == "photo_custom"
-                                  ? _c("span", [
-                                      _c(
-                                        "a",
-                                        {
-                                          attrs: {
-                                            href: "storage/" + props.row.photo,
-                                            target: "_blank"
-                                          }
-                                        },
-                                        [
-                                          _c("img", {
-                                            staticClass: "w-12",
-                                            attrs: {
-                                              src: "storage/" + props.row.photo,
-                                              alt: props.row.barang_nama
-                                            }
-                                          })
-                                        ]
-                                      )
-                                    ])
-                                  : _vm._e()
                               ]
                             }
                           }
@@ -515,17 +390,17 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./resources/js/pages/barang/BarangMandiri.vue":
-/*!*****************************************************!*\
-  !*** ./resources/js/pages/barang/BarangMandiri.vue ***!
-  \*****************************************************/
+/***/ "./resources/js/pages/supplier/Supplier.vue":
+/*!**************************************************!*\
+  !*** ./resources/js/pages/supplier/Supplier.vue ***!
+  \**************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _BarangMandiri_vue_vue_type_template_id_4c90f910___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./BarangMandiri.vue?vue&type=template&id=4c90f910& */ "./resources/js/pages/barang/BarangMandiri.vue?vue&type=template&id=4c90f910&");
-/* harmony import */ var _BarangMandiri_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./BarangMandiri.vue?vue&type=script&lang=js& */ "./resources/js/pages/barang/BarangMandiri.vue?vue&type=script&lang=js&");
+/* harmony import */ var _Supplier_vue_vue_type_template_id_1f6e7536___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Supplier.vue?vue&type=template&id=1f6e7536& */ "./resources/js/pages/supplier/Supplier.vue?vue&type=template&id=1f6e7536&");
+/* harmony import */ var _Supplier_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Supplier.vue?vue&type=script&lang=js& */ "./resources/js/pages/supplier/Supplier.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -535,9 +410,9 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _BarangMandiri_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _BarangMandiri_vue_vue_type_template_id_4c90f910___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _BarangMandiri_vue_vue_type_template_id_4c90f910___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _Supplier_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Supplier_vue_vue_type_template_id_1f6e7536___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Supplier_vue_vue_type_template_id_1f6e7536___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
   null,
@@ -547,38 +422,38 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/js/pages/barang/BarangMandiri.vue"
+component.options.__file = "resources/js/pages/supplier/Supplier.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/js/pages/barang/BarangMandiri.vue?vue&type=script&lang=js&":
-/*!******************************************************************************!*\
-  !*** ./resources/js/pages/barang/BarangMandiri.vue?vue&type=script&lang=js& ***!
-  \******************************************************************************/
+/***/ "./resources/js/pages/supplier/Supplier.vue?vue&type=script&lang=js&":
+/*!***************************************************************************!*\
+  !*** ./resources/js/pages/supplier/Supplier.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_BarangMandiri_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./BarangMandiri.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/barang/BarangMandiri.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_BarangMandiri_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Supplier_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./Supplier.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/supplier/Supplier.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Supplier_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/js/pages/barang/BarangMandiri.vue?vue&type=template&id=4c90f910&":
-/*!************************************************************************************!*\
-  !*** ./resources/js/pages/barang/BarangMandiri.vue?vue&type=template&id=4c90f910& ***!
-  \************************************************************************************/
+/***/ "./resources/js/pages/supplier/Supplier.vue?vue&type=template&id=1f6e7536&":
+/*!*********************************************************************************!*\
+  !*** ./resources/js/pages/supplier/Supplier.vue?vue&type=template&id=1f6e7536& ***!
+  \*********************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_BarangMandiri_vue_vue_type_template_id_4c90f910___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./BarangMandiri.vue?vue&type=template&id=4c90f910& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/barang/BarangMandiri.vue?vue&type=template&id=4c90f910&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_BarangMandiri_vue_vue_type_template_id_4c90f910___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Supplier_vue_vue_type_template_id_1f6e7536___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./Supplier.vue?vue&type=template&id=1f6e7536& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/supplier/Supplier.vue?vue&type=template&id=1f6e7536&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Supplier_vue_vue_type_template_id_1f6e7536___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_BarangMandiri_vue_vue_type_template_id_4c90f910___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Supplier_vue_vue_type_template_id_1f6e7536___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

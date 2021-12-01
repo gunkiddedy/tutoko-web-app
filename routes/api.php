@@ -63,6 +63,7 @@ Route::post('add-data', 'PembelianController@addData');
 
 // --PRODUKSI--//
 Route::get('produksi', 'ProduksiController@getData');
+Route::get('produksi-detail/{id}', 'ProduksiController@getDataProduksiById');
 Route::get('get-produksi/{id}', 'ProduksiController@getDataById');
 Route::post('update-produksi/{id}', 'ProduksiController@updateProduksi');
 Route::post('add-data-produksi', 'ProduksiController@addData');

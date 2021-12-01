@@ -308,7 +308,7 @@ export default {
       formData.append("supplier_id", this.form.supplier_id);
       formData.append("barang_id", this.form.barang_id);
       formData.append("tanggal", this.form.tanggal);
-			formData.append("tanggal", this.form.tanggal);
+			// formData.append("tanggal", this.form.tanggal);
       formData.append("jumlah", this.form.jumlah);
       formData.append("harga_beli", this.form.harga_beli);
       formData.append("payment", this.form.payment);

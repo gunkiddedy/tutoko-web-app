@@ -57,7 +57,7 @@
 									</label>
 									<button
 										@click="setHarga(harga.standar)" 
-										class="focus:outline-none focus:ring-2 focus:ring-yellow-600 px-6 py-2 w-full rounded bg-yellow-500 text-white focus:bg-blue-50 uppercase border-2 border-blue-200 text-lg font-bold">{{ harga.standar }}</button>
+										class="focus:outline-none focus:ring-2 focus:ring-gray-400 px-6 py-2 w-full rounded bg-yellow-500 text-white uppercase text-lg font-bold">{{ harga.standar }}</button>
 									<!-- <input 
 										type="number" name="" id="" 
 										:value="hargas.harga_jual_standar" 
@@ -69,7 +69,7 @@
 										</label>
 									<button
 										@click="setHarga(harga.grosir)" 
-										class="focus:outline-none focus:ring-2 px-6 py-2 w-full rounded bg-blue-500 text-white focus:bg-blue-50 uppercase border-2 border-blue-200 text-lg font-bold">{{ harga.grosir }}</button>
+										class="focus:outline-none focus:ring-2 focus:ring-gray-400 px-6 py-2 w-full rounded bg-blue-500 text-white uppercase text-lg font-bold">{{ harga.grosir }}</button>
 									<!-- <input 
 										type="number" name="" id="" 
 										:value="hargas.harga_jual_grosir" 

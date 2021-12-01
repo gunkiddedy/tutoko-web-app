@@ -14,6 +14,11 @@ class ProduksiController extends Controller
         $q = DB::table("detail_produksi")->orderBy('id', 'desc')->limit(100)->get();
         return response()->json($q);
     }
+    public function getDataProduksiById(Request $request, $id)
+    {
+        $q = DB::table('detail_produksi')->where('id', $id)->get();
+        return response()->json($q);
+    }
     public function getDataById(Request $request, $id)
     {
         $q = Produksi::find($id);

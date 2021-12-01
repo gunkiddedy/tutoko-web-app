@@ -28,7 +28,10 @@ class BarangController extends Controller
     }
     public function getDataNonMandiri()
     {
-        $q = DB::table('barangs')->where('barang_tipe', '=', 'Supplier')
+        $q = DB::table('barangs')
+            ->where([
+                ['barang_tipe', '=', 'Supplier'],
+            ])
             ->orderBy('barang_nama', 'asc')
             ->get();
         return response()->json($q);

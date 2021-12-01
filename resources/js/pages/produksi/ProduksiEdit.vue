@@ -6,166 +6,122 @@
       <header-component></header-component>
 
       <div class="w-full h-screen overflow-x-hidden border-t flex flex-col">
-        <main class="w-full flex-grow p-6 bg-white">
+        <main class="w-full flex-grow p-1 md:p-6 bg-white">
           <!-- Content goes here! 😁 -->
-          <h1 class="text-lg text-gray-500 pb-1 font-semibold">Tambah Data Pembelian</h1>
+          <h1 class="text-lg text-gray-500 pb-1 font-semibold">Edit Data Produksi</h1>
           <div class="w-full mt-6 pl-0 lg:pl-2">
             <div class="leading-loose">
-              <div class="p-10 bg-white rounded shadow">
+              <div class="p-2 md:p-10 bg-white rounded shadow">
                 <div
-                  class="grid grid-cols-2 lg:grid-cols-2 sm:grid-cols-1 md:grid-cols-2"
+                  class="grid grid-cols-1 md:grid-cols-2"
                 >
-                  <div class="px-4 my-2">
-                    <label class="block text-lg text-gray-600" for="cus_email"
+                  <div class="px-0 md:px-4 my-2">
+                    <label class="uppercase block text-lg text-gray-600" for="cus_email"
                       >Nama Barang</label
                     >
-                    <!-- <select
-                      class="w-full px-5 py-1 rounded-lg text-gray-500 focus:outline-none focus:shadow-inner border-2 border-gray-200 bg-white appearance-none"
-                      >
-                      <option
-												selected
-												disabled
-                        class="text-gray-700"
-                        v-for="(barang, i) in barangs"
-                        :value="barang.id"
-                        :key="i"
-                      >
-                        {{ barang.barang_nama }}
-                      </option>
-                    </select> -->
                     <input 
-												readonly type="text" name="" id="" 
-												:value="`${barangNama}`"
-												class="font-bold uppercase text-xl w-full px-4 py-2 text-gray-700 bg-indigo-50 rounded">
+                        readonly type="text" name="" id="" 
+                        :value="`${produksi.barang_nama}`"
+                        class="font-bold uppercase text-xl w-full px-4 py-2 text-gray-700 bg-indigo-50 rounded">
                   </div>
 
-                  <div class="px-4 my-2">
-                    <label class="block text-lg text-gray-600" for="cus_email"
-                      >Nama Supplier</label
+                  <div class="px-0 md:px-4 my-2">
+                    <label class="uppercase block text-lg text-gray-600" for="cus_email"
+                      >Nama Pegawai</label
                     >
-                    <select
-                        v-model="form.supplier_id"
-                        class="w-full px-5 py-1 rounded-lg text-gray-500 focus:outline-none focus:shadow-inner border-2 border-gray-200 bg-white appearance-none"
-                      >
-                      <option class="text-gray-700" value="" selected="selected">
-                        -Pilih-
-                      </option>
-                      <option
-                        class="text-gray-700"
-                        v-for="(supplier, i) in suppliers"
-                        :value="supplier.id"
-                        :key="i"
-                      >
-                        {{ supplier.supplier_nama }}
-                      </option>
-                    </select>
+                    <input 
+                        readonly 
+                        type="text" 
+                        name="" 
+                        id="" 
+                        :value="`${produksi.pegawai_nama}`"
+                        class="font-bold uppercase text-xl w-full px-4 py-2 text-gray-700 bg-indigo-50 rounded">
                   </div>
 
-                  <div class="px-4 my-2">
-                    <label class="block text-lg text-gray-600" for="cus_name"
-                      >Jumlah Pembelian</label
+                  <div class="px-0 md:px-4 my-2">
+                    <label class="uppercase block text-lg text-gray-600" for="cus_name"
+                      >Jumlah Produksi</label
                     >
                     <input
-                      readonly
-                      class="w-full px-4 py-1 text-gray-700 bg-gray-50 rounded"
+                      class="w-full px-4 py-2 focus:bg-blue-50 text-gray-700 rounded border-2 border-blue-200 bg-white uppercase text-lg font-bold"
                       id="jumlah"
                       type="number"
                       min="0"
-                      aria-label="jumlah"
-                      placeholder="Masukkan jumlah pembelian"
-                      v-model="form.jumlah"
+                      placeholder="Jumlah produksi"
+                      v-model="form.produksi_jumlah"
                     />
                   </div>
 
-                  <div class="px-4 my-2">
-                    <label class="block text-lg text-gray-600" for="cus_email"
-                      >Harga Beli</label
-                    >
-                    <input
-                      class="w-full px-4 py-1 text-gray-700 bg-gray-50 rounded"
-                      id="barang_satuan"
-                      v-model="form.harga_beli"
-                      type="number"
-                      min="0"
-                      placeholder="Masukkan harga beli"
-                      aria-label="Email"
-                    />
-                  </div>
-
-                  <div class="px-4 my-2">
-                    <label class="block text-lg text-gray-600" for="cus_email"
-                      >Terbayar</label
-                    >
-                    <input
-                      class="w-full px-4 py-1 text-gray-700 bg-gray-50 rounded"
-                      id="barang_stok"
-                      v-model="form.payment"
-                      type="number"
-                      min="0"
-                      placeholder="Jumlah yang dibayarkan"
-                      aria-label=""
-                    />
-                  </div>
-                  
-                  <div class="px-4 my-2">
-                    <label class="block text-lg text-gray-600" for="cus_email"
-                      >Tanggal Pembelian {{ form.tanggal }}</label
+                  <div class="px-0 md:px-4 my-2">
+                    <label class="uppercase block text-lg text-gray-600" for="cus_email"
+                      >Tanggal Produksi</label
                     >
                     <date-picker
-                      v-model="form.tanggal" 
+                      v-model="form.produksi_tanggal" 
                       value-type="format" 
-                      placeholder="Tanggal Pembelian" 
+                      placeholder="Tanggal Produksi" 
                       format="YYYY-MM-DD"></date-picker>
                   </div>
 
-                  <div class="px-4 my-2">
-                    <label class="block text-lg text-gray-600" for="cus_email"
-                      >Harga Jual Standar</label
+                  <div class="px-0 md:px-4 my-2">
+                    <label class="uppercase block text-lg text-gray-600" for="cus_email"
+                      >Harga Pokok Produksi</label
                     >
                     <input
-                      class="w-full px-4 py-1 text-gray-700 bg-gray-50 rounded"
-                      id="barang_stok"
-                      v-model="form.harga_jual_standar"
+                      readonly
+                      class="w-full px-4 py-2 text-gray-700 border-2 border-blue-200 bg-gray-50 rounded uppercase text-lg font-bold"
+                      id="barang_satuan"
+                      v-model="form.hpp"
                       type="number"
                       min="0"
-                      placeholder="Jumlah yang dibayarkan"
-                      aria-label=""
+                      placeholder="Harga Pokok Produksi"
                     />
                   </div>
 
-                  <div class="px-4 my-2">
-                    <label class="block text-lg text-gray-600" for="cus_email"
-                      >Harga Jual Grosir</label
+                  <div class="px-0 md:px-4 my-2">
+                    <label class="uppercase block text-lg text-gray-600" for="cus_email"
+                      >Upah Produksi</label
                     >
                     <input
-                      class="w-full px-4 py-1 text-gray-700 bg-gray-50 rounded"
-                      id="barang_stok"
-                      v-model="form.harga_jual_grosir"
+                      readonly
+                      class="w-full px-4 py-2 text-gray-700 border-2 border-blue-200 bg-gray-50 rounded uppercase text-lg font-bold"
+                      id="barang_satuan"
+                      v-model="form.upah"
                       type="number"
                       min="0"
-                      placeholder="Jumlah yang dibayarkan"
-                      aria-label=""
+                      placeholder="Upah produksi"
                     />
                   </div>
 
-                  <div class="px-4 my-2">
-                    <label class="block text-lg text-gray-600" for="cus_email"
-                      >Total Harga</label
+                  <div class="px-0 md:px-4 my-2">
+                    <label class="uppercase block text-lg text-gray-600" for="cus_email"
+                      >harga jual standar</label
                     >
-                    <div class="px-4 total-harga font-bold text-2xl text-gray-900">
-                      {{totalHarga}}
-                    </div>
+                    <input
+                      readonly
+                      class="w-full px-4 py-2 text-gray-700 border-2 border-blue-200 bg-gray-50 rounded uppercase text-lg font-bold"
+                      id="barang_satuan"
+                      v-model="form.hjs"
+                      type="number"
+                      min="0"
+                      placeholder="hjs"
+                    />
                   </div>
 
-                  <div class="px-4 my-2">
-                    <label class="block text-lg text-gray-600" for="cus_email"
-                      >Kurang Bayar</label
+                  <div class="px-0 md:px-4 my-2">
+                    <label class="uppercase block text-lg text-gray-600" for="cus_email"
+                      >harga jual grosir</label
                     >
-                    <div class="px-4 hutang font-bold text-2xl text-red-500">
-                      {{totalHutang}}
-                    </div>
-                  </div>
-
+                    <input
+                      readonly
+                      class="w-full px-4 py-2 text-gray-700 border-2 border-blue-200 bg-gray-50 rounded uppercase text-lg font-bold"
+                      id="barang_satuan"
+                      v-model="form.hjg"
+                      type="number"
+                      min="0"
+                      placeholder="hjg"
+                    />
+                  </div>                  
                 </div><!-- grid -->
 
                 <div class="mt-2">
@@ -175,9 +131,9 @@
                     >{{ status_msg }}</span
                   >
                 </div>
-                <div class="mt-6 px-4">
+                <div class="mt-6 px-0 md:px-4">
                   <button
-                    @click="updatePembelian(id)"
+                    @click="updateProduksi(id)"
                     class="px-6 py-1 text-white font-light tracking-wider bg-gray-400 hover:bg-gray-600 rounded"
                   >
                     {{ isUpdating == true ? "Processing..." : "Update" }}
@@ -202,124 +158,57 @@ export default {
   props: ["id"],
   data() {
     return {
-      loading: true,
       isUpdating: false,
-			status_msg: "",
+      status_msg: "",
       status: '',
-			form: {
+
+      produksi: '',
+      pegawais: null,
+      // hargas: null,
+
+      form: {
         barang_id: '',
-        supplier_id: '',
-        tanggal: '',
-        jumlah: 0,
-        harga_beli: 0,
-        payment: 0,
-        harga_jual_standar: 0,
-        harga_jual_grosir: 0
+        pegawai_id: '',
+        produksi_tanggal: '',
+        produksi_jumlah: 0,
+        hpp: 0,
+        upah: 0,
+        hjs: 0,
+        hjg: 0,
       },
-
-      suppliers: [],
-      barangNama: null,
-    };
-  },
-	computed: {
-    totalHarga: function () {
-      let totalH = this.form.jumlah * this.form.harga_beli;
-
-      if(totalH){
-        let number = totalH;
-        let	reverse = number.toString().split('').reverse().join('');
-        let ribuan 	= reverse.match(/\d{1,3}/g);
-        ribuan	= ribuan.join('.').split('').reverse().join('');
-        return ribuan;
-      }
-      else {
-        return totalH
-      }
-      // return this.form.jumlah * this.form.harga_beli
-    },
-    totalHutang: function() {
-      let totalU = this.form.payment - (this.form.jumlah * this.form.harga_beli);
-
-      if(totalU){
-        let number = totalU;
-        let	reverse = number.toString().split('').reverse().join('');
-        let ribuan 	= reverse.match(/\d{1,3}/g);
-        ribuan	= ribuan.join('.').split('').reverse().join('');
-        return '-' + ribuan;
-      }
-      else {
-        return totalU
-      }
-      // return this.form.payment - (this.form.jumlah * this.form.harga_beli)
     }
   },
-  mounted() {
-    this.getPembelian(this.id);
-    this.getSuppliers();
-    // this.getBarangs();
+  created() {
+    console.log('created');
+    // this.getProduksi(this.id);
+    this.getProduksiDetail();
+  },
+  mounted(){
+    console.log('mounted');
+    // this.getProduksiDetail();
+    // this.getPegawais();
   },
   methods: {
     cancel(){
-      this.$router.push('/pembelian');
+      this.$router.go(-1);
     },
-    getSuppliers(){
-      axios
-        .get("/api/supplier/")
-        .then((response) => {
-          this.suppliers = response.data;
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    },
-    getBarangs(param){
-      axios
-        .get("/api/get-barang/" + param)
-        .then((response) => {
-          this.barangNama = response.data.barang_nama;
-          console.log('getbarang', response)
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    },
-    getPembelian(param) {
-      axios
-        .get("/api/get-pembelian/" + param)
-        .then((response) => {
-          this.getBarangs(response.data.barang_id)
-          this.loading = false;
-          this.form.supplier_id = response.data.supplier_id;
-          this.form.barang_id = response.data.barang_id;
-          this.form.tanggal = response.data.tanggal;
-          this.form.jumlah = response.data.jumlah;
-          this.form.harga_beli = response.data.harga_beli;
-          this.form.payment = response.data.payment;
-          this.form.harga_jual_standar = response.data.harga_jual_standar;
-          this.form.harga_jual_grosir = response.data.harga_jual_grosir;
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    },
-    updatePembelian(param) {
+    updateProduksi(param) {
       this.isUpdating = true;
-      const formData = new FormData(); 
-      formData.append("supplier_id", this.form.supplier_id);
+      const formData = new FormData();
       formData.append("barang_id", this.form.barang_id);
-      formData.append("tanggal", this.form.tanggal);
-			formData.append("tanggal", this.form.tanggal);
-      formData.append("jumlah", this.form.jumlah);
-      formData.append("harga_beli", this.form.harga_beli);
-      formData.append("payment", this.form.payment);
-      formData.append("harga_jual_standar", this.form.harga_jual_standar);
-      formData.append("harga_jual_grosir", this.form.harga_jual_grosir);
+      formData.append("pegawai_id", this.form.pegawai_id);
+      formData.append("produksi_tanggal", this.form.produksi_tanggal);
+      formData.append("produksi_jumlah", this.form.produksi_jumlah);
+      formData.append("hpp", this.form.hpp);
+      formData.append("upah", this.form.upah);
+      formData.append("hjs", this.form.hjs);
+      formData.append("hjg", this.form.hjg);      
       axios
-        .post(`/api/update-pembelian/${param}`, formData)
+        .post(`/api/update-produksi/${param}`, formData)
         .then((response) => {
           this.isUpdating = false;
           this.$router.push({
-            name: "pembelian",
+            name: "produksi",
           });
           console.log(response);
         })
@@ -328,43 +217,48 @@ export default {
           console.log(error);
         });
     },
-		validateForm() {
+    getProduksiDetail() {
+      axios.get('/api/produksi-detail/' + this.id)
+      .then((res) => {
+        this.produksi = res.data[0];
+        this.form.barang_id = res.data[0].barang_id;
+        this.form.pegawai_id = res.data[0].pegawai_id;
+        this.form.produksi_jumlah = res.data[0].produksi_jumlah;
+        this.form.produksi_tanggal = res.data[0].produksi_tanggal;
+        this.form.produksi_jumlah = res.data[0].produksi_jumlah;
+        this.form.hpp = res.data[0].hpp;
+        this.form.upah = res.data[0].upah;
+        this.form.hjs = res.data[0].hjs;
+        this.form.hjg = res.data[0].hjg;
+        console.log(res.data[0]);
+      })
+    },
+    validateForm() {
       if (!this.form.barang_id) {
         this.status = false;
         this.showNotification("nama barang tidak boleh kosong");
         return false;
       }
-      if (!this.form.supplier_id) {
+      if (!this.form.pegawai_id) {
         this.status = false;
-        this.showNotification("supplier tidak boleh kosong");
+        this.showNotification("pegawai tidak boleh kosong");
         return false;
       }
-      if (!this.form.jumlah) {
+      if (!this.form.produksi_jumlah) {
         this.status = false;
-        this.showNotification("jumlah tidak boleh kosong");
+        this.showNotification("jumlah produksi tidak boleh kosong");
         return false;
       }
-      if (!this.form.harga_beli) {
+      if (!this.form.upah) {
         this.status = false;
-        this.showNotification("harga beli tidak boleh kosong");
+        this.showNotification("upah produksi tidak boleh kosong");
         return false;
       }
-      if (!this.form.payment) {
+      if (!this.form.hpp) {
         this.status = false;
-        this.showNotification("terbayar tidak boleh kosong");
+        this.showNotification("hpp tidak boleh kosong");
         return false;
       }
-      if (!this.form.harga_jual_standar) {
-        this.status = false;
-        this.showNotification("harga jual standar tidak boleh kosong");
-        return false;
-      }
-      if (!this.form.harga_jual_grosir) {
-        this.status = false;
-        this.showNotification("harga jual grosir tidak boleh kosong");
-        return false;
-      }
-
       return true;
     },
     showNotification(message) {
@@ -377,4 +271,28 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.mx-datepicker {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+
+.mx-input {
+    display: inline-block;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 100%;
+    height: 40px;
+    padding: 6px 30px;
+    padding-left: 10px;
+    font-size: 14px;
+    line-height: 1.4;
+    color: #555;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgb(0 0 0 / 8%);
+    box-shadow: inset 0 1px 1px rgb(0 0 0 / 8%);
+}
+</style>

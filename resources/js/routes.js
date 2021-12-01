@@ -123,6 +123,12 @@ export default {
             name: 'produksi-edit',
             props: true
         },
+        // {
+        //     path: '/produksi-edit/:id',
+        //     component: () => import('./pages/produksi/ProduksiEdit.vue'),
+        //     name: 'produksi-edit',
+        //     props: true
+        // },
         {
             path: '/absensi',
             component: () => import('./pages/absensi/Absensi.vue'),

@@ -11,8 +11,12 @@
 						</h1>
           			</div>
 					<!-- loader spin-->
-					<div v-if="loading" class="z-30 flex justify-around relative opacity-75 bg-black inset-0">
+					<!-- <div v-if="loading" class="z-30 flex justify-around relative opacity-75 bg-black inset-0">
 						<loader />
+					</div> -->
+
+					<div class="stok bg-gray-200 w-full p-0">
+						
 					</div>
 
                     <div class="wrap flex lg:flex-row flex-col space-y-8 lg:space-x-8 lg:space-y-0 items-center mt-8">
@@ -28,7 +32,7 @@
                     </div>
           			
         		</main>
-        		<div v-if="loading" class="opacity-25 fixed inset-0 z-30 bg-black"></div>
+        		<!-- <div v-if="loading" class="opacity-25 fixed inset-0 z-30 bg-black"></div> -->
         		<footer-component></footer-component>
       		</div>
     	</div>
