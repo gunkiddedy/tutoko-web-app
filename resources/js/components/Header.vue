@@ -2,7 +2,7 @@
   <div>
     <header class="w-full md:flex hidden items-center bg-gray-100 py-2 px-6">
       <div class="w-1/2">
-        <a href="/public">
+        <a href="/">
           <span class="text-gray-500 font-semibold text-2xl">TUTOKO WEB APP</span>
         </a>
       </div>

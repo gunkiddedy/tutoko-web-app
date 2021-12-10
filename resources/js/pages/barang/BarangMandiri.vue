@@ -50,6 +50,7 @@
 											@click="editData(props.row.id)"><i class="fas fa-pen mr-2"></i>Edit
 										</button>
 										<button
+											v-if="props.row.barang_stok > 0"
 											class="bg-green-500 rounded border border-green-600 hover:bg-green-600 px-2 py-0 text-white font-semibold mx-1 ml-1"
 											@click="jualBarang(props.row.id)"><i class="fas fa-truck mr-2"></i>Jual
 										</button>

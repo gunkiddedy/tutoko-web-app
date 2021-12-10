@@ -130,6 +130,11 @@ export default {
         //     props: true
         // },
         {
+            path: '/laporan',
+            component: () => import('./pages/laporan/index.vue'),
+            name: 'laporan'
+        },
+        {
             path: '/absensi',
             component: () => import('./pages/absensi/Absensi.vue'),
             name: 'absensi'

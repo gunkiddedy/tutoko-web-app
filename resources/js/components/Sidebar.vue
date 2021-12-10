@@ -61,6 +61,14 @@
       >
 
       <router-link
+        to="/laporan"
+        v-if="role === 'admin'"
+        class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item"
+      >
+        <i class="fas fa-book mr-3"></i> Laporan</router-link
+      >
+
+      <router-link
         to="/pegawai"
         v-if="role === 'desa' || role === 'admin'"
         class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item"
