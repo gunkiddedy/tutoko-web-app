@@ -140,6 +140,21 @@ export default {
             name: 'gaji'
         },
         {
+            path: '/produksi-report',
+            component: () => import('./pages/laporan/Produksi.vue'),
+            name: 'produksi-report'
+        },
+        {
+            path: '/penjualan-report',
+            component: () => import('./pages/laporan/Penjualan.vue'),
+            name: 'penjualan-report'
+        },
+        {
+            path: '/pembelian-report',
+            component: () => import('./pages/laporan/Pembelian.vue'),
+            name: 'pembelian-report'
+        },
+        {
             path: '/absensi',
             component: () => import('./pages/absensi/Absensi.vue'),
             name: 'absensi'

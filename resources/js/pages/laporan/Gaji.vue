@@ -1,6 +1,6 @@
 <template>
     <div class="bg-gray-100 font-family-karla flex">
-        <sidebar-component></sidebar-component>
+        <!-- <sidebar-component></sidebar-component> -->
         <div class="relative w-full flex flex-col h-screen overflow-y-hidden">
             <header-component></header-component>
             <div class="w-full h-screen overflow-x-hidden border-t flex flex-col">
@@ -31,12 +31,14 @@
 
                         <div class="flex items-center space-x-4 pt-5">
                             <button
-                                @click="getHarga" 
+                                @click="getData" 
                                 class="bg-blue-400 px-4 py-2 focus:outline-none focus:ring-blue-600 focus:ring-2 rounded-md text-white text-base font-bold noPrint">Tampilkan</button>
                             
                             <button
                                 onclick="window.print();"
-                                class="noPrint bg-blue-400 px-4 py-2 focus:outline-none focus:ring-blue-600 focus:ring-2 rounded-md text-white text-base font-bold">Cetak</button>
+                                class="noPrint bg-red-400 px-4 py-2 focus:outline-none focus:ring-blue-600 focus:ring-2 rounded-md text-white text-base font-bold">Cetak</button>
+
+                            <router-link class="bg-yellow-400 px-4 py-2 focus:outline-none focus:ring-blue-600 focus:ring-2 rounded-md text-white text-base font-bold noPrint" to="/laporan">Kembali ke beranda laporan</router-link>
                         </div>
                     </div>
 
@@ -86,7 +88,7 @@ export default {
                 return 0;
             }
 		},
-        getHarga(){
+        getData(){
             let date1 = this.tgl_awal.toLocaleString('en-GB').split('-');
             let date2 = this.tgl_akhir.toLocaleString('en-GB').split('-');
             let fixDate1 = date1[2] + '-' + date1[1] + '-' + date1[0];

@@ -13,15 +13,15 @@
                         <loader />
                     </div>
                     <div class="wrap flex lg:flex-row flex-col space-y-8 lg:space-x-8 lg:space-y-0 items-center mt-8">
-                        <router-link to="/barang-mandiri" class="px-12 py-3 rounded-full shadow text-center bg-blue-200 lg:w-max w-full text-xl font-bold">
+                        <router-link to="/produksi-report" class="px-12 py-3 rounded-full shadow text-center bg-blue-200 lg:w-max w-full text-xl font-bold">
                             Produksi
                         </router-link>
 
-                        <router-link to="/barang-mandiri" class="px-12 py-3 rounded-full shadow text-center bg-blue-200 lg:w-max w-full text-xl font-bold">
+                        <router-link to="/penjualan-report" class="px-12 py-3 rounded-full shadow text-center bg-blue-200 lg:w-max w-full text-xl font-bold">
                             Penjualan
                         </router-link>
 
-                        <router-link to="/barang-mandiri" class="px-12 py-3 rounded-full shadow text-center bg-blue-200 lg:w-max w-full text-xl font-bold">
+                        <router-link to="/pembelian-report" class="px-12 py-3 rounded-full shadow text-center bg-blue-200 lg:w-max w-full text-xl font-bold">
                             Pembelian
                         </router-link>
 

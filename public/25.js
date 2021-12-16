@@ -147,7 +147,7 @@ var render = function() {
                       {
                         staticClass:
                           "px-12 py-3 rounded-full shadow text-center bg-blue-200 lg:w-max w-full text-xl font-bold",
-                        attrs: { to: "/barang-mandiri" }
+                        attrs: { to: "/produksi-report" }
                       },
                       [
                         _vm._v(
@@ -161,7 +161,7 @@ var render = function() {
                       {
                         staticClass:
                           "px-12 py-3 rounded-full shadow text-center bg-blue-200 lg:w-max w-full text-xl font-bold",
-                        attrs: { to: "/barang-mandiri" }
+                        attrs: { to: "/penjualan-report" }
                       },
                       [
                         _vm._v(
@@ -175,7 +175,7 @@ var render = function() {
                       {
                         staticClass:
                           "px-12 py-3 rounded-full shadow text-center bg-blue-200 lg:w-max w-full text-xl font-bold",
-                        attrs: { to: "/barang-mandiri" }
+                        attrs: { to: "/pembelian-report" }
                       },
                       [
                         _vm._v(
