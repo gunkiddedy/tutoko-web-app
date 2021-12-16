@@ -135,6 +135,11 @@ export default {
             name: 'laporan'
         },
         {
+            path: '/gaji',
+            component: () => import('./pages/laporan/Gaji.vue'),
+            name: 'gaji'
+        },
+        {
             path: '/absensi',
             component: () => import('./pages/absensi/Absensi.vue'),
             name: 'absensi'

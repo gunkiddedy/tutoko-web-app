@@ -3,7 +3,7 @@
     class="relative bg-sidebar w-64 hidden sm:block shadow-xl"
     v-if="isLoggedIn === 'true'"
   >
-    <div class="p-4">
+    <div class="p-4 noPrint">
       <div
         class="realtive w-12 h-12 rounded-full overflow-hidden border-2 border-gray-100 hover:border-gray-200 focus:border-gray-200 focus:outline-none mb-1 mx-auto"
       >
@@ -17,7 +17,7 @@
         <i class="fas fa-user mr-3"></i> Petugas {{ role }}
       </button> -->
     </div>
-    <nav class="text-white text-base font-semibold pt-3">
+    <nav class="text-white text-base font-semibold pt-3 noPrint">
 
       <router-link
         to="/"

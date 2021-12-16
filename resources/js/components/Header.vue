@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="noPrint">
     <header class="w-full md:flex hidden items-center bg-gray-100 py-2 px-6">
       <div class="w-1/2">
         <a href="/">

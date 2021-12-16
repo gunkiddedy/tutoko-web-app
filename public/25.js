@@ -188,22 +188,8 @@ var render = function() {
                       "router-link",
                       {
                         staticClass:
-                          "px-12 py-3 rounded-full shadow text-center bg-blue-200 lg:w-max w-full text-xl font-bold",
-                        attrs: { to: "/barang-mandiri" }
-                      },
-                      [
-                        _vm._v(
-                          "\n                        Absensi\n                    "
-                        )
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "router-link",
-                      {
-                        staticClass:
                           "px-12 py-3 rounded-full shadow text-center bg-yellow-200 lg:w-max w-full text-xl font-bold",
-                        attrs: { to: "/barang-supplier" }
+                        attrs: { to: "/gaji" }
                       },
                       [
                         _vm._v(

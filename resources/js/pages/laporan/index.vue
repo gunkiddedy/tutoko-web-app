@@ -26,12 +26,12 @@
                         </router-link>
 
                         <!-- mandiri -->
-                        <router-link to="/barang-mandiri" class="px-12 py-3 rounded-full shadow text-center bg-blue-200 lg:w-max w-full text-xl font-bold">
+                        <!-- <router-link to="/barang-mandiri" class="px-12 py-3 rounded-full shadow text-center bg-blue-200 lg:w-max w-full text-xl font-bold">
                             Absensi
-                        </router-link>
+                        </router-link> -->
 
                         <!-- supplier -->
-                        <router-link to="/barang-supplier" class="px-12 py-3 rounded-full shadow text-center bg-yellow-200 lg:w-max w-full text-xl font-bold">
+                        <router-link to="/gaji" class="px-12 py-3 rounded-full shadow text-center bg-yellow-200 lg:w-max w-full text-xl font-bold">
                             Gaji
                         </router-link>
                     </div>

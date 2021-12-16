@@ -44,4 +44,21 @@ class AbsensiController extends Controller
         return response()->json('data successfuly added');
     }
 
+    public function getGaji($date1, $date2)
+    {
+        /**
+         * SELECT d.*, sum(total_gaji) AS total FROM detail_gaji d WHERE updated_at BETWEEN '2021-06-01' AND '2021-11-28' GROUP BY nama_pegawai
+         */
+        // $q = DB::table('detail_gaji')
+        //    ->whereBetween('updated_at', [$date1, $date2])
+        //    ->orderBy('nama_pegawai', 'desc')
+        //    ->get();
+        $q = DB::table('detail_gaji')
+                     ->select(DB::raw('detail_gaji.*, sum(total_gaji) as total, SUM(jumlah_jam) AS jumlah_hari_kerja'))
+                     ->whereBetween('updated_at', [$date1, $date2])
+                     ->groupBy('nama_pegawai')
+                     ->get();
+        return response()->json($q);
+    }
+
 }

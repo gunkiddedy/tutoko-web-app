@@ -48,6 +48,9 @@ Route::get('absensi', 'AbsensiController@getDataAbsensi');
 Route::get('detail-absensi', 'AbsensiController@getDetailAbsensi');
 Route::post('add-data-absensi', 'AbsensiController@addDataAbsensi');
 
+// GAJI
+Route::get('gaji/{date1}/{date2}', 'AbsensiController@getGaji');
+
 //--SUPPLIER--//
 Route::get('supplier', 'SupplierController@getDataSupplier');
 Route::get('get-supplier/{id}', 'SupplierController@getDataSupplierById');
