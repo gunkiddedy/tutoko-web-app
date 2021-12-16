@@ -1,12 +1,12 @@
 <template>
     <div class="bg-gray-100 font-family-karla flex">
-        <sidebar-component></sidebar-component>
+        <!-- <sidebar-component></sidebar-component> -->
         <div class="relative w-full flex flex-col h-screen overflow-y-hidden">
             <header-component></header-component>
             <div class="w-full h-screen overflow-x-hidden border-t flex flex-col">
                 <main class="w-full flex-grow p-6 bg-white">
                     <div class="flex items-center justify-between border-b-2 border-gray-300">
-                        <h1 class="text-lg pb-1 font-semibold text-indigo-400 uppercase">Laporan Produksi</h1>
+                        <h1 class="text-lg pb-1 font-semibold text-indigo-400 uppercase">Laporan Pembelian</h1>
                     </div>
 
                     <!-- grup date and button -->
@@ -37,35 +37,47 @@
                             <button
                                 onclick="window.print();"
                                 class="noPrint bg-red-400 px-4 py-2 focus:outline-none focus:ring-blue-600 focus:ring-2 rounded-md text-white text-base font-bold">Cetak</button>
+                            
+                            <router-link class="bg-yellow-400 px-4 py-2 focus:outline-none focus:ring-blue-600 focus:ring-2 rounded-md text-white text-base font-bold noPrint" to="/laporan">Kembali ke beranda laporan</router-link>
                         </div>
                     </div>
 
                     <!-- show data -->
                     <div class="show-data mt-12">
                         <!-- {{ dataGaji }} -->
-                        <table class="table-auto border-collapse border border-gray-400 w-full">
+                        <table class="table-auto border-collapse border border-gray-400 w-full text-sm">
                             <thead class="text-center">
                                 <tr class="uppercase">
                                     <th class="border border-gray-300 p-2">NO.</th>
-                                    <th class="border border-gray-300 p-2">Nama Barang</th>
-                                    <th class="border border-gray-300 p-2">Nama Pegawai</th>
-                                    <th class="border border-gray-300 p-2">Tgl. Produksi</th>
-                                    <th class="border border-gray-300 p-2">HPP</th>
-                                    <th class="border border-gray-300 p-2">Jumlah Produksi</th>
-                                    <th class="border border-gray-300 p-2">Upah</th>
-                                    <th class="border border-gray-300 p-2">Total Upah</th>
+                                    <th class="border border-gray-300 p-2">Suplier</th>
+                                    <th class="border border-gray-300 p-2">Barang</th>
+                                    <th class="border border-gray-300 p-2">stok</th>
+                                    <th class="border border-gray-300 p-2">satuan</th>
+                                    <th class="border border-gray-300 p-2">tipe</th>
+                                    <th class="border border-gray-300 p-2">pembelian</th>
+                                    <th class="border border-gray-300 p-2">harga beli</th>
+                                    <th class="border border-gray-300 p-2">pembayaran</th>
+                                    <th class="border border-gray-300 p-2">hjs</th>
+                                    <th class="border border-gray-300 p-2">hjg</th>
+                                    <th class="border border-gray-300 p-2">tagihan</th>
+                                    <th class="border border-gray-300 p-2">tgl beli</th>
                                 </tr>
                             </thead>
-                            <tbody class="text-center" v-if="dataProduksi.length">
-                                <tr v-for="(data, index) in dataProduksi" :key="index">
+                            <tbody class="text-center" v-if="dataPembelian.length">
+                                <tr v-for="(data, index) in dataPembelian" :key="index">
                                     <td class="border border-gray-300 p-2">{{ index+1 }}</td>
+                                    <td class="border border-gray-300 p-2">{{ data.supplier_nama }}</td>
                                     <td class="border border-gray-300 p-2">{{ data.barang_nama }}</td>
-                                    <td class="border border-gray-300 p-2">{{ data.pegawai_nama }}</td>
-                                    <td class="border border-gray-300 p-2">{{ moment(data.produksi_tanggal).format('L') }}</td>
-                                    <td class="border border-gray-300 p-2">{{ toRupiah(data.hpp) }}</td>
-                                    <td class="border border-gray-300 p-2">{{ data.produksi_jumlah }}</td>
-                                    <td class="border border-gray-300 p-2">{{ toRupiah(data.upah) }}</td>
-                                    <td class="border border-gray-300 p-2">{{ toRupiah(data.total_upah) }}</td>
+                                    <td class="border border-gray-300 p-2">{{ data.barang_stok }}</td>
+                                    <td class="border border-gray-300 p-2">{{ data.barang_satuan }}</td>
+                                    <td class="border border-gray-300 p-2">{{ data.barang_tipe }}</td>
+                                    <td class="border border-gray-300 p-2">{{ data.jumlah }}</td>
+                                    <td class="border border-gray-300 p-2">{{ toRupiah(data.harga_beli) }}</td>
+                                    <td class="border border-gray-300 p-2">{{ toRupiah(data.payment) }}</td>
+                                    <td class="border border-gray-300 p-2">{{ toRupiah(data.harga_jual_standar) }}</td>
+                                    <td class="border border-gray-300 p-2">{{ toRupiah(data.harga_jual_grosir) }}</td>
+                                    <td class="border border-gray-300 p-2">{{ toRupiah(data.tagihan) }}</td>
+                                    <td class="border border-gray-300 p-2">{{ moment(data.tanggal).format('L') }}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -84,7 +96,7 @@ export default {
             noData: 'tidak ada data',
             tgl_awal: '',
             tgl_akhir: '',
-            dataProduksi: [],
+            dataPembelian: [],
         }
     },
     methods: {
@@ -103,12 +115,12 @@ export default {
             let fixDate1 = date1[2] + '-' + date1[1] + '-' + date1[0];
             let fixDate2 = date2[2] + '-' + date2[1] + '-' + date2[0];
 
-            axios.get("/api/produksi/" + fixDate1 + '/' + fixDate2)
+            axios.get("/api/pembelian/" + fixDate1 + '/' + fixDate2)
                 .then((response) => {
                     if(response.data.length)
-                        this.dataProduksi = response.data;
+                        this.dataPembelian = response.data;
                     else
-                        this.dataProduksi = 'tidak ada data';
+                        this.dataPembelian = 'tidak ada data';
                     console.log(response.data);
                 }).catch((err) => {
                     console.log(err);

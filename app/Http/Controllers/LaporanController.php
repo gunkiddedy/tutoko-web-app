@@ -32,4 +32,11 @@ class LaporanController extends Controller
         return response()->json($q);
     }
 
+    public function getPembelian($date1, $date2) {
+        $q = DB::table('detail_pembelian')
+           ->whereBetween('tanggal', [$date1, $date2])
+           ->get();
+        return response()->json($q);
+    }
+
 }

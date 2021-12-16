@@ -52,6 +52,7 @@ Route::post('add-data-absensi', 'AbsensiController@addDataAbsensi');
 Route::get('gaji/{date1}/{date2}', 'LaporanController@getGaji');
 Route::get('produksi/{date1}/{date2}', 'LaporanController@getProduksi');
 Route::get('penjualan/{date1}/{date2}', 'LaporanController@getPenjualan');
+Route::get('pembelian/{date1}/{date2}', 'LaporanController@getPembelian');
 
 //--SUPPLIER--//
 Route::get('supplier', 'SupplierController@getDataSupplier');

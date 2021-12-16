@@ -75,7 +75,7 @@
                                     <td class="border border-gray-300 p-2">{{ data.nama_pembeli }}</td>
                                     <td class="border border-gray-300 p-2">{{ data.phone_pembeli }}</td>
                                     <td class="border border-gray-300 p-2">{{ data.alamat_pembeli }}</td>
-                                    <td class="border border-gray-300 p-2">{{ data.tanggal }}</td>
+                                    <td class="border border-gray-300 p-2">{{ moment(data.tanggal).format('L') }}</td>
                                 </tr>
                             </tbody>
                         </table>

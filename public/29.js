@@ -341,7 +341,11 @@ var render = function() {
                               _c(
                                 "td",
                                 { staticClass: "border border-gray-300 p-2" },
-                                [_vm._v(_vm._s(data.tanggal))]
+                                [
+                                  _vm._v(
+                                    _vm._s(_vm.moment(data.tanggal).format("L"))
+                                  )
+                                ]
                               )
                             ])
                           }),
