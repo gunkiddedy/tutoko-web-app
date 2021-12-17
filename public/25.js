@@ -54,8 +54,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -160,7 +158,7 @@ var render = function() {
                       "router-link",
                       {
                         staticClass:
-                          "px-12 py-3 rounded-full shadow text-center bg-blue-200 lg:w-max w-full text-xl font-bold",
+                          "px-12 py-3 rounded-full shadow text-center bg-green-200 lg:w-max w-full text-xl font-bold",
                         attrs: { to: "/penjualan-report" }
                       },
                       [
@@ -174,12 +172,26 @@ var render = function() {
                       "router-link",
                       {
                         staticClass:
-                          "px-12 py-3 rounded-full shadow text-center bg-blue-200 lg:w-max w-full text-xl font-bold",
+                          "px-12 py-3 rounded-full shadow text-center bg-purple-200 lg:w-max w-full text-xl font-bold",
                         attrs: { to: "/pembelian-report" }
                       },
                       [
                         _vm._v(
                           "\n                        Pembelian\n                    "
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "router-link",
+                      {
+                        staticClass:
+                          "px-12 py-3 rounded-full shadow text-center bg-red-200 lg:w-max w-full text-xl font-bold",
+                        attrs: { to: "/absensi-report" }
+                      },
+                      [
+                        _vm._v(
+                          "\n                        Absensi\n                    "
                         )
                       ]
                     ),

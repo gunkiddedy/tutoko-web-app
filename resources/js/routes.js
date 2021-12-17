@@ -155,6 +155,11 @@ export default {
             name: 'pembelian-report'
         },
         {
+            path: '/absensi-report',
+            component: () => import('./pages/laporan/Absensi.vue'),
+            name: 'absensi-report'
+        },
+        {
             path: '/absensi',
             component: () => import('./pages/absensi/Absensi.vue'),
             name: 'absensi'

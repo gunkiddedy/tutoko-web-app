@@ -17,20 +17,18 @@
                             Produksi
                         </router-link>
 
-                        <router-link to="/penjualan-report" class="px-12 py-3 rounded-full shadow text-center bg-blue-200 lg:w-max w-full text-xl font-bold">
+                        <router-link to="/penjualan-report" class="px-12 py-3 rounded-full shadow text-center bg-green-200 lg:w-max w-full text-xl font-bold">
                             Penjualan
                         </router-link>
 
-                        <router-link to="/pembelian-report" class="px-12 py-3 rounded-full shadow text-center bg-blue-200 lg:w-max w-full text-xl font-bold">
+                        <router-link to="/pembelian-report" class="px-12 py-3 rounded-full shadow text-center bg-purple-200 lg:w-max w-full text-xl font-bold">
                             Pembelian
                         </router-link>
 
-                        <!-- mandiri -->
-                        <!-- <router-link to="/barang-mandiri" class="px-12 py-3 rounded-full shadow text-center bg-blue-200 lg:w-max w-full text-xl font-bold">
+                        <router-link to="/absensi-report" class="px-12 py-3 rounded-full shadow text-center bg-red-200 lg:w-max w-full text-xl font-bold">
                             Absensi
-                        </router-link> -->
+                        </router-link>
 
-                        <!-- supplier -->
                         <router-link to="/gaji" class="px-12 py-3 rounded-full shadow text-center bg-yellow-200 lg:w-max w-full text-xl font-bold">
                             Gaji
                         </router-link>

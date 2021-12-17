@@ -53,6 +53,7 @@ Route::get('gaji/{date1}/{date2}', 'LaporanController@getGaji');
 Route::get('produksi/{date1}/{date2}', 'LaporanController@getProduksi');
 Route::get('penjualan/{date1}/{date2}', 'LaporanController@getPenjualan');
 Route::get('pembelian/{date1}/{date2}', 'LaporanController@getPembelian');
+Route::get('absensi/{date1}/{date2}', 'LaporanController@getAbsensi');
 
 //--SUPPLIER--//
 Route::get('supplier', 'SupplierController@getDataSupplier');

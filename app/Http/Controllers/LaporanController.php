@@ -17,6 +17,13 @@ class LaporanController extends Controller
         return response()->json($q);
     }
 
+    public function getAbsensi($date1, $date2) {
+        $q = DB::table('detail_absensi')
+           ->whereBetween('tanggal', [$date1, $date2])
+           ->get();
+        return response()->json($q);
+    }
+
     public function getProduksi($date1, $date2) {
         $q = DB::table('detail_produksi')
            ->whereBetween('produksi_tanggal', [$date1, $date2])
